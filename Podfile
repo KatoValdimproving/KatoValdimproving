@@ -7,6 +7,7 @@ target 'hfciPatientX' do
 
   # Pods for hfciPatientX
   pod 'DropDown'
+  pod 'MappedIn', '3.0.2'
 
   target 'hfciPatientXTests' do
     inherit! :search_paths
