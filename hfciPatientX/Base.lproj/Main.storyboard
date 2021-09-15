@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="hfciPatientX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="hfciPatientX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="roW-4c-EpC">
                                 <rect key="frame" x="63" y="407" width="240" height="76"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgL-l1-OAL">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgL-l1-OAL" customClass="RoundedView" customModule="hfciPatientX" customModuleProvider="target">
                                 <rect key="frame" x="566" y="251" width="300" height="308"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzu-WG-2YC">
@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="138.88888888888889" y="138.5185185185185"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="973-jT-3sZ">
             <objects>
-                <viewController id="525-ve-ych" sceneMemberID="viewController">
+                <viewController id="525-ve-ych" customClass="MenuViewController" customModule="hfciPatientX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B8Q-wX-PlP">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
