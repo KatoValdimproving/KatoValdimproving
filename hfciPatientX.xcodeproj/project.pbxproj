@@ -301,7 +301,7 @@
 				CE2FB14F26EFA7AE0040095B /* Sources */,
 				CE2FB15026EFA7AE0040095B /* Frameworks */,
 				CE2FB15126EFA7AE0040095B /* Resources */,
-				23C153FD4F2852F08E1C6EDB /* [CP] Embed Pods Frameworks */,
+				FC169E0D428D5C428335E44E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,7 +339,7 @@
 				CE2FB17026EFA7B20040095B /* Sources */,
 				CE2FB17126EFA7B20040095B /* Frameworks */,
 				CE2FB17226EFA7B20040095B /* Resources */,
-				8D77F64FBDC3ADE93342384E /* [CP] Embed Pods Frameworks */,
+				EDCDE4CD74788DC92A25B286 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -522,7 +522,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D77F64FBDC3ADE93342384E /* [CP] Embed Pods Frameworks */ = {
+		EDCDE4CD74788DC92A25B286 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -537,6 +537,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX-hfciPatientXUITests/Pods-hfciPatientX-hfciPatientXUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC169E0D428D5C428335E44E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
