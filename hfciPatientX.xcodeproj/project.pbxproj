@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		17C3AE2F57675966F90264CB /* Pods_hfciPatientXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */; };
+		8B78983426F260ED003FE097 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78983326F260ED003FE097 /* MapViewController.swift */; };
 		CE2FB15726EFA7AE0040095B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB15626EFA7AE0040095B /* AppDelegate.swift */; };
 		CE2FB15926EFA7AE0040095B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB15826EFA7AE0040095B /* SceneDelegate.swift */; };
 		CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB15A26EFA7AE0040095B /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		0A961E7E4B54CB1E9D1D2567 /* Pods-hfciPatientXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hfciPatientXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C0DA1803196C6394E53FC4 /* Pods-hfciPatientXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.release.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B78983326F260ED003FE097 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AA187D40183931DE99B266FC /* Pods-hfciPatientX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientX.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX.debug.xcconfig"; sourceTree = "<group>"; };
 		CE2FB15326EFA7AE0040095B /* hfciPatientX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hfciPatientX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2FB15626EFA7AE0040095B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			children = (
 				CE2FB1B526F252F60040095B /* LoginViewController.swift */,
 				CE2FB1B726F2548D0040095B /* MenuViewController.swift */,
+				8B78983326F260ED003FE097 /* MapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				CE2FB14F26EFA7AE0040095B /* Sources */,
 				CE2FB15026EFA7AE0040095B /* Frameworks */,
 				CE2FB15126EFA7AE0040095B /* Resources */,
+				23C153FD4F2852F08E1C6EDB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -335,6 +339,7 @@
 				CE2FB17026EFA7B20040095B /* Sources */,
 				CE2FB17126EFA7B20040095B /* Frameworks */,
 				CE2FB17226EFA7B20040095B /* Resources */,
+				8D77F64FBDC3ADE93342384E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,6 +483,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		23C153FD4F2852F08E1C6EDB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		45EDE7A1B579C4C177803068 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,6 +522,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8D77F64FBDC3ADE93342384E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX-hfciPatientXUITests/Pods-hfciPatientX-hfciPatientXUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX-hfciPatientXUITests/Pods-hfciPatientX-hfciPatientXUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX-hfciPatientXUITests/Pods-hfciPatientX-hfciPatientXUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -513,6 +552,7 @@
 				CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */,
 				CE2FB15726EFA7AE0040095B /* AppDelegate.swift in Sources */,
 				CE2FB15926EFA7AE0040095B /* SceneDelegate.swift in Sources */,
+				8B78983426F260ED003FE097 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +732,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -712,6 +753,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
