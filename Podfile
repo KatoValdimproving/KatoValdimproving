@@ -6,6 +6,7 @@ target 'hfciPatientX' do
   use_frameworks!
 
   # Pods for hfciPatientX
+  pod 'DropDown'
 
   target 'hfciPatientXTests' do
     inherit! :search_paths
