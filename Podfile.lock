@@ -1,3 +1,20 @@
-PODFILE CHECKSUM: 681c69569251cc3ea224ee1c558619a726b7a407
+PODS:
+  - DropDown (2.3.13)
+  - MappedIn (3.0.2)
 
-COCOAPODS: 1.11.0
+DEPENDENCIES:
+  - DropDown
+  - MappedIn (= 3.0.2)
+
+SPEC REPOS:
+  trunk:
+    - DropDown
+    - MappedIn
+
+SPEC CHECKSUMS:
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  MappedIn: 61006357ef095cf7796e0f11f96b0995c1a87ce7
+
+PODFILE CHECKSUM: 18999baada7bafb2065bb14d9dbc5ab48ca7d2fd
+
+COCOAPODS: 1.10.1
