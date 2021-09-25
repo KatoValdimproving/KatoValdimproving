@@ -8,6 +8,15 @@ target 'hfciPatientX' do
   # Pods for hfciPatientX
   pod 'DropDown'
   pod 'MappedIn', '3.0.2'
+  pod 'MessengerKit', :git => 'https://github.com/steve228uk/MessengerKit.git'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Socket.IO-Client-Swift', '~> 15.2.0'
+  pod 'NotificationBannerSwift', '~> 3.0.0'
+  pod 'Alamofire', '~> 4.5'
+  pod 'Gloss' #, '~> 2.0'
+  pod 'SwiftySound', '1.0.0'
+  pod ‘ReachabilitySwift’,‘~> 3’
+  pod 'SwiftKeychainWrapper'
 
   target 'hfciPatientXTests' do
     inherit! :search_paths

@@ -24,7 +24,7 @@ class MenuViewController: UIViewController {
 
     @objc func didTap() {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as? MapViewController {
-            present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     /*

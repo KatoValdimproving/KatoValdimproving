@@ -1,20 +1,76 @@
 PODS:
+  - Alamofire (4.9.1)
   - DropDown (2.3.13)
+  - Gloss (3.2.1)
+  - IQKeyboardManagerSwift (6.5.6)
   - MappedIn (3.0.2)
+  - MarqueeLabel (4.0.5)
+  - MessengerKit (1.0.5)
+  - NotificationBannerSwift (3.0.6):
+    - MarqueeLabel (~> 4.0.5)
+    - SnapKit (~> 5.0.1)
+  - ReachabilitySwift (3)
+  - SnapKit (5.0.1)
+  - Socket.IO-Client-Swift (15.2.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.1)
+  - SwiftKeychainWrapper (4.0.1)
+  - SwiftySound (1.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.5)
   - DropDown
+  - Gloss
+  - IQKeyboardManagerSwift
   - MappedIn (= 3.0.2)
+  - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
+  - NotificationBannerSwift (~> 3.0.0)
+  - ReachabilitySwift (~> 3)
+  - Socket.IO-Client-Swift (~> 15.2.0)
+  - SwiftKeychainWrapper
+  - SwiftySound (= 1.0.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - DropDown
+    - Gloss
+    - IQKeyboardManagerSwift
     - MappedIn
+    - MarqueeLabel
+    - NotificationBannerSwift
+    - ReachabilitySwift
+    - SnapKit
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftKeychainWrapper
+    - SwiftySound
+
+EXTERNAL SOURCES:
+  MessengerKit:
+    :git: https://github.com/steve228uk/MessengerKit.git
+
+CHECKOUT OPTIONS:
+  MessengerKit:
+    :commit: a97544ca047628cebede82ab0a32a69c7acfa9fe
+    :git: https://github.com/steve228uk/MessengerKit.git
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  Gloss: 2cda64dd31f12d8c7905273c7883c63ee92bfee3
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   MappedIn: 61006357ef095cf7796e0f11f96b0995c1a87ce7
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
+  MessengerKit: 26dbfa81b76b22b7891028fb9a2cefdf4e86236f
+  NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
+  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 18999baada7bafb2065bb14d9dbc5ab48ca7d2fd
+PODFILE CHECKSUM: 17e8a4639af1637949e43d2d5609cdd0fb20a8ab
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.10.1
