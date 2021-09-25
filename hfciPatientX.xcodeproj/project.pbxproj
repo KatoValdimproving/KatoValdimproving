@@ -9,6 +9,30 @@
 /* Begin PBXBuildFile section */
 		17C3AE2F57675966F90264CB /* Pods_hfciPatientXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */; };
 		8B78983426F260ED003FE097 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78983326F260ED003FE097 /* MapViewController.swift */; };
+		8B79B53226FC228000057F79 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53126FC228000057F79 /* SocketIOManager.swift */; };
+		8B79B53926FC22B600057F79 /* ChatContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */; };
+		8B79B53A26FC22B600057F79 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53726FC22B600057F79 /* ChatManager.swift */; };
+		8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53826FC22B600057F79 /* ChatUser.swift */; };
+		8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53F26FC22E800057F79 /* MessagesViewController.swift */; };
+		8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B54E26FC25A300057F79 /* ChatViewController.swift */; };
+		8BDEE45C26FC2B1C0014A054 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDEE45B26FC2B1C0014A054 /* Settings.bundle */; };
+		8BDEE47C26FC2CAE0014A054 /* ListWithPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */; };
+		8BDEE48126FC2CD00014A054 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE48026FC2CD00014A054 /* SettingsBundleHelper.swift */; };
+		8BDEE48626FC2D1A0014A054 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE48526FC2D1A0014A054 /* SessionManager.swift */; };
+		8BDEE48B26FC2D9A0014A054 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE48A26FC2D9A0014A054 /* APIManager.swift */; };
+		8BDEE4B126FC2E5A0014A054 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4B026FC2E5A0014A054 /* Extensions.swift */; };
+		8BDEE4C826FC2EAC0014A054 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4C726FC2EAC0014A054 /* Constants.swift */; };
+		8BDEE4CD26FC2EDC0014A054 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4CC26FC2EDC0014A054 /* Message.swift */; };
+		8BDEE4D226FC2F120014A054 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4D126FC2F120014A054 /* User.swift */; };
+		8BDEE4D726FC2F5D0014A054 /* JobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4D626FC2F5D0014A054 /* JobManager.swift */; };
+		8BDEE4DC26FC2F780014A054 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4DB26FC2F780014A054 /* Campus.swift */; };
+		8BDEE4E126FC2FD00014A054 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4E026FC2FD00014A054 /* NetworkManager.swift */; };
+		8BDEE4F926FC31A90014A054 /* FailableDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4F826FC31A90014A054 /* FailableDecodable.swift */; };
+		8BDEE4FE26FC325D0014A054 /* AppEnvoriment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE4FD26FC325D0014A054 /* AppEnvoriment.swift */; };
+		8BDEE53E26FC338F0014A054 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE53D26FC338F0014A054 /* Alerts.swift */; };
+		8BDEE54326FC341F0014A054 /* ContactTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE54226FC341F0014A054 /* ContactTVCell.swift */; };
+		8BDEE54826FC34670014A054 /* BroadcastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE54726FC34670014A054 /* BroadcastManager.swift */; };
+		8BDEE54D26FC351F0014A054 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE54C26FC351F0014A054 /* CircleView.swift */; };
 		CE2FB15726EFA7AE0040095B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB15626EFA7AE0040095B /* AppDelegate.swift */; };
 		CE2FB15926EFA7AE0040095B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB15826EFA7AE0040095B /* SceneDelegate.swift */; };
 		CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB15A26EFA7AE0040095B /* ViewController.swift */; };
@@ -64,6 +88,30 @@
 		0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hfciPatientXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C0DA1803196C6394E53FC4 /* Pods-hfciPatientXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.release.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B78983326F260ED003FE097 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		8B79B53126FC228000057F79 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactsViewController.swift; sourceTree = "<group>"; };
+		8B79B53726FC22B600057F79 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		8B79B53826FC22B600057F79 /* ChatUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		8B79B53F26FC22E800057F79 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		8B79B54E26FC25A300057F79 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8BDEE45B26FC2B1C0014A054 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListWithPointer.swift; sourceTree = "<group>"; };
+		8BDEE48026FC2CD00014A054 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
+		8BDEE48526FC2D1A0014A054 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8BDEE48A26FC2D9A0014A054 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		8BDEE4B026FC2E5A0014A054 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8BDEE4C726FC2EAC0014A054 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8BDEE4CC26FC2EDC0014A054 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8BDEE4D126FC2F120014A054 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8BDEE4D626FC2F5D0014A054 /* JobManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobManager.swift; sourceTree = "<group>"; };
+		8BDEE4DB26FC2F780014A054 /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
+		8BDEE4E026FC2FD00014A054 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8BDEE4F826FC31A90014A054 /* FailableDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailableDecodable.swift; sourceTree = "<group>"; };
+		8BDEE4FD26FC325D0014A054 /* AppEnvoriment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvoriment.swift; sourceTree = "<group>"; };
+		8BDEE53D26FC338F0014A054 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		8BDEE54226FC341F0014A054 /* ContactTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTVCell.swift; sourceTree = "<group>"; };
+		8BDEE54726FC34670014A054 /* BroadcastManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastManager.swift; sourceTree = "<group>"; };
+		8BDEE54C26FC351F0014A054 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		AA187D40183931DE99B266FC /* Pods-hfciPatientX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientX.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX.debug.xcconfig"; sourceTree = "<group>"; };
 		CE2FB15326EFA7AE0040095B /* hfciPatientX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hfciPatientX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2FB15626EFA7AE0040095B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +196,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8B79B52D26FC223700057F79 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8BDEE4D126FC2F120014A054 /* User.swift */,
+				8BDEE54C26FC351F0014A054 /* CircleView.swift */,
+				8BDEE54726FC34670014A054 /* BroadcastManager.swift */,
+				8BDEE54226FC341F0014A054 /* ContactTVCell.swift */,
+				8BDEE53D26FC338F0014A054 /* Alerts.swift */,
+				8BDEE4F826FC31A90014A054 /* FailableDecodable.swift */,
+				8BDEE4FD26FC325D0014A054 /* AppEnvoriment.swift */,
+				8BDEE4CC26FC2EDC0014A054 /* Message.swift */,
+				8BDEE4DB26FC2F780014A054 /* Campus.swift */,
+				8BDEE4D626FC2F5D0014A054 /* JobManager.swift */,
+				8BDEE48A26FC2D9A0014A054 /* APIManager.swift */,
+				8BDEE4E026FC2FD00014A054 /* NetworkManager.swift */,
+				8BDEE4C726FC2EAC0014A054 /* Constants.swift */,
+				8BDEE4B026FC2E5A0014A054 /* Extensions.swift */,
+				8B79B53F26FC22E800057F79 /* MessagesViewController.swift */,
+				8BDEE48526FC2D1A0014A054 /* SessionManager.swift */,
+				8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */,
+				8BDEE48026FC2CD00014A054 /* SettingsBundleHelper.swift */,
+				8B79B53726FC22B600057F79 /* ChatManager.swift */,
+				8B79B53826FC22B600057F79 /* ChatUser.swift */,
+				8B79B53126FC228000057F79 /* SocketIOManager.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		CE2FB14A26EFA7AE0040095B = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +249,7 @@
 		CE2FB15526EFA7AE0040095B /* hfciPatientX */ = {
 			isa = PBXGroup;
 			children = (
+				8B79B52D26FC223700057F79 /* Chat */,
 				CE2FB1B426F252D70040095B /* Controllers */,
 				CE2FB18C26F24D610040095B /* Fonts */,
 				CE2FB18A26EFA8A00040095B /* Helpers */,
@@ -182,11 +259,14 @@
 				CE2FB18626EFA8590040095B /* API */,
 				CE2FB15626EFA7AE0040095B /* AppDelegate.swift */,
 				CE2FB15826EFA7AE0040095B /* SceneDelegate.swift */,
+				8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */,
 				CE2FB15A26EFA7AE0040095B /* ViewController.swift */,
 				CE2FB15C26EFA7AE0040095B /* Main.storyboard */,
 				CE2FB15F26EFA7B20040095B /* Assets.xcassets */,
 				CE2FB16126EFA7B20040095B /* LaunchScreen.storyboard */,
 				CE2FB16426EFA7B20040095B /* Info.plist */,
+				8B79B54E26FC25A300057F79 /* ChatViewController.swift */,
+				8BDEE45B26FC2B1C0014A054 /* Settings.bundle */,
 			);
 			path = hfciPatientX;
 			sourceTree = "<group>";
@@ -418,6 +498,7 @@
 				CE2FB15E26EFA7AE0040095B /* Main.storyboard in Resources */,
 				CE2FB1AE26F24DA90040095B /* Poppins-BlackItalic.ttf in Resources */,
 				CE2FB1A426F24DA90040095B /* Poppins-LightItalic.ttf in Resources */,
+				8BDEE45C26FC2B1C0014A054 /* Settings.bundle in Resources */,
 				CE2FB1A226F24DA90040095B /* Poppins-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,23 +564,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		23C153FD4F2852F08E1C6EDB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		45EDE7A1B579C4C177803068 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -563,13 +627,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */,
+				8BDEE4D726FC2F5D0014A054 /* JobManager.swift in Sources */,
+				8BDEE4C826FC2EAC0014A054 /* Constants.swift in Sources */,
+				8BDEE4B126FC2E5A0014A054 /* Extensions.swift in Sources */,
+				8BDEE4F926FC31A90014A054 /* FailableDecodable.swift in Sources */,
 				CE2FB1B626F252F60040095B /* LoginViewController.swift in Sources */,
+				8BDEE54D26FC351F0014A054 /* CircleView.swift in Sources */,
+				8BDEE4FE26FC325D0014A054 /* AppEnvoriment.swift in Sources */,
+				8B79B53926FC22B600057F79 /* ChatContactsViewController.swift in Sources */,
 				CE2FB1B826F2548D0040095B /* MenuViewController.swift in Sources */,
 				CE2FB1BA26F258620040095B /* RoundedView.swift in Sources */,
+				8BDEE47C26FC2CAE0014A054 /* ListWithPointer.swift in Sources */,
+				8BDEE4DC26FC2F780014A054 /* Campus.swift in Sources */,
 				CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */,
+				8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */,
+				8BDEE4E126FC2FD00014A054 /* NetworkManager.swift in Sources */,
+				8B79B53A26FC22B600057F79 /* ChatManager.swift in Sources */,
+				8BDEE53E26FC338F0014A054 /* Alerts.swift in Sources */,
+				8B79B53226FC228000057F79 /* SocketIOManager.swift in Sources */,
+				8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */,
 				CE2FB15726EFA7AE0040095B /* AppDelegate.swift in Sources */,
+				8BDEE48B26FC2D9A0014A054 /* APIManager.swift in Sources */,
 				CE2FB15926EFA7AE0040095B /* SceneDelegate.swift in Sources */,
+				8BDEE48126FC2CD00014A054 /* SettingsBundleHelper.swift in Sources */,
+				8BDEE4CD26FC2EDC0014A054 /* Message.swift in Sources */,
+				8BDEE54826FC34670014A054 /* BroadcastManager.swift in Sources */,
+				8BDEE54326FC341F0014A054 /* ContactTVCell.swift in Sources */,
+				8BDEE48626FC2D1A0014A054 /* SessionManager.swift in Sources */,
 				8B78983426F260ED003FE097 /* MapViewController.swift in Sources */,
+				8BDEE4D226FC2F120014A054 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
