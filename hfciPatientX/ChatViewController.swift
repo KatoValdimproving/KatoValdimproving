@@ -9,6 +9,7 @@ import UIKit
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var exitLbl: UIImageView!
     @IBOutlet weak var contactsContainerView: UIView!
     @IBOutlet weak var conversationContainerView: UIView!
     @IBOutlet weak var roundedBackgroundView: UIView!
@@ -46,12 +47,24 @@ class ChatViewController: UIViewController {
         contactsContainerView.addSubview(navigatonControllerChat.view)
         self.addChild(self.navigatonControllerChat)
         self.navigatonControllerChat.didMove(toParent: self)
+        
+        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
+        exitGesture.numberOfTapsRequired = 1
+        exitGesture.numberOfTouchesRequired = 1
+        exitLbl.isUserInteractionEnabled = true
+        exitLbl.addGestureRecognizer(exitGesture)
 
         // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
        
+    }
+    
+    @objc func didExit() {
+        navigationController?.popViewController(animated: true)
+
+        dismiss(animated: true, completion: nil)
     }
     
     func addConversationViewToContainer(_ contact:ChatUser) {

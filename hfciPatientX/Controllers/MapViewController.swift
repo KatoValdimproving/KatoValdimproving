@@ -11,6 +11,7 @@ import Mappedin
 
 class MapViewController: UIViewController {
 
+    @IBOutlet weak var exitImg: UIImageView!
     var mapView: MPIMapView!
     lazy var venueDataString = getFileContentFromBundle(forResource: "mappedin-demo-mall", ofType: "json")
     lazy var connectionTemplateString = getFileContentFromBundle(forResource: "connectionTemplate", ofType: "html")
@@ -27,7 +28,7 @@ class MapViewController: UIViewController {
            // Set up MPIMapView and add to view
            mapView = MPIMapView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
         
-        view.addSubview(mapView)
+        self.view.addSubview(mapView)
         if let mapView = mapView {
               self.view.insertSubview(mapView, belowSubview: mapListView)
               // Provide credentials, if using proxy use MPIOptions.Init(venue: "venue_slug", baseUrl: "proxy_url", noAuth: true)
@@ -49,9 +50,14 @@ class MapViewController: UIViewController {
               )
             }
         
-        
         createPickerView()
         dismissPickerView()
+        
+        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
+        exitGesture.numberOfTapsRequired = 1
+        exitGesture.numberOfTouchesRequired = 1
+        exitImg.isUserInteractionEnabled = true
+        exitImg.addGestureRecognizer(exitGesture)
     }
     
     private func getFileContentFromBundle(forResource: String, ofType: String) -> String? {
@@ -78,6 +84,12 @@ class MapViewController: UIViewController {
     
     @objc func action() {
         view.endEditing(true)
+    }
+    
+    @objc func didExit() {
+        navigationController?.popViewController(animated: true)
+
+        dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
