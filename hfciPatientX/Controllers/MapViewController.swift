@@ -11,6 +11,7 @@ import Mappedin
 
 class MapViewController: UIViewController {
 
+    @IBOutlet weak var mpimapView: MPIMapView!
     var mapView: MPIMapView!
     lazy var venueDataString = getFileContentFromBundle(forResource: "mappedin-demo-mall", ofType: "json")
     lazy var connectionTemplateString = getFileContentFromBundle(forResource: "connectionTemplate", ofType: "html")
@@ -20,14 +21,8 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let screenRect = UIScreen.main.bounds
-           let screenWidth = screenRect.size.width
-           let screenHeight = screenRect.size.height
-
            // Set up MPIMapView and add to view
-           mapView = MPIMapView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
         
-        view.addSubview(mapView)
         if let mapView = mapView {
               self.view.insertSubview(mapView, belowSubview: mapListView)
               // Provide credentials, if using proxy use MPIOptions.Init(venue: "venue_slug", baseUrl: "proxy_url", noAuth: true)
@@ -49,7 +44,7 @@ class MapViewController: UIViewController {
               )
             }
         
-        
+        mpimapView = mapView
         createPickerView()
         dismissPickerView()
     }
