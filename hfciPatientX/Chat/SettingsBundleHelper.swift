@@ -336,7 +336,7 @@ class SettingsBundleHelper: NSObject {
     func setInitialInfo() {
         self.isProductionEnabled = false
         self.initialstateOfisProductionEnabled = false
-        self.deviceID = "404009"
+        self.deviceID = "402026"
         self.isStatusBarEnabled = false
       //  self.SSIDNamesSetOnly = ""
         self.hospitalCode = "henryford"
