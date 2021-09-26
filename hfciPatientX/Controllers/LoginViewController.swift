@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         SessionManager.shared.userName = name
 
         
-        let testUser = "test" + SettingsBundleHelper.shared.testerId
+        let testUser = "test" + SettingsBundleHelper.shared.testerId + "_hfci"
         APIManager.sharedInstance.login(viewController: self, password: "12345", email: "jose.valdez",  completionHandler: { [weak self] loginResponseObject, jobId, error in
             if Constants.loading {
                 self?.dismissCustomAlert()
