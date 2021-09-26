@@ -54,7 +54,6 @@ class ChatContactsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.blurView.frame = self.view.frame
         self.blurView.backgroundColor = .darkGray
         self.blurView.alpha = 0.5

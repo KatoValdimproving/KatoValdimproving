@@ -53,6 +53,10 @@ class LoginViewController: UIViewController {
 
     func logIn() {
         
+        guard let name = self.NameTxtImp.text else { return }
+        SessionManager.shared.userName = name
+
+        
         let testUser = "test" + SettingsBundleHelper.shared.testerId
         APIManager.sharedInstance.login(viewController: self, password: "12345", email: "jose.valdez",  completionHandler: { [weak self] loginResponseObject, jobId, error in
             if Constants.loading {

@@ -11,8 +11,12 @@ class ChatViewController: UIViewController {
 
     @IBOutlet weak var contactsContainerView: UIView!
     @IBOutlet weak var conversationContainerView: UIView!
+    @IBOutlet weak var roundedBackgroundView: UIView!
+    @IBOutlet weak var initialsCurrentUserButton: UIButton!
+    @IBOutlet weak var currentUserNameLabel: UILabel!
     var selectedContact: ChatUser?
     
+    @IBOutlet weak var separatorView: UIView!
     var navigatonControllerChat: UINavigationController!
     var contactsViewController: ChatContactsViewController!
     var currentMessagesVC: MessagesViewController?
@@ -20,8 +24,11 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.currentUserNameLabel.text = SessionManager.shared.userName
+        self.initialsCurrentUserButton.setTitle(SessionManager.shared.userName?.first?.description.uppercased(), for: .normal)
         self.conversationContainerView.layer.cornerRadius = 20
-
+        self.initialsCurrentUserButton.layer.cornerRadius = 10
+        self.roundedBackgroundView.layer.cornerRadius = 20
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         navigatonControllerChat = storyboard.instantiateViewController(withIdentifier: "ContactsNavigationController") as? UINavigationController
         
