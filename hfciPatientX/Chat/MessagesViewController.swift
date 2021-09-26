@@ -22,6 +22,19 @@ class MessagesViewController: MSGMessengerViewController {
     
     var messages = [Message]()
     var contactUser:ChatUser?
+    override var style: MSGMessengerStyle {
+        var style = MessengerKit.Styles.iMessage
+//        style.headerHeight = 0
+//        style.inputPlaceholder = "Message"
+//        style.alwaysDisplayTails = true
+//        style.outgoingBubbleColor = .magenta
+//        style.outgoingTextColor = .black
+//        style.incomingBubbleColor = .green
+//        style.incomingTextColor = .yellow
+        style.backgroundColor = UIColor(red: 242/255, green: 243/255, blue: 247/255, alpha: 1.0)
+        style.inputViewBackgroundColor = UIColor(red: 242/255, green: 243/255, blue: 247/255, alpha: 1.0)
+        return style
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -308,7 +321,7 @@ extension MessagesViewController: MSGDelegate {
     }
     
    
-    
+   
     
 }
 

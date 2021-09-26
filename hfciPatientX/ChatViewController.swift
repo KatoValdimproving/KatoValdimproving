@@ -9,10 +9,15 @@ import UIKit
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var exitLbl: UIImageView!
     @IBOutlet weak var contactsContainerView: UIView!
     @IBOutlet weak var conversationContainerView: UIView!
+    @IBOutlet weak var roundedBackgroundView: UIView!
+    @IBOutlet weak var initialsCurrentUserButton: UIButton!
+    @IBOutlet weak var currentUserNameLabel: UILabel!
     var selectedContact: ChatUser?
     
+    @IBOutlet weak var separatorView: UIView!
     var navigatonControllerChat: UINavigationController!
     var contactsViewController: ChatContactsViewController!
     var currentMessagesVC: MessagesViewController?
@@ -20,8 +25,11 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.currentUserNameLabel.text = SessionManager.shared.userName
+        self.initialsCurrentUserButton.setTitle(SessionManager.shared.userName?.first?.description.uppercased(), for: .normal)
         self.conversationContainerView.layer.cornerRadius = 20
-
+        self.initialsCurrentUserButton.layer.cornerRadius = 10
+        self.roundedBackgroundView.layer.cornerRadius = 20
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         navigatonControllerChat = storyboard.instantiateViewController(withIdentifier: "ContactsNavigationController") as? UINavigationController
         
@@ -39,12 +47,24 @@ class ChatViewController: UIViewController {
         contactsContainerView.addSubview(navigatonControllerChat.view)
         self.addChild(self.navigatonControllerChat)
         self.navigatonControllerChat.didMove(toParent: self)
+        
+        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
+        exitGesture.numberOfTapsRequired = 1
+        exitGesture.numberOfTouchesRequired = 1
+        exitLbl.isUserInteractionEnabled = true
+        exitLbl.addGestureRecognizer(exitGesture)
 
         // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
        
+    }
+    
+    @objc func didExit() {
+        navigationController?.popViewController(animated: true)
+
+        dismiss(animated: true, completion: nil)
     }
     
     func addConversationViewToContainer(_ contact:ChatUser) {

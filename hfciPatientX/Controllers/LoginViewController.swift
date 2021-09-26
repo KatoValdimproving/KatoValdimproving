@@ -11,13 +11,12 @@ import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var helpLbl: UIImageView!
     @IBOutlet weak var NameTxtImp: UITextField!
     @IBOutlet weak var dropDown: UIView!
     @IBOutlet weak var roleLBL: UILabel!
     @IBAction func sendInfo(_ sender: Any) {
-        
         logIn()
-
     }
     
     let menu : DropDown = {
@@ -41,14 +40,31 @@ class LoginViewController: UIViewController {
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1
         dropDown.addGestureRecognizer(gesture)
+        
+        let helpGesture = UITapGestureRecognizer(target: self, action: #selector(didRequestHelp))
+        helpGesture.numberOfTapsRequired = 1
+        helpGesture.numberOfTouchesRequired = 1
+        helpLbl.isUserInteractionEnabled = true
+        helpLbl.addGestureRecognizer(helpGesture)
     }
 
     @objc func didTap() {
         menu.show()
     }
+    
+    @objc func didRequestHelp() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                self.navigationController?.pushViewController(chatViewController, animated: true)
+        }
+    }
 
     func logIn() {
-        let testUser = "test" + SettingsBundleHelper.shared.testerId
+        guard let name = self.NameTxtImp.text else { return }
+        SessionManager.shared.userName = name
+
+        
+        let testUser = "test" + SettingsBundleHelper.shared.testerId + "_hfci"
         APIManager.sharedInstance.login(viewController: self, password: "12345", email: "jose.valdez",  completionHandler: { [weak self] loginResponseObject, jobId, error in
             if Constants.loading {
                 self?.dismissCustomAlert()

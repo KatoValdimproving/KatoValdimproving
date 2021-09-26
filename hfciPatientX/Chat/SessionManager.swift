@@ -224,6 +224,15 @@ class SessionManager: NSObject {
            }
        }
     
+    var userName : String? {
+           get {
+               return  UserDefaults.standard.string(forKey: "userName")
+           }
+           set {
+               UserDefaults.standard.set(newValue, forKey: "userName")
+           }
+       }
+    
     var logOutTime : String? {
         get {
             return  UserDefaults.standard.string(forKey: SessionManagerKeys.logOutTime)

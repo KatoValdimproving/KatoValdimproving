@@ -15,6 +15,10 @@ class ContactTVCell: UITableViewCell {
     @IBOutlet weak var unreadBadgeView: CircleView!
     @IBOutlet weak var unreadCountLabel: UILabel!
     
+    override func awakeFromNib() {
+        self.initialsButton.layer.cornerRadius = 10
+        self.accessoryType = .none
+    }
     var didTapInitialsButton:((_ sender:UITableViewCell) -> Void)?
     
     func setUnreadCount(_ count:Int) {
