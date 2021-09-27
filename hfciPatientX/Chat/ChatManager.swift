@@ -264,6 +264,8 @@ class ChatManager {
         self.socket?.on(Events.newMessage, callback: { [weak self] data, ack in
             if let newMessage = self?.parseNewMessage(from: data) {
                 NotificationCenter.default.post(name: NSNotification.Name(Notifications.newMessage), object: self, userInfo: ["message":newMessage])
+                NetworkManager.shared.sendLocalNotification(title: "New Message", subtitle: "", body: newMessage.text)
+
                 if self?.didGetNewMessage?(newMessage) ?? true {
                     self?.sendNewMessageNotification(newMessage)
                 }
@@ -522,10 +524,17 @@ class ChatManager {
     
     func sendMessage(_ messageText:String, destinyUser:ChatUser) -> Message? {
         if let userId = self.currentUser?.id {
-            let message = Message(id: "", text: messageText, origin: userId, destiny: destinyUser.id, status: 0, channel: destinyUser.channel, creationDate: Date(), seen: false)
+            let addName = "@\(SessionManager.shared.userName ?? "") "
+
+            let message = Message(id: "", text: addName + messageText, origin: userId, destiny: destinyUser.id, status: 0, channel: destinyUser.channel, creationDate: Date(), seen: false)
             self.socket?.emit(Events.sendMessage, message)
+            
+            let messageTwo = Message(id: "", text: messageText, origin: userId, destiny: destinyUser.id, status: 0, channel: destinyUser.channel, creationDate: Date(), seen: false)
+            
             self.didSendMessage?(message)
-            return message
+            
+            
+            return messageTwo
         }
         return nil
     }

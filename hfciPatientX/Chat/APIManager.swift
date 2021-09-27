@@ -127,7 +127,8 @@ class APIManager: NSObject {
     func login (viewController : UIViewController?, password : String, email:String , completionHandler: @escaping (_ user: User?, _ jobId: String?, _ error: NSError?) -> ()) {
         
         
-        if let udid = UserDefaults.standard.string(forKey: Constants.PHONE_IDENTIFIER) {
+        if SettingsBundleHelper.shared.testerId != "" {
+            let udid = SettingsBundleHelper.shared.testerId
             let param =  [EMAIL: email, PASSWORD : password , DEVICEID : udid, Constants.TTL_KEY : Constants.TTL_VALUE, "tokenFirebase": SessionManager.shared.firebaseToken ?? ""] as [String : Any]
             print(param)
             

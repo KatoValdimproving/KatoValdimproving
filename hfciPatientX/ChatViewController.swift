@@ -24,7 +24,7 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.currentUserNameLabel.text = SessionManager.shared.userName
         self.initialsCurrentUserButton.setTitle(SessionManager.shared.userName?.first?.description.uppercased(), for: .normal)
         self.conversationContainerView.layer.cornerRadius = 20

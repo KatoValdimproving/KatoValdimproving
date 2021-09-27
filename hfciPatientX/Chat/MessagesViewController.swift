@@ -141,9 +141,12 @@ class MessagesViewController: MSGMessengerViewController {
     override func inputViewPrimaryActionTriggered(inputView: MSGInputView) {
         if let destinyId = self.contactUser?.id {
             if let message  = ChatManager.shared.sendMessage(inputView.message, destinyId: destinyId) {
+                
                 self.messages.append(message)
+             //   let msgUser = MessageUser(displayName: ChatManager.shared.currentUser?.fullName ?? "", avatar: nil, isSender: true)
                 let msgUser = MessageUser(displayName: ChatManager.shared.currentUser?.fullName ?? "", avatar: nil, isSender: true)
                 let msgMessage = MSGMessage(id: self.messages.count, body: .text(inputView.message), user: msgUser, sentAt: message.creationDate ?? Date())
+                
                 self.insert(msgMessage)
             }
         }
@@ -301,6 +304,9 @@ extension MessagesViewController: MSGDelegate {
         } 
         
         guard let chatUser = ChatManager.shared.getUser(message.origin) else { return nil }
+        if self.contactUser?.id != chatUser.id {
+            return SessionManager.shared.userName
+        }
         return chatUser.fullName
     }
     
