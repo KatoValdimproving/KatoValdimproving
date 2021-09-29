@@ -253,49 +253,51 @@ class APIManager: NSObject {
     //LogOut ask to server to close your token
     func logOut (completionHandler: @escaping ( Bool, NSError?) -> ()) {
         
-        guard let tokenId = UserDefaults.standard.getTokenId() else { return }
+      //  guard let tokenId = UserDefaults.standard.getTokenId() else { return }
+        guard let tokenId = JobManager.id else { return }
+
         
          let params = ["userId": SessionManager.shared.user?.userId ?? "", "totalLogsInJob": 0, "jobId": JobManager.jobId ?? "", "jobHasTraceHealing": -1] as [String : Any]
         print("paramsss \(params)")
         
-         print("\(AppEnvoriment.shared.apiBaseUrl + ACCOUNTS + LOGOUT + tokenId)")
-        Alamofire.request(URL(string: AppEnvoriment.shared.apiBaseUrl + ACCOUNTS + LOGOUT + tokenId)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers:[ACCEPT:ACCEPT_TYPE] ).responseJSON { (response) in
+       //  print("\(AppEnvoriment.shared.apiBaseUrl + ACCOUNTS + LOGOUT + tokenId)")
+        Alamofire.request(URL(string: AppEnvoriment.shared.apiBaseUrl + ACCOUNTS + LOGOUT + tokenId )!, method: .post, parameters: params, encoding: JSONEncoding.default, headers:[ACCEPT:ACCEPT_TYPE] ).responseJSON { (response) in
             print("logout-> \(response.result)")
-//            switch response.result {
-//
-//            case .success(let value):
-//                guard let dictionary = value as? [String: Any] else {
-//                    completionHandler(false, nil)
-//                    return
-//                }
-//
-//                print(dictionary)
-//
-//                if dictionary.keys.contains("error") {
-//                    Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
-//                    completionHandler(false, nil)
-//                    return
-//                }
-//
-//                 let code = dictionary["code"] as? Int ?? 0
-//                if code == 200 {
-//                    completionHandler(true,nil)
-//                } else {
-//                    completionHandler(false, nil)
-//                }
-//
-//            case .failure(let error):
-//                Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
-//                completionHandler(false, nil)
-//
+            switch response.result {
 
-//            }
+            case .success(let value):
+                guard let dictionary = value as? [String: Any] else {
+                    completionHandler(false, nil)
+                    return
+                }
+
+                print(dictionary)
+
+                if dictionary.keys.contains("error") {
+                    Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
+                    completionHandler(false, nil)
+                    return
+                }
+
+                 let code = dictionary["code"] as? Int ?? 0
+                if code == 200 {
+                    completionHandler(true,nil)
+                } else {
+                    completionHandler(false, nil)
+                }
+
+            case .failure(let _):
+                Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
+                completionHandler(false, nil)
+
+
+            }
             
-                        if response.result.isSuccess {
-                            completionHandler(true,nil)
-                        } else {
-                            completionHandler(false, nil)
-                        }
+//                        if response.result.isSuccess {
+//                            completionHandler(true,nil)
+//                        } else {
+//                            completionHandler(false, nil)
+//                        }
         }
         
     }

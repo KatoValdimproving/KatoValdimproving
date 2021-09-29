@@ -11,10 +11,12 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak var helpLbl: UIImageView!
     @IBOutlet weak var menuPresenter: RoundedView!
+    @IBOutlet weak var visitorsNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.visitorsNameLabel.text = SessionManager.shared.userName
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1

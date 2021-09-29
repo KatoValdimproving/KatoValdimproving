@@ -61,6 +61,7 @@ class LoginViewController: UIViewController {
 
     func logIn() {
         guard let name = self.NameTxtImp.text else { return }
+        self.NameTxtImp.text = ""
         SessionManager.shared.userName = name
 
         
