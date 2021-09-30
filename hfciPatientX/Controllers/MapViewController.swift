@@ -177,7 +177,7 @@ extension MapViewController: MPIMapViewDelegate {
         self.location = mapMpiView.venueData?.locations ?? []
         
         self.location = self.location.filter { location in
-            location.type == "amenities" && location.nodes?.count > 0
+            location.type == "amenities" && location.nodes!.count > 0
         }
         
         self.locationData.reloadData()

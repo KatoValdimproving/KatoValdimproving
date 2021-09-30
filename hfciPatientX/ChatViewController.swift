@@ -25,8 +25,8 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.currentUserNameLabel.text = SessionManager.shared.userName
-        self.initialsCurrentUserButton.setTitle(SessionManager.shared.userName?.first?.description.uppercased(), for: .normal)
+        self.currentUserNameLabel.isHidden = true
+        self.initialsCurrentUserButton.isHidden = true
         self.conversationContainerView.layer.cornerRadius = 20
         self.initialsCurrentUserButton.layer.cornerRadius = 10
         self.roundedBackgroundView.layer.cornerRadius = 20
@@ -35,10 +35,15 @@ class ChatViewController: UIViewController {
         
         guard let contactsViewController = navigatonControllerChat?.viewControllers.first as? ChatContactsViewController else { return }
         self.contactsViewController = contactsViewController
-        self.contactsViewController.didSelectContact = { contact in
+        self.contactsViewController.didSelectContact = { [weak self] contact in
           //  print(contact)
-            self.selectedContact = contact
-            self.goToMessages(contact)
+            self?.currentUserNameLabel.isHidden = false
+            self?.initialsCurrentUserButton.isHidden = false
+           
+            self?.selectedContact = contact
+            self?.currentUserNameLabel.text = self?.selectedContact?.fullName
+            self?.initialsCurrentUserButton.setTitle(self?.selectedContact?.firstName?.first?.description.uppercased(), for: .normal)
+            self?.goToMessages(contact)
 
         }
         self.navigatonControllerChat.willMove(toParent: self)
@@ -62,9 +67,37 @@ class ChatViewController: UIViewController {
     }
     
     @objc func didExit() {
-        navigationController?.popViewController(animated: true)
-
-        dismiss(animated: true, completion: nil)
+        
+        APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
+            
+            if islogout {
+                self?.navigationController?.popToRootViewController(animated: true)
+               // self?.dismiss(animated: true, completion: nil)
+            }
+//            guard self != nil else {return}
+//            SessionManager.shared.logOutTime =  "\(Date().stringFromDateZuluFormat()) succes: \(islogout) TapedButton Web Service"
+//
+//            if (error == nil) && islogout {
+//                print("logout")
+//                DispatchQueue.main.async() {
+//                    self?.dismissCustomAlert()
+//                    Constants.loading = false
+//                    SessionManager.shared.terminateSessionLogOut()
+//                }
+//
+//            } else {
+//                self?.dismissCustomAlert()
+//                //   guard self!.currentReachabilityStatus != .notReachable else {  return }
+//                // Alerts.alert(with: self,for: Constants.GENERAL_ERROR_MESSAGE, with: Constants.GENERAL_ERROR_TITLE)
+//                print("error in logout")
+//                 Alerts.alert(with: self,for: Constants.SERVER_NOT_ANSWER, with: Constants.ERROR_TITLE)
+//
+//                //                Alerts.alert(with: nil,for: (response.result.error?.localizedDescription)!, with: Constants.GENERAL_ERROR_TITLE)
+//
+//            }
+        })
+        
+       
     }
     
     func addConversationViewToContainer(_ contact:ChatUser) {

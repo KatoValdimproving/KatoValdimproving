@@ -306,6 +306,7 @@ extension MessagesViewController: MSGDelegate {
         guard let chatUser = ChatManager.shared.getUser(message.origin) else { return nil }
         if self.contactUser?.id != chatUser.id {
             return SessionManager.shared.userName
+         //   return ""
         }
         return chatUser.fullName
     }
