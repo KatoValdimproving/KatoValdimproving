@@ -16,7 +16,7 @@ class ContactTVCell: UITableViewCell {
     @IBOutlet weak var unreadCountLabel: UILabel!
     
     override func awakeFromNib() {
-        self.initialsButton.layer.cornerRadius = 10
+        self.initialsButton.layer.cornerRadius = self.initialsButton.bounds.height / 2
         self.accessoryType = .none
     }
     var didTapInitialsButton:((_ sender:UITableViewCell) -> Void)?

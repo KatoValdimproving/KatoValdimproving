@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0yN-ty-6AU" secondAttribute="bottom" constant="240" id="3uZ-pp-V7G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0yN-ty-6AU" secondAttribute="trailing" constant="270" id="PxE-Mv-blA"/>
                             <constraint firstItem="0yN-ty-6AU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="231" id="aCw-vW-qF4"/>
-                            <constraint firstItem="0yN-ty-6AU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="270" id="byM-OS-AKo"/>
+                            <constraint firstItem="0yN-ty-6AU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" multiplier="0.5" constant="270" id="byM-OS-AKo"/>
                         </constraints>
                     </view>
                 </viewController>
