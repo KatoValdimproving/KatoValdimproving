@@ -31,6 +31,7 @@ class RoundedView: UIView {
             layer.insertSublayer(shadowLayer, at: 0)
         }
     }
+    
 }
 
 class RoundedButtonView: UIView {

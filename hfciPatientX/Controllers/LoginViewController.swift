@@ -15,9 +15,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var NameTxtImp: UITextField!
     @IBOutlet weak var dropDown: UIView!
     @IBOutlet weak var roleLBL: UILabel!
+    @IBOutlet weak var enterButton: UIButton!
     @IBAction func sendInfo(_ sender: Any) {
         logIn()
     }
+  
     
     let menu : DropDown = {
         let menu = DropDown()
@@ -30,7 +32,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        enterButton.layer.cornerRadius = 7
         menu.anchorView = dropDown
         menu.selectionAction = { index, title in
             self.roleLBL.text = title

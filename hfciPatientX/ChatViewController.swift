@@ -17,6 +17,8 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var currentUserNameLabel: UILabel!
     var selectedContact: ChatUser?
     
+    @IBOutlet weak var placeholderView: UIImageView!
+    @IBOutlet weak var topBarMenuView: UIView!
     @IBOutlet weak var separatorView: UIView!
     var navigatonControllerChat: UINavigationController!
     var contactsViewController: ChatContactsViewController!
@@ -24,9 +26,8 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.currentUserNameLabel.isHidden = true
-        self.initialsCurrentUserButton.isHidden = true
+        topBarMenuView.backgroundColor = UIColor(red: 8/255, green: 76/255, blue: 132/255, alpha: 1)
+        self.hideElements(hide: true)
         self.conversationContainerView.layer.cornerRadius = 20
         self.initialsCurrentUserButton.layer.cornerRadius = 10
         self.roundedBackgroundView.layer.cornerRadius = 20
@@ -37,8 +38,7 @@ class ChatViewController: UIViewController {
         self.contactsViewController = contactsViewController
         self.contactsViewController.didSelectContact = { [weak self] contact in
           //  print(contact)
-            self?.currentUserNameLabel.isHidden = false
-            self?.initialsCurrentUserButton.isHidden = false
+            self?.hideElements(hide: false)
            
             self?.selectedContact = contact
             self?.currentUserNameLabel.text = self?.selectedContact?.fullName
@@ -62,8 +62,19 @@ class ChatViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setStatusBar(backgroundColor: UIColor(red: 8/255, green: 76/255, blue: 132/255, alpha: 1))
+    }
+    
     override func viewDidLayoutSubviews() {
        
+    }
+    
+    func hideElements(hide: Bool) {
+        self.currentUserNameLabel.isHidden = hide
+        self.initialsCurrentUserButton.isHidden = hide
+        self.separatorView.isHidden = hide
+        self.placeholderView.isHidden = !hide
     }
     
     @objc func didExit() {
