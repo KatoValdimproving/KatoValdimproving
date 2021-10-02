@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
 
         
         let testUser =  SettingsBundleHelper.shared.testerId + "@hfhs.org"
-        APIManager.sharedInstance.login(viewController: self, password: "12345", email: testUser,  completionHandler: { [weak self] loginResponseObject, jobId, error in
+        APIManager.sharedInstance.login(viewController: self, password: "Henryford1!", email: testUser,  completionHandler: { [weak self] loginResponseObject, jobId, error in
             if Constants.loading {
                 self?.dismissCustomAlert()
                 Constants.loading = false
