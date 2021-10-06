@@ -83,11 +83,20 @@ class ChatViewController: UIViewController {
             
             if islogout {
                 self?.navigationController?.popToRootViewController(animated: true)
-               // self?.dismiss(animated: true, completion: nil)
             }
         })
         
        
+    }
+    
+    @IBAction func exitToMap(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func exitToMenu(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func addConversationViewToContainer(_ contact:ChatUser) {

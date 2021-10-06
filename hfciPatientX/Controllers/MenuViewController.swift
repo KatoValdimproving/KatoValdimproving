@@ -12,6 +12,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var helpLbl: UIImageView!
     @IBOutlet weak var menuPresenter: RoundedView!
     @IBOutlet weak var visitorsNameLabel: UILabel!
+    @IBOutlet weak var deviceIdLBL: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class MenuViewController: UIViewController {
         helpGesture.numberOfTouchesRequired = 1
         helpLbl.isUserInteractionEnabled = true
         helpLbl.addGestureRecognizer(helpGesture)
+        
+        deviceIdLBL.text = SettingsBundleHelper.shared.testerId
     }
     
 

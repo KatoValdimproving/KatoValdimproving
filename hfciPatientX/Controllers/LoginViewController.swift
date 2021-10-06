@@ -16,10 +16,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var dropDown: UIView!
     @IBOutlet weak var roleLBL: UILabel!
     @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var deviceIdLBL: UILabel!
+    
     @IBAction func sendInfo(_ sender: Any) {
         logIn()
     }
-  
     
     let menu : DropDown = {
         let menu = DropDown()
@@ -48,6 +49,8 @@ class LoginViewController: UIViewController {
         helpGesture.numberOfTouchesRequired = 1
         helpLbl.isUserInteractionEnabled = true
         helpLbl.addGestureRecognizer(helpGesture)
+        
+        deviceIdLBL.text = SettingsBundleHelper.shared.testerId
     }
 
     @objc func didTap() {
