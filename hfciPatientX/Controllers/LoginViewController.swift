@@ -100,8 +100,8 @@ class LoginViewController: UIViewController {
         SessionManager.shared.user = user
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController {
-                self.navigationController?.pushViewController(chatViewController, animated: true)
+            if let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController {
+                self.navigationController?.pushViewController(menuViewController, animated: true)
         }
     }
     /*

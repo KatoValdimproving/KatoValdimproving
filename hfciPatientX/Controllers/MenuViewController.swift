@@ -40,6 +40,7 @@ class MenuViewController: UIViewController {
     @objc func didRequestHelp() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                
                 self.navigationController?.pushViewController(chatViewController, animated: true)
         }
     }

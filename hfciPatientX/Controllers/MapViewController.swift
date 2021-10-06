@@ -13,9 +13,11 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var exitImg: UIImageView!
-        
+    @IBOutlet weak var chatImg: UIButton!
+    
     @IBOutlet weak var barview: UIView!
     @IBOutlet weak var locationData: UITableView!
+    @IBOutlet weak var directionsData: UITableView!
     
     @IBOutlet weak var exploreView: RoundedButtonView!
     
@@ -23,10 +25,17 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var directionsView: RoundedView!
     
+    @IBOutlet weak var directionsController: RoundedButtonView!
+    
+    @IBOutlet weak var textDirectionsBTN: UIButton!
+    
     var mapMpiView: MPIMapView!
+    var mapFroors: [MPIMap] = []
     var allLocations : [MPILocation] = []
     var polygonLocations : [MPILocation] = []
     var nodeLocations : [MPILocation] = []
+    var instructions : [String] = []
+    var direction : MPIDirections!
     var point1 : MPILocation!
     var point2 : MPILocation!
         
@@ -51,6 +60,7 @@ class MapViewController: UIViewController {
         directionsView.isHidden = true
         controlls.isHidden = false
         fromWhereView.isHidden = true
+        directionsData.isHidden = true
         titleLbl.text = "Points of Interest"
         self.polygonLocations = self.allLocations.filter { location in
             location.polygons!.count > 0
@@ -58,6 +68,19 @@ class MapViewController: UIViewController {
         self.locationData.reloadData()
         mapMpiView.reload()
     }
+    
+    @IBAction func menuReturn(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func chatCall(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                self.navigationController?.pushViewController(chatViewController, animated: true)
+        }
+    }
+    
     //From dropdown inside the view after you select a point in the table, you need all the points in the map that have nodes
     var selectMenu : DropDown = {
         let menu = DropDown()
@@ -88,6 +111,11 @@ class MapViewController: UIViewController {
             mapMpiView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             getDirection()
         }
+    }
+    
+    @IBAction func showTextDirections(_ sender: Any) {
+        self.directionsData.isHidden = false
+        self.textDirectionsBTN.titleLabel?.text = "Hide Text Directions"
     }
     
     override func viewDidLoad() {
@@ -124,6 +152,10 @@ class MapViewController: UIViewController {
         self.locationData.delegate = self
         self.locationData.dataSource = self
         self.locationData.rowHeight = 80.0
+        self.directionsData.delegate = self
+        self.directionsData.dataSource = self
+        self.directionsData.rowHeight = 80.0
+        self.directionsData.isHidden = true
         registerTableViewCells()
         
         let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
@@ -144,6 +176,12 @@ class MapViewController: UIViewController {
         exploreGesture.numberOfTouchesRequired = 1
         exploreView.isUserInteractionEnabled = true
         exploreView.addGestureRecognizer(exploreGesture)
+        
+        let directionsGesture = UITapGestureRecognizer(target: self, action: #selector(directions))
+        directionsGesture.numberOfTapsRequired = 1
+        directionsGesture.numberOfTouchesRequired = 1
+        directionsController.isUserInteractionEnabled = true
+        directionsController.addGestureRecognizer(directionsGesture)
         
         titleLbl.text = "Points of Interest"
         
@@ -168,10 +206,7 @@ class MapViewController: UIViewController {
         
         floorSelect.anchorView = floorSelector
         floorSelect.selectionAction = { index, title in
-            self.floorLBL.text = title
-            if let selectedMap = self.mapMpiView?.venueData?.maps[index] {
-                self.mapMpiView?.setMap(map: selectedMap)
-            }
+            self.selectMap(index: index, title: title)
         }
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
@@ -216,9 +251,51 @@ class MapViewController: UIViewController {
         fromWhereView.isHidden = true
     }
     
+    func selectMap(index: Int, title: String) {
+        self.floorLBL.text = title
+        if let selectedMap = self.mapMpiView?.venueData?.maps[index] {
+            self.mapMpiView?.setMap(map: selectedMap)
+        }
+    }
+    
+    func labelString(option: String) -> String {
+        switch option {
+        case "Level 1":
+            return "L1"
+        case "Level -1":
+            return "B"
+        case "Level 2":
+            return "L2"
+        case "Level 3":
+            return "L3"
+        case "Level 4":
+            return "L4"
+        case "Level 5":
+            return "L5"
+        default:
+            return "L"
+        }
+    }
+    
+    func imageForDirection(option: String) -> UIImage {
+        switch option {
+        case "Turn right":
+            return UIImage(named: "turnRight") ?? UIImage()
+        case "Turn left":
+            return UIImage(named: "turnLeft") ?? UIImage()
+        case "Arrive at destination":
+            return UIImage(named: "arrived") ?? UIImage()
+        default:
+            return UIImage(named: "myLocation") ?? UIImage()
+        }
+    }
+    
     private func registerTableViewCells() {
-        let cell = UINib(nibName: "PointCellTableViewCell", bundle: nil)
-        self.locationData.register(cell, forCellReuseIdentifier: "PointCellTableViewCell")
+        let cell1 = UINib(nibName: "PointCellTableViewCell", bundle: nil)
+        self.locationData.register(cell1, forCellReuseIdentifier: "PointCellTableViewCell")
+        
+        let cell2 = UINib(nibName: "DirectionsTableViewCell", bundle: nil)
+        self.directionsData.register(cell2, forCellReuseIdentifier: "DirectionsTableViewCell")
     }
     
     private func getFileContentFromBundle(forResource: String, ofType: String) -> String? {
@@ -231,8 +308,13 @@ class MapViewController: UIViewController {
     }
     
     @objc func didExit() {
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
+            
+            if islogout {
+                self?.navigationController?.popToRootViewController(animated: true)
+               // self?.dismiss(animated: true, completion: nil)
+            }
+        })
     }
     
     @objc func explore() {
@@ -243,6 +325,11 @@ class MapViewController: UIViewController {
         self.locationData.reloadData()
         
         titleLbl.text = "Amenities"
+    }
+    
+    @objc func directions() {
+        self.controlls.isHidden = true
+        self.directionsView.isHidden = false
     }
     
     func filterLocations() {
@@ -268,19 +355,33 @@ class MapViewController: UIViewController {
     }
     
     func getDirection() {
-        
-        self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: point2.nodes, polygons: point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.1, tilt: 0.2, padding: .none , focusZoomFactor: 0.4))
+        let map = self.mapMpiView.venueData?.maps.first(where: { element in
+            element.id == self.point1.nodes?.first?.map ?? ""
+        })
+        floorLBL.text = labelString(option: map?.name ?? "")
         
         self.mapMpiView?.getDirections(to: point2.polygons?.first as! MPINavigatable, from: point1.nodes?.first as! MPINavigatable, accessible: true) { directions in
             if let directions = directions {
+                self.mapMpiView.setMap(mapId: self.point1.nodes?.first?.map ?? "", completionCallback: nil)
+                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point1.nodes, polygons: self.point1.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
                 self.mapMpiView?.drawJourney(
                     directions: directions,
                     options: MPIOptions.Journey(
                         pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
                     )
                 )
+                self.direction = directions
+                self.instructions = self.direction.instructions.map { instruction in
+                    return instruction.instruction ?? "Unknown"
+                }
+                self.directionsData.reloadData()
             }
         }
+    }
+    
+    func getFloorOfPlace(location: MPILocation){
+        print(location.parent ?? "")
+        print(location.nodes?.first?.map ?? "")
     }
 }
 
@@ -320,9 +421,9 @@ extension MapViewController: MPIMapViewDelegate {
         self.filterLocations()
         
         floorSelect.dataSource = mapMpiView?.venueData?.maps.map({ mapElement in
-            mapElement.name
+            labelString(option: mapElement.name)
         }) ?? []
-        floorLBL.text = mapMpiView?.venueData?.maps.first?.name
+        floorLBL.text = labelString(option: mapMpiView?.venueData?.maps.first?.name ?? "")
         
         self.locationData.reloadData()
     }
@@ -335,28 +436,43 @@ extension MapViewController: MPIMapViewDelegate {
 extension MapViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = self.polygonLocations[indexPath.row]
+        
         if ((data.polygons?.count) != nil) {
             point2 =  self.polygonLocations[indexPath.row]
             self.fromWhereView.isHidden = false
         }
         
         if data.nodes!.count > 0 {
-            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: data.nodes, polygons: data.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+            let map = self.mapMpiView.venueData?.maps.first(where: { element in
+                element.id == self.point2.nodes?.first?.map ?? ""
+            })
+            floorLBL.text = labelString(option: map?.name ?? "")
+            self.mapMpiView.setMap(mapId: self.point2.nodes?.first?.map ?? "", completionCallback: nil)
+            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
         }
     }
 }
 
 extension MapViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.polygonLocations.count
+        return tableView == locationData ? self.polygonLocations.count : self.instructions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PointCellTableViewCell") as? PointCellTableViewCell {
-            let data = self.polygonLocations[indexPath.row]
-            cell.locationDesc.text = data.name
-            cell.floor.text = "Floor"
-            return cell
+        if(tableView == locationData) {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PointCellTableViewCell") as? PointCellTableViewCell {
+                let data = self.polygonLocations[indexPath.row]
+                cell.locationDesc.text = data.name
+                cell.floor.text = "Floor"
+                return cell
+            }
+        }else{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DirectionsTableViewCell") as? DirectionsTableViewCell {
+                let data = self.instructions[indexPath.row]
+                cell.directionImage.image = imageForDirection(option: data)
+                cell.directionLBL.text = data
+                return cell
+            }
         }
             
         return UITableViewCell()

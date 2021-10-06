@@ -85,27 +85,6 @@ class ChatViewController: UIViewController {
                 self?.navigationController?.popToRootViewController(animated: true)
                // self?.dismiss(animated: true, completion: nil)
             }
-//            guard self != nil else {return}
-//            SessionManager.shared.logOutTime =  "\(Date().stringFromDateZuluFormat()) succes: \(islogout) TapedButton Web Service"
-//
-//            if (error == nil) && islogout {
-//                print("logout")
-//                DispatchQueue.main.async() {
-//                    self?.dismissCustomAlert()
-//                    Constants.loading = false
-//                    SessionManager.shared.terminateSessionLogOut()
-//                }
-//
-//            } else {
-//                self?.dismissCustomAlert()
-//                //   guard self!.currentReachabilityStatus != .notReachable else {  return }
-//                // Alerts.alert(with: self,for: Constants.GENERAL_ERROR_MESSAGE, with: Constants.GENERAL_ERROR_TITLE)
-//                print("error in logout")
-//                 Alerts.alert(with: self,for: Constants.SERVER_NOT_ANSWER, with: Constants.ERROR_TITLE)
-//
-//                //                Alerts.alert(with: nil,for: (response.result.error?.localizedDescription)!, with: Constants.GENERAL_ERROR_TITLE)
-//
-//            }
         })
         
        
