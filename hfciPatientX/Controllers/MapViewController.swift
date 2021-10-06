@@ -33,6 +33,7 @@ class MapViewController: UIViewController {
     var mapFroors: [MPIMap] = []
     var allLocations : [MPILocation] = []
     var polygonLocations : [MPILocation] = []
+    var filteredPolygonLocations : [MPILocation] = []
     var nodeLocations : [MPILocation] = []
     var instructions : [String] = []
     var direction : MPIDirections!
@@ -55,6 +56,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var toViewSelect: UIView!
     @IBOutlet weak var fromLbl: UILabel!
     @IBOutlet weak var tolbl: UILabel!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBAction func goBack(_ sender: Any) {
         directionsView.isHidden = true
@@ -156,6 +159,7 @@ class MapViewController: UIViewController {
         self.directionsData.dataSource = self
         self.directionsData.rowHeight = 80.0
         self.directionsData.isHidden = true
+        self.searchBar.delegate = self
         registerTableViewCells()
         
         let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
@@ -322,6 +326,8 @@ class MapViewController: UIViewController {
             location.type == "amenities" && location.polygons!.count > 0
         }
         
+        filteredPolygonLocations = polygonLocations
+        
         self.locationData.reloadData()
         
         titleLbl.text = "Amenities"
@@ -340,6 +346,8 @@ class MapViewController: UIViewController {
         self.polygonLocations = self.allLocations.filter { location in
             location.polygons!.count > 0
         }
+        
+        filteredPolygonLocations = polygonLocations
         
         selectMenu.dataSource = self.nodeLocations.map({ location in
             location.name
@@ -435,33 +443,35 @@ extension MapViewController: MPIMapViewDelegate {
 
 extension MapViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = self.polygonLocations[indexPath.row]
-        
-        if ((data.polygons?.count) != nil) {
-            point2 =  self.polygonLocations[indexPath.row]
-            self.fromWhereView.isHidden = false
-        }
-        
-        if data.nodes!.count > 0 {
-            let map = self.mapMpiView.venueData?.maps.first(where: { element in
-                element.id == self.point2.nodes?.first?.map ?? ""
-            })
-            floorLBL.text = labelString(option: map?.name ?? "")
-            self.mapMpiView.setMap(mapId: self.point2.nodes?.first?.map ?? "", completionCallback: nil)
-            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+        if(tableView == locationData){
+            let data = self.filteredPolygonLocations[indexPath.row]
+            
+            if ((data.polygons?.count) != nil) {
+                point2 =  self.filteredPolygonLocations[indexPath.row]
+                self.fromWhereView.isHidden = false
+            }
+            
+            if data.nodes!.count > 0 {
+                let map = self.mapMpiView.venueData?.maps.first(where: { element in
+                    element.id == self.point2.nodes?.first?.map ?? ""
+                })
+                floorLBL.text = labelString(option: map?.name ?? "")
+                self.mapMpiView.setMap(mapId: self.point2.nodes?.first?.map ?? "", completionCallback: nil)
+                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+            }
         }
     }
 }
 
 extension MapViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView == locationData ? self.polygonLocations.count : self.instructions.count
+        return tableView == locationData ? self.filteredPolygonLocations.count : self.instructions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(tableView == locationData) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PointCellTableViewCell") as? PointCellTableViewCell {
-                let data = self.polygonLocations[indexPath.row]
+                let data = self.filteredPolygonLocations[indexPath.row]
                 cell.locationDesc.text = data.name
                 cell.floor.text = "Floor"
                 return cell
@@ -476,5 +486,21 @@ extension MapViewController : UITableViewDataSource {
         }
             
         return UITableViewCell()
+    }
+}
+
+extension MapViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            // When there is no text, filteredData is the same as the original data
+            // When user has entered text into the search box
+            // Use the filter method to iterate over all items in the data array
+            // For each item, return true if the item should be included and false if the
+            // item should NOT be included
+            filteredPolygonLocations = searchText.isEmpty ? polygonLocations : polygonLocations.filter { (item: MPILocation) -> Bool in
+                // If dataItem matches the searchText, return true to include it
+                return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+            }
+            
+            locationData.reloadData()
     }
 }
