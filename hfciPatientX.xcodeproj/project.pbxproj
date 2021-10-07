@@ -15,6 +15,7 @@
 		8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53826FC22B600057F79 /* ChatUser.swift */; };
 		8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53F26FC22E800057F79 /* MessagesViewController.swift */; };
 		8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B54E26FC25A300057F79 /* ChatViewController.swift */; };
+		8BDBB4E8270E0E8A00A78ED1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB4E7270E0E8A00A78ED1 /* HomeViewController.swift */; };
 		8BDEE45C26FC2B1C0014A054 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDEE45B26FC2B1C0014A054 /* Settings.bundle */; };
 		8BDEE47C26FC2CAE0014A054 /* ListWithPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */; };
 		8BDEE48126FC2CD00014A054 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE48026FC2CD00014A054 /* SettingsBundleHelper.swift */; };
@@ -109,7 +110,8 @@
 		8B79B53726FC22B600057F79 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		8B79B53826FC22B600057F79 /* ChatUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		8B79B53F26FC22E800057F79 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		8B79B54E26FC25A300057F79 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8B79B54E26FC25A300057F79 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		8BDBB4E7270E0E8A00A78ED1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8BDEE45B26FC2B1C0014A054 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListWithPointer.swift; sourceTree = "<group>"; };
 		8BDEE48026FC2CD00014A054 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
@@ -291,13 +293,11 @@
 				CE2FB18626EFA8590040095B /* API */,
 				CE2FB15626EFA7AE0040095B /* AppDelegate.swift */,
 				CE2FB15826EFA7AE0040095B /* SceneDelegate.swift */,
-				8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */,
 				CE2FB15A26EFA7AE0040095B /* ViewController.swift */,
 				CE2FB15C26EFA7AE0040095B /* Main.storyboard */,
 				CE2FB15F26EFA7B20040095B /* Assets.xcassets */,
 				CE2FB16126EFA7B20040095B /* LaunchScreen.storyboard */,
 				CE2FB16426EFA7B20040095B /* Info.plist */,
-				8B79B54E26FC25A300057F79 /* ChatViewController.swift */,
 				8BDEE45B26FC2B1C0014A054 /* Settings.bundle */,
 			);
 			path = hfciPatientX;
@@ -404,6 +404,9 @@
 				CE2FB1B526F252F60040095B /* LoginViewController.swift */,
 				CE2FB1B726F2548D0040095B /* MenuViewController.swift */,
 				8B78983326F260ED003FE097 /* MapViewController.swift */,
+				8BDBB4E7270E0E8A00A78ED1 /* HomeViewController.swift */,
+				8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */,
+				8B79B54E26FC25A300057F79 /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				8BDEE4CD26FC2EDC0014A054 /* Message.swift in Sources */,
 				8BDEE54826FC34670014A054 /* BroadcastManager.swift in Sources */,
 				8BDEE54326FC341F0014A054 /* ContactTVCell.swift in Sources */,
+				8BDBB4E8270E0E8A00A78ED1 /* HomeViewController.swift in Sources */,
 				8BDEE48626FC2D1A0014A054 /* SessionManager.swift in Sources */,
 				8B78983426F260ED003FE097 /* MapViewController.swift in Sources */,
 				8BDEE4D226FC2F120014A054 /* User.swift in Sources */,

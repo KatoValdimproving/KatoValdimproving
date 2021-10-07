@@ -12,8 +12,6 @@ import Mappedin
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: UIView!
-    @IBOutlet weak var exitImg: UIImageView!
-    @IBOutlet weak var chatImg: UIButton!
     
     @IBOutlet weak var barview: UIView!
     @IBOutlet weak var locationData: UITableView!
@@ -165,8 +163,7 @@ class MapViewController: UIViewController {
         let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
         exitGesture.numberOfTapsRequired = 1
         exitGesture.numberOfTouchesRequired = 1
-        exitImg.isUserInteractionEnabled = true
-        exitImg.addGestureRecognizer(exitGesture)
+        
         
         let closeFrom = UITapGestureRecognizer(target: self, action: #selector(didClose))
         closeFrom.numberOfTapsRequired = 1
