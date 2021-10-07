@@ -282,6 +282,7 @@ class MapViewController: UIViewController {
     }
     
     func imageForDirection(option: String) -> UIImage {
+        
         switch option {
         case "Turn right":
             return UIImage(named: "turnRight") ?? UIImage()
