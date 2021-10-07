@@ -9,7 +9,6 @@ import UIKit
 
 class ChatViewController: UIViewController {
 
-    @IBOutlet weak var exitLbl: UIImageView!
     @IBOutlet weak var contactsContainerView: UIView!
     @IBOutlet weak var conversationContainerView: UIView!
     @IBOutlet weak var roundedBackgroundView: UIView!
@@ -18,7 +17,6 @@ class ChatViewController: UIViewController {
     var selectedContact: ChatUser?
     
     @IBOutlet weak var placeholderView: UIImageView!
-    @IBOutlet weak var topBarMenuView: UIView!
     @IBOutlet weak var separatorView: UIView!
     var navigatonControllerChat: UINavigationController!
     var contactsViewController: ChatContactsViewController!
@@ -26,7 +24,6 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        topBarMenuView.backgroundColor = UIColor(red: 8/255, green: 76/255, blue: 132/255, alpha: 1)
         self.hideElements(hide: true)
         self.conversationContainerView.layer.cornerRadius = 20
         self.initialsCurrentUserButton.layer.cornerRadius = 10
@@ -49,15 +46,12 @@ class ChatViewController: UIViewController {
         self.navigatonControllerChat.willMove(toParent: self)
 
         self.navigatonControllerChat.view.frame = CGRect(x: 0, y: 0, width: self.contactsContainerView.bounds.width, height: self.contactsContainerView.bounds.height)
-        contactsContainerView.addSubview(navigatonControllerChat.view)
+
         self.addChild(self.navigatonControllerChat)
         self.navigatonControllerChat.didMove(toParent: self)
         
-        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
-        exitGesture.numberOfTapsRequired = 1
-        exitGesture.numberOfTouchesRequired = 1
-        exitLbl.isUserInteractionEnabled = true
-        exitLbl.addGestureRecognizer(exitGesture)
+       
+      
 
         // Do any additional setup after loading the view.
     }
@@ -67,7 +61,8 @@ class ChatViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-       
+        contactsContainerView.addSubview(navigatonControllerChat.view)
+
     }
     
     func hideElements(hide: Bool) {

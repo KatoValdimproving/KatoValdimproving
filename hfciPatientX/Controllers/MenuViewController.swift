@@ -35,16 +35,20 @@ class MenuViewController: UIViewController {
     
 
     @objc func didTap() {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as? MapViewController {
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as? MapViewController {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
     @objc func didRequestHelp() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-                
-                self.navigationController?.pushViewController(chatViewController, animated: true)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.showChat = true
         }
     }
     /*
