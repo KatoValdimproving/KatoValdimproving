@@ -129,7 +129,7 @@ class MapViewController: UIViewController {
         
         floorSelector.layer.cornerRadius = 10
         floorSelector.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-        mapMpiView = MPIMapView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: mapView.frame.size))
+        mapMpiView = MPIMapView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
         self.mapView.addSubview(mapMpiView)
         if let mapView = mapMpiView {
@@ -205,7 +205,9 @@ class MapViewController: UIViewController {
         toSelect.selectionAction = { index, title in
             self.tolbl.text = title
             self.point2 = self.polygonLocations[index]
-            self.getDirection()
+            if(self.point1 != nil){
+                self.getDirection()
+            }
         }
         
         floorSelect.anchorView = floorSelector
