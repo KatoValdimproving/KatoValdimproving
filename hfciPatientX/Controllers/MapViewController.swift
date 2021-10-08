@@ -13,7 +13,6 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: UIView!
     
-    @IBOutlet weak var barview: UIView!
     @IBOutlet weak var locationData: UITableView!
     @IBOutlet weak var directionsData: UITableView!
     
@@ -68,6 +67,7 @@ class MapViewController: UIViewController {
         }
         self.locationData.reloadData()
         mapMpiView.reload()
+        
     }
     
     @IBAction func menuReturn(_ sender: Any) {
@@ -126,6 +126,9 @@ class MapViewController: UIViewController {
         self.directionsView.isHidden = true
         self.fromWhereView.isHidden = true
            // Set up MPIMapView and add to view
+        
+        floorSelector.layer.cornerRadius = 10
+        floorSelector.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         mapMpiView = MPIMapView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: mapView.frame.size))
         
         self.mapView.addSubview(mapMpiView)
@@ -280,16 +283,32 @@ class MapViewController: UIViewController {
     
     func imageForDirection(option: String) -> UIImage {
         
-        switch option {
-        case "Turn right":
+        if (option.range(of: "Turn right", options: .caseInsensitive, range: nil, locale: nil) != nil) {
             return UIImage(named: "turnRight") ?? UIImage()
-        case "Turn left":
-            return UIImage(named: "turnLeft") ?? UIImage()
-        case "Arrive at destination":
-            return UIImage(named: "arrived") ?? UIImage()
-        default:
-            return UIImage(named: "myLocation") ?? UIImage()
         }
+        if (option.range(of: "Turn left", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "turnLeft") ?? UIImage()
+        }
+        if (option.range(of: "Arrive", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "arrived") ?? UIImage()
+        }
+        if (option.range(of: "Stairs", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "stairs") ?? UIImage()
+        }
+        if (option.range(of: "Elevator", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "elevator") ?? UIImage()
+        }
+        if (option.range(of: "Turn slightly right", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "turnSlightlyRigth") ?? UIImage()
+        }
+        if (option.range(of: "Turn slightly left", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "turnSlightlyLeft") ?? UIImage()
+        }
+        if (option.range(of: "Go", options: .caseInsensitive, range: nil, locale: nil) != nil) {
+            return UIImage(named: "go") ?? UIImage()
+        }
+        
+        return UIImage(named: "myLocation") ?? UIImage()
     }
     
     private func registerTableViewCells() {
@@ -311,7 +330,6 @@ class MapViewController: UIViewController {
     
     @objc func didExit() {
         APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
-            
             if islogout {
                 self?.navigationController?.popToRootViewController(animated: true)
                // self?.dismiss(animated: true, completion: nil)
@@ -471,7 +489,9 @@ extension MapViewController : UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PointCellTableViewCell") as? PointCellTableViewCell {
                 let data = self.filteredPolygonLocations[indexPath.row]
                 cell.locationDesc.text = data.name
-                cell.floor.text = "Floor"
+                cell.floor.text = self.mapMpiView.venueData?.maps.first(where: { element in
+                    element.id == data.nodes?.first?.map ?? ""
+                })?.name ?? "Unknown"
                 return cell
             }
         }else{
