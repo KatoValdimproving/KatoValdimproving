@@ -32,7 +32,9 @@ class ChatViewController: UIViewController {
         navigatonControllerChat = storyboard.instantiateViewController(withIdentifier: "ContactsNavigationController") as? UINavigationController
         
         guard let contactsViewController = navigatonControllerChat?.viewControllers.first as? ChatContactsViewController else { return }
+      
         self.contactsViewController = contactsViewController
+       
         self.contactsViewController.didSelectContact = { [weak self] contact in
           //  print(contact)
             self?.hideElements(hide: false)
@@ -43,26 +45,28 @@ class ChatViewController: UIViewController {
             self?.goToMessages(contact)
 
         }
-        self.navigatonControllerChat.willMove(toParent: self)
-
-        self.navigatonControllerChat.view.frame = CGRect(x: 0, y: 0, width: self.contactsContainerView.bounds.width, height: self.contactsContainerView.bounds.height)
-
-        self.addChild(self.navigatonControllerChat)
-        self.navigatonControllerChat.didMove(toParent: self)
-        
-       
       
+        
+      //  self.view.layoutIfNeeded()
+       
 
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setStatusBar(backgroundColor: UIColor(red: 8/255, green: 76/255, blue: 132/255, alpha: 1))
+       // self.navigationController?.setStatusBar(backgroundColor: UIColor(red: 8/255, green: 76/255, blue: 132/255, alpha: 1))
     }
     
     override func viewDidLayoutSubviews() {
+        self.navigatonControllerChat.willMove(toParent: self)
+
+        self.navigatonControllerChat.view.frame = CGRect(x: 0, y: 0, width: self.contactsContainerView.bounds.width, height: self.contactsContainerView.bounds.height)
         contactsContainerView.addSubview(navigatonControllerChat.view)
 
+        self.addChild(self.navigatonControllerChat)
+        self.navigatonControllerChat.didMove(toParent: self)
+//        self.contactsViewController.view.layoutSubviews()
+//        self.contactsViewController.view.layoutIfNeeded()
     }
     
     func hideElements(hide: Bool) {
