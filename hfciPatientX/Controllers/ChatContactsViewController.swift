@@ -123,10 +123,6 @@ class ChatContactsViewController: UIViewController {
     }
     
     func setDidBroadcastCallback() {
-//        BroadcastManager.shared.didBroadcast = { [weak self]  in
-//         //   self?.users?[0].append(broadcastUser.id)
-//            self?.tableView.reloadData()
-//        }
     }
         
     @IBAction func displayModeDidChange(_ sender: UISegmentedControl) {
@@ -188,16 +184,10 @@ class ChatContactsViewController: UIViewController {
                     usersIds.remove(at: ownIndex)
                 }
                 
-                let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online || usersDict[$0]?.status == .inactive })
+                let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
                 let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                var offlineUsers = Array(usersIds[..<onlineIndex]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                if offlineUsers.contains(BroadcastUser.id) {
-                    if let index = offlineUsers.firstIndex(of: BroadcastUser.id) {
-                        offlineUsers.remove(at: index)
-                    }
-                }
                 let broadcastUser = [BroadcastUser.id]
-                self?.users = [broadcastUser , onlineUsers, offlineUsers]
+                self?.users = [broadcastUser , onlineUsers]
                 
                 self?.tableView.reloadData()
             }
@@ -211,16 +201,11 @@ class ChatContactsViewController: UIViewController {
                                       usersIds.remove(at: ownIndex)
                                   }
                                   
-                                  let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online || usersDict[$0]?.status == .inactive })
+                                  let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
                                   let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                                  var offlineUsers = Array(usersIds[..<onlineIndex]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                                  if offlineUsers.contains(BroadcastUser.id) {
-                                      if let index = offlineUsers.firstIndex(of: BroadcastUser.id) {
-                                          offlineUsers.remove(at: index)
-                                      }
-                                  }
+                                
                                   let broadcastUser = [BroadcastUser.id]
-                                  self?.users = [broadcastUser , onlineUsers, offlineUsers]
+                                  self?.users = [broadcastUser , onlineUsers]
                                   
                                   self?.tableView.reloadData()
                 }
@@ -290,20 +275,11 @@ class ChatContactsViewController: UIViewController {
 
             if let usersDict = ChatManager.shared.usersDict {
                 var usersIds = Array(usersDict.keys)
-//                if let ownIndex = usersIds.firstIndex(where: { $0 == user.id }){
-//                    usersIds.remove(at: ownIndex)
-//                }
                 
-                let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online || usersDict[$0]?.status == .inactive })
+                let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
                 let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                var offlineUsers = Array(usersIds[..<onlineIndex]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                if offlineUsers.contains(BroadcastUser.id) {
-                    if let index = offlineUsers.firstIndex(of: BroadcastUser.id) {
-                        offlineUsers.remove(at: index)
-                    }
-                }
                 let broadcastUser = [BroadcastUser.id]
-                self?.users = [broadcastUser , onlineUsers, offlineUsers]
+                self?.users = [broadcastUser , onlineUsers]
                 
                 self?.tableView.reloadData()
         }
@@ -314,9 +290,7 @@ class ChatContactsViewController: UIViewController {
         switch status {
             case .broadcast: return 0
             case .online: return 1
-            case .inactive: return 1
-            case .offline: return 2
-            default: return 2
+            default: return 1
         }
     }
     
@@ -326,10 +300,6 @@ class ChatContactsViewController: UIViewController {
             return .clear
         case .online:
             return UIColor(hex: "#3DA64EFF")
-        case .inactive:
-            return UIColor(hex: "#F8A500FF")
-        case .offline:
-            return UIColor(hex: "#FD3534FF")
         default:
             return .clear
         }
@@ -409,9 +379,6 @@ class ChatContactsViewController: UIViewController {
         else  if let onlineIndex = self.users?[1].firstIndex(where: { $0 == userId }) {
             return IndexPath(row: onlineIndex, section: 1)
         }
-        else if let offlineIndex = self.users?[2].firstIndex(where: { $0 == userId }) {
-            return IndexPath(row: offlineIndex, section: 2)
-        }
         
         return nil
     }
@@ -488,30 +455,11 @@ extension ChatContactsViewController: UITableViewDataSource {
         cell.initialsButton.setTitle(contact?.initials, for: .normal)
         cell.statusIndicatorView.backgroundColor = self.getColorForStatus(contact?.status ?? .unknown)
         
-       // cell.setUnreadCount(contact?.unreadMessages ?? 0)
         cell.didTapInitialsButton = { [weak self] sender in
-            
-//            if let userId = contact?.id,
-//                let tabBarController = self?.navigationController?.tabBarController {
-//                if let navViewControllerNC = tabBarController.viewControllers?[safe: 1] as? UINavigationController,
-//                    let navViewController = navViewControllerNC.viewControllers.first as? NavViewController {
-//
-//                    navViewController.findUserId = userId
-//                    if navViewController.isViewLoaded {
-//                        if navViewController.segmentController?.selectedSegmentIndex != 0 {
-//                            navViewController.segmentController?.selectedSegmentIndex = 0
-//                            navViewController.segmentController?.sendActions(for: .valueChanged)
-//                        }
-//                    }
-//                }
-//            }
-//            self?.navigationController?.tabBarController?.selectedIndex = 1
         }
         if let contact = contact, contact.unreadMessages > 0 {
             self.setAsRecent(contact.id)
         }
-        
-       
         
         return cell
     }
@@ -558,15 +506,6 @@ extension ChatContactsViewController: UITableViewDelegate {
         if self.isDisplayingContacts {
             let showBroadcast = self.isFiltering ? (self.filteredUsers?[0].count ?? 0) > 0 : (self.users?[0].count ?? 0) > 0
             let showOnline = self.isFiltering ? (self.filteredUsers?[1].count ?? 0) > 0 : (self.users?[1].count ?? 0) > 0
-            let showOffline = self.isFiltering ? (self.filteredUsers?[2].count ?? 0) > 0 : (self.users?[2].count ?? 0) > 0
-
-//            return section == 0  ? showOnline ? "ONLINE" : nil : showOffline ? "OFFLINE" : nil //: showBroadcast ? "BROADCAST" : nil
-//                                   showOnline ? "ONLINE" : nil : showOffline ? "OFFLINE"
-//            showOnline ? "ONLINE" : nil : showOffline ? "OFFLINE" : showBroadcast ? "BROADCAST" : nil
-            
-         //   return section == 0  ? showOnline ? "ONLINE" : nil : showOffline ? "OFFLINE" : showBroadcast ? "BROADCAST" : nil : nil //: showBroadcast ? "BROADCAST" : nil
-
-           // return section == 0  ? showOnline ? "ONLINE" : showOffline ? "OFFLINE" : showBroadcast ? "BROADCAST" : nil : nil
             
             switch section {
             case 0:
@@ -574,12 +513,10 @@ extension ChatContactsViewController: UITableViewDelegate {
             case 1:
                 return showOnline ? "ONLINE" : nil
             case 2:
-                return showOffline ? "OFFLINE" : nil
+                return nil
             default:
                 return nil
             }
-            
-
         }
         return nil
     }
@@ -620,7 +557,7 @@ extension ChatContactsViewController: UITableViewDelegate {
         
         let call = UIContextualAction(style: .normal, title: "Call") {  (action, view, closure) in
             
-            if let phoneNumber = chatUser.phoneNumber {
+            if chatUser.phoneNumber != nil {
               //  makeAPhoneCall(number: String(phoneNumber))
             } else {
                 Alerts.displayAlert(with: "Hey", and: "No phone number registered for this user")
@@ -628,82 +565,6 @@ extension ChatContactsViewController: UITableViewDelegate {
         }
         call.image = UIImage(named: "call")
         call.backgroundColor = UIColor(red: 40/255, green: 67/255, blue: 163/255, alpha: 1)
-//        let profile = UIContextualAction(style: .normal, title: "Profile") { (action, view, closure) in
-//
-//
-//            if let miniProfileCard = UINib(nibName: "MiniProfileCard", bundle: nil).instantiate(withOwner: nil, options: nil).first as? MiniProfileCard {
-//
-//               // self.view.addSubview(miniProfileCard)
-//
-//
-//                    let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-//
-//                    if var topController = keyWindow?.rootViewController {
-//                        while let presentedViewController = topController.presentedViewController {
-//                            topController = presentedViewController
-//                        }
-//
-//
-//
-//                        var chatUser: ChatUser?
-//                        //get user
-//                        if self.isDisplayingContacts {
-//                            if self.isFiltering {
-//                                if let contact = self.getFilteredUser(indexPath) {
-//                                    chatUser = contact
-//                                }
-//                            } else {
-//                                if let contact = self.getUser(indexPath) {
-//                                    chatUser = contact
-//
-//                                }
-//                            }
-//
-//                        } else  {
-//                            if self.isFiltering {
-//                                if let contact = self.getFilteredRecentUser(indexPath.row) {
-//                                    chatUser = contact
-//
-//                                }
-//
-//                            } else {
-//                                if let contact = self.getRecentUser(indexPath.row) {
-//                                    chatUser = contact
-//
-//                                }
-//                            }
-//                        }
-//
-//
-//
-//
-//
-//
-//                    // topController should now be your topmost view controller
-//                        if let user = chatUser {
-//                        UIView.animate(withDuration: 0.3) {
-//                            topController.view.addSubview(self.blurView)
-//                        } completion: { (finish) in
-//                            topController.view.addSubview(miniProfileCard)
-//                            miniProfileCard.setInfo(chatUser: user)
-//                            miniProfileCard.show(true)
-//                        }
-//
-//                        miniProfileCard.didPressCloseButton = {
-//                            self.blurView.removeFromSuperview()
-//                        }
-//                        }
-//
-//                    }
-//
-//
-//            }
-//
-//        }
-//        profile.backgroundColor = UIColor(red: 126/255, green: 142/255, blue: 200/255, alpha: 1)
-//        profile.image = UIImage(named: "profile")
-
-//        let configuration = chatUser.phoneNumber == "" ? UISwipeActionsConfiguration(actions: [profile]) : UISwipeActionsConfiguration(actions: [call, profile])
         return UISwipeActionsConfiguration(actions: [])
 
     }
@@ -734,16 +595,10 @@ extension ChatContactsViewController: UITableViewDelegate {
                                   usersIds.remove(at: ownIndex)
                               }
                               
-                              let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online || usersDict[$0]?.status == .inactive })
+                              let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
                               let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                              var offlineUsers = Array(usersIds[..<onlineIndex]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                              if offlineUsers.contains(BroadcastUser.id) {
-                                  if let index = offlineUsers.firstIndex(of: BroadcastUser.id) {
-                                      offlineUsers.remove(at: index)
-                                  }
-                              }
                               let broadcastUser = [BroadcastUser.id]
-                              self?.users = [broadcastUser , onlineUsers, offlineUsers]
+                              self?.users = [broadcastUser , onlineUsers]
                               
                               self?.tableView.reloadData()
                             print("fetching done")
@@ -762,11 +617,10 @@ extension ChatContactsViewController: UISearchResultsUpdating {
         if let searchText = searchController.searchBar.text {
             
             if self.displayModeSegmentedControl.selectedSegmentIndex == 0 {
-                if let broadcast = self.users?[0], let online = self.users?[1], let offline = self.users?[2]  {
+                if let broadcast = self.users?[0], let online = self.users?[1] {
                     let onlineFiltered = self.filterContactsForSearchText(online, searchText)
-                    let offlineFiltered = self.filterContactsForSearchText(offline, searchText)
                     let broadcastFiltered = self.filterContactsForSearchText(broadcast, searchText)
-                    self.filteredUsers = [broadcastFiltered, onlineFiltered, offlineFiltered]
+                    self.filteredUsers = [broadcastFiltered, onlineFiltered]
                     self.tableView.reloadData()
                 }
             }

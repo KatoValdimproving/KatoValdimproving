@@ -8,6 +8,7 @@
 import UIKit
 import DropDown
 import IQKeyboardManagerSwift
+import MaterialComponents
 
 class LoginViewController: UIViewController {
 
@@ -15,7 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var NameTxtImp: UITextField!
     @IBOutlet weak var dropDown: UIView!
     @IBOutlet weak var roleLBL: UILabel!
-    @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var enterButton: MDCButton!
     @IBOutlet weak var deviceIdLBL: UILabel!
     
     @IBAction func sendInfo(_ sender: Any) {
@@ -58,14 +59,19 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didRequestHelp() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-                self.navigationController?.pushViewController(chatViewController, animated: true)
+        if(NameTxtImp.hasText){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                    self.navigationController?.pushViewController(chatViewController, animated: true)
+            }
+        }else{
+            NameTxtImp.layer.borderColor = UIColor.red.cgColor
+            NameTxtImp.layer.borderWidth = 1.0
         }
     }
 
     func logIn() {
-        guard let name = self.NameTxtImp.text else { return }
+        guard let name = self.NameTxtImp.text, self.NameTxtImp.hasText else { return }
         self.NameTxtImp.text = ""
         SessionManager.shared.userName = name
 

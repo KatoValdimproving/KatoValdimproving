@@ -182,6 +182,7 @@
 		CE2FB1B926F258620040095B /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		CEE7500B2704E7EA00BD6CB7 /* PointCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCellTableViewCell.swift; sourceTree = "<group>"; };
 		CEE7500C2704E7EA00BD6CB7 /* PointCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointCellTableViewCell.xib; sourceTree = "<group>"; };
+		CEF1E601271609D300B03DBD /* HFCIWalk.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HFCIWalk.gpx; sourceTree = "<group>"; };
 		E398D13DBED46E0F85EF18D4 /* Pods_hfciPatientX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hfciPatientX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2A3C5836A8A31220FD75E0 /* Pods_hfciPatientX_hfciPatientXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hfciPatientX_hfciPatientXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF58875B3F3ABB5AF092EC59 /* Pods-hfciPatientX-hfciPatientXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientX-hfciPatientXUITests.release.xcconfig"; path = "Target Support Files/Pods-hfciPatientX-hfciPatientXUITests/Pods-hfciPatientX-hfciPatientXUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -357,6 +358,7 @@
 		CE2FB18A26EFA8A00040095B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CEF1E600271609AD00B03DBD /* SimulatedLocations */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -409,6 +411,14 @@
 				8B79B54E26FC25A300057F79 /* ChatViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CEF1E600271609AD00B03DBD /* SimulatedLocations */ = {
+			isa = PBXGroup;
+			children = (
+				CEF1E601271609D300B03DBD /* HFCIWalk.gpx */,
+			);
+			path = SimulatedLocations;
 			sourceTree = "<group>";
 		};
 		F8B1C4F740556608742715AD /* Frameworks */ = {
@@ -902,7 +912,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -924,7 +934,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

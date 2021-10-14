@@ -8,6 +8,7 @@
 import UIKit
 import DropDown
 import Mappedin
+import CoreLocation
 
 class MapViewController: UIViewController {
 
@@ -119,9 +120,14 @@ class MapViewController: UIViewController {
         self.textDirectionsBTN.titleLabel?.text = "Hide Text Directions"
     }
     
+    
+    private var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.setupLocationManager()
 
         self.directionsView.isHidden = true
         self.fromWhereView.isHidden = true
@@ -409,6 +415,30 @@ class MapViewController: UIViewController {
         print(location.parent ?? "")
         print(location.nodes?.first?.map ?? "")
     }
+    
+    func setupLocationManager() {
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.allowsBackgroundLocationUpdates = true
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingLocation()
+            
+            
+            let center = CLLocationCoordinate2D(latitude: 22.425118, longitude: 114.239927)
+            let radius = 100.0 // 100m
+            let region = CLCircularRegion(center: center, radius: radius, identifier: "fooIdentifier")
+
+            // Notified when user enter the region; Callback locationManager:didExitRegion:
+            region.notifyOnEntry = true
+
+            // Notified when user leaves the region; Callback locationManager:didEnterRegion:
+            region.notifyOnExit = true
+
+             self.locationManager.startMonitoring(for: region)
+            
+        }
+
+    }
 }
 
 extension MapViewController: MPIMapViewDelegate {
@@ -452,6 +482,10 @@ extension MapViewController: MPIMapViewDelegate {
         floorLBL.text = labelString(option: mapMpiView?.venueData?.maps.first?.name ?? "")
         
         self.locationData.reloadData()
+        
+        mapMpiView.blueDotManager.enable(options: MPIOptions.BlueDot(
+            allowImplicitFloorLevel: true, smoothing: false, showBearing: true, baseColor: "#2266ff"
+        ))
     }
 
     func onStateChanged (state: MPIState) {
@@ -522,5 +556,15 @@ extension MapViewController: UISearchBarDelegate {
             }
             
             locationData.reloadData()
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let dateTime = Date()
+            let coordinates = MPICoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, accuracy: 0.8, floorLevel: location.floor?.level)
+            self.mapMpiView.blueDotManager.updatePosition(position: MPIPosition(timestamp: dateTime.timeIntervalSince1970, coords: coordinates, type: "", annotation: ""))
+        }
     }
 }

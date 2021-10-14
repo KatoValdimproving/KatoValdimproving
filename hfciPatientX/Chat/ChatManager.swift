@@ -299,7 +299,7 @@ class ChatManager {
                 
                 let usersDict = try jsonDecoder.decode([String: FailableDecodable<ChatUser>].self, from: data)
                     .compactMapValues({ $0.value })
-                
+                //Maybe here
                 return usersDict
             }
         }

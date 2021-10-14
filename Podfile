@@ -17,7 +17,8 @@ target 'hfciPatientX' do
   pod 'SwiftySound', '1.0.0'
   pod ‘ReachabilitySwift’,‘~> 3’
   pod 'SwiftKeychainWrapper'
-
+  pod 'MaterialComponents/Buttons'
+  pod 'MaterialComponents/TextControls+OutlinedTextFields'
   target 'hfciPatientXTests' do
     inherit! :search_paths
     # Pods for testing
