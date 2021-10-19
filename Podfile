@@ -14,11 +14,10 @@ target 'hfciPatientX' do
   pod 'NotificationBannerSwift', '~> 3.0.0'
   pod 'Alamofire', '~> 4.5'
   pod 'Gloss' #, '~> 2.0'
-  pod 'SwiftySound', '1.0.0'
-  pod ‘ReachabilitySwift’,‘~> 3’
+  pod 'SwiftySound'
+  pod 'ReachabilitySwift','~> 3'
   pod 'SwiftKeychainWrapper'
   pod 'MaterialComponents/Buttons'
-  pod 'MaterialComponents/TextControls+OutlinedTextFields'
   target 'hfciPatientXTests' do
     inherit! :search_paths
     # Pods for testing

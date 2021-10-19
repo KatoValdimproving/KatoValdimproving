@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var logout: UIImageView!
     var chatViewController: UIViewController!
    // var menuViewController: UIViewController!
     var mapViewController: UIViewController!
@@ -48,6 +49,12 @@ class HomeViewController: UIViewController {
             self.chatAction(self)
         }
         
+        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
+        exitGesture.numberOfTapsRequired = 1
+        exitGesture.numberOfTouchesRequired = 1
+        logout.isUserInteractionEnabled = true
+        logout.addGestureRecognizer(exitGesture)
+        
     }
     
 
@@ -66,6 +73,15 @@ class HomeViewController: UIViewController {
          self.containerView.bringSubviewToFront(self.chatViewController.view)
 
      }
+    
+    @objc func didExit() {
+        APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
+            if islogout {
+                self?.navigationController?.popToRootViewController(animated: true)
+               // self?.dismiss(animated: true, completion: nil)
+            }
+        })
+    }
     /*
      // MARK: - Navigation
 

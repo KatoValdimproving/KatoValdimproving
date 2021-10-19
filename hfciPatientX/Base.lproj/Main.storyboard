@@ -303,7 +303,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puF-MA-qc8">
-                                                <rect key="frame" x="12" y="64" width="47" height="22"/>
+                                                <rect key="frame" x="12" y="64" width="46.5" height="22"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" red="0.0" green="0.15733422" blue="0.44474367380000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -675,7 +675,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgI-O9-5X1">
-                                        <rect key="frame" x="102" y="768" width="273" height="18"/>
+                                        <rect key="frame" x="102" y="768" width="273" height="18.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="273" id="XzQ-F0-dGo"/>
                                         </constraints>
@@ -998,6 +998,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="IGH-kT-5Xq" id="SOU-zn-Gdp"/>
+                        <outlet property="logout" destination="CeI-Z9-dXs" id="bvd-Re-xgd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpp-Wb-aGJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

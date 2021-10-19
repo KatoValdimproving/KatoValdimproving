@@ -32,22 +32,6 @@ PODS:
   - MaterialComponents/private/Color (124.2.0):
     - MaterialComponents/Availability
   - MaterialComponents/private/Math (124.2.0)
-  - "MaterialComponents/private/TextControlsPrivate+BaseStyle (124.2.0)":
-    - MaterialComponents/AnimationTiming
-    - MaterialComponents/private/Math
-    - "MaterialComponents/private/TextControlsPrivate+Shared"
-  - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle (124.2.0)":
-    - MaterialComponents/AnimationTiming
-    - MaterialComponents/Availability
-    - MaterialComponents/private/Math
-    - "MaterialComponents/private/TextControlsPrivate+Shared"
-  - "MaterialComponents/private/TextControlsPrivate+Shared (124.2.0)":
-    - MaterialComponents/AnimationTiming
-    - MaterialComponents/private/Math
-    - "MaterialComponents/TextControls+Enums"
-  - "MaterialComponents/private/TextControlsPrivate+TextFields (124.2.0)":
-    - MaterialComponents/private/Math
-    - "MaterialComponents/private/TextControlsPrivate+Shared"
   - MaterialComponents/Ripple (124.2.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
@@ -65,16 +49,6 @@ PODS:
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - "MaterialComponents/TextControls+BaseTextFields (124.2.0)":
-    - "MaterialComponents/private/TextControlsPrivate+BaseStyle"
-    - "MaterialComponents/private/TextControlsPrivate+Shared"
-    - "MaterialComponents/private/TextControlsPrivate+TextFields"
-    - MDFInternationalization
-  - "MaterialComponents/TextControls+Enums (124.2.0)"
-  - "MaterialComponents/TextControls+OutlinedTextFields (124.2.0)":
-    - MaterialComponents/Availability
-    - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle"
-    - "MaterialComponents/TextControls+BaseTextFields"
   - MaterialComponents/Typography (124.2.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
@@ -91,7 +65,7 @@ PODS:
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
   - SwiftKeychainWrapper (4.0.1)
-  - SwiftySound (1.0.0)
+  - SwiftySound (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -100,13 +74,12 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - MappedIn (= 3.0.2)
   - MaterialComponents/Buttons
-  - "MaterialComponents/TextControls+OutlinedTextFields"
   - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
   - NotificationBannerSwift (~> 3.0.0)
   - ReachabilitySwift (~> 3)
   - Socket.IO-Client-Swift (~> 15.2.0)
   - SwiftKeychainWrapper
-  - SwiftySound (= 1.0.0)
+  - SwiftySound
 
 SPEC REPOS:
   trunk:
@@ -153,8 +126,8 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
-  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
+  SwiftySound: 9eb28bb14edb601b40027e44319e0ef8383f88bf
 
-PODFILE CHECKSUM: e81629d98e46b9440a8191ca7c11196876753db6
+PODFILE CHECKSUM: 43ffc5046c43efd2243605460c50ba60a6efb421
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.11.2

@@ -60,9 +60,9 @@ class LoginViewController: UIViewController {
     
     @objc func didRequestHelp() {
         if(NameTxtImp.hasText){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-                    self.navigationController?.pushViewController(chatViewController, animated: true)
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+                vc.showChat = true
             }
         }else{
             NameTxtImp.layer.borderColor = UIColor.red.cgColor

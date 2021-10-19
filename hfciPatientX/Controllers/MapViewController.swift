@@ -71,18 +71,6 @@ class MapViewController: UIViewController {
         
     }
     
-    @IBAction func menuReturn(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func chatCall(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-                self.navigationController?.pushViewController(chatViewController, animated: true)
-        }
-    }
-    
     //From dropdown inside the view after you select a point in the table, you need all the points in the map that have nodes
     var selectMenu : DropDown = {
         let menu = DropDown()
@@ -168,10 +156,6 @@ class MapViewController: UIViewController {
         self.directionsData.isHidden = true
         self.searchBar.delegate = self
         registerTableViewCells()
-        
-        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
-        exitGesture.numberOfTapsRequired = 1
-        exitGesture.numberOfTouchesRequired = 1
         
         
         let closeFrom = UITapGestureRecognizer(target: self, action: #selector(didClose))
@@ -334,15 +318,6 @@ class MapViewController: UIViewController {
     
     @objc func action() {
         view.endEditing(true)
-    }
-    
-    @objc func didExit() {
-        APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
-            if islogout {
-                self?.navigationController?.popToRootViewController(animated: true)
-               // self?.dismiss(animated: true, completion: nil)
-            }
-        })
     }
     
     @objc func explore() {
