@@ -37,6 +37,7 @@ class MapViewController: UIViewController {
     var direction : MPIDirections!
     var point1 : MPILocation!
     var point2 : MPILocation!
+    var nearestNode : MPINode!
         
     @IBOutlet weak var fromWhereView: UIView!
     
@@ -67,8 +68,11 @@ class MapViewController: UIViewController {
             location.polygons!.count > 0
         }
         self.locationData.reloadData()
+        point1 = nil
+        point2 = nil
+        tolbl.text = "Destination?"
+        placeOption.text = "Your Location"
         mapMpiView.reload()
-        
     }
     
     //From dropdown inside the view after you select a point in the table, you need all the points in the map that have nodes
@@ -97,6 +101,13 @@ class MapViewController: UIViewController {
             controlls.isHidden = true
             directionsView.isHidden = false
             fromLbl.text = point1.name
+            tolbl.text = point2.name
+            mapMpiView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            getDirection()
+        }else if(nearestNode != nil){
+            controlls.isHidden = true
+            directionsView.isHidden = false
+            fromLbl.text = "Your Location"
             tolbl.text = point2.name
             mapMpiView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             getDirection()
@@ -189,15 +200,16 @@ class MapViewController: UIViewController {
         fromSelect.selectionAction = { index, title in
             self.fromLbl.text = title
             self.point1 = self.nodeLocations[index]
+            if(self.point2 != nil){
+                self.getDirection()
+            }
         }
         
         toSelect.anchorView = toViewSelect
         toSelect.selectionAction = { index, title in
             self.tolbl.text = title
             self.point2 = self.polygonLocations[index]
-            if(self.point1 != nil){
-                self.getDirection()
-            }
+            self.getDirection()
         }
         
         floorSelect.anchorView = floorSelector
@@ -362,26 +374,51 @@ class MapViewController: UIViewController {
     }
     
     func getDirection() {
-        let map = self.mapMpiView.venueData?.maps.first(where: { element in
-            element.id == self.point1.nodes?.first?.map ?? ""
-        })
-        floorLBL.text = labelString(option: map?.name ?? "")
-        
-        self.mapMpiView?.getDirections(to: point2.polygons?.first as! MPINavigatable, from: point1.nodes?.first as! MPINavigatable, accessible: true) { directions in
-            if let directions = directions {
-                self.mapMpiView.setMap(mapId: self.point1.nodes?.first?.map ?? "", completionCallback: nil)
-                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point1.nodes, polygons: self.point1.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
-                self.mapMpiView?.drawJourney(
-                    directions: directions,
-                    options: MPIOptions.Journey(
-                        pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
+        if(point1 != nil){
+            let map = self.mapMpiView.venueData?.maps.first(where: { element in
+                element.id == self.point1.nodes?.first?.map ?? ""
+            })
+            floorLBL.text = labelString(option: map?.name ?? "")
+            
+            self.mapMpiView?.getDirections(to: point2.polygons?.first as! MPINavigatable, from: point1.nodes?.first as! MPINavigatable, accessible: true) { directions in
+                if let directions = directions {
+                    self.mapMpiView.setMap(mapId: self.point1.nodes?.first?.map ?? "", completionCallback: nil)
+                    self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point1.nodes, polygons: self.point1.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+                    self.mapMpiView?.drawJourney(
+                        directions: directions,
+                        options: MPIOptions.Journey(
+                            pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
+                        )
                     )
-                )
-                self.direction = directions
-                self.instructions = self.direction.instructions.map { instruction in
-                    return instruction.instruction ?? "Unknown"
+                    self.direction = directions
+                    self.instructions = self.direction.instructions.map { instruction in
+                        return instruction.instruction ?? "Unknown"
+                    }
+                    self.directionsData.reloadData()
                 }
-                self.directionsData.reloadData()
+            }
+        }else if(nearestNode != nil){
+            let map = self.mapMpiView.venueData?.maps.first(where: { element in
+                element.id == nearestNode?.map ?? ""
+            })
+            floorLBL.text = labelString(option: map?.name ?? "")
+            
+            self.mapMpiView?.getDirections(to: point2.polygons?.first as! MPINavigatable, from: nearestNode as! MPINavigatable, accessible: true) { directions in
+                if let directions = directions {
+                    self.mapMpiView.setMap(mapId: self.nearestNode.map ?? "", completionCallback: nil)
+                    self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [self.nearestNode], polygons: [], duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+                    self.mapMpiView?.drawJourney(
+                        directions: directions,
+                        options: MPIOptions.Journey(
+                            pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
+                        )
+                    )
+                    self.direction = directions
+                    self.instructions = self.direction.instructions.map { instruction in
+                        return instruction.instruction ?? "Unknown"
+                    }
+                    self.directionsData.reloadData()
+                }
             }
         }
     }
@@ -419,6 +456,11 @@ class MapViewController: UIViewController {
 extension MapViewController: MPIMapViewDelegate {
     func onBlueDotPositionUpdate(update: MPIBlueDotPositionUpdate) {
         // Called when the blueDot that tracks the user position is updated
+        self.nearestNode = update.nearestNode
+        let map = self.mapMpiView.venueData?.maps.first(where: { element in
+            element.id == update.nearestNode?.map ?? ""
+        })
+        floorLBL.text = labelString(option: map?.name ?? "")
     }
 
     func onBlueDotStateChange(stateChange: MPIBlueDotStateChange) {

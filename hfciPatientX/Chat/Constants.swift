@@ -55,7 +55,7 @@ struct HospitalWithEnvironment {
 
 struct NaavSystemEnvironment {
     
-    static var currentEntenvironment = Environment.prod
+    static var currentEntenvironment = Environment.qa
     
     static var hospitals = [HospitalWithEnvironment(name: .henryford, environment: currentEntenvironment),
                             HospitalWithEnvironment(name: .lahey, environment: currentEntenvironment)]
@@ -73,9 +73,6 @@ struct NaavSystemEnvironment {
             hospitals[index].environment = newEnvironment
         }
     }
-    
-    
-    
     
 }
 

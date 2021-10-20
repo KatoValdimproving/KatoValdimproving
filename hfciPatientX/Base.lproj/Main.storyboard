@@ -296,10 +296,10 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pm4-KM-z7A">
-                                                <rect key="frame" x="260" y="11" width="30" height="27.5"/>
+                                                <rect key="frame" x="250" y="11" width="40" height="37.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="NbM-f5-gDl"/>
-                                                    <constraint firstAttribute="width" constant="30" id="zSM-TK-UoW"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="NbM-f5-gDl"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="zSM-TK-UoW"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puF-MA-qc8">
@@ -319,7 +319,7 @@
                                                             <constraint firstAttribute="height" constant="10" id="cuR-UQ-N4n"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsh-BL-Ygq">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsh-BL-Ygq">
                                                         <rect key="frame" x="0.0" y="10" width="230" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="MOZ-96-hmT"/>
@@ -377,15 +377,17 @@
                                     <constraint firstItem="fcv-cx-h0y" firstAttribute="top" secondItem="WwG-Ek-COt" secondAttribute="bottom" constant="16" id="77n-44-Gie"/>
                                     <constraint firstItem="4kw-b4-we9" firstAttribute="top" secondItem="Kjf-Tb-qXa" secondAttribute="bottom" constant="8" symbolic="YES" id="Azz-Th-kcb"/>
                                     <constraint firstAttribute="width" constant="312" id="Fmz-nE-Wrc"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F86-hA-dGr" secondAttribute="trailing" constant="27" id="GMD-2s-CTO"/>
-                                    <constraint firstItem="fcv-cx-h0y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FCn-ZC-iQb" secondAttribute="leading" constant="27" id="Hxi-u3-v5J"/>
+                                    <constraint firstAttribute="trailing" secondItem="F86-hA-dGr" secondAttribute="trailing" constant="27" id="Fwb-Ys-VLY"/>
                                     <constraint firstItem="F86-hA-dGr" firstAttribute="top" secondItem="fcv-cx-h0y" secondAttribute="top" id="Rme-7P-mfN"/>
                                     <constraint firstItem="fcv-cx-h0y" firstAttribute="height" secondItem="F86-hA-dGr" secondAttribute="height" id="Tzu-1X-hIx"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F86-hA-dGr" secondAttribute="trailing" constant="27" id="W82-xi-eZa"/>
                                     <constraint firstItem="Kjf-Tb-qXa" firstAttribute="top" secondItem="fcv-cx-h0y" secondAttribute="bottom" constant="28" id="XcO-Ie-FbQ"/>
+                                    <constraint firstItem="fcv-cx-h0y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FCn-ZC-iQb" secondAttribute="leading" constant="27" id="YKl-y1-dOY"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kjf-Tb-qXa" secondAttribute="trailing" constant="20" symbolic="YES" id="Z3T-sI-nWd"/>
                                     <constraint firstItem="CEv-OE-k9d" firstAttribute="top" secondItem="Kjf-Tb-qXa" secondAttribute="bottom" constant="16" id="cFp-bS-6bU"/>
                                     <constraint firstAttribute="bottom" secondItem="4kw-b4-we9" secondAttribute="bottom" constant="12.5" id="gMV-ZA-yNV"/>
                                     <constraint firstItem="4kw-b4-we9" firstAttribute="leading" secondItem="WwG-Ek-COt" secondAttribute="leading" id="gbP-yz-ea3"/>
+                                    <constraint firstItem="F86-hA-dGr" firstAttribute="leading" secondItem="fcv-cx-h0y" secondAttribute="trailing" constant="22" id="iOd-o1-DEz"/>
                                     <constraint firstAttribute="trailing" secondItem="WwG-Ek-COt" secondAttribute="trailing" constant="4" id="jqy-vh-hfb"/>
                                     <constraint firstItem="WwG-Ek-COt" firstAttribute="leading" secondItem="FCn-ZC-iQb" secondAttribute="leading" constant="4" id="klY-nH-Xff"/>
                                     <constraint firstItem="Kjf-Tb-qXa" firstAttribute="leading" secondItem="FCn-ZC-iQb" secondAttribute="leadingMargin" id="kuF-OS-ojd"/>
@@ -415,7 +417,7 @@
                                                     <constraint firstAttribute="height" constant="8" id="ibi-rS-QU4"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7N-Hl-ABE">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7N-Hl-ABE">
                                                 <rect key="frame" x="8" y="8" width="257" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="257" id="X37-g3-5fW"/>

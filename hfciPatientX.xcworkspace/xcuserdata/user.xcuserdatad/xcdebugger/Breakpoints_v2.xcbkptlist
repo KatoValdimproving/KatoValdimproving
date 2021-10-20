@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4E03A7D9-0ACF-475E-B41B-B57D223CC9E4"
+            uuid = "373B0073-AF71-4470-9B96-1FD86D7647A2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "hfciPatientX/Chat/APIManager.swift"
+            filePath = "hfciPatientX/Controllers/MapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "login(viewController:password:email:completionHandler:)"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
+            landmarkName = "getDirection()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
