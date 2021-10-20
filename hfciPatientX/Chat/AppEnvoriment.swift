@@ -16,7 +16,7 @@ class AppEnvoriment {
     var enviroment: Environment {
         get {
              let integer = UserDefaults.standard.integer(forKey: "enviroment")
-            return Environment(rawValue: integer) ?? .prod
+            return Environment(rawValue: integer) ?? .qa
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: "enviroment")
@@ -109,8 +109,4 @@ class AppEnvoriment {
             return "http://dev-hfhs.navvtrak.com:3050/api/loginSAML"
         }
     }
-        
- 
-    
-    
 }

@@ -12,7 +12,7 @@
 			<key>Title</key>
 			<string>Prod</string>
 			<key>Key</key>
-			<string>enviroment</string>
+			<string>productionSwitch</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -20,7 +20,7 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Devide ID</string>
+			<string>Device ID</string>
 			<key>Key</key>
 			<string>testerId</string>
 			<key>DefaultValue</key>

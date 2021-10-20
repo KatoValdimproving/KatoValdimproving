@@ -47,21 +47,27 @@ class SettingsBundleHelper: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsBundleHelper.shared.defaultsChange), name: UserDefaults.didChangeNotification, object: nil)
     }
     
-    @objc func envorimentChange() {
+    func changeEnviromentAndTerminateSession(newEnvironment: Environment) {
+        
+        NaavSystemEnvironment.changeEnvironment(newEnvironment: newEnvironment)
+        //AppEnvoriment.shared.enviroment = newEnvironment
+        SocketIOManager.sharedInstance.switchEnvoriment()
+        ChatManager.shared.switchEnvoriment()
+        
     }
     
     @objc func defaultsChange() {
         //        print("SettingsBundleHelper defaultsChange")
          //       print("⚠️\(self.deviceID)")
-        //        print(self.isProductionEnabled)
+        print(self.isProductionEnabled)
         //        print(self.SSIDNames)
 //        print("-----------------")
 //        print("⚠️base url: \(AppEnvoriment.shared.apiBaseUrl)")
 //        print("⚠️code \(self.hospitalCode)")
 //        print("⚠️hospital \(self.selectedHospital)")
 
-      //  self.isProductionEnabled ? AppEnvoriment.shared.setProductionEnvoriment() : AppEnvoriment.shared.setQAEnvoriment()
-      //  self.checkChangeInEnvoriment()
+        self.isProductionEnabled ? changeEnviromentAndTerminateSession(newEnvironment: .prod) : changeEnviromentAndTerminateSession(newEnvironment: .qa)
+        //self.checkChangeInEnvoriment()
         
         
         
