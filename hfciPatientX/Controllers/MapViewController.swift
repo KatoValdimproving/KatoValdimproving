@@ -11,8 +11,10 @@ import Mappedin
 
 class MapViewController: UIViewController {
 
+    @IBOutlet weak var artWalkContainerView: UIView!
     @IBOutlet weak var mapView: UIView!
     
+    @IBOutlet weak var controlsView: UIView!
     @IBOutlet weak var locationData: UITableView!
     @IBOutlet weak var directionsData: UITableView!
     
@@ -122,7 +124,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
         self.directionsView.isHidden = true
         self.fromWhereView.isHidden = true
            // Set up MPIMapView and add to view
@@ -235,6 +236,31 @@ class MapViewController: UIViewController {
         floorGesture.numberOfTouchesRequired = 1
         floorSelector.addGestureRecognizer(floorGesture)
         
+        artWalkContainerView.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height - 90)
+        controlls.isHidden = true
+        artWalkContainerView.isHidden = false
+
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+     
+    }
+    
+    
+   func showArtWalk() {
+        //guard let galleryViewController = GalleryViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+       // guard  let galleryViewController = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
+        
+        guard  let artWalkNavigationController = storyboard.instantiateViewController(withIdentifier: "ArtWalkNavigationController") as? UINavigationController else { return }
+
+       // self.chatViewController.willMove(toParent: self)
+        artWalkNavigationController.view.frame = CGRect(x: 0, y: 0, width: self.artWalkContainerView.bounds.width, height: self.artWalkContainerView.bounds.height)
+        artWalkContainerView.addSubview(artWalkNavigationController.view)
+       
+       // artWalkContainerView.sizeToFit()
+      
     }
     
     @objc func didTap() {

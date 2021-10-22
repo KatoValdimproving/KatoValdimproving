@@ -58,8 +58,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didRequestHelp() {
+        //GalleryViewController
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+//                self.navigationController?.pushViewController(chatViewController, animated: true)
+//        }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+            if let chatViewController = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController {
                 self.navigationController?.pushViewController(chatViewController, animated: true)
         }
     }
