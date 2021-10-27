@@ -973,3 +973,26 @@ extension UINavigationController {
 
 }
 
+func createDoubleLineTextForLabel(firstLine: String, sizeTop: Double, secondLine: String, sizeBottom: Double, color: UIColor) -> NSMutableAttributedString {
+    let attributesTitle: [NSAttributedString.Key: Any] = [
+        .font: UIFont.boldSystemFont(ofSize: sizeTop),
+        .foregroundColor: color]
+    let attributesDescription: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: CGFloat(sizeBottom), weight: .light),
+        .foregroundColor: color]
+    let attributedMutableString = NSMutableAttributedString()
+    
+        let attributedTitle = NSAttributedString(string: firstLine + "\n", attributes: attributesTitle)
+        attributedMutableString.append(attributedTitle)
+       
+    let attributedDescription = NSAttributedString(string: secondLine, attributes: attributesDescription)
+        attributedMutableString.append(attributedDescription)
+
+
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 3
+    attributedMutableString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange())
+    attributedMutableString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange( 0, attributedMutableString.length))
+    return attributedMutableString
+}
+

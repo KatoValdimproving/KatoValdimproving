@@ -12,8 +12,10 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
+    @IBOutlet weak var artWalkContainerView: UIView!
     @IBOutlet weak var mapView: UIView!
     
+    @IBOutlet weak var controlsView: UIView!
     @IBOutlet weak var locationData: UITableView!
     @IBOutlet weak var directionsData: UITableView!
     
@@ -38,7 +40,8 @@ class MapViewController: UIViewController {
     var point1 : MPILocation!
     var point2 : MPILocation!
     var nearestNode : MPINode!
-        
+    lazy var markerString = getFileContentFromBundle(forResource: "marker", ofType: "html")
+
     @IBOutlet weak var fromWhereView: UIView!
     
     @IBOutlet weak var selectDropdown: UIView!
@@ -125,7 +128,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         self.setupLocationManager()
 
         self.directionsView.isHidden = true
@@ -139,13 +141,13 @@ class MapViewController: UIViewController {
         self.mapView.addSubview(mapMpiView)
         if let mapView = mapMpiView {
               // Provide credentials, if using proxy use MPIOptions.Init(venue: "venue_slug", baseUrl: "proxy_url", noAuth: true)
-            mapView.loadVenue(
-                options: MPIOptions.Init(
-                  clientId: "601c2371fac662001be42493",
-                  clientSecret: "raW1AeQ5WikKMflCbX5GAozTA0kcGsgl99HUIJHr1B6wwgoG",
-                  venue: "henry-ford-cancer-center"
-                )
-              )
+//            mapView.loadVenue(
+//                options: MPIOptions.Init(
+//                  clientId: "601c2371fac662001be42493",
+//                  clientSecret: "raW1AeQ5WikKMflCbX5GAozTA0kcGsgl99HUIJHr1B6wwgoG",
+//                  venue: "henry-ford-cancer-center"
+//                )
+//              )
             mapView.loadVenue(
                 options: MPIOptions.Init(
                   clientId: "601c2371fac662001be42493",
@@ -237,6 +239,31 @@ class MapViewController: UIViewController {
         floorGesture.numberOfTouchesRequired = 1
         floorSelector.addGestureRecognizer(floorGesture)
         
+        artWalkContainerView.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height - 90)
+        controlls.isHidden = false
+        artWalkContainerView.isHidden = true
+
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+     
+    }
+    
+    
+   func showArtWalk() {
+        //guard let galleryViewController = GalleryViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+       // guard  let galleryViewController = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
+        
+        guard  let artWalkNavigationController = storyboard.instantiateViewController(withIdentifier: "ArtWalkNavigationController") as? UINavigationController else { return }
+
+       // self.chatViewController.willMove(toParent: self)
+        artWalkNavigationController.view.frame = CGRect(x: 0, y: 0, width: self.artWalkContainerView.bounds.width, height: self.artWalkContainerView.bounds.height)
+        artWalkContainerView.addSubview(artWalkNavigationController.view)
+       
+       // artWalkContainerView.sizeToFit()
+      
     }
     
     @objc func didTap() {
@@ -447,16 +474,20 @@ class MapViewController: UIViewController {
             region.notifyOnExit = true
 
              self.locationManager.startMonitoring(for: region)
+            startScanning()
+
             
         }
 
     }
+   
 }
 
 extension MapViewController: MPIMapViewDelegate {
     func onBlueDotPositionUpdate(update: MPIBlueDotPositionUpdate) {
         // Called when the blueDot that tracks the user position is updated
         self.nearestNode = update.nearestNode
+        print(self.nearestNode.debugDescription)
         let map = self.mapMpiView.venueData?.maps.first(where: { element in
             element.id == update.nearestNode?.map ?? ""
         })
@@ -479,8 +510,13 @@ extension MapViewController: MPIMapViewDelegate {
         // Called when a tap doesn't hit any spaces
     }
 
+
     @available(*, deprecated, message: "use onBlueDotPositionUpdate and onBlueDotStateChange")
     func onBlueDotUpdated(blueDot: MPIBlueDot) {
+        let nearestNode = blueDot.nearestNode
+        self.mapMpiView.createMarker(node: nearestNode, contentHtml: markerString ?? "")
+
+
     }
 
     func onDataLoaded(data: MPIData) {
@@ -583,5 +619,66 @@ extension MapViewController: CLLocationManagerDelegate {
             let coordinates = MPICoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, accuracy: 0.8, floorLevel: location.floor?.level)
             self.mapMpiView.blueDotManager.updatePosition(position: MPIPosition(timestamp: dateTime.timeIntervalSince1970, coords: coordinates, type: "", annotation: ""))
         }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorized {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    startScanning()
+                }
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        print("⚠️ \(beacons)")
+        for beacon in beacons {
+            let foundedBeacon = getBeaconByMayorAndMinor(mayor: beacon.major.intValue, minor: beacon.minor.intValue)
+            foundedBeacon.proximity = 0
+            foundedBeacon.rrsi = beacon.rssi
+            foundedBeacon.timeStamp = beacon.timestamp
+            let beacon = "\(beacon)"
+            let splitInQoutes = beacon.split(separator: ",")[3]
+            let splitInTwoPoints = splitInQoutes.split(separator: ":")[1]
+            let distance = splitInTwoPoints.split(separator: " ")[2]
+            let rawDistance = distance.replacingOccurrences(of: "m", with: "")
+            let proximity = Double(String(rawDistance)) ?? 0
+            foundedBeacon.proximity = proximity
+        }
+        
+        NotificationCenter.default.post(name: Notification.Name("didRangeBeacons"), object: nil)
+
+        
+    }
+}
+
+extension MapViewController {
+    func startScanning() {
+        let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+        
+//        let uuid2 = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+//        let beaconRegion2 = CLBeaconRegion(uuid: uuid, major: 20545, minor: 5125, identifier: "Painting 2")
+//        locationManager.startMonitoring(for: beaconRegion2)
+//        locationManager.startRangingBeacons(in: beaconRegion2)
+        
+        
+    }
+    
+    func stopScanning() {
+        let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+        locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(in: beaconRegion)
+        
+//        let uuid2 = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+//        let beaconRegion2 = CLBeaconRegion(uuid: uuid, major: 20545, minor: 5125, identifier: "Painting 2")
+//        locationManager.startMonitoring(for: beaconRegion2)
+//        locationManager.startRangingBeacons(in: beaconRegion2)
+        
+        
     }
 }

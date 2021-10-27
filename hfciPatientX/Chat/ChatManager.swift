@@ -4,7 +4,7 @@
 //
 //  Created by Juan Pablo Rodriguez Medina on 03/03/20.
 //  Copyright © 2020 Paul Zieske. All rights reserved.
-//
+//HFCI
 
 import Foundation
 import SocketIO
@@ -290,7 +290,7 @@ class ChatManager {
    
     
     private func parseUsers(from data:[Any]) -> [String:ChatUser]? {
-        
+
         do {
             if let rawUsers = (data.first as? [String:Any])?["users"] as? [String:Any] {
                 
@@ -343,7 +343,6 @@ class ChatManager {
         }
         return nil
     }
-    
     private func parseNewMessage(from data:[Any]) -> Message? {
         print(data)
         do {
@@ -390,16 +389,8 @@ class ChatManager {
                     completion(true)
                 })
                 
-                //Initial Users
-                self?.socket?.emit(Events.initialUsers)
-                self?.socket?.on(Events.initialUsers, callback: { [weak self] data, ack in
-                    print(data)
-                    let users = self?.parseUsers(from: data)
-                    self?.usersDict = users
-                    self?.currentUser = users?[userId]
-                    completion(true)
-                   
-                })
+              //  completion(true)
+
                 
             }
         })
@@ -413,13 +404,13 @@ class ChatManager {
         }
         
         
-        self.socket?.on(clientEvent: .connect, callback: { [weak self] data, ack in
-            guard let id = self?.socket?.sid else { return }
+       // self.socket?.on(clientEvent: .connect, callback: { [weak self] data, ack in
+            guard let id = self.socket?.sid else { return }
             let payload = JoinData(userId: userId, socketId: id, firebaseToken: SessionManager.shared.firebaseToken ?? "")
             
             
 
-           self?.socket?.emit(Events.join, payload) {
+           self.socket?.emit(Events.join, payload) {
 //                self?.socket?.emit(Events.users)
 //                self?.socket?.on(Events.users, callback: { [weak self] data, ack in
 //                    print(data)
@@ -428,10 +419,10 @@ class ChatManager {
 //                    self?.currentUser = users?[userId]
 //                    completion(true)
 //                })
-            self?.didJoin = true
+            self.didJoin = true
                 //Initial Users
-                self?.socket?.emit(Events.initialUsers)
-                self?.socket?.on(Events.initialUsers, callback: { [weak self] data, ack in
+                self.socket?.emit(Events.users)
+                self.socket?.on(Events.users, callback: { [weak self] data, ack in
                     print(data)
                     let users = self?.parseUsers(from: data)
                     self?.usersDict = users
@@ -441,7 +432,7 @@ class ChatManager {
                 })
                 
             }
-        })
+       // })
             
       
     }
@@ -468,7 +459,7 @@ class ChatManager {
                             self.socket?.emit(Events.join, payload) { [weak self] in
                                 self?.socket?.emit(Events.users)
                                 self?.socket?.on(Events.users, callback: { [weak self] data, ack in
-                                   // print(data)
+                                    print(data)
                                     let users = self?.parseUsers(from: data)
                                     self?.usersDict = users
                                     self?.currentUser = users?[userId]
@@ -568,6 +559,9 @@ class ChatManager {
         })
     }
     
+    func emitToReloadUser() {
+           self.socket?.emit(Events.users)
+       }
 
 }
 

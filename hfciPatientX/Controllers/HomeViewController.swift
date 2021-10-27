@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var logout: UIImageView!
     var chatViewController: UIViewController!
    // var menuViewController: UIViewController!
-    var mapViewController: UIViewController!
+    var mapViewController: MapViewController!
     var showChat = false
     
     override func viewDidLoad() {
@@ -54,10 +54,17 @@ class HomeViewController: UIViewController {
         exitGesture.numberOfTouchesRequired = 1
         logout.isUserInteractionEnabled = true
         logout.addGestureRecognizer(exitGesture)
+        self.mapViewController.artWalkContainerView.isHidden = true
         
     }
     
 
+    @IBAction func artWalkAction(_ sender: Any) {
+       // self.mapViewController.artWalkContainerView.isHidden = false
+        self.mapViewController.view.bringSubviewToFront(self.mapViewController.artWalkContainerView)
+        self.mapViewController.controlls.isHidden = true
+        self.mapViewController.artWalkContainerView.isHidden = false
+    }
     
     @IBAction func menuAction(_ sender: Any) {
        // self.containerView.bringSubviewToFront(self.menuViewController.view)
@@ -66,7 +73,8 @@ class HomeViewController: UIViewController {
     
     @IBAction func wayFindingAction(_ sender: Any) {
         self.containerView.bringSubviewToFront(self.mapViewController.view)
-
+        self.mapViewController.controlls.isHidden = false
+        self.mapViewController.artWalkContainerView.isHidden = true
     }
     
      @IBAction func chatAction(_ sender: Any) {
@@ -74,6 +82,24 @@ class HomeViewController: UIViewController {
 
      }
     
+    @IBAction func consoleAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let console = storyboard.instantiateViewController(withIdentifier: "BeaconsConsoleViewController") as? BeaconsConsoleViewController {
+        
+            console.didTapStop = {
+                self.mapViewController.stopScanning()
+
+            }
+            
+            console.didTapStart = {
+                self.mapViewController.startScanning()
+
+            }
+        self.navigationController?.present(console, animated: true, completion: nil)
+            
+        }
+        
+    }
     @objc func didExit() {
         APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
             if islogout {

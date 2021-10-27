@@ -4,7 +4,7 @@
 //
 //  Created by Juan Pablo Rodriguez Medina on 06/03/20.
 //  Copyright © 2020 Paul Zieske. All rights reserved.
-//
+//HFCI
 
 import UIKit
 
@@ -48,10 +48,7 @@ class ChatContactsViewController: UIViewController {
             }
         }
     }
-    
     var didSelectContact: ((_ contact: ChatUser) -> Void)?
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.blurView.frame = self.view.frame
@@ -191,26 +188,7 @@ class ChatContactsViewController: UIViewController {
                 
                 self?.tableView.reloadData()
             }
-            else {
-                self?.showTapToRetry(true, errorMessage: "It was not possible to get the list of contacts")
-                ChatManager.shared.getUsersWithEmit(userId: userId) { (succes) in
-                     self?.activityIndicatorView?.stopAnimating()
-                              if let usersDict = ChatManager.shared.usersDict {
-                                  var usersIds = Array(usersDict.keys)
-                                  if let ownIndex = usersIds.firstIndex(where: { $0 == userId }){
-                                      usersIds.remove(at: ownIndex)
-                                  }
-                                  
-                                  let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
-                                  let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                                
-                                  let broadcastUser = [BroadcastUser.id]
-                                  self?.users = [broadcastUser , onlineUsers]
-                                  
-                                  self?.tableView.reloadData()
-                }
-                }
-            }
+//            else
         }
     }
     
@@ -272,17 +250,17 @@ class ChatContactsViewController: UIViewController {
     
     private func setDidNewUserConnectCallBack() {
         ChatManager.shared.didNewUserConnect = { [weak self] (user) in
-
-            if let usersDict = ChatManager.shared.usersDict {
-                var usersIds = Array(usersDict.keys)
-                
-                let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
-                let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                let broadcastUser = [BroadcastUser.id]
-                self?.users = [broadcastUser , onlineUsers]
-                
-                self?.tableView.reloadData()
-        }
+            ChatManager.shared.emitToReloadUser()
+//            if let usersDict = ChatManager.shared.usersDict {
+//                var usersIds = Array(usersDict.keys)
+//
+//                let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
+//                let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
+//                let broadcastUser = [BroadcastUser.id]
+//                self?.users = [broadcastUser , onlineUsers]
+//
+//                self?.tableView.reloadData()
+//        }
         }
     }
     
@@ -308,34 +286,35 @@ class ChatContactsViewController: UIViewController {
     private func setUserDidChangeStatusCallback() {
         ChatManager.shared.userDidChangeStatus = { [weak self] (oldStatusUser, newStatusUser) in
             
-            if let currentIndex = self?.getUserIndex(newStatusUser.id){
-                
-                if let notUpdatedUser = oldStatusUser {
-                    
-                    if notUpdatedUser.status != newStatusUser.status {
-                        //Update status indicator color
-                        self?.tableView.reloadRows(at: [currentIndex], with: .none)
-                        
-                        //Update section
-                        if let newSection = self?.getSectionForStatus(newStatusUser.status),
-                            newSection != currentIndex.section,
-                            let newIndex = self?.users?[newSection].insertionIndexOf(newStatusUser.id, isOrderedBefore: { ChatManager.shared.getUser($0)?.lastName ?? "" < ChatManager.shared.getUser($1)?.lastName ?? "" }){
-                            self?.users?[currentIndex.section].remove(at: currentIndex.row)
-                            self?.users?[newSection].insert(newStatusUser.id, at: newIndex)
-                            let newIndexPath = IndexPath(row: newIndex, section: newSection)
-                            if self?.isDisplayingContacts ?? false && !(self?.isFiltering ?? true) {
-                                self?.tableView.moveRow(at: currentIndex, to: newIndexPath)
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if !(self?.isDisplayingContacts ?? true) && !(self?.isFiltering ?? true) {
-                if let index = self?.recentChats.firstIndex(of: newStatusUser.id), !(self?.isFiltering ?? true) {
-                    self?.tableView.reloadRows(at: [IndexPath(row: index, section: 1)], with: .none)
-                }
-            }
+            ChatManager.shared.emitToReloadUser()
+//            if let currentIndex = self?.getUserIndex(newStatusUser.id){
+//
+//                if let notUpdatedUser = oldStatusUser {
+//
+//                    if notUpdatedUser.status != newStatusUser.status {
+//                        //Update status indicator color
+//                        self?.tableView.reloadRows(at: [currentIndex], with: .none)
+//
+//                        //Update section
+//                        if let newSection = self?.getSectionForStatus(newStatusUser.status),
+//                            newSection != currentIndex.section,
+//                            let newIndex = self?.users?[newSection].insertionIndexOf(newStatusUser.id, isOrderedBefore: { ChatManager.shared.getUser($0)?.lastName ?? "" < ChatManager.shared.getUser($1)?.lastName ?? "" }){
+//                            self?.users?[currentIndex.section].remove(at: currentIndex.row)
+//                            self?.users?[newSection].insert(newStatusUser.id, at: newIndex)
+//                            let newIndexPath = IndexPath(row: newIndex, section: newSection)
+//                            if self?.isDisplayingContacts ?? false && !(self?.isFiltering ?? true) {
+//                                self?.tableView.moveRow(at: currentIndex, to: newIndexPath)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//
+//            if !(self?.isDisplayingContacts ?? true) && !(self?.isFiltering ?? true) {
+//                if let index = self?.recentChats.firstIndex(of: newStatusUser.id), !(self?.isFiltering ?? true) {
+//                    self?.tableView.reloadRows(at: [IndexPath(row: index, section: 1)], with: .none)
+//                }
+//            }
         }
     }
     
@@ -569,47 +548,47 @@ extension ChatContactsViewController: UITableViewDelegate {
 
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       let position = scrollView.contentOffset.y
-        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-            print("fetch more")
-          //  if self.loadOnce { return }
-                print("fetching")
-          //  self.loadOnce = true
-            if ChatManager.shared.didLoadAll { return }
-            if ChatManager.shared.didJoin == false { return }
-            if ChatManager.shared.isPaginating {
-                print("isPaginating")
-
-                return }
-
-            guard let userId = SessionManager.shared.user?.userId else { return }
-            self.activityIndicatorView?.startAnimating()
-            //self.loadOnce = false
-
-            ChatManager.shared.emitForMoreUsers(userId: userId) { [weak self] (succes) in
-                 self?.activityIndicatorView?.stopAnimating()
-                          if let usersDict = ChatManager.shared.usersDict {
-                              var usersIds = Array(usersDict.keys)
-                              if let ownIndex = usersIds.firstIndex(where: { $0 == userId }){
-                                  usersIds.remove(at: ownIndex)
-                              }
-                              
-                              let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
-                              let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
-                              let broadcastUser = [BroadcastUser.id]
-                              self?.users = [broadcastUser , onlineUsers]
-                              
-                              self?.tableView.reloadData()
-                            print("fetching done")
-
-
-            }
-            }
-            
-        }
-        
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//       let position = scrollView.contentOffset.y
+//        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+//            print("fetch more")
+//          //  if self.loadOnce { return }
+//                print("fetching")
+//          //  self.loadOnce = true
+//            if ChatManager.shared.didLoadAll { return }
+//            if ChatManager.shared.didJoin == false { return }
+//            if ChatManager.shared.isPaginating {
+//                print("isPaginating")
+//
+//                return }
+//
+//            guard let userId = SessionManager.shared.user?.userId else { return }
+//            self.activityIndicatorView?.startAnimating()
+//            //self.loadOnce = false
+//
+//            ChatManager.shared.emitForMoreUsers(userId: userId) { [weak self] (succes) in
+//                 self?.activityIndicatorView?.stopAnimating()
+//                          if let usersDict = ChatManager.shared.usersDict {
+//                              var usersIds = Array(usersDict.keys)
+//                              if let ownIndex = usersIds.firstIndex(where: { $0 == userId }){
+//                                  usersIds.remove(at: ownIndex)
+//                              }
+//
+//                              let onlineIndex = usersIds.partition(by: { usersDict[$0]?.status == .online && usersDict[$0]?.roleName == "Admin" })
+//                              let onlineUsers = Array(usersIds[onlineIndex...]).sorted(by: { usersDict[$0]?.lastName?.lowercased() ?? "" < usersDict[$1]?.lastName?.lowercased() ?? "" })
+//                              let broadcastUser = [BroadcastUser.id]
+//                              self?.users = [broadcastUser , onlineUsers]
+//
+//                              self?.tableView.reloadData()
+//                            print("fetching done")
+//
+//
+//            }
+//            }
+//
+//        }
+//
+//    }
 }
 
 extension ChatContactsViewController: UISearchResultsUpdating {

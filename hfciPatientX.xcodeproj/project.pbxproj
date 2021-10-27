@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		17C3AE2F57675966F90264CB /* Pods_hfciPatientXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */; };
+		8B2C1A6C272537C4007AF57E /* marker.html in Resources */ = {isa = PBXBuildFile; fileRef = 8B2C1A6B272537C4007AF57E /* marker.html */; };
+		8B2C1A6F27266217007AF57E /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A6E27266217007AF57E /* Beacon.swift */; };
+		8B2C1A732727A783007AF57E /* BeaconItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */; };
+		8B2C1A742727A783007AF57E /* BeaconItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */; };
+		8B2C1A762727A887007AF57E /* BeaconsConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */; };
+		8B4F3B2A27189F5F00422485 /* PaintingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */; };
+		8B768928271DDC7C00C22345 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B768927271DDC7C00C22345 /* DirectionsViewController.swift */; };
+		8B76892E2720634900C22345 /* Painting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76892D2720634900C22345 /* Painting.swift */; };
 		8B78983426F260ED003FE097 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78983326F260ED003FE097 /* MapViewController.swift */; };
 		8B79B53226FC228000057F79 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53126FC228000057F79 /* SocketIOManager.swift */; };
 		8B79B53926FC22B600057F79 /* ChatContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */; };
@@ -15,6 +23,10 @@
 		8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53826FC22B600057F79 /* ChatUser.swift */; };
 		8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53F26FC22E800057F79 /* MessagesViewController.swift */; };
 		8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B54E26FC25A300057F79 /* ChatViewController.swift */; };
+		8B8E65542715E0D80052B7C6 /* ArtWalk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */; };
+		8B8E65572715E1EE0052B7C6 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */; };
+		8B8E655A2715E2DE0052B7C6 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */; };
+		8B8E655B2715E2DE0052B7C6 /* GalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E65592715E2DE0052B7C6 /* GalleryCollectionViewCell.xib */; };
 		8BDBB4E8270E0E8A00A78ED1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB4E7270E0E8A00A78ED1 /* HomeViewController.swift */; };
 		8BDEE45C26FC2B1C0014A054 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDEE45B26FC2B1C0014A054 /* Settings.bundle */; };
 		8BDEE47C26FC2CAE0014A054 /* ListWithPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */; };
@@ -34,6 +46,9 @@
 		8BDEE54326FC341F0014A054 /* ContactTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE54226FC341F0014A054 /* ContactTVCell.swift */; };
 		8BDEE54826FC34670014A054 /* BroadcastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE54726FC34670014A054 /* BroadcastManager.swift */; };
 		8BDEE54D26FC351F0014A054 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEE54C26FC351F0014A054 /* CircleView.swift */; };
+		8BF417D6271A067C0074F57F /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417D5271A067C0074F57F /* GroupViewController.swift */; };
+		8BF417D9271A06D20074F57F /* ItemGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417D7271A06D20074F57F /* ItemGroupCollectionViewCell.swift */; };
+		8BF417DA271A06D20074F57F /* ItemGroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417D8271A06D20074F57F /* ItemGroupCollectionViewCell.xib */; };
 		CE29AB02270CA19A00184984 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE29AAF6270CA19900184984 /* Roboto-Thin.ttf */; };
 		CE29AB03270CA19A00184984 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE29AAF7270CA19900184984 /* Roboto-ThinItalic.ttf */; };
 		CE29AB04270CA19A00184984 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE29AAF8270CA19900184984 /* Roboto-Light.ttf */; };
@@ -104,6 +119,14 @@
 		0A961E7E4B54CB1E9D1D2567 /* Pods-hfciPatientXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hfciPatientXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C0DA1803196C6394E53FC4 /* Pods-hfciPatientXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.release.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B2C1A6B272537C4007AF57E /* marker.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = marker.html; sourceTree = "<group>"; };
+		8B2C1A6E27266217007AF57E /* Beacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Beacon.swift; path = "hfciPatientX/Controllers/Art Walk/Model/Beacon.swift"; sourceTree = SOURCE_ROOT; };
+		8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconItemTableViewCell.swift; sourceTree = "<group>"; };
+		8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeaconItemTableViewCell.xib; sourceTree = "<group>"; };
+		8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsConsoleViewController.swift; sourceTree = "<group>"; };
+		8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingDetailViewController.swift; sourceTree = "<group>"; };
+		8B768927271DDC7C00C22345 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
+		8B76892D2720634900C22345 /* Painting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Painting.swift; sourceTree = "<group>"; };
 		8B78983326F260ED003FE097 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8B79B53126FC228000057F79 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		8B79B53626FC22B600057F79 /* ChatContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactsViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +134,10 @@
 		8B79B53826FC22B600057F79 /* ChatUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		8B79B53F26FC22E800057F79 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		8B79B54E26FC25A300057F79 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArtWalk.storyboard; sourceTree = "<group>"; };
+		8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B8E65592715E2DE0052B7C6 /* GalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		8BDBB4E7270E0E8A00A78ED1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8BDEE45B26FC2B1C0014A054 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8BDEE47B26FC2CAE0014A054 /* ListWithPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListWithPointer.swift; sourceTree = "<group>"; };
@@ -130,6 +157,9 @@
 		8BDEE54226FC341F0014A054 /* ContactTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTVCell.swift; sourceTree = "<group>"; };
 		8BDEE54726FC34670014A054 /* BroadcastManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastManager.swift; sourceTree = "<group>"; };
 		8BDEE54C26FC351F0014A054 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		8BF417D5271A067C0074F57F /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		8BF417D7271A06D20074F57F /* ItemGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		8BF417D8271A06D20074F57F /* ItemGroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemGroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA187D40183931DE99B266FC /* Pods-hfciPatientX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientX.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX.debug.xcconfig"; sourceTree = "<group>"; };
 		CE29AAF6270CA19900184984 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		CE29AAF7270CA19900184984 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -231,6 +261,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8B76892C2720631F00C22345 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B76892D2720634900C22345 /* Painting.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8B79B52D26FC223700057F79 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +297,23 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		8B8E65552715E15C0052B7C6 /* Art Walk */ = {
+			isa = PBXGroup;
+			children = (
+				8B76892C2720631F00C22345 /* Model */,
+				8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */,
+				8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */,
+				8B8E65592715E2DE0052B7C6 /* GalleryCollectionViewCell.xib */,
+				8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */,
+				8BF417D5271A067C0074F57F /* GroupViewController.swift */,
+				8BF417D7271A06D20074F57F /* ItemGroupCollectionViewCell.swift */,
+				8BF417D8271A06D20074F57F /* ItemGroupCollectionViewCell.xib */,
+				8B768927271DDC7C00C22345 /* DirectionsViewController.swift */,
+				8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */,
+			);
+			path = "Art Walk";
+			sourceTree = "<group>";
+		};
 		CE2FB14A26EFA7AE0040095B = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +339,7 @@
 		CE2FB15526EFA7AE0040095B /* hfciPatientX */ = {
 			isa = PBXGroup;
 			children = (
+				8B2C1A6B272537C4007AF57E /* marker.html */,
 				8B79B52D26FC223700057F79 /* Chat */,
 				CE2FB1B426F252D70040095B /* Controllers */,
 				CE2FB18C26F24D610040095B /* Fonts */,
@@ -300,6 +356,7 @@
 				CE2FB16126EFA7B20040095B /* LaunchScreen.storyboard */,
 				CE2FB16426EFA7B20040095B /* Info.plist */,
 				8BDEE45B26FC2B1C0014A054 /* Settings.bundle */,
+				8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */,
 			);
 			path = hfciPatientX;
 			sourceTree = "<group>";
@@ -332,6 +389,7 @@
 		CE2FB18726EFA8850040095B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B2C1A6E27266217007AF57E /* Beacon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,6 +402,8 @@
 				CEE7500C2704E7EA00BD6CB7 /* PointCellTableViewCell.xib */,
 				CE29AB17270D413E00184984 /* DirectionsTableViewCell.swift */,
 				CE29AB18270D413E00184984 /* DirectionsTableViewCell.xib */,
+				8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */,
+				8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -403,6 +463,7 @@
 		CE2FB1B426F252D70040095B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8B8E65552715E15C0052B7C6 /* Art Walk */,
 				CE2FB1B526F252F60040095B /* LoginViewController.swift */,
 				CE2FB1B726F2548D0040095B /* MenuViewController.swift */,
 				8B78983326F260ED003FE097 /* MapViewController.swift */,
@@ -539,6 +600,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF417DA271A06D20074F57F /* ItemGroupCollectionViewCell.xib in Resources */,
 				CE29AB0C270CA19A00184984 /* Roboto-MediumItalic.ttf in Resources */,
 				CE2FB1A726F24DA90040095B /* Poppins-ExtraLightItalic.ttf in Resources */,
 				CE2FB1AD26F24DA90040095B /* Poppins-Bold.ttf in Resources */,
@@ -558,6 +620,7 @@
 				CE29AB02270CA19A00184984 /* Roboto-Thin.ttf in Resources */,
 				CE29AB05270CA19A00184984 /* Roboto-Italic.ttf in Resources */,
 				CE2FB1A526F24DA90040095B /* Poppins-Black.ttf in Resources */,
+				8B8E655B2715E2DE0052B7C6 /* GalleryCollectionViewCell.xib in Resources */,
 				CE2FB16026EFA7B20040095B /* Assets.xcassets in Resources */,
 				CE2FB1AB26F24DA90040095B /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				CE2FB1AF26F24DA90040095B /* Poppins-Light.ttf in Resources */,
@@ -569,10 +632,13 @@
 				CE2FB1A626F24DA90040095B /* Poppins-Italic.ttf in Resources */,
 				CE2FB15E26EFA7AE0040095B /* Main.storyboard in Resources */,
 				CE2FB1AE26F24DA90040095B /* Poppins-BlackItalic.ttf in Resources */,
+				8B2C1A6C272537C4007AF57E /* marker.html in Resources */,
 				CE2FB1A426F24DA90040095B /* Poppins-LightItalic.ttf in Resources */,
 				CE29AB04270CA19A00184984 /* Roboto-Light.ttf in Resources */,
+				8B8E65542715E0D80052B7C6 /* ArtWalk.storyboard in Resources */,
 				8BDEE45C26FC2B1C0014A054 /* Settings.bundle in Resources */,
 				CEE7500E2704E7EA00BD6CB7 /* PointCellTableViewCell.xib in Resources */,
+				8B2C1A742727A783007AF57E /* BeaconItemTableViewCell.xib in Resources */,
 				CE2FB1A226F24DA90040095B /* Poppins-ExtraLight.ttf in Resources */,
 				CE29AB1A270D413E00184984 /* DirectionsTableViewCell.xib in Resources */,
 			);
@@ -703,18 +769,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE7500D2704E7EA00BD6CB7 /* PointCellTableViewCell.swift in Sources */,
+				8B8E65572715E1EE0052B7C6 /* GalleryViewController.swift in Sources */,
 				8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */,
 				8BDEE4D726FC2F5D0014A054 /* JobManager.swift in Sources */,
 				8BDEE4C826FC2EAC0014A054 /* Constants.swift in Sources */,
+				8B2C1A6F27266217007AF57E /* Beacon.swift in Sources */,
 				8BDEE4B126FC2E5A0014A054 /* Extensions.swift in Sources */,
 				8BDEE4F926FC31A90014A054 /* FailableDecodable.swift in Sources */,
 				CE2FB1B626F252F60040095B /* LoginViewController.swift in Sources */,
 				8BDEE54D26FC351F0014A054 /* CircleView.swift in Sources */,
+				8B4F3B2A27189F5F00422485 /* PaintingDetailViewController.swift in Sources */,
 				8BDEE4FE26FC325D0014A054 /* AppEnvoriment.swift in Sources */,
 				8B79B53926FC22B600057F79 /* ChatContactsViewController.swift in Sources */,
 				CE2FB1B826F2548D0040095B /* MenuViewController.swift in Sources */,
 				CE2FB1BA26F258620040095B /* RoundedView.swift in Sources */,
 				8BDEE47C26FC2CAE0014A054 /* ListWithPointer.swift in Sources */,
+				8B2C1A732727A783007AF57E /* BeaconItemTableViewCell.swift in Sources */,
 				8BDEE4DC26FC2F780014A054 /* Campus.swift in Sources */,
 				CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */,
 				CE29AB19270D413E00184984 /* DirectionsTableViewCell.swift in Sources */,
@@ -723,10 +793,15 @@
 				8B79B53A26FC22B600057F79 /* ChatManager.swift in Sources */,
 				8BDEE53E26FC338F0014A054 /* Alerts.swift in Sources */,
 				8B79B53226FC228000057F79 /* SocketIOManager.swift in Sources */,
+				8BF417D9271A06D20074F57F /* ItemGroupCollectionViewCell.swift in Sources */,
+				8BF417D6271A067C0074F57F /* GroupViewController.swift in Sources */,
 				8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */,
 				CE2FB15726EFA7AE0040095B /* AppDelegate.swift in Sources */,
+				8B76892E2720634900C22345 /* Painting.swift in Sources */,
 				8BDEE48B26FC2D9A0014A054 /* APIManager.swift in Sources */,
 				CE2FB15926EFA7AE0040095B /* SceneDelegate.swift in Sources */,
+				8B2C1A762727A887007AF57E /* BeaconsConsoleViewController.swift in Sources */,
+				8B8E655A2715E2DE0052B7C6 /* GalleryCollectionViewCell.swift in Sources */,
 				8BDEE48126FC2CD00014A054 /* SettingsBundleHelper.swift in Sources */,
 				8BDEE4CD26FC2EDC0014A054 /* Message.swift in Sources */,
 				8BDEE54826FC34670014A054 /* BroadcastManager.swift in Sources */,
@@ -734,6 +809,7 @@
 				8BDBB4E8270E0E8A00A78ED1 /* HomeViewController.swift in Sources */,
 				8BDEE48626FC2D1A0014A054 /* SessionManager.swift in Sources */,
 				8B78983426F260ED003FE097 /* MapViewController.swift in Sources */,
+				8B768928271DDC7C00C22345 /* DirectionsViewController.swift in Sources */,
 				8BDEE4D226FC2F120014A054 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,7 +1000,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.navvsystems.hfci;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -947,7 +1023,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.navvsystems.hfci;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

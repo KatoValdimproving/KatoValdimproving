@@ -39,9 +39,9 @@ struct WebLinkRoute {
 
 enum Environment: Int {
     case prod
+    case qa
     case dev
     case staging
-    case qa
     case local
 }
 
