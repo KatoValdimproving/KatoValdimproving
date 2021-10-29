@@ -14,11 +14,12 @@ class PaintingDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    var painting: Painting!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
+     //   self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
         backButton.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .light)
         imageView.layer.cornerRadius = 10
         self.textView.textContainer.lineFragmentPadding = 0
@@ -26,6 +27,14 @@ class PaintingDetailViewController: UIViewController {
       //  backButton.layer.borderColor = UIColor.black.cgColor
        // backButton.layer.borderWidth = 2
         //backButton.layer.cornerRadius = 10
+        setInfoWithPainting(painting: self.painting)
+    }
+    
+    func setInfoWithPainting(painting: Painting) {
+        self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: painting.title, sizeTop: 27, secondLine: painting.author , sizeBottom: 17, color: .black)
+        self.textView.text = painting.text
+        self.imageView.image = UIImage(named: painting.title)
+        
     }
     
     @IBAction func backAction(_ sender: Any) {

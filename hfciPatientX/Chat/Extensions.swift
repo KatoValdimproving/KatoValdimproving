@@ -143,6 +143,17 @@ extension UIViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func appVersion() -> String {
+            let dictionary = Bundle.main.infoDictionary!
+           let version = dictionary["CFBundleShortVersionString"] as! String
+           return version
+    }
+
+    func appBuild() -> String {
+        guard let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return "!" }
+        return build
+    }
 }
 
 extension String {

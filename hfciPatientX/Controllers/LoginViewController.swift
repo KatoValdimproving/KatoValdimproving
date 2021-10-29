@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var enterButton: MDCButton!
     @IBOutlet weak var deviceIdLBL: UILabel!
     
+    @IBOutlet weak var appVersionLabel: UILabel!
     @IBAction func sendInfo(_ sender: Any) {
         logIn()
     }
@@ -52,6 +53,7 @@ class LoginViewController: UIViewController {
         helpLbl.addGestureRecognizer(helpGesture)
         
         deviceIdLBL.text = SettingsBundleHelper.shared.testerId
+        self.appVersionLabel.text = appVersion() + " " + appBuild()
     }
 
     @objc func didTap() {

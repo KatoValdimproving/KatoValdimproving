@@ -146,7 +146,7 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var guidedTourButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     let flowLayout = UICollectionViewFlowLayout()
-
+    var selectedPainting: Painting?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -189,21 +189,22 @@ class GalleryViewController: UIViewController {
        
     }
 
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   //  In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let paintingDetailViewController = segue.destination as? PaintingDetailViewController
+        paintingDetailViewController?.painting = self.selectedPainting
     }
-    */
+    
 
 }
 
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedPainting = paintings[indexPath.row]
         self.performSegue(withIdentifier: "pictureDetail", sender: self)
     }
     
