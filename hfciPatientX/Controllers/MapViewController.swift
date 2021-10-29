@@ -39,9 +39,9 @@ class MapViewController: UIViewController {
     var point1 : MPILocation!
     var point2 : MPILocation!
     var nearestNode : MPINode!
-    lazy var markerString = getFileContentFromBundle(forResource: "marker", ofType: "html")
     var ontrack = false
     var lastFloor = ""
+    var didFinishLoadingMap: (()->())?
     
     @IBOutlet weak var fromWhereView: UIView!
     
@@ -244,19 +244,20 @@ class MapViewController: UIViewController {
      
     }
     
-    
    func showArtWalk() {
         //guard let galleryViewController = GalleryViewController
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-       // guard  let galleryViewController = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
-        
-        guard  let artWalkNavigationController = storyboard.instantiateViewController(withIdentifier: "ArtWalkNavigationController") as? UINavigationController else { return }
-
-       // self.chatViewController.willMove(toParent: self)
-        artWalkNavigationController.view.frame = CGRect(x: 0, y: 0, width: self.artWalkContainerView.bounds.width, height: self.artWalkContainerView.bounds.height)
-        artWalkContainerView.addSubview(artWalkNavigationController.view)
-       
-       // artWalkContainerView.sizeToFit()
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//       // guard  let galleryViewController = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
+//
+//        guard  let artWalkNavigationController = storyboard.instantiateViewController(withIdentifier: "ArtWalkNavigationController") as? UINavigationController else { return }
+//      // self.artWalkNavigationController = artWalkNavigationController
+//       let galleryViewController = artWalkNavigationController.viewControllers.first as? GalleryViewController
+//       galleryViewController?.allLocations = self.allLocations
+//       // self.chatViewController.willMove(toParent: self)
+//        artWalkNavigationController.view.frame = CGRect(x: 0, y: 0, width: self.artWalkContainerView.bounds.width, height: self.artWalkContainerView.bounds.height)
+//        artWalkContainerView.addSubview(artWalkNavigationController.view)
+//
+//       // artWalkContainerView.sizeToFit()
       
     }
     
@@ -516,13 +517,19 @@ extension MapViewController: MPIMapViewDelegate {
     @available(*, deprecated, message: "use onBlueDotPositionUpdate and onBlueDotStateChange")
     func onBlueDotUpdated(blueDot: MPIBlueDot) {
         let nearestNode = blueDot.nearestNode
-        self.mapMpiView.createMarker(node: nearestNode, contentHtml: markerString ?? "")
+       // self.mapMpiView.createMarker(node: nearestNode, contentHtml: markerString ?? "")
 
 
     }
 
     func onDataLoaded(data: MPIData) {
         // Called when the mapView has finished loading both the view and venue data
+        self.didFinishLoadingMap?()
+        if let gallery = self.artWalkContainerView.viewContainingController() as? UINavigationController {
+          //  gallery?.allLocations = self.allLocations//
+           // print
+        }
+        
     }
 
     func onFirstMapLoaded() {

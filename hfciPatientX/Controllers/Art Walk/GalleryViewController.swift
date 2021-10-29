@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Mappedin
+
 
 var paintings: [Painting] = [
     
@@ -147,6 +149,7 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     let flowLayout = UICollectionViewFlowLayout()
     var selectedPainting: Painting?
+    var allLocations : [MPILocation] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -167,6 +170,8 @@ class GalleryViewController: UIViewController {
         collectionView.dataSource = self
 
         self.collectionView.contentInsetAdjustmentBehavior = .automatic
+        
+        print(self.allLocations)
 
     }
     

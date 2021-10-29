@@ -53,7 +53,7 @@ PODS:
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
-  - MDFInternationalization (3.0.0)
+  - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.1)
   - MessengerKit (1.0.5)
   - NotificationBannerSwift (3.0.6):
@@ -74,6 +74,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - MappedIn (= 3.0.2)
   - MaterialComponents/Buttons
+  - MDFInternationalization (~> 2.0)
   - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
   - NotificationBannerSwift (~> 3.0.0)
   - ReachabilitySwift (~> 3)
@@ -117,7 +118,7 @@ SPEC CHECKSUMS:
   MappedIn: 61006357ef095cf7796e0f11f96b0995c1a87ce7
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
-  MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   MessengerKit: 26dbfa81b76b22b7891028fb9a2cefdf4e86236f
   NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
@@ -128,6 +129,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftySound: 9eb28bb14edb601b40027e44319e0ef8383f88bf
 
-PODFILE CHECKSUM: 43ffc5046c43efd2243605460c50ba60a6efb421
+PODFILE CHECKSUM: b74cd4c63557a29ccf7b58bdea422662fe51645a
 
 COCOAPODS: 1.10.1

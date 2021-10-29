@@ -18,6 +18,8 @@ target 'hfciPatientX' do
   pod 'ReachabilitySwift','~> 3'
   pod 'SwiftKeychainWrapper'
   pod 'MaterialComponents/Buttons'
+  pod 'MDFInternationalization','~>2.0'
+
   target 'hfciPatientXTests' do
     inherit! :search_paths
     # Pods for testing

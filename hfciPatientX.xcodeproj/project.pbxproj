@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		17C3AE2F57675966F90264CB /* Pods_hfciPatientXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */; };
-		8B2C1A6C272537C4007AF57E /* marker.html in Resources */ = {isa = PBXBuildFile; fileRef = 8B2C1A6B272537C4007AF57E /* marker.html */; };
 		8B2C1A6F27266217007AF57E /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A6E27266217007AF57E /* Beacon.swift */; };
 		8B2C1A732727A783007AF57E /* BeaconItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */; };
 		8B2C1A742727A783007AF57E /* BeaconItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */; };
@@ -120,7 +119,6 @@
 		0A961E7E4B54CB1E9D1D2567 /* Pods-hfciPatientXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0EDEDC4CCF794DCD54EDFBD5 /* Pods_hfciPatientXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hfciPatientXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C0DA1803196C6394E53FC4 /* Pods-hfciPatientXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientXTests.release.xcconfig"; path = "Target Support Files/Pods-hfciPatientXTests/Pods-hfciPatientXTests.release.xcconfig"; sourceTree = "<group>"; };
-		8B2C1A6B272537C4007AF57E /* marker.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = marker.html; sourceTree = "<group>"; };
 		8B2C1A6E27266217007AF57E /* Beacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Beacon.swift; path = "hfciPatientX/Controllers/Art Walk/Model/Beacon.swift"; sourceTree = SOURCE_ROOT; };
 		8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconItemTableViewCell.swift; sourceTree = "<group>"; };
 		8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeaconItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 		CE2FB15526EFA7AE0040095B /* hfciPatientX */ = {
 			isa = PBXGroup;
 			children = (
-				8B2C1A6B272537C4007AF57E /* marker.html */,
 				8B79B52D26FC223700057F79 /* Chat */,
 				CE2FB1B426F252D70040095B /* Controllers */,
 				CE2FB18C26F24D610040095B /* Fonts */,
@@ -644,7 +641,6 @@
 				CE2FB1A626F24DA90040095B /* Poppins-Italic.ttf in Resources */,
 				CE2FB15E26EFA7AE0040095B /* Main.storyboard in Resources */,
 				CE2FB1AE26F24DA90040095B /* Poppins-BlackItalic.ttf in Resources */,
-				8B2C1A6C272537C4007AF57E /* marker.html in Resources */,
 				CE2FB1A426F24DA90040095B /* Poppins-LightItalic.ttf in Resources */,
 				CE29AB04270CA19A00184984 /* Roboto-Light.ttf in Resources */,
 				8B8E65542715E0D80052B7C6 /* ArtWalk.storyboard in Resources */,
@@ -1003,7 +999,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1026,7 +1022,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

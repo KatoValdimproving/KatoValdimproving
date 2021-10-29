@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var artWalkButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var logout: UIImageView!
     var chatViewController: UIViewController!
@@ -25,7 +26,7 @@ class HomeViewController: UIViewController {
         self.chatViewController = chatViewController
        // self.chatViewController.willMove(toParent: self)
         self.chatViewController.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
-        
+        artWalkButton.isEnabled = false
 //        guard  let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController else { return }
 //        self.menuViewController = menuViewController
 //       // self.chatViewController.willMove(toParent: self)
@@ -33,6 +34,9 @@ class HomeViewController: UIViewController {
         
         guard  let mapViewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         self.mapViewController = mapViewController
+        self.mapViewController.didFinishLoadingMap = {
+            self.artWalkButton.isEnabled = true
+        }
        // self.chatViewController.willMove(toParent: self)
         self.mapViewController.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
         
