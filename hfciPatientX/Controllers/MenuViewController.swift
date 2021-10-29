@@ -13,6 +13,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuPresenter: RoundedView!
     @IBOutlet weak var visitorsNameLabel: UILabel!
     @IBOutlet weak var deviceIdLBL: UILabel!
+    @IBOutlet weak var appVersionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class MenuViewController: UIViewController {
         helpLbl.addGestureRecognizer(helpGesture)
         
         deviceIdLBL.text = SettingsBundleHelper.shared.testerId
+        self.appVersionLabel.text = appVersion() + " " + appBuild()
+        
     }
     
 
