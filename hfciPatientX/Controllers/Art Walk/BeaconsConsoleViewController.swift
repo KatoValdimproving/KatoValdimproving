@@ -6,20 +6,9 @@
 //
 
 import UIKit
+import Mappedin
 
-let beacons = [
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 10, distance: 4, identifier: "1", paintings: [], proximity: 0, rrsi: 0),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 10, distance: 4, identifier: "2", paintings: [], proximity: 0, rrsi: 0),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 7509, minor: 50853, firstContact: nil, time: 10, distance: 4, identifier: "3", paintings: [], proximity: 0, rrsi: 0),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 19879, minor: 24862, firstContact: nil, time: 10, distance: 4, identifier: "2", paintings: [], proximity: 0, rrsi: 0),
-]
 
-func getBeaconByMayorAndMinor(mayor: Int, minor: Int) -> Beacon {
-    let beaconFound = beacons.filter { beacon in
-        return beacon.mayor == mayor && beacon.minor == minor
-    }
-    return beaconFound.first!
-}
 
 
 
@@ -66,6 +55,9 @@ class BeaconsConsoleViewController: UIViewController  {
         
     }
 
+    @IBAction func closeAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     /*
     // MARK: - Navigation
 

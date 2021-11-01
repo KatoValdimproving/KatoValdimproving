@@ -24,8 +24,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
                
         SettingsBundleHelper.shared.addObserverEnvoriment()
-
+        asignBeaconToPainting()
+        asignPaintingToBeacon()
         return true
+    }
+    
+    func asignBeaconToPainting() {
+        for (index, beacon) in beacons.enumerated() {
+            beacon.location = paintings[index].location
+            paintings[index].beacon = beacon
+        }
+    }
+    
+   
+    func asignPaintingToBeacon() {
+        for (index, beacon) in beacons.enumerated() {
+            beacon.paintings.append(paintings[index])
+        }
     }
 
     // MARK: UISceneSession Lifecycle

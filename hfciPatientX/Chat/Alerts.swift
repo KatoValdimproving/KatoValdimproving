@@ -26,6 +26,25 @@ class Alerts {
         rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
+//    static func displayAlertPainting(painting: Painting) {
+//       
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController else { return }
+//        //...
+//        var rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//        if let navigationController = rootViewController as? UINavigationController {
+//            rootViewController = navigationController.viewControllers.first
+//        }
+//        if let tabBarController = rootViewController as? UITabBarController {
+//            rootViewController = tabBarController.selectedViewController
+//        }
+//        //...
+//        paintingBeaconViewcontroller.painting = painting
+//        paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+//        paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//        rootViewController?.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+//    }
+    
     static func displayAlertWithCompletion(title: String, and message: String, completionHandler: @escaping () -> ()) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -108,4 +127,6 @@ class Alerts {
         alert.addAction(goSettings)
         return alert
     }
+    
+    
 }

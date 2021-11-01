@@ -14,12 +14,15 @@ class PaintingDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    var mapViewController: MapViewController?
     var painting: Painting!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
      //   self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
+       // self.mapViewController?.beacon = getBeaconByPaintiingTitle(title: self.painting.title)
+        self.mapViewController?.painting = painting
         backButton.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .light)
         imageView.layer.cornerRadius = 10
         self.textView.textContainer.lineFragmentPadding = 0
@@ -28,6 +31,8 @@ class PaintingDetailViewController: UIViewController {
        // backButton.layer.borderWidth = 2
         //backButton.layer.cornerRadius = 10
         setInfoWithPainting(painting: self.painting)
+       // self.mapViewController?.showGoToArtwalkButton(isHidden: false)
+        self.mapViewController?.paintingDetailViewController = self
     }
     
     func setInfoWithPainting(painting: Painting) {
@@ -37,6 +42,8 @@ class PaintingDetailViewController: UIViewController {
         
     }
     
+    
+    
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -45,11 +52,26 @@ class PaintingDetailViewController: UIViewController {
        
     }
     
+    func pushDirectionsView(directionsString: [String]) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let directionsViewController = storyboard.instantiateViewController(withIdentifier: "DirectionsViewController") as? DirectionsViewController {
+            directionsViewController.directionsString = directionsString
+            directionsViewController.mapViewcontroller = self.mapViewController
+            directionsViewController.painting = self.painting
+            self.navigationController?.pushViewController(directionsViewController, animated: true)
+        }
+    }
+    
+    
     override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews()
 //        self.flowLayout.invalidateLayout()
         navigateButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+      //  self.mapViewController?.showGoToArtwalkButton(isHidden: false)
+        self.mapViewController?.showGoToArtwalkButton(isHidden: false)
+
+
     }
     /*
     // MARK: - Navigation

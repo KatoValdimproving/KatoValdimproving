@@ -57,6 +57,7 @@ class BeaconItemTableViewCell: UITableViewCell  {
     }
     
     func setInfoWith(beacon: Beacon) {
+        print("❤️ \(beacon.minor) \(beacon.mayor)")
         self.beacon = beacon
         identifierLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Identifier", sizeTop: 13, secondLine: beacon.identifier, sizeBottom: 13, color: .black)
         mayorLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Mayor", sizeTop: 13, secondLine: beacon.mayor.description, sizeBottom: 13, color: .black)

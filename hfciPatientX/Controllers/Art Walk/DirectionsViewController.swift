@@ -10,10 +10,15 @@ import DropDown
 
 class DirectionsViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var fromView: UIView!
     @IBOutlet weak var toView: UIView!
     @IBOutlet weak var backButton: UIButton!
-    
+    @IBOutlet weak var fromLabel: UILabel!
+    @IBOutlet weak var toLabel: UILabel!
+    var directionsString: [String] = []
+    var mapViewcontroller: MapViewController?
+    var painting: Painting?
     let menu : DropDown = {
         let menu = DropDown()
         menu.dataSource = [
@@ -53,15 +58,32 @@ class DirectionsViewController: UIViewController {
         
         menu.anchorView = fromView
         menuTwo.anchorView = toView
+        
+        
+        
+        print(self.directionsString)
 
-
+        tableView.delegate = self
+        tableView.dataSource = self
+        let cell2 = UINib(nibName: "DirectionsTableViewCell", bundle: nil)
+        self.tableView.register(cell2, forCellReuseIdentifier: "DirectionsTableViewCell")
+        self.mapViewcontroller?.showGoToArtwalkButton(isHidden: true)
+        
+        self.fromLabel.text = "Your Location"
+        self.toLabel.text = self.painting?.location
     }
+    
+    
     
     override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews()
 //        self.flowLayout.invalidateLayout()
        // navigateButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.tableView.reloadData()
     }
     
     @objc func didTapFrom() {
@@ -85,4 +107,26 @@ class DirectionsViewController: UIViewController {
     }
     */
 
+}
+
+extension DirectionsViewController : UITableViewDelegate {
+}
+
+extension DirectionsViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  self.directionsString.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DirectionsTableViewCell") as? DirectionsTableViewCell {
+                let data = self.directionsString[indexPath.row]
+                cell.directionImage.image = imageForDirection(option: data)
+                cell.directionLBL.text = data
+                return cell
+            }
+        
+            
+        return UITableViewCell()
+    }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class Beacon: NSObject {
    
-    internal init(uuid: UUID, mayor: Int, minor: Int, firstContact: Date? = nil, time: Double, distance: Double, identifier: String, paintings: [Painting] = [], proximity: Double = 0, rrsi: Int = 0) {
+    internal init(uuid: UUID, mayor: Int, minor: Int, firstContact: Date? = nil, time: Double, distance: Double, identifier: String, paintings: [Painting] = [], proximity: Double = 0, rrsi: Int = 0, location: String) {
         self.uuid = uuid
         self.mayor = mayor
         self.minor = minor
@@ -20,11 +20,12 @@ class Beacon: NSObject {
         self.paintings = paintings
         self.proximity = proximity
         self.rrsi = rrsi
+        self.location = location
         
     }
     
     
-
+    var location: String
     var isSelected = false
     var uuid: UUID
     var mayor: Int
@@ -33,6 +34,7 @@ class Beacon: NSObject {
     var time: Double = 10
     var distance: Double = 100
     var isInDesiredDistanceAndTime = false
+    var didPostBeaconInfo = false
     var isInDesiredDistance = false {
         didSet {
             
@@ -47,15 +49,24 @@ class Beacon: NSObject {
                     print("⚡️❤️ Ya paso \(time) segundos para \(mayor)")
                     //firstContact = nil
                     isInDesiredDistanceAndTime = true
+                    if didPostBeaconInfo == false {
+                    NotificationCenter.default.post(name: Notification.Name("didRangedPainting"), object: self, userInfo: ["key": self])
+                        didPostBeaconInfo = true
+                    }
+
                 } else {
                   //  print("⚡️ todavia no \(mayor)")
                     isInDesiredDistanceAndTime = false
+                    didPostBeaconInfo = false
+
                 }
                 
                 
             }
             } else {
                 isInDesiredDistanceAndTime = false
+                didPostBeaconInfo = false
+
             }
         }
     }

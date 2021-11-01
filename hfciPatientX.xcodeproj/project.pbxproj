@@ -12,7 +12,9 @@
 		8B2C1A732727A783007AF57E /* BeaconItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */; };
 		8B2C1A742727A783007AF57E /* BeaconItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */; };
 		8B2C1A762727A887007AF57E /* BeaconsConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */; };
+		8B36EF47272DF64C00171C51 /* ArtWalkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B36EF46272DF64C00171C51 /* ArtWalkExtensions.swift */; };
 		8B4F3B2A27189F5F00422485 /* PaintingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */; };
+		8B75FD23272F0224008F52E7 /* PaintingBeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FD22272F0224008F52E7 /* PaintingBeaconViewController.swift */; };
 		8B768928271DDC7C00C22345 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B768927271DDC7C00C22345 /* DirectionsViewController.swift */; };
 		8B76892E2720634900C22345 /* Painting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76892D2720634900C22345 /* Painting.swift */; };
 		8B78983426F260ED003FE097 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78983326F260ED003FE097 /* MapViewController.swift */; };
@@ -123,7 +125,9 @@
 		8B2C1A712727A783007AF57E /* BeaconItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconItemTableViewCell.swift; sourceTree = "<group>"; };
 		8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeaconItemTableViewCell.xib; sourceTree = "<group>"; };
 		8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsConsoleViewController.swift; sourceTree = "<group>"; };
+		8B36EF46272DF64C00171C51 /* ArtWalkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtWalkExtensions.swift; sourceTree = "<group>"; };
 		8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingDetailViewController.swift; sourceTree = "<group>"; };
+		8B75FD22272F0224008F52E7 /* PaintingBeaconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingBeaconViewController.swift; sourceTree = "<group>"; };
 		8B768927271DDC7C00C22345 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
 		8B76892D2720634900C22345 /* Painting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Painting.swift; sourceTree = "<group>"; };
 		8B78983326F260ED003FE097 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				8B76892D2720634900C22345 /* Painting.swift */,
+				8B36EF46272DF64C00171C51 /* ArtWalkExtensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				8BF417D8271A06D20074F57F /* ItemGroupCollectionViewCell.xib */,
 				8B768927271DDC7C00C22345 /* DirectionsViewController.swift */,
 				8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */,
+				8B75FD22272F0224008F52E7 /* PaintingBeaconViewController.swift */,
 			);
 			path = "Art Walk";
 			sourceTree = "<group>";
@@ -783,7 +789,9 @@
 				8BDEE4C826FC2EAC0014A054 /* Constants.swift in Sources */,
 				8B2C1A6F27266217007AF57E /* Beacon.swift in Sources */,
 				8BDEE4B126FC2E5A0014A054 /* Extensions.swift in Sources */,
+				8B75FD23272F0224008F52E7 /* PaintingBeaconViewController.swift in Sources */,
 				8BDEE4F926FC31A90014A054 /* FailableDecodable.swift in Sources */,
+				8B36EF47272DF64C00171C51 /* ArtWalkExtensions.swift in Sources */,
 				CE2FB1B626F252F60040095B /* LoginViewController.swift in Sources */,
 				8BDEE54D26FC351F0014A054 /* CircleView.swift in Sources */,
 				8B4F3B2A27189F5F00422485 /* PaintingDetailViewController.swift in Sources */,
@@ -996,7 +1004,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1008,7 +1016,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.navvsystems.hfci;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1019,7 +1027,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1031,7 +1039,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.navvsystems.hfci;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

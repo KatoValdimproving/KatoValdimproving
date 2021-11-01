@@ -87,9 +87,27 @@ class HomeViewController: UIViewController {
      }
     
     @IBAction func consoleAction(_ sender: Any) {
+        
+        showBeaconConsole()
+      // showPopUpPainting()
+        
+    }
+    func showPopUpPainting() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let paintingBeaconViewController = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController {
+        
+          //  paintingBeaconViewController.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+            paintingBeaconViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            paintingBeaconViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(paintingBeaconViewController, animated: true, completion: nil)
+            
+        }
+    }
+    func showBeaconConsole() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let console = storyboard.instantiateViewController(withIdentifier: "BeaconsConsoleViewController") as? BeaconsConsoleViewController {
-        
+            console.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            console.modalTransitionStyle = UIModalTransitionStyle.coverVertical
             console.didTapStop = {
                 self.mapViewController.stopScanning()
 
@@ -102,7 +120,6 @@ class HomeViewController: UIViewController {
         self.navigationController?.present(console, animated: true, completion: nil)
             
         }
-        
     }
     @objc func didExit() {
         APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
