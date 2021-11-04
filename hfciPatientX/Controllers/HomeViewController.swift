@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     var chatViewController: UIViewController!
    // var menuViewController: UIViewController!
     var mapViewController: MapViewController!
+   weak var beaconsConsoleViewController: BeaconsConsoleViewController?
     var showChat = false
     
     override func viewDidLoad() {
@@ -34,6 +35,11 @@ class HomeViewController: UIViewController {
         
         guard  let mapViewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         self.mapViewController = mapViewController
+        self.mapViewController.didRangedBeacons = {
+            if self.beaconsConsoleViewController != nil {
+                self.beaconsConsoleViewController?.methodOfReceivedNotification()
+            }
+        }
         self.mapViewController.didFinishLoadingMap = {
             self.artWalkButton.isEnabled = true
         }
@@ -106,6 +112,7 @@ class HomeViewController: UIViewController {
     func showBeaconConsole() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let console = storyboard.instantiateViewController(withIdentifier: "BeaconsConsoleViewController") as? BeaconsConsoleViewController {
+            self.beaconsConsoleViewController = console
             console.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             console.modalTransitionStyle = UIModalTransitionStyle.coverVertical
             console.didTapStop = {

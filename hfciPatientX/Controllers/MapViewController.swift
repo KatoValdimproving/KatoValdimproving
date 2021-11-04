@@ -43,6 +43,7 @@ class MapViewController: UIViewController {
     var ontrack = false
     var lastFloor = ""
     var didFinishLoadingMap: (()->())?
+    var didRangedBeacons: (()->Void)?
    // var beacon: Beacon?
     var painting: Painting?
     var paintingDetailViewController: PaintingDetailViewController?
@@ -101,9 +102,24 @@ class MapViewController: UIViewController {
         return nil
     }
     
+    func getLocationWithPainting(painting: Painting) -> MPILocation? {
+        let locations = self.allLocations.filter { location in
+            location.name == painting.location
+        }
+        if locations.count > 0 {
+            if let found = locations.first {
+                return found
+            }
+        }
+        
+        return nil
+    }
+    
     @IBAction func goToArtWalkPaintingAction(_ sender: Any) {
-        guard let beacon = self.painting?.beacon else { return }
-        guard let location = getLocationWithBeacon(beacon: beacon) else { return }
+       guard let paint = self.painting else { return }
+        guard let location = getLocationWithPainting(painting: paint) else { return }
+
+      //  guard let location = getLocationWithBeacon(beacon: beacon) else { return }
 
         self.getDirectionsTo(location: location) { directionsInstructions in
             print(directionsInstructions)
@@ -286,6 +302,28 @@ class MapViewController: UIViewController {
     
     func guidedArtWalkFromCurrentLocation() {
         
+        
+//        guard let nearest = self.nearestNode else { return }
+//
+//        guard let paint = self.painting else { return }
+//         guard let location = getLocationWithPainting(painting: paint) else { return }
+        
+        var locations: MPINode
+        if let nearest = self.nearestNode {
+            locations = nearest
+        } else {
+            
+            if let entrance = getEntrance(allLocation: self.allLocations) {
+                guard let loc = entrance.nodes?.first else { return }
+                locations = loc
+            } else {
+                return
+            }
+            
+        }
+        
+        
+        
         var locationsArtWalk: [MPILocation] = []
                 
         let allPaitingLocations = paintings.map { painting in
@@ -302,7 +340,7 @@ class MapViewController: UIViewController {
         
         
         
-        self.mapMpiView.getDirections(to: MPIDestinationSet(destinations: locationsArtWalk), from: self.nearestNode, accessible: true) { directions in
+        self.mapMpiView.getDirections(to: MPIDestinationSet(destinations: locationsArtWalk), from: locations, accessible: true) { directions in
             if let directionsInstructions = directions {
 
 //                let nodes = directionsInstructions.map { direction in
@@ -325,9 +363,22 @@ class MapViewController: UIViewController {
     
     func getDirectionsTo(location: MPILocation, directionsInstructions: @escaping ((_ directionsInstructions: MPIDirections) -> Void)) {
         
-        
+        var locations: MPINode
+        if let nearest = self.nearestNode {
+            locations = nearest
+        } else {
+            
+            if let entrance = getEntrance(allLocation: self.allLocations) {
+                guard let loc = entrance.nodes?.first else { return }
+                locations = loc
+            } else {
+                return
+            }
+            
+        }
+    
         // Get directions to selected polygon from users nearest node
-        self.mapMpiView?.getDirections(to: location, from: self.nearestNode, accessible: true) { directions in
+        self.mapMpiView?.getDirections(to: location, from: locations, accessible: true) { directions in
             // remove custom markers before calling drawJourney
 //            if let markerId = self.presentMarkerId {
 //                self.mapView?.removeMarker(id: markerId)
@@ -379,9 +430,12 @@ class MapViewController: UIViewController {
             paintingBeaconViewcontroller.painting = beaconRanged.paintings[0]
             paintingBeaconViewcontroller.didPressYes = { painting in
                 
+                
+                
                 guard let beacon = painting.beacon else { return }
                 guard let location = self.getLocationWithBeacon(beacon: beacon) else { return }
-
+               
+                
                 self.getDirectionsTo(location: location) { directionsInstructions in
                     print(directionsInstructions)
                     
@@ -798,7 +852,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         print("⚠️ \(beacons)")
         for beacon in beacons {
-            guard let foundedBeacon = getBeaconByMayorAndMinor(mayor: beacon.major.intValue, minor: beacon.minor.intValue) else { return }
+            if let foundedBeacon = getBeaconByMayorAndMinor(mayor: beacon.major.intValue, minor: beacon.minor.intValue) {
             foundedBeacon.proximity = 0
             foundedBeacon.rrsi = beacon.rssi
             foundedBeacon.timeStamp = beacon.timestamp
@@ -809,10 +863,11 @@ extension MapViewController: CLLocationManagerDelegate {
             let rawDistance = distance.replacingOccurrences(of: "m", with: "")
             let proximity = Double(String(rawDistance)) ?? 0
             foundedBeacon.proximity = proximity
+            }
         }
         
-        NotificationCenter.default.post(name: Notification.Name("didRangeBeacons"), object: nil)
-
+        NotificationCenter.default.post(name: Notification.Name("didRangeBeacons"), object: beacons)
+       // self.didRangedBeacons?()
         
     }
 }
