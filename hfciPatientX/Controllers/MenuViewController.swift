@@ -14,6 +14,14 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var visitorsNameLabel: UILabel!
     @IBOutlet weak var deviceIdLBL: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
+    @IBOutlet weak var saluteLBL: UILabel!
+    
+    let salutes = [
+        "Hi!",
+        "Greetings!",
+        "Hello!",
+        "Good day"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +41,8 @@ class MenuViewController: UIViewController {
         
         deviceIdLBL.text = SettingsBundleHelper.shared.testerId
         self.appVersionLabel.text = appVersion() + " " + appBuild()
+        
+        saluteLBL.text = salutes[Int.random(in: 0..<salutes.count)]
         
     }
     

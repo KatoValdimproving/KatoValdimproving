@@ -679,7 +679,6 @@ extension MapViewController: MPIMapViewDelegate {
         // Called when the mapView has finished loading both the view and venue data
         self.didFinishLoadingMap?()
       
-        
     }
 
     func onFirstMapLoaded() {
