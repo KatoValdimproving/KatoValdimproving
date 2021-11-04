@@ -20,7 +20,7 @@ class MenuViewController: UIViewController {
         "Hi!",
         "Greetings!",
         "Hello!",
-        "Good day"
+        "Good day!"
     ]
     
     override func viewDidLoad() {
