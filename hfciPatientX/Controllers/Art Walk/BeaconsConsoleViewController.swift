@@ -27,7 +27,7 @@ class BeaconsConsoleViewController: UIViewController  {
         for (index, _) in beacons.enumerated() {
             indexes.append(IndexPath(row: index, section: 0))
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("didRangeBeacons"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification), name: Notification.Name("didRangeBeacons"), object: nil)
 
         // Do any additional setup after loading the view.
         tableView.delegate = self
@@ -40,7 +40,7 @@ class BeaconsConsoleViewController: UIViewController  {
     
     var consoleText = ""
     
-    @objc func methodOfReceivedNotification(notification: Notification) {
+    @objc func methodOfReceivedNotification() {
         
         for (index, beacon) in beacons.enumerated() {
             

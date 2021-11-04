@@ -68,7 +68,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="angelito" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-VM-dzJ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Angel" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-VM-dzJ">
                                                         <rect key="frame" x="0.0" y="101" width="240" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="uEc-uo-f86"/>
@@ -599,7 +599,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Go To Artwalk">
+                                <buttonConfiguration key="configuration" style="plain" title="Go To Art Work">
                                     <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="0.0"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -760,6 +760,36 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0J-Lc-gMR" customClass="RoundedView" customModule="hfciPatientX" customModuleProvider="target">
+                                        <rect key="frame" x="54" y="318" width="605" height="80"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kkV-zh-xKX">
+                                                <rect key="frame" x="23" y="20" width="66" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="66" id="Q6R-X8-z4s"/>
+                                                    <constraint firstAttribute="height" constant="40" id="wve-7C-oeD"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Art Walk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYV-iV-HsS">
+                                                <rect key="frame" x="135" y="20" width="213" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="w3u-z3-gQI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="20L-tA-hfb"/>
+                                            <constraint firstItem="kkV-zh-xKX" firstAttribute="centerY" secondItem="M0J-Lc-gMR" secondAttribute="centerY" id="4tB-Y7-DZh"/>
+                                            <constraint firstItem="wYV-iV-HsS" firstAttribute="leading" secondItem="kkV-zh-xKX" secondAttribute="trailing" constant="46" id="J7N-x3-sUP"/>
+                                            <constraint firstItem="wYV-iV-HsS" firstAttribute="top" secondItem="M0J-Lc-gMR" secondAttribute="top" constant="20" symbolic="YES" id="KNz-u0-Sdh"/>
+                                            <constraint firstAttribute="bottom" secondItem="wYV-iV-HsS" secondAttribute="bottom" constant="20" symbolic="YES" id="uym-gx-16q"/>
+                                            <constraint firstAttribute="trailing" secondItem="wYV-iV-HsS" secondAttribute="trailing" constant="257" id="zdv-Do-4Eg"/>
+                                            <constraint firstItem="kkV-zh-xKX" firstAttribute="leading" secondItem="M0J-Lc-gMR" secondAttribute="leading" constant="23" id="zrA-vR-uQf"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -770,8 +800,11 @@
                                     <constraint firstItem="yX3-DD-Wwf" firstAttribute="leading" secondItem="VWw-86-Ftb" secondAttribute="leading" constant="53" id="9bf-ZV-UlZ"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yX3-DD-Wwf" secondAttribute="trailing" id="AUP-W7-jFy"/>
                                     <constraint firstItem="fAx-2H-NqI" firstAttribute="leading" secondItem="VWw-86-Ftb" secondAttribute="leading" constant="8" id="DNm-QO-N3j"/>
+                                    <constraint firstItem="M0J-Lc-gMR" firstAttribute="leading" secondItem="VWw-86-Ftb" secondAttribute="leading" constant="54" id="Doy-Jr-QIe"/>
                                     <constraint firstItem="Fw7-xW-uE6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xgI-O9-5X1" secondAttribute="trailing" constant="8" symbolic="YES" id="GBm-UU-ZBs"/>
+                                    <constraint firstItem="M0J-Lc-gMR" firstAttribute="top" secondItem="p9I-jh-Jgq" secondAttribute="bottom" constant="21" id="Kb6-QN-2DO"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="noV-oc-ms9" secondAttribute="trailing" id="KnO-Vq-DsD"/>
+                                    <constraint firstItem="M0J-Lc-gMR" firstAttribute="trailing" secondItem="p9I-jh-Jgq" secondAttribute="trailing" id="LjA-so-SGg"/>
                                     <constraint firstItem="xgI-O9-5X1" firstAttribute="leading" secondItem="fAx-2H-NqI" secondAttribute="trailing" constant="8.5" id="cAv-VO-dgK"/>
                                     <constraint firstAttribute="trailing" secondItem="Fw7-xW-uE6" secondAttribute="trailing" constant="8" id="cUR-uy-4Y5"/>
                                     <constraint firstAttribute="bottom" secondItem="Fw7-xW-uE6" secondAttribute="bottom" constant="8" id="f5D-Ca-8eh"/>

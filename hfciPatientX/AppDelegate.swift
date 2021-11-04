@@ -24,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
                
         SettingsBundleHelper.shared.addObserverEnvoriment()
-        asignBeaconToPainting()
-        asignPaintingToBeacon()
+      //  asignBeaconToPainting()
+       // asignPaintingToBeacon()
+        asigBeaconsToPaintings()
         return true
     }
     
