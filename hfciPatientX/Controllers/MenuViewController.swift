@@ -15,6 +15,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var deviceIdLBL: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     @IBOutlet weak var saluteLBL: UILabel!
+    @IBOutlet weak var artWBtn: RoundedView!
     
     let salutes = [
         "Hi!",
@@ -32,6 +33,11 @@ class MenuViewController: UIViewController {
         gesture.numberOfTouchesRequired = 1
         menuPresenter.addGestureRecognizer(gesture)
         // Do any additional setup after loading the view.
+        let gestureAW = UITapGestureRecognizer(target: self, action: #selector(didTapAW))
+        gestureAW.numberOfTapsRequired = 1
+        gestureAW.numberOfTouchesRequired = 1
+        artWBtn.addGestureRecognizer(gestureAW)
+        
         
         let helpGesture = UITapGestureRecognizer(target: self, action: #selector(didRequestHelp))
         helpGesture.numberOfTapsRequired = 1
@@ -54,6 +60,18 @@ class MenuViewController: UIViewController {
         
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
+    @objc func didTapAW() {
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as? MapViewController {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.showArtWalk = true
         }
         
     }

@@ -842,6 +842,7 @@
                     </view>
                     <connections>
                         <outlet property="appVersionLabel" destination="qGO-Gr-c8M" id="grV-Qy-Dkx"/>
+                        <outlet property="artWBtn" destination="M0J-Lc-gMR" id="Lhk-uk-vjs"/>
                         <outlet property="deviceIdLBL" destination="xgI-O9-5X1" id="Lle-ed-h4r"/>
                         <outlet property="helpLbl" destination="Fw7-xW-uE6" id="Sl5-F7-HSA"/>
                         <outlet property="menuPresenter" destination="p9I-jh-Jgq" id="xi4-TY-9zM"/>

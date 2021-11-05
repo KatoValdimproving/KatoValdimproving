@@ -119,8 +119,6 @@ class MapViewController: UIViewController {
        guard let paint = self.painting else { return }
         guard let location = getLocationWithPainting(painting: paint) else { return }
 
-      //  guard let location = getLocationWithBeacon(beacon: beacon) else { return }
-
         self.getDirectionsTo(location: location) { directionsInstructions in
             print(directionsInstructions)
             
@@ -384,14 +382,11 @@ class MapViewController: UIViewController {
 //                self.mapView?.removeMarker(id: markerId)
 //            }
             if let directions = directions {
-
+                self.mapMpiView?.focusOn(focusOptions: MPIOptions.Focus(nodes: [locations], polygons: [], duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none, focusZoomFactor: 0.2))
                 self.mapMpiView?.drawJourney(
                     directions: directions,
                     options: MPIOptions.Journey(
                         pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)))
-                
-                self.mapMpiView?.focusOn(focusOptions: MPIOptions.Focus(nodes: location.nodes, polygons: location.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none, focusZoomFactor: 0.2))
-                
                // self.direction = directions
 //                self.instructions = self.direction.instructions.map { instruction in
 //                    return instruction.instruction ?? "Unknown"
@@ -602,13 +597,56 @@ class MapViewController: UIViewController {
                         options: MPIOptions.Journey(
                             pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
                         )
-                    )
+//                        options: MPIOptions.Journey(connectionTemplateString: """
+//                                                        <div style="font-size: 13px; display: flex; align-items: center; justify-content: center;">
+//                                                        <div style="margin: 10px;">{{capitalize type}} {{#if isEntering}}to{{else}}from{{/if}} {{toMapName}}</div>
+//                                                        <div style="width: 40px; height: 40px; border-radius: 50%;background: green; display: flex; align-items: center; margin: 5px; margin-left: 0px; justify-content: center;">
+//                                                            <svg height="16" viewBox="0 0 36 36" width="16">
+//                                                                <g fill="white">{{{icon}}}</g>
+//                                                            </svg>
+//                                                        </div>
+//                                                    </div>
+//                                                    """
+//                                                    , destinationMarkerTemplateString: """
+//                                                        <div style="width: 32px; height: 32px;">
+//                                                        <svg width="12cm" height="4cm" viewBox="0 0 1200 400"
+//                                                             xmlns="http://www.w3.org/2000/svg" version="1.1">
+//                                                          <desc>Example circle01 - circle filled with red and stroked with blue</desc>
+//
+//                                                          <!-- Show outline of viewport using 'rect' element -->
+//                                                          <rect x="1" y="1" width="1198" height="398"
+//                                                                fill="none" stroke="blue" stroke-width="2"/>
+//
+//                                                          <circle cx="600" cy="200" r="100"
+//                                                                fill="red" stroke="blue" stroke-width="10"  />
+//                                                        </svg>
+//                                                        </div>
+//                                                    """
+//                                                    , departureMarkerTemplateString: """
+//                                                        <div style="width: 32px; height: 32px;">
+//                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 293.334 293.334">
+//                                                            <g fill="#010002">
+//                                                                <path d="M146.667 0C94.903 0 52.946 41.957 52.946 93.721c0 22.322 7.849 42.789 20.891 58.878 4.204 5.178 11.237 13.331 14.903 18.906 21.109 32.069
+//                                                                    48.19 78.643 56.082 116.864 1.354 6.527 2.986 6.641 4.743.212 5.629-20.609 20.228-65.639 50.377-112.757 3.595-5.619 10.884-13.483 15.409-18.379a94.561
+//                                                                    94.561 0 0016.154-24.084c5.651-12.086 8.882-25.466 8.882-39.629C240.387 41.962 198.43 0 146.667 0zm0 144.358c-28.892 0-52.313-23.421-52.313-52.313 0-28.887
+//                                                                    23.421-52.307 52.313-52.307s52.313 23.421 52.313 52.307c0 28.893-23.421 52.313-52.313 52.313z"/>
+//                                                                <circle cx="146.667" cy="90.196" r="21.756"/>
+//                                                            </g>
+//                                                        </svg>
+//                                                        </div>
+//                                                    """
+//                                                    , pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true), polygonHighlightColor: "orange")
+                   )
                     self.direction = directions
                     self.instructions = self.direction.instructions.map { instruction in
                         return instruction.instruction ?? "Unknown"
                     }
                     self.directionsData.reloadData()
                     self.ontrack = true
+                    
+                    //MPIOptions.Journey(
+                        //pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
+                        //)
                 }
             }
             
