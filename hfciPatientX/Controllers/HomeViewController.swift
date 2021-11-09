@@ -82,7 +82,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func menuAction(_ sender: Any) {
        // self.containerView.bringSubviewToFront(self.menuViewController.view)
-        logOut()
+       // logOut()
         self.navigationController?.popViewController(animated: true)
     }
     

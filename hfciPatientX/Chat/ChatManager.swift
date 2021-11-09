@@ -162,27 +162,31 @@ class ChatManager {
           //  NetworkNotificationsManager.sendLocalNotificationForSocketIOStatus(title: "Connect", subtitle: "Scoket IO Chat", body: description)
             let descriptionSocket = "\(true) connect status:\(String(describing: self?.socket?.status)) data:\(data) date:\(Date().stringFromDateZuluFormat())"
             print("🍀 ✅ CHAT | socketURL: \(String(describing: self?.manager.socketURL)) | socketId:  \(String(describing: self?.socket?.sid))) |  envoriments: \(SocketIOEnvoriment.envorimentSocketLocation) | path: \(SocketIOEnvoriment.pathSocketLocation)  | chat \(descriptionSocket)")
-            
-            guard let userId = SessionManager.shared.user?.userId else { return }
-            guard let id = self?.socket?.sid else { return }
-            let payload = JoinData(userId: userId, socketId: id, firebaseToken: SessionManager.shared.firebaseToken ?? "")
-            
-            
+            NotificationCenter.default.post(name: Notification.Name("didSocketConnect"), object: nil)
 
-            self?.socket?.emit(Events.join, payload) {
-                self?.socket?.emit(Events.users)
-                self?.socket?.on(Events.users, callback: { [weak self] data, ack in
-                    print(data)
-                    let users = self?.parseUsers(from: data)
-                    self?.usersDict = users
-                    self?.currentUser = users?[userId]
-                  //  completion(true)
-                })
-                
-              //  completion(true)
 
-                
-            }
+//            guard let userId = SessionManager.shared.user?.userId else { return }
+//            guard let id = self?.socket?.sid else { return }
+//            let payload = JoinData(userId: userId, socketId: id, firebaseToken: SessionManager.shared.firebaseToken ?? "")
+//            
+//            
+//
+//            self?.socket?.emit(Events.join, payload) {
+//                self?.socket?.emit(Events.users)
+//                self?.socket?.on(Events.users, callback: { [weak self] data, ack in
+//                    print(data)
+//                    let users = self?.parseUsers(from: data)
+//                    self?.usersDict = users
+//                    self?.currentUser = users?[userId]
+//                  //  completion(true)
+//                    NotificationCenter.default.post(name: Notification.Name("didSocketConnect"), object: nil)
+//
+//                })
+//                
+//              //  completion(true)
+//
+//                
+//            }
         }
         
         self.socket?.on(clientEvent: .error) {  [weak self] (data, ack) in
@@ -404,7 +408,7 @@ class ChatManager {
             self.socket?.emit(Events.join, payload) {
                 self.socket?.emit(Events.users)
                 self.socket?.on(Events.users, callback: { [weak self] data, ack in
-                    print(data)
+                    print("⚡️\(data)")
                     let users = self?.parseUsers(from: data)
                     self?.usersDict = users
                     self?.currentUser = users?[userId]

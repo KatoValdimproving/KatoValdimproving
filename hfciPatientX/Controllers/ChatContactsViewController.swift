@@ -65,16 +65,18 @@ class ChatContactsViewController: UIViewController {
         //Add activity indicator
         self.addLoadingActivityIndicator()
         
-        guard let userId = SessionManager.shared.user?.userId else { return }
-        ChatManager.shared.socket?.on(clientEvent: .connect, callback: { _, _ in
-            self.getInitialUsers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didSocketConnect), name: Notification.Name("didSocketConnect"), object: nil)
 
-        })
         
         //Get users
-        self.getInitialUsers()
+     //   self.getInitialUsers()
         ChatManager.shared.setup()
 
+//        guard let userId = SessionManager.shared.user?.userId else { return }
+//        ChatManager.shared.socket?.on(clientEvent: .connect, callback: { _, _ in
+//            self.getInitialUsers()
+//
+//        })
         //New message notification
         self.setNewMessageNotification()
         
@@ -116,6 +118,13 @@ class ChatContactsViewController: UIViewController {
         }
        
     }
+    
+    @objc func didSocketConnect() {
+        
+        self.getInitialUsers()
+
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
        
