@@ -82,7 +82,17 @@ class HomeViewController: UIViewController {
     
     @IBAction func menuAction(_ sender: Any) {
        // self.containerView.bringSubviewToFront(self.menuViewController.view)
+        logOut()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func logOut() {
+        APIManager.sharedInstance.logOut(completionHandler: {  islogout,error in
+            if islogout {
+              //  self?.navigationController?.popToRootViewController(animated: true)
+               // self?.dismiss(animated: true, completion: nil)
+            }
+        })
     }
     
     @IBAction func wayFindingAction(_ sender: Any) {

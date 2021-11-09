@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.logOut()
+        
         enterButton.layer.cornerRadius = 7
         menu.anchorView = dropDown
         menu.selectionAction = { index, title in
@@ -55,6 +55,10 @@ class LoginViewController: UIViewController {
         
         deviceIdLBL.text = SettingsBundleHelper.shared.testerId
         self.appVersionLabel.text = appVersion() + " " + appBuild()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.logOut()
     }
 
     @objc func didTap() {
