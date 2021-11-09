@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     var mapViewController: MapViewController!
    weak var beaconsConsoleViewController: BeaconsConsoleViewController?
     var showChat = false
+    var showArtWalk = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,9 @@ class HomeViewController: UIViewController {
         }
         self.mapViewController.didFinishLoadingMap = {
             self.artWalkButton.isEnabled = true
+            if(self.showArtWalk){
+                self.artWalkAction(self)
+            }
         }
        // self.chatViewController.willMove(toParent: self)
         self.mapViewController.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
