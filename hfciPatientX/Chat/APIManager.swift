@@ -274,7 +274,7 @@ class APIManager: NSObject {
                 print(dictionary)
 
                 if dictionary.keys.contains("error") {
-                    Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
+                   // Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
                     completionHandler(false, nil)
                     return
                 }

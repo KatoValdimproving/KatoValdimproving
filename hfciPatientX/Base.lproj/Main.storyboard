@@ -238,7 +238,7 @@
                                         <rect key="frame" x="4" y="9.5" width="304" height="51"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcv-cx-h0y" userLabel="Explore" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcv-cx-h0y" userLabel="Explore" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
                                         <rect key="frame" x="27" y="76.5" width="118" height="70"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="locationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Dhp-gt-MoQ">
@@ -262,7 +262,7 @@
                                             <constraint firstAttribute="height" constant="70" id="lp8-Kr-lkl"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F86-hA-dGr" userLabel="Directions" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F86-hA-dGr" userLabel="Directions" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
                                         <rect key="frame" x="167" y="76.5" width="118" height="70"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="directionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tch-mG-NrB">
@@ -1671,7 +1671,7 @@
         <!--Group View Controller-->
         <scene sceneID="DAb-hA-nCd">
             <objects>
-                <viewController id="HOu-jG-qZz" customClass="GroupViewController" customModule="hfciPatientX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HOu-jG-qZz" customClass="GroupViewController" customModule="hfciPatientX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0HG-vT-uPh">
                         <rect key="frame" x="0.0" y="0.0" width="314" height="788"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

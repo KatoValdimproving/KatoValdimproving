@@ -416,8 +416,44 @@ class MapViewController: UIViewController {
            // Alerts.displayAlert(with: "beacon", and: "\(beaconRanged.paintings[0].title)")
            // Alerts.displayAlertPainting(painting: beaconRanged.paintings[0])
             
+            if beaconRanged.paintings.count == 1 {
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController else { return }
+                
+                paintingBeaconViewcontroller.painting = beaconRanged.paintings[0]
+                paintingBeaconViewcontroller.didPressYes = { painting in
+                    
+                    
+                    
+                    guard let beacon = painting.beacon else { return }
+                    guard let location = self.getLocationWithBeacon(beacon: beacon) else { return }
+                   
+                    
+                    self.getDirectionsTo(location: location) { directionsInstructions in
+                        print(directionsInstructions)
+                        
+    //                   let directionsString = directionsInstructions.instructions.map { instruction in
+    //                                        return instruction.instruction ?? "Unknown"
+    //                    }
+
+                      //  self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
+
+                    }
+                    
+                }
+                paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+                
+            } else if beaconRanged.paintings.count > 1 {
+                Alerts.displayAlert(with: "More Paitning", and: "x x x")
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
+                
+                self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+            }
             //...
 //            var rootViewController = UIApplication.shared.keyWindow?.rootViewController
 //            if let navigationController = rootViewController as? UINavigationController {
@@ -427,30 +463,7 @@ class MapViewController: UIViewController {
 //                rootViewController = tabBarController.selectedViewController
 //            }
 //            //...
-            paintingBeaconViewcontroller.painting = beaconRanged.paintings[0]
-            paintingBeaconViewcontroller.didPressYes = { painting in
-                
-                
-                
-                guard let beacon = painting.beacon else { return }
-                guard let location = self.getLocationWithBeacon(beacon: beacon) else { return }
-               
-                
-                self.getDirectionsTo(location: location) { directionsInstructions in
-                    print(directionsInstructions)
-                    
-//                   let directionsString = directionsInstructions.instructions.map { instruction in
-//                                        return instruction.instruction ?? "Unknown"
-//                    }
-
-                  //  self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
-
-                }
-                
-            }
-            paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+          
         }
       
     }
@@ -671,9 +684,11 @@ class MapViewController: UIViewController {
     }
     
     var galleryViewController : GalleryViewController?
+    var galleryNavigationController: UINavigationController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "navForArtWalk" {
             if let navigationController = segue.destination as? UINavigationController {
+                galleryNavigationController = navigationController
                 if let galleryViewController = navigationController.viewControllers.first as? GalleryViewController {
                     self.galleryViewController = galleryViewController
                     self.galleryViewController?.mapViewController = self

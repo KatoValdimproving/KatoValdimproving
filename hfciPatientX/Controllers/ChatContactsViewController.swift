@@ -56,7 +56,6 @@ class ChatContactsViewController: UIViewController {
         self.blurView.alpha = 0.5
         NotificationCenter.default.addObserver(self, selector: #selector(self.NotificationAct(_:)), name: NSNotification.Name("MessagesRead"), object: nil)
         
-        ChatManager.shared.setup()
         //Configure search controller
         self.searchController.searchResultsUpdater = self
         self.searchController.obscuresBackgroundDuringPresentation = false
@@ -66,9 +65,16 @@ class ChatContactsViewController: UIViewController {
         //Add activity indicator
         self.addLoadingActivityIndicator()
         
+        guard let userId = SessionManager.shared.user?.userId else { return }
+        ChatManager.shared.socket?.on(clientEvent: .connect, callback: { _, _ in
+            self.getInitialUsers()
+
+        })
+        
         //Get users
         self.getInitialUsers()
-        
+        ChatManager.shared.setup()
+
         //New message notification
         self.setNewMessageNotification()
         
@@ -170,9 +176,11 @@ class ChatContactsViewController: UIViewController {
     
     private func getInitialUsers() {
         
+       
+        
         guard let userId = SessionManager.shared.user?.userId else { return }
         self.activityIndicatorView?.startAnimating()
-        ChatManager.shared.getInitialUsers(userId: userId) { [weak self] _ in
+        ChatManager.shared.join(userId: userId) { [weak self] _ in
             
             self?.activityIndicatorView?.stopAnimating()
             if let usersDict = ChatManager.shared.usersDict {

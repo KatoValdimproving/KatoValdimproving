@@ -35,6 +35,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.logOut()
         enterButton.layer.cornerRadius = 7
         menu.anchorView = dropDown
         menu.selectionAction = { index, title in
@@ -70,6 +71,15 @@ class LoginViewController: UIViewController {
             NameTxtImp.layer.borderColor = UIColor.red.cgColor
             NameTxtImp.layer.borderWidth = 1.0
         }
+    }
+    
+    func logOut() {
+        APIManager.sharedInstance.logOut(completionHandler: {  islogout,error in
+            if islogout {
+              //  self?.navigationController?.popToRootViewController(animated: true)
+               // self?.dismiss(animated: true, completion: nil)
+            }
+        })
     }
 
     func logIn() {
