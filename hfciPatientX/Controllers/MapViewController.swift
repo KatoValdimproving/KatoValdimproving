@@ -895,7 +895,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if manager.authorizationStatus == .authorized {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    startScanning()
+                 //   startScanning()
                 }
             }
         }

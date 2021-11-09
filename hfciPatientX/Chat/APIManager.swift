@@ -287,7 +287,7 @@ class APIManager: NSObject {
                 }
 
             case .failure(let _):
-                Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
+               // Alerts.displayAlert(with: "Error", and: "Unable to log out please try again later")
                 completionHandler(false, nil)
 
 
