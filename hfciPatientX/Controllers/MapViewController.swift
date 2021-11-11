@@ -81,7 +81,7 @@ class MapViewController: UIViewController {
         tolbl.text = "Destination?"
         fromLbl.text = "Your Location"
         placeOption.text = "Your Location"
-        mapMpiView.reload()
+        mapMpiView.journeyManager.clear()
         ontrack = false
     }
     
@@ -209,7 +209,9 @@ class MapViewController: UIViewController {
               )
             }
                 
+
         self.mapMpiView.delegate = self
+        self.mapMpiView.blueDotManager.enable(options: .init(allowImplicitFloorLevel: false, smoothing: false, showBearing: false, baseColor: "#ffffff"))
         self.locationData.delegate = self
         self.locationData.dataSource = self
         self.locationData.rowHeight = 80.0
@@ -776,7 +778,7 @@ extension MapViewController: MPIMapViewDelegate {
 
     @available(*, deprecated, message: "use onBlueDotPositionUpdate and onBlueDotStateChange")
     func onBlueDotUpdated(blueDot: MPIBlueDot) {
-        let nearestNode = blueDot.nearestNode
+        //let nearestNode = blueDot.nearestNode
        // self.mapMpiView.createMarker(node: nearestNode, contentHtml: markerString ?? "")
 
 
@@ -893,7 +895,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if manager.authorizationStatus == .authorized {
+        if manager.authorizationStatus == CLAuthorizationStatus.authorized {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
                  //   startScanning()

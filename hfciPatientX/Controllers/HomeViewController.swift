@@ -93,6 +93,7 @@ class HomeViewController: UIViewController {
         self.mapViewController.controlls.isHidden = true
         self.mapViewController.artWalkContainerView.isHidden = false
         self.showArtWalk = true
+        self.mapViewController.goBack(self)
     }
     
     @IBAction func menuAction(_ sender: Any) {
@@ -116,6 +117,7 @@ class HomeViewController: UIViewController {
         self.mapViewController.controlls.isHidden = false
         self.mapViewController.artWalkContainerView.isHidden = true
         self.showArtWalk = false
+        self.mapViewController.goBack(self)
     }
     
      @IBAction func chatAction(_ sender: Any) {
