@@ -9,6 +9,7 @@ import UIKit
 import DropDown
 import IQKeyboardManagerSwift
 import MaterialComponents
+import Alamofire
 
 class LoginViewController: UIViewController {
 
@@ -113,6 +114,12 @@ class LoginViewController: UIViewController {
     
     func processLogin(user: User, email:String, jobId: String?) {
         
+//        print(Date().stringFromDate())
+//        print(Date())
+//        print(Date().stringFromDateZuluFormat())
+       
+        SessionManager.shared.logInDate = Date().stringFromDateZuluFormat()
+
         SocketIOManager.sharedInstance.establishConnection()
         JobManager.jobId = jobId
         print("🍀 🎗 JobManager.jobId \(String(describing: JobManager.jobId))")

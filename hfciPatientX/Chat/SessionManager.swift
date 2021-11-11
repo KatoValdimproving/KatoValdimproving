@@ -52,6 +52,8 @@ class SessionManager: NSObject {
     
     var notificationsStatus = ""
     
+    var logInDate = ""
+    
     var user : User? {
         get {
 //            guard let data = UserDefaults.standard.value(forKey: SessionManagerKeys.user) as? Data else { return nil }

@@ -544,7 +544,7 @@ class ChatManager {
         if let userId = self.currentUser?.id {
             let addName = "@\(SessionManager.shared.userName ?? ""), "
             //text: addName + messageText
-            let message = Message(id: "", text: messageText, origin: userId, destiny: destinyUser.id, status: 0, channel: destinyUser.channel, creationDate: Date(), seen: false)
+            let message = Message(id: "", text: addName + messageText, origin: userId, destiny: destinyUser.id, status: 0, channel: destinyUser.channel, creationDate: Date(), seen: false)
             self.socket?.emit(Events.sendMessage, message)
             
             let messageTwo = Message(id: "", text: messageText, origin: userId, destiny: destinyUser.id, status: 0, channel: destinyUser.channel, creationDate: Date(), seen: false)

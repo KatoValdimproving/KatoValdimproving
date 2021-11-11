@@ -439,7 +439,7 @@ class MapViewController: UIViewController {
                 }
                 paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                 paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+             //   self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
                 
             } else if beaconRanged.paintings.count > 1 {
                 Alerts.displayAlert(with: "More Paitning", and: "x x x")
@@ -447,7 +447,7 @@ class MapViewController: UIViewController {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
                 
-                self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+              //  self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
             }
             //...
 //            var rootViewController = UIApplication.shared.keyWindow?.rootViewController
@@ -714,7 +714,7 @@ class MapViewController: UIViewController {
             region.notifyOnExit = true
 
              self.locationManager.startMonitoring(for: region)
-           // startScanning()
+            startScanning()
 
             
         }
@@ -896,7 +896,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if manager.authorizationStatus == .authorized {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                 //   startScanning()
+                    startScanning()
                 }
             }
         }
