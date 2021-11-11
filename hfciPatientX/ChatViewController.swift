@@ -37,11 +37,11 @@ class ChatViewController: UIViewController {
        
         self.contactsViewController.didSelectContact = { [weak self] contact in
           //  print(contact)
-            self?.hideElements(hide: false)
-           
-            self?.selectedContact = contact
-            self?.currentUserNameLabel.text = self?.selectedContact?.fullName
-            self?.initialsCurrentUserButton.setTitle(self?.selectedContact?.firstName?.first?.description.uppercased(), for: .normal)
+//            self?.hideElements(hide: false)
+//
+//            self?.selectedContact = contact
+//            self?.currentUserNameLabel.text = self?.selectedContact?.fullName
+//            self?.initialsCurrentUserButton.setTitle(self?.selectedContact?.firstName?.first?.description.uppercased(), for: .normal)
             self?.goToMessages(contact)
 
         }
@@ -111,12 +111,16 @@ class ChatViewController: UIViewController {
     }
     
 
-    private func goToMessages(_ contact:ChatUser) {
+     func goToMessages(_ contact:ChatUser) {
         //self.setUnreadMessages(contact.id, 0)
         
         // Notify Child View Controller
         
-        
+         self.hideElements(hide: false)
+         self.selectedContact = contact
+         self.currentUserNameLabel.text = self.selectedContact?.fullName
+         self.initialsCurrentUserButton.setTitle(self.selectedContact?.firstName?.first?.description.uppercased(), for: .normal)
+         
         if  self.currentMessagesVC == nil  {
        
             addConversationViewToContainer(contact)

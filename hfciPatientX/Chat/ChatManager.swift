@@ -289,9 +289,10 @@ class ChatManager {
         
         self.socket?.on(Events.newMessage, callback: { [weak self] data, ack in
             if let newMessage = self?.parseNewMessage(from: data) {
+             //  NotificationCenter.default.post(name: Notification.Name("NewChatMessage"), object: nil, userInfo: ["Message":newMessage])
                 NotificationCenter.default.post(name: NSNotification.Name(Notifications.newMessage), object: self, userInfo: ["message":newMessage])
+              //  NetworkManager.shared.sendLocalNotificationWithUserInfo(title: "New Message", subtitle: "", body: newMessage.text, userInfo: ["Message":["id":newMessage.id, "": "channel": newMessage.channel, "fullName": newMessage.origin]])
                 NetworkManager.shared.sendLocalNotification(title: "New Message", subtitle: "", body: newMessage.text)
-
                 if self?.didGetNewMessage?(newMessage) ?? true {
                     self?.sendNewMessageNotification(newMessage)
                 }

@@ -131,6 +131,19 @@ class NetworkManager: NSObject {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
+    func sendLocalNotificationWithUserInfo(title: String, subtitle: String, body: String, userInfo: [String: Any]) {
+       let notification = UNMutableNotificationContent()
+       notification.title = title
+       notification.subtitle = subtitle
+       notification.body = body
+    
+        notification.userInfo = userInfo
+       notification.sound = UNNotificationSound.default
+       let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+       let request = UNNotificationRequest(identifier: "notification2", content: notification, trigger: notificationTrigger)
+       UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+   }
+    
 //    func isSSIDNamesEmpty() -> Bool {
 //        
 //        if SettingsBundleHelper.shared.SSIDNames.count == 0 {

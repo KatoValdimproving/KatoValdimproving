@@ -215,6 +215,27 @@ class MessagesViewController: MSGMessengerViewController {
         }
     }
     
+     func loadExistingMessagesForUserId(userId: String) {
+       // if let contactUser = self.contactUser {
+
+            ChatManager.shared.getMessages(withUser: userId) { [weak self] (messages) in
+                if let messages = messages {
+                    if messages.count == 0 {
+                        print("zero ")
+                    }
+                    else if self?.contactUser?.id ==  BroadcastUser.id && messages.count > 0 && messages.first?.origin == BroadcastUser.id {
+                        print("broadcast coming ")
+                        self?.messages = messages
+                        self?.reloadMessages()
+                    } else if self?.contactUser?.id !=  BroadcastUser.id && messages.count > 0 && messages.first?.origin != BroadcastUser.id {
+                        self?.messages = messages
+                        self?.reloadMessages()
+                    }
+                }
+                self?.activityIndicatorView?.stopAnimating()
+            }
+      //  }
+    }
     private func setNewMessageNotification() {
         ChatManager.shared.didGetNewMessage = { [weak self] (message) in
             print("Got new message callback in contact: \(self?.contactUser?.id ?? "")")
