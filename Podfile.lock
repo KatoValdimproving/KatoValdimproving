@@ -2,8 +2,8 @@ PODS:
   - Alamofire (4.9.1)
   - DropDown (2.3.13)
   - Gloss (3.2.1)
-  - IQKeyboardManagerSwift (6.5.6)
-  - MappedIn (3.0.2)
+  - IQKeyboardManagerSwift (6.5.8)
+  - MappedIn (3.0.5)
   - MarqueeLabel (4.0.5)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
@@ -72,7 +72,7 @@ DEPENDENCIES:
   - DropDown
   - Gloss
   - IQKeyboardManagerSwift
-  - MappedIn (= 3.0.2)
+  - MappedIn (= 3.0.5)
   - MaterialComponents/Buttons
   - MDFInternationalization (~> 2.0)
   - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
@@ -114,8 +114,8 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Gloss: 2cda64dd31f12d8c7905273c7883c63ee92bfee3
-  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
-  MappedIn: 61006357ef095cf7796e0f11f96b0995c1a87ce7
+  IQKeyboardManagerSwift: 8139150a3c90a915a413d72a8a3e8634c2d3278b
+  MappedIn: 8139b640b6ba18eec6ff2e30abb22535e59b57dc
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
@@ -129,6 +129,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftySound: 9eb28bb14edb601b40027e44319e0ef8383f88bf
 
-PODFILE CHECKSUM: b74cd4c63557a29ccf7b58bdea422662fe51645a
+PODFILE CHECKSUM: eda3c4d3b757d009ab825670206ca5ad31cefd91
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
