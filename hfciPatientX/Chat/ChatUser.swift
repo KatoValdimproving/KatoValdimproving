@@ -54,6 +54,18 @@ struct ChatUser:Decodable {
         self.unreadMessages = unreadMessages
     }
     
+    init(params: [String: Any]) {
+        self.id = params["id"] as? String ?? ""
+        self.channel = params["channel"] as? String ?? ""
+        self.fullName = params["fullName"] as? String ?? ""
+        self.firstName = params["firstName"] as? String ?? ""
+        self.lastName = params["lastName"] as? String ?? ""
+        self.initials = ""
+        self.roleName = ""
+        self.status = .online
+        self.unreadMessages = 0
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)

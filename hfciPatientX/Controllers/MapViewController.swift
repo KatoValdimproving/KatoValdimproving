@@ -714,7 +714,7 @@ class MapViewController: UIViewController {
             region.notifyOnExit = true
 
              self.locationManager.startMonitoring(for: region)
-            startScanning()
+           // startScanning()
 
             
         }

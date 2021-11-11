@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var artWalkButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var logout: UIImageView!
-    var chatViewController: UIViewController!
+    var chatViewController: ChatViewController!
    // var menuViewController: UIViewController!
     var mapViewController: MapViewController!
    weak var beaconsConsoleViewController: BeaconsConsoleViewController?
@@ -69,8 +69,22 @@ class HomeViewController: UIViewController {
         logout.isUserInteractionEnabled = true
         logout.addGestureRecognizer(exitGesture)
         self.mapViewController.artWalkContainerView.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NewChatMessage"), object: nil)
+
         
     }
+    
+    @objc func methodOfReceivedNotification(notification: Notification) {
+        
+        if let userInfo = notification.userInfo {
+            if let chatUser = userInfo["Message"] as? ChatUser {
+              //  print(userId)
+                self.containerView.bringSubviewToFront(self.chatViewController.view)
+                self.chatViewController.goToMessages(chatUser)
+            }
+        }
+    }
+
     
 
     @IBAction func artWalkAction(_ sender: Any) {
