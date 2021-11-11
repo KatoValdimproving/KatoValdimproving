@@ -204,9 +204,58 @@ class MessagesViewController: MSGMessengerViewController {
                     else if self?.contactUser?.id ==  BroadcastUser.id && messages.count > 0 && messages.first?.origin == BroadcastUser.id {
                         print("broadcast coming ")
                         self?.messages = messages
+//                        let recentMessgaes = messages.filter { message in
+//                            if let messageDate = message.creationDate {
+//
+//                                let dateFormatter = ISO8601DateFormatter()
+//                                dateFormatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
+//                                if let logInDate = dateFormatter.date(from: SessionManager.shared.logInDate) {//                            let dateFormatter = ISO8601DateFormatter()
+////                            dateFormatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
+////                            if  let date = dateFormatter.date(from: messageDate) {
+//
+//                                    if messageDate < logInDate {
+//                                        return false
+//                                    } else {
+//                                        return true
+//                                    }
+//                                }
+//                           }
+//
+//                            return false
+//
+//                        }
+//
+//                        self?.messages =  recentMessgaes
+                      //  self?.messages = recentMessgaes
+
+                        
                         self?.reloadMessages()
                     } else if self?.contactUser?.id !=  BroadcastUser.id && messages.count > 0 && messages.first?.origin != BroadcastUser.id {
                         self?.messages = messages
+                        
+                        let recentMessgaes = messages.filter { message in
+                            if let messageDate = message.creationDate {
+                                
+                                let dateFormatter = ISO8601DateFormatter()
+                                dateFormatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
+                                if let logInDate = dateFormatter.date(from: SessionManager.shared.logInDate) {//                            let dateFormatter = ISO8601DateFormatter()
+//                            dateFormatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
+//                            if  let date = dateFormatter.date(from: messageDate) {
+                            
+                                    if messageDate < logInDate {
+                                        return false
+                                    } else {
+                                        return true
+                                    }
+                                }
+                           }
+                            
+                            return false
+                            
+                        }
+                        
+                        self?.messages =  recentMessgaes
+                        
                         self?.reloadMessages()
                     }
                 }
