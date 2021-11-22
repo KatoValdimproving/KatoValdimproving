@@ -13,10 +13,7 @@ import Alamofire
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var helpLbl: UIImageView!
     @IBOutlet weak var NameTxtImp: UITextField!
-    @IBOutlet weak var dropDown: UIView!
-    @IBOutlet weak var roleLBL: UILabel!
     @IBOutlet weak var enterButton: MDCButton!
     @IBOutlet weak var deviceIdLBL: UILabel!
     
@@ -25,45 +22,19 @@ class LoginViewController: UIViewController {
         logIn()
     }
     
-    let menu : DropDown = {
-        let menu = DropDown()
-        menu.dataSource = [
-            "Visit",
-            "Consult"
-        ]
-        return menu
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         enterButton.layer.cornerRadius = 7
-        menu.anchorView = dropDown
-        menu.selectionAction = { index, title in
-            self.roleLBL.text = title
-        }
-        
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        gesture.numberOfTapsRequired = 1
-        gesture.numberOfTouchesRequired = 1
-        dropDown.addGestureRecognizer(gesture)
-        
-        let helpGesture = UITapGestureRecognizer(target: self, action: #selector(didRequestHelp))
-        helpGesture.numberOfTapsRequired = 1
-        helpGesture.numberOfTouchesRequired = 1
-        helpLbl.isUserInteractionEnabled = true
-        helpLbl.addGestureRecognizer(helpGesture)
         
         deviceIdLBL.text = SettingsBundleHelper.shared.testerId
         self.appVersionLabel.text = appVersion() + " " + appBuild()
+        
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.logOut()
-    }
-
-    @objc func didTap() {
-        menu.show()
     }
     
     @objc func didRequestHelp() {
