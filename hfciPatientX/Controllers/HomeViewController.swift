@@ -10,10 +10,10 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var artWalkButton: UIButton!
+    @IBOutlet weak var wayfindingBtn: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var logout: UIImageView!
     var chatViewController: ChatViewController!
-   // var menuViewController: UIViewController!
     var mapViewController: MapViewController!
    weak var beaconsConsoleViewController: BeaconsConsoleViewController?
     var showChat = false
@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.wayfindingBtn.titleLabel?.font = .boldSystemFont(ofSize: 23)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard  let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
@@ -96,6 +97,8 @@ class HomeViewController: UIViewController {
         self.mapViewController.artWalkContainerView.isHidden = false
         self.showArtWalk = true
         self.mapViewController.goBack(self)
+        self.artWalkButton.titleLabel?.font = .boldSystemFont(ofSize: 23)
+        self.wayfindingBtn.titleLabel?.font = .systemFont(ofSize: 23)
     }
     
     @IBAction func menuAction(_ sender: Any) {
@@ -120,6 +123,8 @@ class HomeViewController: UIViewController {
         self.mapViewController.artWalkContainerView.isHidden = true
         self.showArtWalk = false
         self.mapViewController.goBack(self)
+        self.wayfindingBtn.titleLabel?.font = .boldSystemFont(ofSize: 23)
+        self.artWalkButton.titleLabel?.font = .systemFont(ofSize: 23)
     }
     
      @IBAction func chatAction(_ sender: Any) {

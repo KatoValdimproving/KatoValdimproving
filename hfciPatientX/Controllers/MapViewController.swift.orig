@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var artWalkContainerView: UIView!
     @IBOutlet weak var mapView: UIView!
     
+    @IBOutlet weak var goToArtwalkButton: UIButton!
     @IBOutlet weak var controlsView: UIView!
     @IBOutlet weak var locationData: UITableView!
     @IBOutlet weak var directionsData: UITableView!
@@ -39,14 +40,12 @@ class MapViewController: UIViewController {
     var point1 : MPILocation!
     var point2 : MPILocation!
     var nearestNode : MPINode!
-<<<<<<< HEAD
-    lazy var markerString = getFileContentFromBundle(forResource: "marker", ofType: "html")
-
-=======
     var ontrack = false
     var lastFloor = ""
-    
->>>>>>> 15823e33a2f67d99a9b379f9c839c35cc66d1815
+    var didFinishLoadingMap: (()->())?
+    var didRangedBeacons: (()->Void)?
+    var painting: Painting?
+    var paintingDetailViewController: PaintingDetailViewController?
     @IBOutlet weak var fromWhereView: UIView!
     
     @IBOutlet weak var selectDropdown: UIView!
@@ -81,8 +80,56 @@ class MapViewController: UIViewController {
         tolbl.text = "Destination?"
         fromLbl.text = "Your Location"
         placeOption.text = "Your Location"
-        mapMpiView.reload()
+        mapMpiView.journeyManager.clear()
         ontrack = false
+    }
+    
+    func showGoToArtwalkButton(isHidden: Bool) {
+        self.goToArtwalkButton.isHidden = isHidden
+    }
+    
+    func getLocationWithBeacon(beacon: Beacon) -> MPILocation? {
+        let locations = self.allLocations.filter { location in
+            location.name == beacon.paintings.first?.location
+        }
+        if locations.count > 0 {
+            if let found = locations.first {
+                return found
+            }
+        }
+        
+        return nil
+    }
+    
+    func getLocationWithPainting(painting: Painting) -> MPILocation? {
+        let locations = self.allLocations.filter { location in
+            location.name == painting.location
+        }
+        if locations.count > 0 {
+            if let found = locations.first {
+                return found
+            }
+        }
+        
+        return nil
+    }
+    
+    @IBAction func goToArtWalkPaintingAction(_ sender: Any) {
+       guard let paint = self.painting else { return }
+        guard let location = getLocationWithPainting(painting: paint) else { return }
+
+        self.getDirectionsTo(location: location) { directionsInstructions in
+            print(directionsInstructions)
+            
+           let directionsString = directionsInstructions.instructions.map { instruction in
+                                return instruction.instruction ?? "Unknown"
+            }
+
+            self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
+
+        }
+        
+        
     }
     
     //From dropdown inside the view after you select a point in the table, you need all the points in the map that have nodes
@@ -134,46 +181,36 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // self.goToArtwalkButton.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(didRangePainting), name: Notification.Name("didRangedPainting"), object: nil)
+        
         // Do any additional setup after loading the view.
         self.setupLocationManager()
 
         self.directionsView.isHidden = true
         self.fromWhereView.isHidden = true
            // Set up MPIMapView and add to view
-        
+        self.goToArtwalkButton.layer.cornerRadius = 10
         floorSelector.layer.cornerRadius = 10
         floorSelector.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         mapMpiView = MPIMapView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
         self.mapView.addSubview(mapMpiView)
         if let mapView = mapMpiView {
-<<<<<<< HEAD
-              // Provide credentials, if using proxy use MPIOptions.Init(venue: "venue_slug", baseUrl: "proxy_url", noAuth: true)
-//            mapView.loadVenue(
-//                options: MPIOptions.Init(
-//                  clientId: "601c2371fac662001be42493",
-//                  clientSecret: "raW1AeQ5WikKMflCbX5GAozTA0kcGsgl99HUIJHr1B6wwgoG",
-//                  venue: "henry-ford-cancer-center"
-//                )
-//              )
-=======
->>>>>>> 15823e33a2f67d99a9b379f9c839c35cc66d1815
             mapView.loadVenue(
                 options: MPIOptions.Init(
                   clientId: "601c2371fac662001be42493",
                   clientSecret: "raW1AeQ5WikKMflCbX5GAozTA0kcGsgl99HUIJHr1B6wwgoG",
-<<<<<<< HEAD
-                  venue: "henry-ford-cancer-center",
-                  headers: [MPIHeader(name: "customheader", value: "HappyTest")]
-=======
                   venue: "henry-ford-cancer-center"
->>>>>>> 15823e33a2f67d99a9b379f9c839c35cc66d1815
                 ),
                 showVenueOptions: MPIOptions.ShowVenue(labelAllLocationsOnInit: true, backgroundColor: "#ffffff")
               )
             }
                 
+
         self.mapMpiView.delegate = self
+        self.mapMpiView.blueDotManager.enable(options: .init(allowImplicitFloorLevel: false, smoothing: false, showBearing: false, baseColor: "#ffffff"))
         self.locationData.delegate = self
         self.locationData.dataSource = self
         self.locationData.rowHeight = 80.0
@@ -209,13 +246,13 @@ class MapViewController: UIViewController {
         selectMenu.anchorView = selectDropdown
         selectMenu.selectionAction = { index, title in
             self.placeOption.text = title
-            self.point1 = self.nodeLocations[index]
+            self.point1 = title == "Your Location" ? nil : self.nodeLocations[index]
         }
         
         fromSelect.anchorView = fromViewSelect
         fromSelect.selectionAction = { index, title in
             self.fromLbl.text = title
-            self.point1 = self.nodeLocations[index]
+            self.point1 = title == "Your Location" ? nil : self.nodeLocations[index]
             if(self.point2 != nil){
                 self.getDirection()
             }
@@ -260,25 +297,166 @@ class MapViewController: UIViewController {
 
     }
     
-    override func viewDidLayoutSubviews() {
-     
+    
+    
+    func guidedArtWalkFromCurrentLocation() {
+        
+        var locations: MPINode
+        if let nearest = self.nearestNode {
+            locations = nearest
+        } else {
+            
+            if let entrance = getEntrance(allLocation: self.allLocations) {
+                guard let loc = entrance.nodes?.first else { return }
+                locations = loc
+            } else {
+                return
+            }
+            
+        }
+        
+        
+        
+        var locationsArtWalk: [MPILocation] = []
+                
+        let allPaitingLocations = paintings.map { painting in
+            return painting.location
+        }
+    
+        for locationString in allPaitingLocations {
+            for location in self.allLocations {
+                if location.name == locationString {
+                    locationsArtWalk.append(location)
+                }
+            }
+        }
+        
+        
+        
+        self.mapMpiView.getDirections(to: MPIDestinationSet(destinations: locationsArtWalk), from: locations, accessible: true) { directions in
+            if let directionsInstructions = directions {
+                self.mapMpiView.journeyManager.draw(directions: directionsInstructions, options: MPIOptions.Journey(
+                    pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)))
+            }
+        }
     }
     
-    
-   func showArtWalk() {
-        //guard let galleryViewController = GalleryViewController
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-       // guard  let galleryViewController = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
+    func getDirectionsTo(location: MPILocation, directionsInstructions: @escaping ((_ directionsInstructions: MPIDirections) -> Void)) {
         
-        guard  let artWalkNavigationController = storyboard.instantiateViewController(withIdentifier: "ArtWalkNavigationController") as? UINavigationController else { return }
+        var locations: MPINode
+        if let nearest = self.nearestNode {
+            locations = nearest
+        } else {
+            
+            if let entrance = getEntrance(allLocation: self.allLocations) {
+                guard let loc = entrance.nodes?.first else { return }
+                locations = loc
+            } else {
+                return
+            }
+            
+        }
+    
+        // Get directions to selected polygon from users nearest node
+        self.mapMpiView?.getDirections(to: location, from: locations, accessible: true) { directions in
+            // remove custom markers before calling drawJourney
+            if let directions = directions {
+                self.mapMpiView?.focusOn(focusOptions: MPIOptions.Focus(nodes: [locations], polygons: [], duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none, focusZoomFactor: 0.2))
+                self.mapMpiView?.drawJourney(
+                    directions: directions,
+                    options: MPIOptions.Journey(
+                        connectionTemplateString: nil,
+                        destinationMarkerTemplateString: nil,
+                        departureMarkerTemplateString: "",
+                        pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true),
+                        polygonHighlightColor: "orange")
+                )
+                
+                directionsInstructions(directions)
+                
+                
+            }
+        }
+    }
+    
+    func getDirecctionsData(completion: ()->()) {
+        
+    }
+    
+    @objc func didRangePainting(notification: Notification) {
+        
+        if SessionManager.shared.isArtWalkModeSelected == false { return }
+        print("👗")
+        print(notification.object ?? "") //myObject
+        print(notification.userInfo ?? "") //[AnyHashable("key"): "Value"]
+        if let beaconRanged = notification.object as? Beacon {
+           // Alerts.displayAlert(with: "beacon", and: "\(beaconRanged.paintings[0].title)")
+           // Alerts.displayAlertPainting(painting: beaconRanged.paintings[0])
+            
+            if beaconRanged.paintings.count == 1 {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController else { return }
+                
+                paintingBeaconViewcontroller.painting = beaconRanged.paintings[0]
+                paintingBeaconViewcontroller.didPressYes = { painting in
+                    
+                    
+                    
+                    guard let beacon = painting.beacon else { return }
+                    guard let location = self.getLocationWithBeacon(beacon: beacon) else { return }
+                   
+                    
+                    self.getDirectionsTo(location: location) { directionsInstructions in
+                        print(directionsInstructions)
+<<<<<<< HEAD
+                        
+                       let directionsString = directionsInstructions.instructions.map { instruction in
+                                            return instruction.instruction ?? "Unknown"
+                        }
 
-       // self.chatViewController.willMove(toParent: self)
-        artWalkNavigationController.view.frame = CGRect(x: 0, y: 0, width: self.artWalkContainerView.bounds.width, height: self.artWalkContainerView.bounds.height)
-        artWalkContainerView.addSubview(artWalkNavigationController.view)
-       
-       // artWalkContainerView.sizeToFit()
+                     //   self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
+                        //self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+                        
+                        guard let paintingDetailViewController = storyboard.instantiateViewController(withIdentifier: "PaintingDetailViewController") as? PaintingDetailViewController else { return }
+                        self.galleryNavigationController?.pushViewController(paintingDetailViewController, animated: true)
+                        paintingDetailViewController.pushDirectionsView(directionsString: directionsString)
+                        paintingDetailViewController.painting = beacon.paintings.first
+                        paintingDetailViewController.mapViewController = self
+=======
+>>>>>>> c26972d1ebb2b403c52bd6c02457b039e005ef79
+                    }
+                    
+                }
+                paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+              //  self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+              //  self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+
+                
+            } else if beaconRanged.paintings.count > 1 {
+              //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let groupViewController = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
+                groupViewController.beacon = beaconRanged
+                groupViewController.mapViewController = self
+                self.galleryNavigationController?.pushViewController(groupViewController, animated: true)
+            }
+            //...
+//            var rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//            if let navigationController = rootViewController as? UINavigationController {
+//                rootViewController = navigationController.viewControllers.first
+//            }
+//            if let tabBarController = rootViewController as? UITabBarController {
+//                rootViewController = tabBarController.selectedViewController
+//            }
+//            //...
+          
+        }
       
     }
+  
     
     @objc func didTap() {
         selectMenu.show()
@@ -301,8 +479,8 @@ class MapViewController: UIViewController {
     }
     
     func selectMap(index: Int, title: String) {
-        self.floorLBL.text = title
-        if let selectedMap = self.mapMpiView?.venueData?.maps[index] {
+        if let selectedMap =  self.mapMpiView?.venueData?.maps.first(where: {$0.name == mapName(option: title)}) {
+            self.floorLBL.text = title
             self.mapMpiView?.setMap(map: selectedMap)
         }
     }
@@ -321,6 +499,25 @@ class MapViewController: UIViewController {
             return "L4"
         case "Level 5":
             return "L5"
+        default:
+            return "L"
+        }
+    }
+    
+    func mapName(option: String) -> String {
+        switch option {
+        case "L1":
+            return "Level 1"
+        case "B":
+            return "Level -1"
+        case "L2":
+            return "Level 2"
+        case "L3":
+            return "Level 3"
+        case "L4":
+            return "Level 4"
+        case "L5":
+            return "Level 5"
         default:
             return "L"
         }
@@ -375,7 +572,7 @@ class MapViewController: UIViewController {
     
     @objc func explore() {
         self.nodeLocations = self.allLocations.filter { location in
-            location.type == "amenities" && location.polygons!.count > 0
+            location.type == "amenities"
         }
         
         filteredPolygonLocations = nodeLocations
@@ -397,13 +594,18 @@ class MapViewController: UIViewController {
         
         filteredPolygonLocations = nodeLocations
         
-        selectMenu.dataSource = self.nodeLocations.map({ location in
+        let node : MPINode = (nodeLocations.first?.nodes?.first)!
+        print(node.map)
+        
+        var dataSource = self.nodeLocations.map({ location in
             location.name
         })
         
-        fromSelect.dataSource = self.nodeLocations.map({ location in
-            location.name
-        })
+        dataSource.append("Your Location")
+        
+        selectMenu.dataSource = dataSource
+        
+        fromSelect.dataSource = dataSource
         
         toSelect.dataSource = self.nodeLocations.map({ location in
             location.name
@@ -426,7 +628,7 @@ class MapViewController: UIViewController {
                         options: MPIOptions.Journey(
                             pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)
                         )
-                    )
+                   )
                     self.direction = directions
                     self.instructions = self.direction.instructions.map { instruction in
                         return instruction.instruction ?? "Unknown"
@@ -487,9 +689,24 @@ class MapViewController: UIViewController {
             region.notifyOnExit = true
 
              self.locationManager.startMonitoring(for: region)
-            startScanning()
+           // startScanning()
 
             
+        }
+
+    }
+    
+    var galleryViewController : GalleryViewController?
+    var galleryNavigationController: UINavigationController?
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "navForArtWalk" {
+            if let navigationController = segue.destination as? UINavigationController {
+                galleryNavigationController = navigationController
+                if let galleryViewController = navigationController.viewControllers.first as? GalleryViewController {
+                    self.galleryViewController = galleryViewController
+                    self.galleryViewController?.mapViewController = self
+                }
+            }
         }
     }
    
@@ -499,11 +716,7 @@ extension MapViewController: MPIMapViewDelegate {
     func onBlueDotPositionUpdate(update: MPIBlueDotPositionUpdate) {
         // Called when the blueDot that tracks the user position is updated
         self.nearestNode = update.nearestNode
-<<<<<<< HEAD
         print(self.nearestNode.debugDescription)
-=======
-        
->>>>>>> 15823e33a2f67d99a9b379f9c839c35cc66d1815
         let map = self.mapMpiView.venueData?.maps.first(where: { element in
             element.id == update.nearestNode?.map ?? ""
         })
@@ -514,6 +727,10 @@ extension MapViewController: MPIMapViewDelegate {
             if(map != nil) {
                 self.mapMpiView?.setMap(map: map!)
             }
+        }
+        
+        if(ontrack){
+            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [self.nearestNode], polygons: nil, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
         }
     }
 
@@ -538,25 +755,30 @@ extension MapViewController: MPIMapViewDelegate {
 
     @available(*, deprecated, message: "use onBlueDotPositionUpdate and onBlueDotStateChange")
     func onBlueDotUpdated(blueDot: MPIBlueDot) {
-        let nearestNode = blueDot.nearestNode
-        self.mapMpiView.createMarker(node: nearestNode, contentHtml: markerString ?? "")
+        //let nearestNode = blueDot.nearestNode
+       // self.mapMpiView.createMarker(node: nearestNode, contentHtml: markerString ?? "")
 
 
     }
 
     func onDataLoaded(data: MPIData) {
         // Called when the mapView has finished loading both the view and venue data
+        self.didFinishLoadingMap?()
+      
     }
 
     func onFirstMapLoaded() {
         // Called when the first map is fully loaded
         self.allLocations = mapMpiView.venueData?.locations ?? []
-        
+        if let gallery = self.galleryViewController {
+            gallery.allLocations = self.allLocations
+            gallery.setAllLocations()
+        }
         self.filterLocations()
         
-        floorSelect.dataSource = mapMpiView?.venueData?.maps.map({ mapElement in
+        floorSelect.dataSource = ((mapMpiView?.venueData?.maps.map({ mapElement in
             labelString(option: mapElement.name)
-        }) ?? []
+        }) ?? []).filter{ $0 != "B"}).sorted{ $0 > $1 }
         floorLBL.text = labelString(option: mapMpiView?.venueData?.maps.first?.name ?? "")
         
         self.locationData.reloadData()
@@ -570,6 +792,7 @@ extension MapViewController: MPIMapViewDelegate {
     func onStateChanged (state: MPIState) {
         // Called when the state of the map has changed
     }
+    
 }
 
 extension MapViewController : UITableViewDelegate {
@@ -620,6 +843,7 @@ extension MapViewController : UITableViewDataSource {
             
         return UITableViewCell()
     }
+    
 }
 
 extension MapViewController: UISearchBarDelegate {
@@ -642,16 +866,17 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             let dateTime = Date()
+            print("❌ \(location)")
             let coordinates = MPICoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, accuracy: 0.8, floorLevel: location.floor?.level)
             self.mapMpiView.blueDotManager.updatePosition(position: MPIPosition(timestamp: dateTime.timeIntervalSince1970, coords: coordinates, type: "", annotation: ""))
         }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if manager.authorizationStatus == .authorized {
+        if manager.authorizationStatus == CLAuthorizationStatus.authorized {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    startScanning()
+                   // startScanning()
                 }
             }
         }
@@ -659,22 +884,26 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         print("⚠️ \(beacons)")
+        
         for beacon in beacons {
-            let foundedBeacon = getBeaconByMayorAndMinor(mayor: beacon.major.intValue, minor: beacon.minor.intValue)
-            foundedBeacon.proximity = 0
+            
+            if let foundedBeacon = getBeaconByMayorAndMinor(mayor: beacon.major.intValue, minor: beacon.minor.intValue) {
+           // foundedBeacon.proximity = 0
             foundedBeacon.rrsi = beacon.rssi
             foundedBeacon.timeStamp = beacon.timestamp
-            let beacon = "\(beacon)"
-            let splitInQoutes = beacon.split(separator: ",")[3]
+            let beaconString = "\(beacon)"
+            let splitInQoutes = beaconString.split(separator: ",")[3]
             let splitInTwoPoints = splitInQoutes.split(separator: ":")[1]
             let distance = splitInTwoPoints.split(separator: " ")[2]
             let rawDistance = distance.replacingOccurrences(of: "m", with: "")
             let proximity = Double(String(rawDistance)) ?? 0
             foundedBeacon.proximity = proximity
+            foundedBeacon.clproximity = beacon.proximity
+            }
         }
         
-        NotificationCenter.default.post(name: Notification.Name("didRangeBeacons"), object: nil)
-
+        NotificationCenter.default.post(name: Notification.Name("didRangeBeacons"), object: beacons)
+       // self.didRangedBeacons?()
         
     }
 }
