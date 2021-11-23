@@ -78,8 +78,16 @@ class Beacon: NSObject {
                     
                     let sum = noise.sum()
                     let mean = sum / Double(noise.count)
-                    proximity = mean
+                  //  proximity = mean
                     print("🎃 mean \(mean)")
+                    
+                    if mean <=  distance  && mean > -1 {
+                        isInDesiredDistance = true
+                    } else {
+                        isInDesiredDistance = false
+                        firstContact = nil
+                        
+                    }
 
                 }
                 
@@ -140,13 +148,13 @@ class Beacon: NSObject {
             print("🎃🎃 input \(mayor) \(proximity)")
             noise.append(proximity)
 
-            if proximity <=  distance  && proximity > -1 {
-                isInDesiredDistance = true
-            } else {
-                isInDesiredDistance = false
-                firstContact = nil
-                
-            }
+//            if proximity <=  distance  && proximity > -1 {
+//                isInDesiredDistance = true
+//            } else {
+//                isInDesiredDistance = false
+//                firstContact = nil
+//
+//            }
             
         }
     }
