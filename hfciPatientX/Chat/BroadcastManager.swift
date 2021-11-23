@@ -85,6 +85,11 @@ class BroadcastManager {
             print("🏓🏓 broadcast-susbcribe \(data) + \(ack)")
             self.checkIncomingMessageToBroadcast(data: data)
         }
+        ChatManager.shared.socket?.on("bcst-messages") { (data, ack) in
+            print("🏓🏓 broadcast-susbcribe \(data) + \(ack)")
+            self.checkIncomingMessageToBroadcast(data: data)
+        }
+        
 
         
     }

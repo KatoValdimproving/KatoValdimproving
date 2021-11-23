@@ -29,4 +29,9 @@ class ItemGroupCollectionViewCell: UICollectionViewCell {
         
     }
     
+    func setInfoWith(painting: Painting) {
+        self.titleLabel.text = painting.title
+        self.imageView.image = UIImage(named: painting.title)
+    }
+    
 }

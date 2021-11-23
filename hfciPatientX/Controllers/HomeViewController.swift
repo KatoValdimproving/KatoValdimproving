@@ -88,6 +88,8 @@ class HomeViewController: UIViewController {
     
 
     @IBAction func artWalkAction(_ sender: Any) {
+        SessionManager.shared.isArtWalkModeSelected = true
+        self.mapViewController.startScanning()
         self.containerView.bringSubviewToFront(self.mapViewController.view)
         self.mapViewController.view.bringSubviewToFront(self.mapViewController.artWalkContainerView)
         self.mapViewController.controlls.isHidden = true

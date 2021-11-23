@@ -91,7 +91,7 @@ class MapViewController: UIViewController {
     
     func getLocationWithBeacon(beacon: Beacon) -> MPILocation? {
         let locations = self.allLocations.filter { location in
-            location.name == beacon.location
+            location.name == beacon.paintings.first?.location
         }
         if locations.count > 0 {
             if let found = locations.first {
@@ -406,6 +406,8 @@ class MapViewController: UIViewController {
     }
     
     @objc func didRangePainting(notification: Notification) {
+        
+        if SessionManager.shared.isArtWalkModeSelected == false { return }
         print("👗")
         print(notification.object ?? "") //myObject
         print(notification.userInfo ?? "") //[AnyHashable("key"): "Value"]
@@ -430,26 +432,35 @@ class MapViewController: UIViewController {
                     self.getDirectionsTo(location: location) { directionsInstructions in
                         print(directionsInstructions)
                         
-    //                   let directionsString = directionsInstructions.instructions.map { instruction in
-    //                                        return instruction.instruction ?? "Unknown"
-    //                    }
+                       let directionsString = directionsInstructions.instructions.map { instruction in
+                                            return instruction.instruction ?? "Unknown"
+                        }
 
-                      //  self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
-
+                     //   self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
+                        //self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+                        
+                        guard let paintingDetailViewController = storyboard.instantiateViewController(withIdentifier: "PaintingDetailViewController") as? PaintingDetailViewController else { return }
+                        self.galleryNavigationController?.pushViewController(paintingDetailViewController, animated: true)
+                        paintingDetailViewController.pushDirectionsView(directionsString: directionsString)
+                        paintingDetailViewController.painting = beacon.paintings.first
+                        paintingDetailViewController.mapViewController = self
                     }
                     
                 }
                 paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                 paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-             //   self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+              //  self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+              //  self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+
                 
             } else if beaconRanged.paintings.count > 1 {
-                Alerts.displayAlert(with: "More Paitning", and: "x x x")
+              //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
-                
-              //  self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+                guard let groupViewController = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
+                groupViewController.beacon = beaconRanged
+                groupViewController.mapViewController = self
+                self.galleryNavigationController?.pushViewController(groupViewController, animated: true)
             }
             //...
 //            var rootViewController = UIApplication.shared.keyWindow?.rootViewController
@@ -716,7 +727,7 @@ class MapViewController: UIViewController {
             region.notifyOnExit = true
 
              self.locationManager.startMonitoring(for: region)
-            startScanning()
+           // startScanning()
 
             
         }
@@ -898,7 +909,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if manager.authorizationStatus == CLAuthorizationStatus.authorized {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    startScanning()
+                   // startScanning()
                 }
             }
         }
@@ -906,18 +917,21 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         print("⚠️ \(beacons)")
+        
         for beacon in beacons {
+            
             if let foundedBeacon = getBeaconByMayorAndMinor(mayor: beacon.major.intValue, minor: beacon.minor.intValue) {
-            foundedBeacon.proximity = 0
+           // foundedBeacon.proximity = 0
             foundedBeacon.rrsi = beacon.rssi
             foundedBeacon.timeStamp = beacon.timestamp
-            let beacon = "\(beacon)"
-            let splitInQoutes = beacon.split(separator: ",")[3]
+            let beaconString = "\(beacon)"
+            let splitInQoutes = beaconString.split(separator: ",")[3]
             let splitInTwoPoints = splitInQoutes.split(separator: ":")[1]
             let distance = splitInTwoPoints.split(separator: " ")[2]
             let rawDistance = distance.replacingOccurrences(of: "m", with: "")
             let proximity = Double(String(rawDistance)) ?? 0
             foundedBeacon.proximity = proximity
+            foundedBeacon.clproximity = beacon.proximity
             }
         }
         

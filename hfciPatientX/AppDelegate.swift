@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SettingsBundleHelper.shared.addObserverEnvoriment()
       //  asignBeaconToPainting()
        // asignPaintingToBeacon()
-        asigBeaconsToPaintings()
+      //  asigBeaconsToPaintings()
         
       //  NotificationCenter.default.post(name: NSNotification.Name(Notifications.newMessage), object: self, userInfo: ["message":newMessage])
         NotificationCenter.default.addObserver(forName: NSNotification.Name(ChatManager.Notifications.newMessage), object: nil, queue: .main) { [weak self] notification in

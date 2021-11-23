@@ -91,7 +91,7 @@ class ChatContactsViewController: UIViewController {
         
         self.setDidNewUserConnectCallBack()
         
-       // BroadcastManager.shared.listen()
+        BroadcastManager.shared.listen()
 
         self.setDidBroadcastCallback()
         

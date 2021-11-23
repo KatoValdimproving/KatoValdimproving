@@ -180,12 +180,12 @@ The Wright & Cathy Lassiter Healing Arts Gallery hosts curated art exhibitions f
 ]
 
 let beacons = [
-//    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 15, distance: 1, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar"), getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
-//    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 30, distance: 1, identifier: "2", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: "")
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 15, distance: 1, identifier: "Calendar 1", paintings: [getPaintingByTitle(title: "Calendar"), getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 30, distance: 1, identifier: "JB 2", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: ""),
 //   Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 7509, minor: 50853, firstContact: nil, time: 100, distance: 4, identifier: "3", paintings: [], proximity: 0, rrsi: 0, location: ""),
 //    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 19879, minor: 24862, firstContact: nil, time: 100, distance: 4, identifier: "4", paintings: [], proximity: 0, rrsi: 0, location: ""),
     
-    
+   /*
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35557, minor: 9601, firstContact: nil, time: 10, distance: 3, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 10, distance: 3, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 454, minor: 21971, firstContact: nil, time: 10, distance: 3, identifier: "Shared Blessings with Shared Visions", paintings: [getPaintingByTitle(title: "Shared Blessings with Shared Visions")], proximity: 0, rrsi: 0, location: ""),
@@ -193,11 +193,11 @@ let beacons = [
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 27400, minor: 48675, firstContact: nil, time: 10, distance: 3, identifier: "Untitled", paintings: [getPaintingByTitle(title: "Untitled")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35995, minor: 11128, firstContact: nil, time: 10, distance: 3, identifier: "The Russell", paintings: [getPaintingByTitle(title: "The Russell")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23068, minor: 6689, firstContact: nil, time: 10, distance: 3, identifier: "Josephine Ford and Brigitte Harris", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23044, minor: 59833, firstContact: nil, time: 10, distance: 3, identifier: "The DNA of Hope", paintings: [getPaintingByTitle(title: "The DNA of Hope")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23044, minor: 59833, firstContact: nil, time: 10, distance: 3, identifier: "The DNA of Hope", paintings: [getPaintingByTitle(title: "The DNA of Hope"), getPaintingByTitle(title: "The Russell"), getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 55859, minor: 64145, firstContact: nil, time: 10, distance: 3, identifier: "Sway", paintings: [getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 43055, minor: 36490, firstContact: nil, time: 10, distance: 3, identifier: "DIA Art Walk", paintings: [getPaintingByTitle(title: "DIA Art Walk")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 2297, minor: 50393, firstContact: nil, time: 10, distance: 3, identifier: "Healing Arts Gallery", paintings: [getPaintingByTitle(title: "Healing Arts Gallery")], proximity: 0, rrsi: 0, location: ""),
-    
+    */
 ]
 
 

@@ -53,6 +53,7 @@ class SessionManager: NSObject {
     var notificationsStatus = ""
     
     var logInDate = ""
+    var isArtWalkModeSelected = false
     
     var user : User? {
         get {

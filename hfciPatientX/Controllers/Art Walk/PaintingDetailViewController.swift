@@ -46,6 +46,7 @@ class PaintingDetailViewController: UIViewController {
     
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        self.mapViewController?.showGoToArtwalkButton(isHidden: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

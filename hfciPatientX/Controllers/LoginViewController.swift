@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         enterButton.layer.cornerRadius = 7
         menu.anchorView = dropDown
         menu.selectionAction = { index, title in

@@ -216,6 +216,10 @@ class ChatManager {
             self?.socket?.disconnect()
         }
         
+        socket?.on("bcst-messages") { (data, ack) in
+            print("🏓🏓 broadcast-susbcribe \(data) + \(ack)")
+            //self.checkIncomingMessageToBroadcast(data: data)
+        }
         
 //        socket?.connect(timeoutAfter: 1.0) {
 //            let description = "timeoutAfter: 1.0 status:\(String(describing: self.socket?.status)) date:\(Date().stringFromDateZuluFormat())"

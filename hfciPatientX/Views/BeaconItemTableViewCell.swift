@@ -32,6 +32,7 @@ class BeaconItemTableViewCell: UITableViewCell  {
     @IBOutlet weak var mayorLabel: UILabel!
     @IBOutlet weak var proximityLabel: UILabel!
     @IBOutlet weak var identifierLabel: UILabel!
+    @IBOutlet weak var clproximityLabel: UILabel!
     @IBOutlet weak var distanceTextField: UITextField!
     @IBOutlet weak var timeTextField: UITextField!
     @IBOutlet weak var checkView: UIView!
@@ -73,6 +74,7 @@ class BeaconItemTableViewCell: UITableViewCell  {
         timeLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Time", sizeTop: 13, secondLine: beacon.time.description, sizeBottom: 13, color: .black)
         
         
+        clproximityLabel.attributedText = createDoubleLineTextForLabel(firstLine: "ClProx", sizeTop: 13, secondLine: beacon.clproximity.rawValue.description, sizeBottom: 13, color: .black)
 //        if beacon.isSelected {
 //            self.checkView.backgroundColor = .green
 //        } else {
