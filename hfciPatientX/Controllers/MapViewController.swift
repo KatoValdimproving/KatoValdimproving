@@ -246,13 +246,13 @@ class MapViewController: UIViewController {
         selectMenu.anchorView = selectDropdown
         selectMenu.selectionAction = { index, title in
             self.placeOption.text = title
-            self.point1 = title == "Your Location" ? nil : self.nodeLocations[index]
+            self.point1 = title == "Your Location" ? nil : self.nodeLocations.filter{$0.name == title}.first
         }
         
         fromSelect.anchorView = fromViewSelect
         fromSelect.selectionAction = { index, title in
             self.fromLbl.text = title
-            self.point1 = title == "Your Location" ? nil : self.nodeLocations[index]
+            self.point1 = title == "Your Location" ? nil : self.nodeLocations.filter{$0.name == title}.first
             if(self.point2 != nil){
                 self.getDirection()
             }
@@ -587,18 +587,18 @@ class MapViewController: UIViewController {
     func filterLocations() {
         self.nodeLocations = self.allLocations.filter { location in
             location.nodes!.count > 0
-        }
+        }.sorted { ($0.nodes?.first?.map)! <= ($1.nodes?.first?.map)!}
         
         filteredPolygonLocations = nodeLocations
         
-        let node : MPINode = (nodeLocations.first?.nodes?.first)!
-        print(node.map)
         
-        var dataSource = self.nodeLocations.map({ location in
-            location.name
-        })
-        
+        var dataSource : [String] = []
         dataSource.append("Your Location")
+        dataSource.append(contentsOf: self.nodeLocations.map({ location in
+            location.name
+        }))
+        
+        
         
         selectMenu.dataSource = dataSource
         
@@ -767,6 +767,9 @@ extension MapViewController: MPIMapViewDelegate {
     func onFirstMapLoaded() {
         // Called when the first map is fully loaded
         self.allLocations = mapMpiView.venueData?.locations ?? []
+        
+        self.mapFroors = self.mapMpiView.venueData?.maps.filter { $0.name != "Level -1" } ?? []
+    
         if let gallery = self.galleryViewController {
             gallery.allLocations = self.allLocations
             gallery.setAllLocations()
@@ -795,14 +798,12 @@ extension MapViewController: MPIMapViewDelegate {
 extension MapViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(tableView == locationData){
-            let data = self.filteredPolygonLocations[indexPath.row]
+            let data = self.filteredPolygonLocations.filter{$0.nodes?.first?.map == self.mapFroors[indexPath.section].id}
             
-            if ((data.polygons?.count) != nil) {
-                point2 =  self.filteredPolygonLocations[indexPath.row]
-                self.fromWhereView.isHidden = false
-            }
+            point2 = data[indexPath.row]
+            self.fromWhereView.isHidden = false
             
-            if data.nodes!.count > 0 {
+            if data[indexPath.row].nodes!.count > 0 {
                 let map = self.mapMpiView.venueData?.maps.first(where: { element in
                     element.id == self.point2.nodes?.first?.map ?? ""
                 })
@@ -816,16 +817,16 @@ extension MapViewController : UITableViewDelegate {
 
 extension MapViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView == locationData ? self.filteredPolygonLocations.count : self.instructions.count
+        return tableView == locationData ? self.filteredPolygonLocations.filter{$0.nodes?.first?.map == self.mapFroors[section].id}.count : self.instructions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(tableView == locationData) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PointCellTableViewCell") as? PointCellTableViewCell {
-                let data = self.filteredPolygonLocations[indexPath.row]
-                cell.locationDesc.text = data.name
+                let data = self.filteredPolygonLocations.filter{$0.nodes?.first?.map == self.mapFroors[indexPath.section].id}
+                cell.locationDesc.text = data[indexPath.row].name
                 cell.floor.text = self.mapMpiView.venueData?.maps.first(where: { element in
-                    element.id == data.nodes?.first?.map ?? ""
+                    element.id == data[indexPath.row].nodes?.first?.map ?? ""
                 })?.name ?? "Unknown"
                 return cell
             }
@@ -839,6 +840,14 @@ extension MapViewController : UITableViewDataSource {
         }
             
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        self.mapFroors[section].name
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.mapFroors.count
     }
     
 }
