@@ -843,11 +843,19 @@ extension MapViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        self.mapFroors[section].name
+        if(tableView == locationData) {
+            return self.mapFroors[section].name
+        }else{
+            return "Directions"
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.mapFroors.count
+        if(tableView == locationData) {
+            return self.mapFroors.count
+        }else{
+            return 1
+        }
     }
     
 }
