@@ -559,7 +559,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Go To Art Work">
+                                <buttonConfiguration key="configuration" style="plain" title="Go To ArtWork">
                                     <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="0.0"/>
                                 </buttonConfiguration>
                                 <connections>

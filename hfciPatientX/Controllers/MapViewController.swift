@@ -727,7 +727,7 @@ extension MapViewController: MPIMapViewDelegate {
         }
         
         if(ontrack){
-            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [self.nearestNode], polygons: nil, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [update.nearestNode ?? self.nearestNode], polygons: nil, duration: 0.0, changeZoom: true, minZoom: 0.4, tilt: 0.0, padding: .none , focusZoomFactor: 0.2))
         }
     }
 
