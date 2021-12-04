@@ -413,7 +413,7 @@ class ChatManager {
             self.socket?.emit(Events.join, payload) {
                 self.socket?.emit(Events.users)
                 self.socket?.on(Events.users, callback: { [weak self] data, ack in
-                    print("⚡️\(data)")
+                  //  print("⚡️\(data)")
                     let users = self?.parseUsers(from: data)
                     self?.usersDict = users
                     self?.currentUser = users?[userId]

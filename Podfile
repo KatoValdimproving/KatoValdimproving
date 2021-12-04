@@ -19,6 +19,17 @@ target 'hfciPatientX' do
   pod 'SwiftKeychainWrapper'
   pod 'MaterialComponents/Buttons'
   pod 'MDFInternationalization','~>2.0'
+ 
+# Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+
+# For Analytics without IDFA collection capability, use this pod instead
+# pod ‘Firebase/AnalyticsWithoutAdIdSupport’
+
+# Add the pods for any other Firebase products you want to use in your app
+# For example, to use Firebase Authentication and Cloud Firestore
+pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
 
   target 'hfciPatientXTests' do
     inherit! :search_paths

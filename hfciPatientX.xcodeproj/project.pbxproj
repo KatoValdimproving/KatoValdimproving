@@ -13,6 +13,7 @@
 		8B2C1A742727A783007AF57E /* BeaconItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */; };
 		8B2C1A762727A887007AF57E /* BeaconsConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */; };
 		8B36EF47272DF64C00171C51 /* ArtWalkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B36EF46272DF64C00171C51 /* ArtWalkExtensions.swift */; };
+		8B4D40D82757FD7300CDBB59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B4D40D72757FD7300CDBB59 /* GoogleService-Info.plist */; };
 		8B4F3B2A27189F5F00422485 /* PaintingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */; };
 		8B75FD23272F0224008F52E7 /* PaintingBeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FD22272F0224008F52E7 /* PaintingBeaconViewController.swift */; };
 		8B768928271DDC7C00C22345 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B768927271DDC7C00C22345 /* DirectionsViewController.swift */; };
@@ -127,6 +128,7 @@
 		8B2C1A722727A783007AF57E /* BeaconItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeaconItemTableViewCell.xib; sourceTree = "<group>"; };
 		8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsConsoleViewController.swift; sourceTree = "<group>"; };
 		8B36EF46272DF64C00171C51 /* ArtWalkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtWalkExtensions.swift; sourceTree = "<group>"; };
+		8B4D40D72757FD7300CDBB59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B4F3B2927189F5F00422485 /* PaintingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingDetailViewController.swift; sourceTree = "<group>"; };
 		8B75FD22272F0224008F52E7 /* PaintingBeaconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingBeaconViewController.swift; sourceTree = "<group>"; };
 		8B768927271DDC7C00C22345 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				CE2FB15F26EFA7B20040095B /* Assets.xcassets */,
 				CE2FB16126EFA7B20040095B /* LaunchScreen.storyboard */,
 				CE2FB16426EFA7B20040095B /* Info.plist */,
+				8B4D40D72757FD7300CDBB59 /* GoogleService-Info.plist */,
 				8BDEE45B26FC2B1C0014A054 /* Settings.bundle */,
 				8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */,
 			);
@@ -658,6 +661,7 @@
 				8B2C1A742727A783007AF57E /* BeaconItemTableViewCell.xib in Resources */,
 				CE2FB1A226F24DA90040095B /* Poppins-ExtraLight.ttf in Resources */,
 				CE29AB1A270D413E00184984 /* DirectionsTableViewCell.xib in Resources */,
+				8B4D40D82757FD7300CDBB59 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

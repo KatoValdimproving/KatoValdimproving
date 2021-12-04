@@ -124,7 +124,7 @@ class MapViewController: UIViewController {
            let directionsString = directionsInstructions.instructions.map { instruction in
                                 return instruction.instruction ?? "Unknown"
             }
-
+            self.startScanningPainting(painting: paint)
             self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
 
         }
@@ -427,8 +427,13 @@ class MapViewController: UIViewController {
                 }
                 paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                 paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-             //   self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
-              //  self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+//                self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+//                self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+                Alerts.displayAlertWithCompletion(title: "", and: "Beacons detected") {
+                    self.goBack(self)
+                    self.galleryNavigationController?.popToRootViewController(animated: true)
+
+                }
 
                 
             } else if beaconRanged.paintings.count > 1 {
@@ -906,11 +911,22 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController {
-    func startScanning() {
-        let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
-        locationManager.startMonitoring(for: beaconRegion)
-        locationManager.startRangingBeacons(in: beaconRegion)
+    func startScanningPainting(painting: Painting?) {
+        
+        if let paint = painting {
+            
+            guard let beacon = paint.beacon else { return }
+            let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "painting")
+            locationManager.startMonitoring(for: beaconRegion)
+            locationManager.startRangingBeacons(in: beaconRegion)
+        } else {
+            let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+            locationManager.startMonitoring(for: beaconRegion)
+            locationManager.startRangingBeacons(in: beaconRegion)
+        }
+   
         
 //        let uuid2 = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
 //        let beaconRegion2 = CLBeaconRegion(uuid: uuid, major: 20545, minor: 5125, identifier: "Painting 2")
@@ -920,11 +936,30 @@ extension MapViewController {
         
     }
     
-    func stopScanning() {
-        let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
-        locationManager.stopMonitoring(for: beaconRegion)
-        locationManager.stopRangingBeacons(in: beaconRegion)
+    func stopScanning(painting: Painting?) {
+        
+        if let paint = painting {
+            
+            guard let beacon = paint.beacon else { return }
+            let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "painting")
+            locationManager.stopMonitoring(for: beaconRegion)
+            locationManager.stopRangingBeacons(in: beaconRegion)
+        } else {
+            let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+            locationManager.stopMonitoring(for: beaconRegion)
+            locationManager.stopRangingBeacons(in: beaconRegion)
+        }
+        
+//        guard let beacon = painting.beacon else { return }
+//
+//        let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
+//        //        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+//
+//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "MyBeacon")
+//        locationManager.stopMonitoring(for: beaconRegion)
+//        locationManager.stopRangingBeacons(in: beaconRegion)
         
 //        let uuid2 = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
 //        let beaconRegion2 = CLBeaconRegion(uuid: uuid, major: 20545, minor: 5125, identifier: "Painting 2")

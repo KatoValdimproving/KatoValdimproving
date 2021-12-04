@@ -90,7 +90,7 @@ class HomeViewController: UIViewController {
 
     @IBAction func artWalkAction(_ sender: Any) {
         SessionManager.shared.isArtWalkModeSelected = true
-        self.mapViewController.startScanning()
+      //  self.mapViewController.startScanning()
         self.containerView.bringSubviewToFront(self.mapViewController.view)
         self.mapViewController.view.bringSubviewToFront(self.mapViewController.artWalkContainerView)
         self.mapViewController.controlls.isHidden = true
@@ -155,12 +155,12 @@ class HomeViewController: UIViewController {
             console.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             console.modalTransitionStyle = UIModalTransitionStyle.coverVertical
             console.didTapStop = {
-                self.mapViewController.stopScanning()
+              //  self.mapViewController.stopScanning()
 
             }
             
             console.didTapStart = {
-                self.mapViewController.startScanning()
+             //   self.mapViewController.startScanning()
 
             }
         self.navigationController?.present(console, animated: true, completion: nil)

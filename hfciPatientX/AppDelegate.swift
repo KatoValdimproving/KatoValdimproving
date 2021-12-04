@@ -8,6 +8,7 @@
 import UIKit
 import UserNotifications
 import CoreLocation
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //SettingsBundleHelper.shared.setInitialInfo()
+        FirebaseApp.configure()
         SettingsBundleHelper.shared.hospitalCode = "henryford"
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (succes, error) in
             if succes {
@@ -26,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SettingsBundleHelper.shared.addObserverEnvoriment()
       //  asignBeaconToPainting()
        // asignPaintingToBeacon()
-      //  asigBeaconsToPaintings()
+        asigBeaconsToPaintings()
         
       //  NotificationCenter.default.post(name: NSNotification.Name(Notifications.newMessage), object: self, userInfo: ["message":newMessage])
         NotificationCenter.default.addObserver(forName: NSNotification.Name(ChatManager.Notifications.newMessage), object: nil, queue: .main) { [weak self] notification in
