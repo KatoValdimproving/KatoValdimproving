@@ -397,12 +397,34 @@ class MapViewController: UIViewController {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController else { return }
-                
+                let backGroundView = UIView()
+                backGroundView.frame = UIScreen.main.bounds
+                backGroundView.backgroundColor = .darkGray
+                backGroundView.alpha = 0.6
                 paintingBeaconViewcontroller.painting = beaconRanged.paintings[0]
+                paintingBeaconViewcontroller.didPressNo = { painting in
+                    guard let beacon = painting.beacon else { return }
+                    self.goBack(self)
+                    beacon.isInDesiredDistance = false
+                    beacon.isInDesiredDistanceAndTime = false
+                    beacon.firstContact = nil
+                    self.stopScanning(painting: nil)
+                    self.galleryNavigationController?.popToRootViewController(animated: true)
+                    paintingBeaconViewcontroller.dismiss(animated: true)
+                    backGroundView.removeFromSuperview()
+                }
                 paintingBeaconViewcontroller.didPressYes = { painting in
-                    
-                    
-                    
+                    guard let beacon = painting.beacon else { return }
+                    self.goBack(self)
+                    beacon.isInDesiredDistance = false
+                    beacon.isInDesiredDistanceAndTime = false
+                    beacon.firstContact = nil
+                    self.stopScanning(painting: nil)
+                    self.galleryNavigationController?.popToRootViewController(animated: true)
+                    paintingBeaconViewcontroller.dismiss(animated: true)
+                    backGroundView.removeFromSuperview()
+
+                   /*
                     guard let beacon = painting.beacon else { return }
                     guard let location = self.getLocationWithBeacon(beacon: beacon) else { return }
                    
@@ -422,18 +444,21 @@ class MapViewController: UIViewController {
                         paintingDetailViewController.pushDirectionsView(directionsString: directionsString)
                         paintingDetailViewController.painting = beacon.paintings.first
                         paintingDetailViewController.mapViewController = self
-                    }
+                    }*/
                     
                 }
+                
                 paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//                self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
-//                self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
-                Alerts.displayAlertWithCompletion(title: "", and: "Beacons detected") {
-                    self.goBack(self)
-                    self.galleryNavigationController?.popToRootViewController(animated: true)
-
-                }
+              //  paintingBeaconViewcontroller.backgroundView.frame = self.view.bounds
+               // paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                self.view.addSubview(backGroundView)
+                self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
+                self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
+//                Alerts.displayAlertWithCompletion(title: "", and: "Beacons detected") {
+//                    self.goBack(self)
+//                    self.galleryNavigationController?.popToRootViewController(animated: true)
+//
+//                }
 
                 
             } else if beaconRanged.paintings.count > 1 {
@@ -885,7 +910,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             let dateTime = Date()
-            print("❌ \(location)")
+           // print("❌ \(location)")
             let coordinates = MPICoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, accuracy: 0.8, floorLevel: location.floor?.level)
             self.mapMpiView.blueDotManager.updatePosition(position: MPIPosition(timestamp: dateTime.timeIntervalSince1970, coords: coordinates, type: "", annotation: ""))
         }

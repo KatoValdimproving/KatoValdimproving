@@ -54,7 +54,7 @@ class Beacon: NSObject {
     //  }
     var noise: [Double] = [] {
         didSet {
-            if noise.count == 3 {
+            if noise.count == 2 {
                 
                 if noise.allSatisfy({ element in
                     element == -1

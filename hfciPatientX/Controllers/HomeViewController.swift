@@ -155,13 +155,12 @@ class HomeViewController: UIViewController {
             console.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             console.modalTransitionStyle = UIModalTransitionStyle.coverVertical
             console.didTapStop = {
-              //  self.mapViewController.stopScanning()
+               self.mapViewController.stopScanning(painting: nil)
 
             }
             
             console.didTapStart = {
-             //   self.mapViewController.startScanning()
-
+               self.mapViewController.startScanningPainting(painting: nil)
             }
         self.navigationController?.present(console, animated: true, completion: nil)
             

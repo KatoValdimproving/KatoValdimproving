@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BuV-57-Riw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BuV-57-Riw">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -198,7 +198,7 @@
                                         <rect key="frame" x="4" y="9.5" width="304" height="51"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcv-cx-h0y" userLabel="Explore" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcv-cx-h0y" userLabel="Explore" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
                                         <rect key="frame" x="27" y="76.5" width="118" height="70"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="locationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Dhp-gt-MoQ">
@@ -222,7 +222,7 @@
                                             <constraint firstAttribute="height" constant="70" id="lp8-Kr-lkl"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F86-hA-dGr" userLabel="Directions" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F86-hA-dGr" userLabel="Directions" customClass="RoundedButtonView" customModule="hfciPatientX" customModuleProvider="target">
                                         <rect key="frame" x="167" y="76.5" width="118" height="70"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="directionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tch-mG-NrB">
@@ -1333,15 +1333,15 @@
                                 <subviews>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1l-lq-t8J">
                                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="w1l-lq-t8J" secondAttribute="bottom" id="43n-4C-qqH"/>
-                                    <constraint firstItem="w1l-lq-t8J" firstAttribute="leading" secondItem="YeR-tl-oAx" secondAttribute="leading" id="evH-37-WWX"/>
-                                    <constraint firstAttribute="trailing" secondItem="w1l-lq-t8J" secondAttribute="trailing" id="s6p-0J-3HI"/>
-                                    <constraint firstItem="w1l-lq-t8J" firstAttribute="top" secondItem="YeR-tl-oAx" secondAttribute="top" id="xfg-qB-2np"/>
+                                    <constraint firstAttribute="trailing" secondItem="w1l-lq-t8J" secondAttribute="trailing" id="Yw2-nJ-0c4"/>
+                                    <constraint firstAttribute="bottom" secondItem="w1l-lq-t8J" secondAttribute="bottom" id="dPf-sk-f8b"/>
+                                    <constraint firstItem="w1l-lq-t8J" firstAttribute="top" secondItem="YeR-tl-oAx" secondAttribute="top" id="uGN-5w-J4Z"/>
+                                    <constraint firstItem="w1l-lq-t8J" firstAttribute="leading" secondItem="YeR-tl-oAx" secondAttribute="leading" id="vm4-hn-sAy"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Jl-ji-cgk">
@@ -1409,12 +1409,12 @@
                         <viewLayoutGuide key="safeArea" id="j5k-O7-kIe"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="5Jl-ji-cgk" firstAttribute="centerX" secondItem="cKw-5b-QB7" secondAttribute="centerX" id="2BR-fk-8rN"/>
                             <constraint firstItem="YeR-tl-oAx" firstAttribute="top" secondItem="cKw-5b-QB7" secondAttribute="top" id="57L-Um-s7r"/>
-                            <constraint firstItem="5Jl-ji-cgk" firstAttribute="centerX" secondItem="YeR-tl-oAx" secondAttribute="centerX" id="6nB-4r-oEW"/>
                             <constraint firstItem="YeR-tl-oAx" firstAttribute="trailing" secondItem="j5k-O7-kIe" secondAttribute="trailing" id="AsW-VV-KRG"/>
                             <constraint firstItem="YeR-tl-oAx" firstAttribute="leading" secondItem="j5k-O7-kIe" secondAttribute="leading" id="LEv-nM-fXa"/>
-                            <constraint firstItem="5Jl-ji-cgk" firstAttribute="centerY" secondItem="YeR-tl-oAx" secondAttribute="centerY" id="TDX-W1-qcy"/>
                             <constraint firstItem="YeR-tl-oAx" firstAttribute="bottom" secondItem="j5k-O7-kIe" secondAttribute="bottom" id="VBq-hH-99g"/>
+                            <constraint firstItem="5Jl-ji-cgk" firstAttribute="centerY" secondItem="cKw-5b-QB7" secondAttribute="centerY" id="aoP-U9-6KA"/>
                         </constraints>
                     </view>
                     <connections>
