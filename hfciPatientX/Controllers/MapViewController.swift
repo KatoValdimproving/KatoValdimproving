@@ -41,7 +41,6 @@ class MapViewController: UIViewController {
     var point1 : MPILocation!
     var point2 : MPILocation!
     var nearestNode : MPINode!
-    var ontrack = false
     var lastFloor = ""
     var didFinishLoadingMap: (()->())?
     var didRangedBeacons: (()->Void)?
@@ -84,8 +83,8 @@ class MapViewController: UIViewController {
         tolbl.text = "Destination?"
         fromLbl.text = "Your Location"
         placeOption.text = "Your Location"
+        mapMpiView.blueDotManager.setState(state: .EXPLORE)
         mapMpiView.journeyManager.clear()
-        ontrack = false
     }
     
     func showGoToArtwalkButton(isHidden: Bool) {
@@ -308,13 +307,7 @@ class MapViewController: UIViewController {
     }
     
     @objc func thumbsUpButtonPressed() {
-        if(ontrack){
-            centerButton.setImage(UIImage(named:"myLocation"), for: .normal)
-            ontrack = !ontrack
-        }else{
-            centerButton.setImage(UIImage(named:"map"), for: .normal)
-            ontrack = !ontrack
-        }
+        self.mapMpiView.blueDotManager.setState(state: .FOLLOW)
     }
     
     func guidedArtWalkFromCurrentLocation() {
@@ -656,9 +649,8 @@ class MapViewController: UIViewController {
     }
     
     func getDirection() {
-        self.centerButton.isHidden = false        
-        
-        self.mapMpiView.cameraControlsManager.setTilt(tilt: 0.6, callback: nil)
+        self.mapMpiView.blueDotManager.setState(state: .FOLLOW)
+        self.centerButton.isHidden = false
         if(point1 != nil && (point2.nodes?.count ?? 0) > 0){
             let map = self.mapMpiView.venueData?.maps.first(where: { element in
                 element.id == self.point1.nodes?.first?.map ?? ""
@@ -668,7 +660,7 @@ class MapViewController: UIViewController {
             self.mapMpiView?.getDirections(to: point2.nodes?.first as! MPINavigatable, from: point1.nodes?.first as! MPINavigatable, accessible: true) { directions in
                 if let directions = directions {
                     self.mapMpiView.setMap(mapId: self.point1.nodes?.first?.map ?? "", completionCallback: nil)
-                    //self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: nil, polygons: nil, duration: 1.0, changeZoom: true, minZoom: 0, tilt: 0.8, padding: .none, focusZoomFactor: 1))
+                    self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: nil, polygons: nil, duration: 1.0, changeZoom: true, minZoom: 0, tilt: 0.8, padding: .none, focusZoomFactor: 1))
                     self.mapMpiView?.drawJourney(
                         directions: directions,
                         options: MPIOptions.Journey(
@@ -680,7 +672,6 @@ class MapViewController: UIViewController {
                         return instruction.instruction ?? "Unknown"
                     }
                     self.directionsData.reloadData()
-                    //self.ontrack = true
                 }
             }
             
@@ -705,7 +696,6 @@ class MapViewController: UIViewController {
                         return instruction.instruction ?? "Unknown"
                     }
                     self.directionsData.reloadData()
-                    //self.ontrack = true
                 }
             }
         }
@@ -775,9 +765,6 @@ extension MapViewController: MPIMapViewDelegate {
             }
         }
         
-        if(ontrack){
-            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [update.nearestNode ?? self.nearestNode], polygons: nil, duration: 20.0, changeZoom: true, minZoom: 0.0, tilt: 0.6, padding: .none, focusZoomFactor: 0.0))
-        }
     }
 
     func onBlueDotStateChange(stateChange: MPIBlueDotStateChange) {
@@ -785,7 +772,7 @@ extension MapViewController: MPIMapViewDelegate {
     }
 
     func onMapChanged(map: MPIMap) {
-        
+        print(map.shortName)
     }
 
     func onPolygonClicked(polygon: MPIPolygon) {
@@ -844,6 +831,7 @@ extension MapViewController: MPIMapViewDelegate {
 
     func onStateChanged (state: MPIState) {
         // Called when the state of the map has changed
+        print(state)
     }
     
 }
@@ -862,7 +850,7 @@ extension MapViewController : UITableViewDelegate {
                 })
                 floorLBL.text = labelString(option: map?.name ?? "")
                 self.mapMpiView.setMap(mapId: self.point2.nodes?.first?.map ?? "", completionCallback: nil)
-                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.6, padding: .none , focusZoomFactor: 0.2))
+                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.1, tilt: 0.6, padding: .none , focusZoomFactor: 0.1))
             }
         }
     }
