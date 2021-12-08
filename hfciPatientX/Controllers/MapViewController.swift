@@ -9,6 +9,7 @@ import UIKit
 import DropDown
 import Mappedin
 import CoreLocation
+import WebKit
 
 class MapViewController: UIViewController {
 
@@ -46,6 +47,8 @@ class MapViewController: UIViewController {
     var didRangedBeacons: (()->Void)?
     var painting: Painting?
     var paintingDetailViewController: PaintingDetailViewController?
+    let centerButton = UIButton(type: .custom)
+    
     @IBOutlet weak var fromWhereView: UIView!
     
     @IBOutlet weak var selectDropdown: UIView!
@@ -66,6 +69,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBAction func goBack(_ sender: Any) {
+        centerButton.isHidden = true
         directionsView.isHidden = true
         controlls.isHidden = false
         fromWhereView.isHidden = true
@@ -131,7 +135,7 @@ class MapViewController: UIViewController {
         
         
     }
-    
+
     //From dropdown inside the view after you select a point in the table, you need all the points in the map that have nodes
     var selectMenu : DropDown = {
         let menu = DropDown()
@@ -159,14 +163,14 @@ class MapViewController: UIViewController {
             directionsView.isHidden = false
             fromLbl.text = point1.name
             tolbl.text = point2.name
-            mapMpiView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            //mapMpiView.frame = CGRect(x: 0, y: 0, width: self.mapView.frame.width, height:self.mapView.frame.height)
             getDirection()
         }else if(nearestNode != nil){
             controlls.isHidden = true
             directionsView.isHidden = false
             fromLbl.text = "Your Location"
             tolbl.text = point2.name
-            mapMpiView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            //mapMpiView.frame = CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height)
             getDirection()
         }
     }
@@ -194,7 +198,7 @@ class MapViewController: UIViewController {
         self.goToArtwalkButton.layer.cornerRadius = 10
         floorSelector.layer.cornerRadius = 10
         floorSelector.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-        mapMpiView = MPIMapView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        mapMpiView = MPIMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.height, height: self.mapView.frame.width))
         
         self.mapView.addSubview(mapMpiView)
         if let mapView = mapMpiView {
@@ -293,11 +297,25 @@ class MapViewController: UIViewController {
         artWalkContainerView.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height - 90)
         controlls.isHidden = false
         artWalkContainerView.isHidden = true
-
-
+        
+        centerButton.frame = CGRect(x: self.mapMpiView.frame.width - 80, y: self.mapMpiView.frame.height - 150, width: self.mapMpiView.frame.width/12, height: self.mapMpiView.frame.width/12)
+        centerButton.layer.cornerRadius = 0.5 * centerButton.bounds.size.width
+        centerButton.clipsToBounds = true
+        centerButton.setImage(UIImage(named:"myLocation"), for: .normal)
+        centerButton.addTarget(self, action: #selector(thumbsUpButtonPressed), for: .touchUpInside)
+        centerButton.isHidden = true
+        mapMpiView.addSubview(centerButton)
     }
     
-    
+    @objc func thumbsUpButtonPressed() {
+        if(ontrack){
+            centerButton.setImage(UIImage(named:"myLocation"), for: .normal)
+            ontrack = !ontrack
+        }else{
+            centerButton.setImage(UIImage(named:"map"), for: .normal)
+            ontrack = !ontrack
+        }
+    }
     
     func guidedArtWalkFromCurrentLocation() {
         
@@ -361,7 +379,7 @@ class MapViewController: UIViewController {
         self.mapMpiView?.getDirections(to: location, from: locations, accessible: true) { directions in
             // remove custom markers before calling drawJourney
             if let directions = directions {
-                self.mapMpiView?.focusOn(focusOptions: MPIOptions.Focus(nodes: [locations], polygons: [], duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none, focusZoomFactor: 0.2))
+                self.mapMpiView?.focusOn(focusOptions: MPIOptions.Focus(nodes: [locations], polygons: [], duration: 1.0, changeZoom: true, minZoom: 1.0, tilt: 0.6, padding: .none, focusZoomFactor: 0.2))
                 self.mapMpiView?.drawJourney(
                     directions: directions,
                     options: MPIOptions.Journey(
@@ -373,8 +391,6 @@ class MapViewController: UIViewController {
                 )
                 
                 directionsInstructions(directions)
-                
-                
             }
         }
     }
@@ -640,6 +656,9 @@ class MapViewController: UIViewController {
     }
     
     func getDirection() {
+        self.centerButton.isHidden = false        
+        
+        self.mapMpiView.cameraControlsManager.setTilt(tilt: 0.6, callback: nil)
         if(point1 != nil && (point2.nodes?.count ?? 0) > 0){
             let map = self.mapMpiView.venueData?.maps.first(where: { element in
                 element.id == self.point1.nodes?.first?.map ?? ""
@@ -649,7 +668,7 @@ class MapViewController: UIViewController {
             self.mapMpiView?.getDirections(to: point2.nodes?.first as! MPINavigatable, from: point1.nodes?.first as! MPINavigatable, accessible: true) { directions in
                 if let directions = directions {
                     self.mapMpiView.setMap(mapId: self.point1.nodes?.first?.map ?? "", completionCallback: nil)
-                    self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point1.nodes, polygons: self.point1.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+                    //self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: nil, polygons: nil, duration: 1.0, changeZoom: true, minZoom: 0, tilt: 0.8, padding: .none, focusZoomFactor: 1))
                     self.mapMpiView?.drawJourney(
                         directions: directions,
                         options: MPIOptions.Journey(
@@ -661,7 +680,7 @@ class MapViewController: UIViewController {
                         return instruction.instruction ?? "Unknown"
                     }
                     self.directionsData.reloadData()
-                    self.ontrack = true
+                    //self.ontrack = true
                 }
             }
             
@@ -674,7 +693,7 @@ class MapViewController: UIViewController {
             self.mapMpiView?.getDirections(to: point2.nodes?.first as! MPINavigatable, from: nearestNode as! MPINavigatable, accessible: true) { directions in
                 if let directions = directions {
                     self.mapMpiView.setMap(mapId: self.nearestNode.map ?? "", completionCallback: nil)
-                    self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [self.nearestNode], polygons: [], duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+                    //self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: nil, polygons: nil, duration: 1.0, changeZoom: true, minZoom: 0, tilt: 0.2, padding: .none, focusZoomFactor: 1))
                     self.mapMpiView?.drawJourney(
                         directions: directions,
                         options: MPIOptions.Journey(
@@ -686,7 +705,7 @@ class MapViewController: UIViewController {
                         return instruction.instruction ?? "Unknown"
                     }
                     self.directionsData.reloadData()
-                    self.ontrack = true
+                    //self.ontrack = true
                 }
             }
         }
@@ -757,7 +776,7 @@ extension MapViewController: MPIMapViewDelegate {
         }
         
         if(ontrack){
-            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [update.nearestNode ?? self.nearestNode], polygons: nil, duration: 0.0, changeZoom: true, minZoom: 0.4, tilt: 0.0, padding: .none , focusZoomFactor: 0.2))
+            self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: [update.nearestNode ?? self.nearestNode], polygons: nil, duration: 20.0, changeZoom: true, minZoom: 0.0, tilt: 0.6, padding: .none, focusZoomFactor: 0.0))
         }
     }
 
@@ -766,6 +785,7 @@ extension MapViewController: MPIMapViewDelegate {
     }
 
     func onMapChanged(map: MPIMap) {
+        
     }
 
     func onPolygonClicked(polygon: MPIPolygon) {
@@ -817,6 +837,9 @@ extension MapViewController: MPIMapViewDelegate {
             allowImplicitFloorLevel: true, smoothing: false, showBearing: true, baseColor: "#2266ff"
         ))
         
+        print(mapMpiView.cameraControlsManager.rotation)
+        print(mapMpiView.cameraControlsManager.tilt)
+        
     }
 
     func onStateChanged (state: MPIState) {
@@ -839,7 +862,7 @@ extension MapViewController : UITableViewDelegate {
                 })
                 floorLBL.text = labelString(option: map?.name ?? "")
                 self.mapMpiView.setMap(mapId: self.point2.nodes?.first?.map ?? "", completionCallback: nil)
-                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.2, padding: .none , focusZoomFactor: 0.2))
+                self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: self.point2.nodes, polygons: self.point2.polygons, duration: 0.2, changeZoom: true, minZoom: 0.4, tilt: 0.6, padding: .none , focusZoomFactor: 0.2))
             }
         }
     }
