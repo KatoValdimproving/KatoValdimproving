@@ -1491,6 +1491,7 @@
                     <navigationItem key="navigationItem" id="zSM-PU-IAR"/>
                     <connections>
                         <outlet property="collectionView" destination="V4E-bw-Nil" id="ckX-mB-qKf"/>
+                        <outlet property="searchBar" destination="PLK-uS-Gum" id="t0X-7H-C9d"/>
                         <segue destination="x95-dI-8RQ" kind="show" identifier="pictureDetail" id="z1x-j9-AQc"/>
                     </connections>
                 </viewController>
