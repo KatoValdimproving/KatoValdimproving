@@ -11,7 +11,7 @@ import IQKeyboardManagerSwift
 import MaterialComponents
 import Alamofire
 
-let privacyLeyend = "Henry Ford Health System cares about the privacy of your health information, so you should be advised not to share any health information on this plastform"
+let privacyLeyend = "Henry Ford Health System cares about the privacy of your health information, so you should be advised not to share any health information on this platform"
 
 class LoginViewController: UIViewController {
 

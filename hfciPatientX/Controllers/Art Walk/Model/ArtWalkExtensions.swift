@@ -92,7 +92,7 @@ Johanna Curwood is an Australian artist based in the United States who works in 
     
     Painting(name: "6", title: "Untitled", author: "James Collins", text: """
 Employing process as content, Detroit-based artist James Collins produces graphic line paintings that resemble warped photocopies and moiré patterns. His multidimensional line-heavy works are created using a chance-based, custom process in which oil paint and water-based acrylic interact in a fluid state and repel each other. Relying on a precise chemical balance, Collins allows his materials to dictate their own outcomes. Though this technique, he can create entire paintings in one sitting. His goal, he has said, is not to create new imagery but to breathe new life into painting by giving art-making materials command over the resulting artwork. Collins’s earlier works involved layers of white and silver house paint wrapped in plastic wrap to add texture and allowed to flake and peel over time.
-""", origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Rust and Roses by Johanna Curwood"),
+""", origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Untitled by James Collins"),
     
     
     Painting(name: "7", title: "The Russell", author: "Darcel Deneau", text: """
@@ -180,12 +180,12 @@ The Wright & Cathy Lassiter Healing Arts Gallery hosts curated art exhibitions f
 ]
 
 let beacons = [
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 5, distance: 2, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 5, distance: 1, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
+  //  Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 5, distance: 2, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
+ //   Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 5, distance: 1, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
 //   Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 7509, minor: 50853, firstContact: nil, time: 100, distance: 4, identifier: "3", paintings: [], proximity: 0, rrsi: 0, location: ""),
 //    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 19879, minor: 24862, firstContact: nil, time: 100, distance: 4, identifier: "4", paintings: [], proximity: 0, rrsi: 0, location: ""),
     
-   /*
+   
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35557, minor: 9601, firstContact: nil, time: 5, distance: 2, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 5, distance: 5, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 454, minor: 21971, firstContact: nil, time: 5, distance: 2, identifier: "Shared Blessings with Shared Visions", paintings: [getPaintingByTitle(title: "Shared Blessings with Shared Visions")], proximity: 0, rrsi: 0, location: ""),
@@ -197,7 +197,7 @@ let beacons = [
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 55859, minor: 64145, firstContact: nil, time: 5, distance: 3, identifier: "Sway", paintings: [getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 43055, minor: 36490, firstContact: nil, time: 5, distance: 5, identifier: "DIA Art Walk", paintings: [getPaintingByTitle(title: "DIA Art Walk")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 2297, minor: 50393, firstContact: nil, time: 5, distance: 5, identifier: "Healing Arts Gallery", paintings: [getPaintingByTitle(title: "Healing Arts Gallery")], proximity: 0, rrsi: 0, location: ""),
-    */
+    
     
 ]
 
