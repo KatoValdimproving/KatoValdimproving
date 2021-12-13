@@ -25,6 +25,8 @@
 		8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53826FC22B600057F79 /* ChatUser.swift */; };
 		8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B53F26FC22E800057F79 /* MessagesViewController.swift */; };
 		8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B54E26FC25A300057F79 /* ChatViewController.swift */; };
+		8B7E2CD12766DCAE0048C5A7 /* BottomBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B7E2CD02766DCAE0048C5A7 /* BottomBannerView.xib */; };
+		8B7E2CD32766DCEF0048C5A7 /* BottomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CD22766DCEF0048C5A7 /* BottomBannerView.swift */; };
 		8B8E65542715E0D80052B7C6 /* ArtWalk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */; };
 		8B8E65572715E1EE0052B7C6 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */; };
 		8B8E655A2715E2DE0052B7C6 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */; };
@@ -139,6 +141,9 @@
 		8B79B53826FC22B600057F79 /* ChatUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		8B79B53F26FC22E800057F79 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		8B79B54E26FC25A300057F79 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		8B7E2CCD27654EE40048C5A7 /* hfciPatientX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hfciPatientX.entitlements; sourceTree = "<group>"; };
+		8B7E2CD02766DCAE0048C5A7 /* BottomBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomBannerView.xib; sourceTree = "<group>"; };
+		8B7E2CD22766DCEF0048C5A7 /* BottomBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerView.swift; sourceTree = "<group>"; };
 		8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArtWalk.storyboard; sourceTree = "<group>"; };
 		8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -305,6 +310,15 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		8B7E2CCF2766DC8B0048C5A7 /* Bottom Banner */ = {
+			isa = PBXGroup;
+			children = (
+				8B7E2CD02766DCAE0048C5A7 /* BottomBannerView.xib */,
+				8B7E2CD22766DCEF0048C5A7 /* BottomBannerView.swift */,
+			);
+			path = "Bottom Banner";
+			sourceTree = "<group>";
+		};
 		8B8E65552715E15C0052B7C6 /* Art Walk */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +362,7 @@
 		CE2FB15526EFA7AE0040095B /* hfciPatientX */ = {
 			isa = PBXGroup;
 			children = (
+				8B7E2CCD27654EE40048C5A7 /* hfciPatientX.entitlements */,
 				CE6AEB50274BF661008E3869 /* Models */,
 				8B79B52D26FC223700057F79 /* Chat */,
 				CE2FB1B426F252D70040095B /* Controllers */,
@@ -398,6 +413,7 @@
 		CE2FB18826EFA88C0040095B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B7E2CCF2766DC8B0048C5A7 /* Bottom Banner */,
 				CE2FB1B926F258620040095B /* RoundedView.swift */,
 				CEE7500B2704E7EA00BD6CB7 /* PointCellTableViewCell.swift */,
 				CEE7500C2704E7EA00BD6CB7 /* PointCellTableViewCell.xib */,
@@ -625,6 +641,7 @@
 				CE29AB0A270CA19A00184984 /* Roboto-LightItalic.ttf in Resources */,
 				CE29AB08270CA19A00184984 /* Roboto-Bold.ttf in Resources */,
 				CE29AB09270CA19A00184984 /* Roboto-BoldItalic.ttf in Resources */,
+				8B7E2CD12766DCAE0048C5A7 /* BottomBannerView.xib in Resources */,
 				CE29AB0B270CA19A00184984 /* Roboto-Black.ttf in Resources */,
 				CE2FB16326EFA7B20040095B /* LaunchScreen.storyboard in Resources */,
 				CE29AB06270CA19A00184984 /* Roboto-BlackItalic.ttf in Resources */,
@@ -809,6 +826,7 @@
 				CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */,
 				CE29AB19270D413E00184984 /* DirectionsTableViewCell.swift in Sources */,
 				8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */,
+				8B7E2CD32766DCEF0048C5A7 /* BottomBannerView.swift in Sources */,
 				8BDEE4E126FC2FD00014A054 /* NetworkManager.swift in Sources */,
 				8B79B53A26FC22B600057F79 /* ChatManager.swift in Sources */,
 				8BDEE53E26FC338F0014A054 /* Alerts.swift in Sources */,
@@ -1007,6 +1025,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = hfciPatientX/hfciPatientX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
@@ -1030,6 +1049,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = hfciPatientX/hfciPatientX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 9WDAW374KU;

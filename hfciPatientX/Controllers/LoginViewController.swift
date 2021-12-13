@@ -11,12 +11,15 @@ import IQKeyboardManagerSwift
 import MaterialComponents
 import Alamofire
 
+let privacyLeyend = "Henry Ford Health System cares about the privacy of your health information, so you should be advised not to share any health information on this plastform"
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var NameTxtImp: UITextField!
     @IBOutlet weak var enterButton: MDCButton!
     @IBOutlet weak var deviceIdLBL: UILabel!
     
+    @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     @IBAction func sendInfo(_ sender: Any) {
         logIn()
@@ -26,7 +29,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         enterButton.layer.cornerRadius = 7
-        
+        self.privacyLabel.text = privacyLeyend
         deviceIdLBL.text = SettingsBundleHelper.shared.testerId
         self.appVersionLabel.text = appVersion() + " " + appBuild()
         
@@ -59,6 +62,7 @@ class LoginViewController: UIViewController {
     }
 
     func logIn() {
+        
         guard let name = self.NameTxtImp.text, self.NameTxtImp.hasText else { return }
         self.NameTxtImp.text = ""
         SessionManager.shared.userName = name

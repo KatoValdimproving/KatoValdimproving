@@ -118,6 +118,7 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func goToArtWalkPaintingAction(_ sender: Any) {
+    
        guard let paint = self.painting else { return }
         guard let location = getLocationWithPainting(painting: paint) else { return }
 
@@ -403,7 +404,25 @@ class MapViewController: UIViewController {
            // Alerts.displayAlertPainting(painting: beaconRanged.paintings[0])
             
             if beaconRanged.paintings.count == 1 {
-            
+                
+                guard let bottomBanner = BottomBannerView.instantiate() else { return }
+                bottomBanner.frame = CGRect(x: self.mapView.bounds.midX + 10 , y: UIScreen.main.bounds.maxY, width: 600, height: 50)
+             //   bottomBanner?.center.y = self.view.center.y
+                bottomBanner.layer.masksToBounds = true;
+
+                bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier) 
+                bottomBanner.layer.cornerRadius = 10
+                bottomBanner.titleLabel.layer.cornerRadius = 10
+                self.view.addSubview(bottomBanner)
+                bottomBanner.show(true)
+                
+                _ = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { timer in
+                    bottomBanner.show(false)
+                    self.galleryNavigationController?.popViewController(animated: false)
+                    self.goBack(self)
+                }
+                
+           /*
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController else { return }
                 let backGroundView = UIView()
@@ -469,7 +488,7 @@ class MapViewController: UIViewController {
 //
 //                }
 
-                
+                */
             } else if beaconRanged.paintings.count > 1 {
               //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
                 
