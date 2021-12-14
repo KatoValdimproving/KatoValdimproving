@@ -53,7 +53,7 @@ Magna acrylics on canvas
 Color Field painter Friedel Dzubas was a pioneer of the stain painting technique alongside 20th century painters, Helen Frankenthaler, Morris Louis, and Kenneth Noland. His earliest works evoked Paul Klee, but he soon moved towards working exclusively in colorful stain painting. He applied paint in a thin, texturally uniform manner creating fields of dense color and other areas where the color seemed almost translucent. For Dzubas, these paintings referenced natural phenomena, emotion, the painterly gesture, and the experience of color itself. Dzubas had a prolific art career that spanned nearly five decades.
 
 These paintings are part of a seventeen-canvas installation. The others are displayed at Henry Ford Health System’s Royal Oak Medical Center
-""", origin: "German/American", technique: "", year: "1915-1994", location: "Vestibule"),
+""", origin: "German/American", technique: "", year: "1915-1994", location: "Calendar by Friedel Dzubas"),
     
     Painting(name: "2", title: "Simbiosis", author: "Juan Carlos Martinez", text: """
 Simbiosis is a custom hanging sculpture created especially for the Brigitte Harris Cancer Pavilion. The sculpture features several imagined flying forms and seed pods inspired by the artist’s trip to Colombia. The artist utilized several different metalworking techniques to create each unique form and used interference acrylic paint with Micah flakes to produce the iridescent effect.
@@ -83,7 +83,7 @@ Repetition, dissemination, and the building of images in the work allows me to c
 Artist Bio:
 
 A Chicago and Milwaukee native, Tyanna received her B.A from Western Illinois University, and her MFA from the University of Wisconsin-Madison. In 2012, Buie received an emerging artist Mary L. Nohl Fellowship and is the recipient of a 2015 Joan Mitchell Foundation Painters & Sculptors Grant and the 2015 Love of Humanity Award from the Greater Milwaukee Foundation. Her work is currently on view in the collection of the Milwaukee Art Museum as part of the permanent collection. Buie currently lives and works in Detroit, MI, where she is an Assistant Professor/ Section Chair of Printmaking at the College for Creative Studies.
-""", origin: "Detroit, Michigan", technique: "Screenprint, Caran d'Ache, hand-cut paper, monotype on paper", year: "2020", location: "1 East Restroom"),
+""", origin: "Detroit, Michigan", technique: "Screenprint, Caran d'Ache, hand-cut paper, monotype on paper", year: "2020", location: "A Series of Arrangements #2 by Tyanna\tBuie"),
     
     
     Painting(name: "5", title: "Rust and Roses", author: "Johanna Curwood", text: """
@@ -92,7 +92,7 @@ Johanna Curwood is an Australian artist based in the United States who works in 
     
     Painting(name: "6", title: "Untitled", author: "James Collins", text: """
 Employing process as content, Detroit-based artist James Collins produces graphic line paintings that resemble warped photocopies and moiré patterns. His multidimensional line-heavy works are created using a chance-based, custom process in which oil paint and water-based acrylic interact in a fluid state and repel each other. Relying on a precise chemical balance, Collins allows his materials to dictate their own outcomes. Though this technique, he can create entire paintings in one sitting. His goal, he has said, is not to create new imagery but to breathe new life into painting by giving art-making materials command over the resulting artwork. Collins’s earlier works involved layers of white and silver house paint wrapped in plastic wrap to add texture and allowed to flake and peel over time.
-""", origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Grand Corridor"),
+""", origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Untitled by James Collins"),
     
     
     Painting(name: "7", title: "The Russell", author: "Darcel Deneau", text: """
@@ -111,14 +111,14 @@ Detroit inspired me. Initially I became fascinated with painting images of the c
 A negative perception of Detroit was apparent and fueled my drive to validate the city's worth even more. Today I continue to paint positive images of this truly amazing city.” – Darcel Deneau
 
 The Russell Industrial Center is an industrial factory turned to commercial complex of studios and shops that is located at 1600 Clay Street in Detroit, Michigan. The Russell Industrial Center is a 2,200,000-square-foot (200,000 m2), seven building complex designed by Albert Kahn for John William Murray in 1915. It contains studios and lofts and serves as a professional center for commercial and creative arts.
-""", origin: "Detroit, Michigan", technique: "Glass mosaic", year: "", location: "Patient Resource Center"),
+""", origin: "Detroit, Michigan", technique: "Glass mosaic", year: "", location: "The Russell by Darcel Deneau"),
     
     
     Painting(name: "8", title: "Josephine Ford and Brigitte Harris", author: "Desiree Kelly", text: """
 Desiree Kelly is an award-winning artist and a native to Detroit. She was introduced to oil painting while studying Graphic Design at Wayne State University. Raised on the Eastside, she is inspired by the environment and has developed a style of storytelling through portraits. Her portraits of public icons are historically immersive & reflect on the narrative of her subjects by including artifacts & phrases within each piece. She is known for her distinctive mixture of “street art” & traditional oil technique.
 
 Kelly’s work can be seen in the Coleman A. Young Municipal Building (Mayor's office), dPoP!, Kuzzo's Chicken & Waffles, Eastern Market & the historical Alger Theater in Detroit. Her work is also in the permanent collections of the Charles H Wright Museum of African American History and Flint Institute of Arts. Her work has been published in the Washington Post and she has been commissioned by a number of private collections and public corporations which include Pepsi, Pandora (jewelry), Detroit Pistons, The Ellen DeGeneres Show, Converse, Kroger & Foot Locker.
-""", origin: "Detroit, Michigan", technique: "Oil, spray paint, acrylic, on canvas", year: "2020", location: "Brigitte Harris and Josephine Ford"),
+""", origin: "Detroit, Michigan", technique: "Oil, spray paint, acrylic, on canvas", year: "2020", location: "Brigitte Harris and Josephine Ford by Desiree Kelly"),
     
     
     Painting(name: "9", title: "The DNA of Hope", author: "Erik and Israel Nordin, Detroit Design Center", text: """
@@ -138,33 +138,33 @@ Susan Goethel Campbell creates multi-disciplinary work that considers landscape 
 Campbell earned an MFA in printmaking from Cranbrook Academy of Art. Her work has been exhibited internationally in Belgium, Germany, Switzerland and Slovenia and nationally throughout the US, including, National Museum of Women in the Arts, Queens Art Museum, Crystal Bridges Museum, Museum of Contemporary Art Detroit, Grand Rapids Art Museum, the Detroit Institute of Arts, The Drawing Center, and The International Print Center New York. In 2009 she was one of 18 artists selected for the inaugural Kresge Artist Fellowship.
 
 Campbell has been awarded residencies at the Banff Centre for the Arts, Flemish Center for Graphic Arts, the Jentel Foundation, Beisinghoff Print residency and the Print Research Institute of North Texas. She taught studio art for 15 years at the College for Creative Studies in Detroit and has been a visiting artist in numerous institutions in the United States and abroad. Her work is in the collection of the National Museum of Women in the Arts, New York Public Library, Detroit Institute of Arts, Toledo Museum of Art and the University of Michigan Special Collections Library.
-""", origin: "Ferndale, Michigan", technique: "5 woodblock prints on panels, 1 digital photo on dibond", year: "2020", location: "Sway – Installation art"),
+""", origin: "Ferndale, Michigan", technique: "5 woodblock prints on panels, 1 digital photo on dibond", year: "2020", location: "Sway by Susan Goethel Campbell"),
     
     
     
-    Painting(name: "11", title: "Rags and Old Iron", author: "Carole Harris", text: """
-Carole Harris is a fiber artist who extends the boundaries of traditional quilting by exploring other forms of stitchery, irregular shapes, textures, materials, and objects. Her mother introduced her to needle arts at an early age, teaching her embroidery and crochet. It wasn’t until she received her BFA in art from Wayne State University in 1966 that she began to explore fibers as an art form.
-Carole is captivated by the interplay of hue and pattern, often drawing inspiration from the color, energy, movement, and rhythms of ethnographic rituals and textiles: as well as the music of and changing rhythms and history of the city of Detroit where she lives with her husband, Bill.
-Her process involves using commercially printed cottons, silks, hand-dyed and vintage fabrics, which she alters by overdyeing or painting. Carole often employs found objects, paper, rust dyeing, collage and even burning as techniques. These materials are cut up, overlaid, and repositioned creating a densely layered collage, with the top layer finished with hand-embroidery.
-“I now draw inspiration from walls, aging structures and objects that reveal years of use. My intention is to celebrate the beauty in the frayed, the decaying and the repaired. I want to capture the patina of color softened by time, as well as feature the nicks, scratches, scars, and other marks left by nature or humans on constructed and natural surfaces. I want to interpret these changes and tell these stories of time, place and people in cloth, using creative stitching, layering and the mixing of colorful and textured fabrics.”  - Carole Harris
-""", origin: "Detroit, Michigan", technique: "Mixed media collage", year: "", location: "1 West Check in: Radiation Oncology and Treatment Center"),
+//    Painting(name: "11", title: "Rags and Old Iron", author: "Carole Harris", text: """
+//Carole Harris is a fiber artist who extends the boundaries of traditional quilting by exploring other forms of stitchery, irregular shapes, textures, materials, and objects. Her mother introduced her to needle arts at an early age, teaching her embroidery and crochet. It wasn’t until she received her BFA in art from Wayne State University in 1966 that she began to explore fibers as an art form.
+//Carole is captivated by the interplay of hue and pattern, often drawing inspiration from the color, energy, movement, and rhythms of ethnographic rituals and textiles: as well as the music of and changing rhythms and history of the city of Detroit where she lives with her husband, Bill.
+//Her process involves using commercially printed cottons, silks, hand-dyed and vintage fabrics, which she alters by overdyeing or painting. Carole often employs found objects, paper, rust dyeing, collage and even burning as techniques. These materials are cut up, overlaid, and repositioned creating a densely layered collage, with the top layer finished with hand-embroidery.
+//“I now draw inspiration from walls, aging structures and objects that reveal years of use. My intention is to celebrate the beauty in the frayed, the decaying and the repaired. I want to capture the patina of color softened by time, as well as feature the nicks, scratches, scars, and other marks left by nature or humans on constructed and natural surfaces. I want to interpret these changes and tell these stories of time, place and people in cloth, using creative stitching, layering and the mixing of colorful and textured fabrics.”  - Carole Harris
+//""", origin: "Detroit, Michigan", technique: "Mixed media collage", year: "", location: "1 West Check in: Radiation Oncology and Treatment Center"),
     
     
-    Painting(name: "12", title: "Lakeside Ride", author: "Bowen Kline", text: """
-Artist’s Statement:
-“I believe as an artist it is my duty to allow my inspiration to lead me. I do portraiture because it helps me understand where I fit in and I realize we all have experienced the same ups and downs. We are all the same. My cityscapes further this connection through spatial relationships. I’ve always been an introvert and the one way I know I can communicate is through my art. I am always absorbing the world around me. Nothing is out of bounds. Who am I as an artist? I am a reflection of everything because I am inspired by everything.” – Bowen Kline
-""", origin: "Romeo, Michigan", technique: "Mixed media on panel", year: "", location: "1 West Check in: Radiation Oncology and Treatment Center"),
+//    Painting(name: "12", title: "Lakeside Ride", author: "Bowen Kline", text: """
+//Artist’s Statement:
+//“I believe as an artist it is my duty to allow my inspiration to lead me. I do portraiture because it helps me understand where I fit in and I realize we all have experienced the same ups and downs. We are all the same. My cityscapes further this connection through spatial relationships. I’ve always been an introvert and the one way I know I can communicate is through my art. I am always absorbing the world around me. Nothing is out of bounds. Who am I as an artist? I am a reflection of everything because I am inspired by everything.” – Bowen Kline
+//""", origin: "Romeo, Michigan", technique: "Mixed media on panel", year: "", location: "1 West Check in: Radiation Oncology and Treatment Center"),
     
 
-    Painting(name: "13", title: "Little Voice", author: "Deb Eyde", text: """
-Artist’s Statement:
-“Deborah Eyde has lived in the Midwest for most of her life. Pattern and repetition in the midwestern topography are common themes in her paintings. Farmland grids, lines painted on city streets and the more organic shapes of trees and foliage inform her work. Deborah works with encaustic paint and enjoys its unpredictable nature. Working with hot wax and a blowtorch leads to unplanned results, forcing her to stay engaged and respond to what is unfolding in front of her. Although her paintings are spontaneous and intuitive, her final layers are design conscious with some level of structure. Deborah’s paintings represent her personal history with a universal relatability. Some of this history is revealed through sheer layers and scraping while other parts are concealed and private. Deborah loves to pain which is evident in her joyful, happy paintings.
-
-Deborah studied painting at the School of the Art Institute of Chicago and has been painting with beeswax and oil paint since 2014.
-""", origin: "Ann Arbor, Michigan", technique: "Encaustic ", year: "", location: "1 West Check in: Radiation Oncology and Treatment Center"),
+//    Painting(name: "13", title: "Little Voice", author: "Deb Eyde", text: """
+//Artist’s Statement:
+//“Deborah Eyde has lived in the Midwest for most of her life. Pattern and repetition in the midwestern topography are common themes in her paintings. Farmland grids, lines painted on city streets and the more organic shapes of trees and foliage inform her work. Deborah works with encaustic paint and enjoys its unpredictable nature. Working with hot wax and a blowtorch leads to unplanned results, forcing her to stay engaged and respond to what is unfolding in front of her. Although her paintings are spontaneous and intuitive, her final layers are design conscious with some level of structure. Deborah’s paintings represent her personal history with a universal relatability. Some of this history is revealed through sheer layers and scraping while other parts are concealed and private. Deborah loves to pain which is evident in her joyful, happy paintings.
+//
+//Deborah studied painting at the School of the Art Institute of Chicago and has been painting with beeswax and oil paint since 2014.
+//""", origin: "Ann Arbor, Michigan", technique: "Encaustic ", year: "", location: "1 West Check in: Radiation Oncology and Treatment Center"),
     
     
-    Painting(name: "14", title: "DIA Art Walk", author: "", text: """
+    Painting(name: "11", title: "DIA Art Walk", author: "", text: """
 The Brigitte Harris Cancer Pavilion features reproductions of artistic masterpieces in the Detroit Institute of Arts (DIA) collection as part of the DIA’s Inside|Out program. Inside|Out is a popular component of the DIA’s community engagement efforts. Over the past 12 years, the museum has partnered with more than 100 communities and engaged tens of thousands of residents with art in places where they live, work and play.
 
 The featured artworks and their locations were carefully selected with consideration to the physical and emotional journeys patients and families experience. For example, works near the elevator aim to give people something to consider while they wait and soothe anxiety in advance of or after their appointments. Works in the waiting areas feature serene but hopeful imagery that speaks to the future, while works displayed along the Nancy Vlasic Skywalk that connects to Henry Ford Hospital are colorful and dynamic to capture visitors’ attention as they are in transit.
@@ -174,31 +174,31 @@ The Detroit Institute of Arts (DIA), one of the premier art museums in the Unite
 """, origin: "", technique: "", year: "", location: "DIA Art Walk"),
     
     
-    Painting(name: "15", title: "Healing Arts Gallery", author: "", text: """
+    Painting(name: "12", title: "Healing Arts Gallery", author: "", text: """
 The Wright & Cathy Lassiter Healing Arts Gallery hosts curated art exhibitions featuring artwork by Detroit-area artists and community partners, as well as annual patient and staff art shows. This is the only space in the pavilion where the artwork on display rotates throughout the year.
 """, origin: "", technique: "", year: "", location: "Healing Arts Gallery"),
 ]
 
 let beacons = [
-  //  Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 5, distance: 2, identifier: "Calendar 1", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
-  //  Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 5, distance: 2, identifier: "JB 2", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 4885, minor: 58900, firstContact: nil, time: 5, distance: 2, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 20545, minor: 5125, firstContact: nil, time: 5, distance: 1, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
 //   Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 7509, minor: 50853, firstContact: nil, time: 100, distance: 4, identifier: "3", paintings: [], proximity: 0, rrsi: 0, location: ""),
 //    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 19879, minor: 24862, firstContact: nil, time: 100, distance: 4, identifier: "4", paintings: [], proximity: 0, rrsi: 0, location: ""),
     
-   
+   /*
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35557, minor: 9601, firstContact: nil, time: 5, distance: 2, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 5, distance: 2, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 5, distance: 5, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 454, minor: 21971, firstContact: nil, time: 5, distance: 2, identifier: "Shared Blessings with Shared Visions", paintings: [getPaintingByTitle(title: "Shared Blessings with Shared Visions")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23757, minor: 6314, firstContact: nil, time: 5, distance: 2, identifier: "A Series of Arrangements #2", paintings: [getPaintingByTitle(title: "A Series of Arrangements #2")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 27400, minor: 48675, firstContact: nil, time: 5, distance: 2, identifier: "Untitled", paintings: [getPaintingByTitle(title: "Untitled")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35995, minor: 11128, firstContact: nil, time: 5, distance: 2, identifier: "The Russell", paintings: [getPaintingByTitle(title: "The Russell")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23068, minor: 6689, firstContact: nil, time: 5, distance: 2, identifier: "Josephine Ford and Brigitte Harris", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23044, minor: 59833, firstContact: nil, time: 5, distance: 2, identifier: "The DNA of Hope", paintings: [getPaintingByTitle(title: "The DNA of Hope"), getPaintingByTitle(title: "The Russell"), getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 55859, minor: 64145, firstContact: nil, time: 5, distance: 2, identifier: "Sway", paintings: [getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 43055, minor: 36490, firstContact: nil, time: 5, distance: 2, identifier: "DIA Art Walk", paintings: [getPaintingByTitle(title: "DIA Art Walk")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 2297, minor: 50393, firstContact: nil, time: 5, distance: 2, identifier: "Healing Arts Gallery", paintings: [getPaintingByTitle(title: "Healing Arts Gallery")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23044, minor: 59833, firstContact: nil, time: 5, distance: 2, identifier: "The DNA of Hope", paintings: [getPaintingByTitle(title: "The DNA of Hope")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 55859, minor: 64145, firstContact: nil, time: 5, distance: 3, identifier: "Sway", paintings: [getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 43055, minor: 36490, firstContact: nil, time: 5, distance: 5, identifier: "DIA Art Walk", paintings: [getPaintingByTitle(title: "DIA Art Walk")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 2297, minor: 50393, firstContact: nil, time: 5, distance: 5, identifier: "Healing Arts Gallery", paintings: [getPaintingByTitle(title: "Healing Arts Gallery")], proximity: 0, rrsi: 0, location: ""),
     
-    
+    */
 ]
 
 

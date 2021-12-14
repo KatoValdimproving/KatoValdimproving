@@ -33,39 +33,39 @@ class NetworkManager: NSObject {
     
     typealias networkClousure = (Bool) -> Void
     private var closuresCollection: [networkClousure] = []
-   // private var networkConnectionDidChange: networkClousure!
+    private var networkConnectionDidChange: networkClousure!
     
-//    var  currentSSID : String? {
-//        get {
-//            guard let info : NetworkInfo = getNetworkInfos().first else { return SettingsBundleHelper.shared.isProductionEnabled ? nil : Constants.stagingSSID }
-//            return info.ssid
-//        }
-//        set {
-//
-//        }
-//    }
-//
-//    var  currentBSSID : String? {
-//        get {
-//            guard let info : NetworkInfo = getNetworkInfos().first else { return nil }
-//            print(info.bssid)
-//            return info.bssid
-//        }
-//        set {
-//
-//        }
-//    }
-//
-//    var  currentInterface : String? {
-//        get {
-//            guard let info : NetworkInfo = getNetworkInfos().first else { return nil }
-//            print(info.interface)
-//            return info.interface
-//        }
-//        set {
-//
-//        }
-//    }
+    var  currentSSID : String? {
+        get {
+            guard let info : NetworkInfo = getNetworkInfos().first else { return SettingsBundleHelper.shared.isProductionEnabled ? nil : Constants.stagingSSID }
+            return info.ssid
+        }
+        set {
+
+        }
+    }
+
+    var  currentBSSID : String? {
+        get {
+            guard let info : NetworkInfo = getNetworkInfos().first else { return nil }
+            print(info.bssid)
+            return info.bssid
+        }
+        set {
+
+        }
+    }
+
+    var  currentInterface : String? {
+        get {
+            guard let info : NetworkInfo = getNetworkInfos().first else { return nil }
+            print(info.interface)
+            return info.interface
+        }
+        set {
+
+        }
+    }
     
     func networkDidchange(network: @escaping networkClousure) {
         self.closuresCollection.append(network)
@@ -144,67 +144,67 @@ class NetworkManager: NSObject {
        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
    }
     
-//    func isSSIDNamesEmpty() -> Bool {
-//        
-//        if SettingsBundleHelper.shared.SSIDNames.count == 0 {
-//            
-//            UIApplication.shared.getTopThreadSafe { (topViewController) in
-//                 guard let topViewController = topViewController else { return }
-//                           
-//                if !SessionManager.shared.isAppInBackground {
-//                               let banner = NotificationBanner(title: "Important!", subtitle: "You have not set network names", style: .danger)
-//                               banner.show(queuePosition: .front, bannerPosition: .top, queue: .default, on: topViewController)
-//                           }
-//                           if SessionManager.shared.allowNotifications && SessionManager.shared.isAppInBackground  {
-//                               self.sendLocalNotification(title: "Important!", subtitle: "Network", body: "You have not set network names")
-//                           }
-//            }
-//           
-//            
-//            return true
-//            
-//        } else {
-//        return false
-//        }
-//    }
+    func isSSIDNamesEmpty() -> Bool {
+        
+        if SettingsBundleHelper.shared.SSIDNames.count == 0 {
+            
+            UIApplication.shared.getTopThreadSafe { (topViewController) in
+                 guard let topViewController = topViewController else { return }
+                           
+                if !SessionManager.shared.isAppInBackground {
+                               let banner = NotificationBanner(title: "Important!", subtitle: "You have not set network names", style: .danger)
+                               banner.show(queuePosition: .front, bannerPosition: .top, queue: .default, on: topViewController)
+                           }
+                           if SessionManager.shared.allowNotifications && SessionManager.shared.isAppInBackground  {
+                               self.sendLocalNotification(title: "Important!", subtitle: "Network", body: "You have not set network names")
+                           }
+            }
+           
+            
+            return true
+            
+        } else {
+        return false
+        }
+    }
     
-//    func resetNetworkInfo() {
-//        self.currentSSID = nil
-//        self.currentBSSID = nil
-//        self.currentInterface = nil
-//    }
+    func resetNetworkInfo() {
+        self.currentSSID = nil
+        self.currentBSSID = nil
+        self.currentInterface = nil
+    }
     
-//    func isWiFiOn() -> Bool {
-//        var address : String?
-//        var ifaddr : UnsafeMutablePointer<ifaddrs>? = nil
-//        if getifaddrs(&ifaddr) == 0 {
-//            var ptr = ifaddr
-//            while ptr != nil {
-//                defer { ptr = ptr?.pointee.ifa_next }
-//                let interface = ptr?.pointee
-//                let addrFamily = interface?.ifa_addr.pointee.sa_family
-//                if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-//
-//
-//                     let name: String = String(cString: (interface?.ifa_name)!)
-//                    if name == "awdl0" {
-//
-//                                               //UInt32  interface?.ifa_flags
-//                               //Int32
-//
-//                        if((interface!.ifa_flags & UInt32(IFF_UP)) == UInt32(IFF_UP)) {
-//                            return(true)
-//                        }
-//                        else {
-//                            return(false)
-//                        }
-//                    }
-//                }
-//            }
-//            freeifaddrs(ifaddr)
-//        }
-//        return (false)
-//    }
+    func isWiFiOn() -> Bool {
+        var address : String?
+        var ifaddr : UnsafeMutablePointer<ifaddrs>? = nil
+        if getifaddrs(&ifaddr) == 0 {
+            var ptr = ifaddr
+            while ptr != nil {
+                defer { ptr = ptr?.pointee.ifa_next }
+                let interface = ptr?.pointee
+                let addrFamily = interface?.ifa_addr.pointee.sa_family
+                if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+
+
+                     let name: String = String(cString: (interface?.ifa_name)!)
+                    if name == "awdl0" {
+
+                                               //UInt32  interface?.ifa_flags
+                               //Int32
+
+                        if((interface!.ifa_flags & UInt32(IFF_UP)) == UInt32(IFF_UP)) {
+                            return(true)
+                        }
+                        else {
+                            return(false)
+                        }
+                    }
+                }
+            }
+            freeifaddrs(ifaddr)
+        }
+        return (false)
+    }
     
     func conectionByToString() -> String {
         switch self.conectionBy {

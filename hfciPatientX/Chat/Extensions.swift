@@ -570,7 +570,7 @@ extension Date {
           let dateFormatter2 = ISO8601DateFormatter()
         dateFormatter2.formatOptions = [.withFullTime, .withInternetDateTime, .withFractionalSeconds]
            let date = dateFormatter2.string(from: self)
-        print(date)
+      //  print(date)
          return date
        }
 

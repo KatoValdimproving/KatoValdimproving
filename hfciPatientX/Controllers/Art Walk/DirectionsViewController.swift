@@ -95,6 +95,8 @@ class DirectionsViewController: UIViewController {
     }
 
     @IBAction func backAction(_ sender: Any) {
+        mapViewcontroller?.goBack(self)
+        mapViewcontroller?.stopScanning(painting: self.painting)
         self.navigationController?.popViewController(animated: true)
     }
     /*

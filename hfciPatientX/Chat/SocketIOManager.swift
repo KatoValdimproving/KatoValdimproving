@@ -863,35 +863,35 @@ class SocketIOManager: NSObject {
         //   socketMessages.disconnect()
     }
     
-  //  @available(iOS 13.4, *)
-//    func createAndSendPayload(locations: [CLLocation], succes: @escaping ([CLLocation])->(), failure: @escaping ([String: Any], [CLLocation])->()) {
-//        //if shortpayload or long payload
-//      //  let socketIOPayload = PayloadCreator.shared.createPayload(for: .socketIO, with: locations, and: nil)
-//    //    let shortSocketIOPayload = PayloadCreator.shared.createShortPayload(for: .socketIO, with: locations, and: nil)
-//        let socketIOPayload = JobManager.shortPayload ? PayloadCreator.shared.createPayload(for: .socketIO, with: locations, and: nil) : PayloadCreator.shared.createShortPayload(for: .socketIO, with: locations, and: nil)
-//         print("💠socketIOPayload \(socketIOPayload)")
-//        //  PayloadCreator.shared.printPayload(payload: socketIOPayload)
-//
-//        let payloadArray: [[String:Any]] = [socketIOPayload]
-//        //  print("🍀🎲 payload: \(payloadArray)")
-//      //  print("🍀 5 Payload created \(payloadArray)")
-//
-//        // Poner bandera para no subir si esta ocupado
-//
-//        self.sendLocationPayload(object: payloadArray, locations: locations, succes: { [locations] in
-//            // print("👹 payload socketIOPayload: \(socketIOPayload)")
-//
-//            // print("🥰🥰  log id: \(String(describing: locations.first?.value(forKey: "id")))  sentToBackend: \(String(describing: locations.first?.value(forKey: "sentToBackend"))) ")
-//            //print("🥰🥰")
-//
-//            succes(locations)
-//        }) {
-//
-//            // print("🍀 8 failure trace sent")
-//
-//            failure(socketIOPayload, locations)
-//        }
-//    }
+    @available(iOS 13.4, *)
+    func createAndSendPayload(locations: [CLLocation], succes: @escaping ([CLLocation])->(), failure: @escaping ([String: Any], [CLLocation])->()) {
+        //if shortpayload or long payload
+      //  let socketIOPayload = PayloadCreator.shared.createPayload(for: .socketIO, with: locations, and: nil)
+    //    let shortSocketIOPayload = PayloadCreator.shared.createShortPayload(for: .socketIO, with: locations, and: nil)
+        let socketIOPayload = JobManager.shortPayload ? PayloadCreator.shared.createPayload(for: .socketIO, with: locations, delta: "", and: nil) : PayloadCreator.shared.createShortPayload(for: .socketIO, with: locations, delta: "", and: nil)
+         print("💠socketIOPayload \(socketIOPayload)")
+        //  PayloadCreator.shared.printPayload(payload: socketIOPayload)
+
+        let payloadArray: [[String:Any]] = [socketIOPayload]
+        //  print("🍀🎲 payload: \(payloadArray)")
+      //  print("🍀 5 Payload created \(payloadArray)")
+
+        // Poner bandera para no subir si esta ocupado
+
+        self.sendLocationPayload(object: payloadArray, locations: locations, succes: { [locations] in
+            // print("👹 payload socketIOPayload: \(socketIOPayload)")
+
+            // print("🥰🥰  log id: \(String(describing: locations.first?.value(forKey: "id")))  sentToBackend: \(String(describing: locations.first?.value(forKey: "sentToBackend"))) ")
+            //print("🥰🥰")
+
+            succes(locations)
+        }) {
+
+            // print("🍀 8 failure trace sent")
+
+            failure(socketIOPayload, locations)
+        }
+    }
     
     var repetedLogId: Int = 0
     var repetedUserId: String = ""

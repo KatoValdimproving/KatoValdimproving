@@ -9,6 +9,8 @@ import UIKit
 import UserNotifications
 import CoreLocation
 import Firebase
+import FirebaseMessaging
+import Alamofire
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,14 +18,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //SettingsBundleHelper.shared.setInitialInfo()
+        application.registerForRemoteNotifications()
+
         FirebaseApp.configure()
         SettingsBundleHelper.shared.hospitalCode = "henryford"
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (succes, error) in
-            if succes {
-            print("notifications granted")
-                self.configureUserNotifications()
-            }
+        Messaging.messaging().delegate = self
+
+        
+        if #available(iOS 10.0, *) {
+          // For iOS 10 display notification (sent via APNS)
+          UNUserNotificationCenter.current().delegate = self
+
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+          UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { _, _ in }
+          )
+        } else {
+          let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+          application.registerUserNotificationSettings(settings)
         }
+
                
         SettingsBundleHelper.shared.addObserverEnvoriment()
       //  asignBeaconToPainting()
@@ -44,6 +60,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                self?.setAsRecent(message.origin)
             }
         }
+        
+        Messaging.messaging().token { token, error in
+          if let error = error {
+            print("Error fetching FCM registration token: \(error)")
+          } else if let token = token {
+            print("FCM registration token: \(token)")
+         //   self.fcmRegTokenMessage.text  = "Remote FCM registration token: \(token)"
+              SessionManager.shared.firebaseToken = token
+          }
+        }
+        
+        configureUserNotifications()
 
         return true
     }
@@ -87,6 +115,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureUserNotifications() {
       UNUserNotificationCenter.current().delegate = self
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      let token = deviceToken.reduce("") { $0 + String(format: "%02.2hhx", $1) }
+      print("registered for notifications", token)
+        print("🌼 registered")
+
+    }
 
 }
 
@@ -96,13 +131,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.badge, .sound, .banner])
+        print("🌼 willPresent")
+        completionHandler([[.alert, .sound, .badge]])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-      //  let userInfo = response.notification.request.content.userInfo
-       // print(userInfo)
+        let userInfo = response.notification.request.content.userInfo
+        print("🌼 \(userInfo)")
         
       //  if let userInfo = notification.userInfo {
         if let contact = self.contact {
@@ -210,5 +246,55 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         */
         completionHandler()
 
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+      // If you are receiving a notification message while your app is in the background,
+      // this callback will not be fired till the user taps on the notification launching the application.
+      // TODO: Handle data of notification
+
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+      // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+      // Print message ID.
+//      if let messageID = userInfo[gcmMessageIDKey] {
+//        print("Message ID: \(messageID)")
+//      }
+
+      // Print full message.
+      print(userInfo)
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      // If you are receiving a notification message while your app is in the background,
+      // this callback will not be fired till the user taps on the notification launching the application.
+      // TODO: Handle data of notification
+
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+       Messaging.messaging().appDidReceiveMessage(userInfo)
+
+      // Print message ID.
+     
+      
+
+      completionHandler(UIBackgroundFetchResult.newData)
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+      print("Firebase registration token: \(String(describing: fcmToken))")
+        SessionManager.shared.firebaseToken = fcmToken
+
+      let dataDict: [String: String] = ["token": fcmToken ?? ""]
+        print(dataDict)
+      NotificationCenter.default.post(
+        name: Notification.Name("FCMToken"),
+        object: nil,
+        userInfo: dataDict
+      )
+      // TODO: If necessary send token to application server.
+      // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 }

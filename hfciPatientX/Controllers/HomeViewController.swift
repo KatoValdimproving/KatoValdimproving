@@ -171,6 +171,7 @@ class HomeViewController: UIViewController {
             if islogout {
                 self?.navigationController?.popToRootViewController(animated: true)
                // self?.dismiss(animated: true, completion: nil)
+                
             }
         })
     }
