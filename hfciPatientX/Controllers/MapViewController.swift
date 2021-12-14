@@ -162,14 +162,12 @@ class MapViewController: UIViewController {
             directionsView.isHidden = false
             fromLbl.text = point1.name
             tolbl.text = point2.name
-            //mapMpiView.frame = CGRect(x: 0, y: 0, width: self.mapView.frame.width, height:self.mapView.frame.height)
             getDirection()
         }else if(nearestNode != nil){
             controlls.isHidden = true
             directionsView.isHidden = false
             fromLbl.text = "Your Location"
             tolbl.text = point2.name
-            //mapMpiView.frame = CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height)
             getDirection()
         }
     }
@@ -264,7 +262,7 @@ class MapViewController: UIViewController {
         toSelect.anchorView = toViewSelect
         toSelect.selectionAction = { index, title in
             self.tolbl.text = title
-            self.point2 = self.nodeLocations[index]
+            self.point2 = self.nodeLocations.filter{$0.name == title}.first
             self.getDirection()
         }
         
