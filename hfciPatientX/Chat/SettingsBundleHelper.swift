@@ -247,29 +247,29 @@ class SettingsBundleHelper: NSObject {
         }
     }
     
-//    var SSIDNames: [String] {
-//        get {
-//            
-//            guard let SSIDNamesString = UserDefaults.standard.string(forKey: SettingsBundleKeys.SSIDNames) else { return [] }
-//            
-//            if SSIDNamesString != "" {
-//                let SSIDs = SSIDNamesString.components(separatedBy: ",")
-//                var SSIDNamesCollection = [String]()
-//                for SSID in SSIDs {
-//                    SSIDNamesCollection.append(SSID.trim())
-//                }
-//                return SSIDNamesCollection
-//                
-//            }
-//            else {
-//                if SessionManager.shared.allowNotifications && SessionManager.shared.isAppInBackground {
-//                   // NetworkManager.shared.sendLocalNotification(title: "Atention", subtitle: "SSID Names", body: "You have to add the names of the valid networks")
-//                }
-//            }
-//            
-//            return []
-//        }
-//    }
+    var SSIDNames: [String] {
+        get {
+            
+            guard let SSIDNamesString = UserDefaults.standard.string(forKey: SettingsBundleKeys.SSIDNames) else { return [] }
+            
+            if SSIDNamesString != "" {
+                let SSIDs = SSIDNamesString.components(separatedBy: ",")
+                var SSIDNamesCollection = [String]()
+                for SSID in SSIDs {
+                    SSIDNamesCollection.append(SSID.trim())
+                }
+                return SSIDNamesCollection
+                
+            }
+            else {
+                if SessionManager.shared.allowNotifications && SessionManager.shared.isAppInBackground {
+                   // NetworkManager.shared.sendLocalNotification(title: "Atention", subtitle: "SSID Names", body: "You have to add the names of the valid networks")
+                }
+            }
+            
+            return []
+        }
+    }
     
 //    private  var SSIDNamesSetOnly: String {
 //        get {

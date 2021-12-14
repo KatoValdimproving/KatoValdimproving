@@ -27,6 +27,11 @@
 		8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79B54E26FC25A300057F79 /* ChatViewController.swift */; };
 		8B7E2CD12766DCAE0048C5A7 /* BottomBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B7E2CD02766DCAE0048C5A7 /* BottomBannerView.xib */; };
 		8B7E2CD32766DCEF0048C5A7 /* BottomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CD22766DCEF0048C5A7 /* BottomBannerView.swift */; };
+		8B7E2CD72768474E0048C5A7 /* LocationStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CD62768474E0048C5A7 /* LocationStreaming.swift */; };
+		8B7E2CD927684C0F0048C5A7 /* PayloadCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CD827684C0F0048C5A7 /* PayloadCreator.swift */; };
+		8B7E2CDD276859900048C5A7 /* NetworkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CDC276859900048C5A7 /* NetworkInfo.swift */; };
+		8B7E2CDF27685BFD0048C5A7 /* UserAgentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CDE27685BFD0048C5A7 /* UserAgentBuilder.swift */; };
+		8B7E2CE127685CC70048C5A7 /* IdCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E2CE027685CC70048C5A7 /* IdCreator.swift */; };
 		8B8E65542715E0D80052B7C6 /* ArtWalk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */; };
 		8B8E65572715E1EE0052B7C6 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */; };
 		8B8E655A2715E2DE0052B7C6 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */; };
@@ -144,6 +149,11 @@
 		8B7E2CCD27654EE40048C5A7 /* hfciPatientX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hfciPatientX.entitlements; sourceTree = "<group>"; };
 		8B7E2CD02766DCAE0048C5A7 /* BottomBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomBannerView.xib; sourceTree = "<group>"; };
 		8B7E2CD22766DCEF0048C5A7 /* BottomBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerView.swift; sourceTree = "<group>"; };
+		8B7E2CD62768474E0048C5A7 /* LocationStreaming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStreaming.swift; sourceTree = "<group>"; };
+		8B7E2CD827684C0F0048C5A7 /* PayloadCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayloadCreator.swift; sourceTree = "<group>"; };
+		8B7E2CDC276859900048C5A7 /* NetworkInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInfo.swift; sourceTree = "<group>"; };
+		8B7E2CDE27685BFD0048C5A7 /* UserAgentBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgentBuilder.swift; sourceTree = "<group>"; };
+		8B7E2CE027685CC70048C5A7 /* IdCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdCreator.swift; sourceTree = "<group>"; };
 		8B8E65532715E0D80052B7C6 /* ArtWalk.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArtWalk.storyboard; sourceTree = "<group>"; };
 		8B8E65562715E1EE0052B7C6 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8B8E65582715E2DE0052B7C6 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -406,6 +416,11 @@
 		CE2FB18626EFA8590040095B /* API */ = {
 			isa = PBXGroup;
 			children = (
+				8B7E2CE027685CC70048C5A7 /* IdCreator.swift */,
+				8B7E2CDE27685BFD0048C5A7 /* UserAgentBuilder.swift */,
+				8B7E2CDC276859900048C5A7 /* NetworkInfo.swift */,
+				8B7E2CD827684C0F0048C5A7 /* PayloadCreator.swift */,
+				8B7E2CD62768474E0048C5A7 /* LocationStreaming.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -812,6 +827,7 @@
 				8BDEE4B126FC2E5A0014A054 /* Extensions.swift in Sources */,
 				8B75FD23272F0224008F52E7 /* PaintingBeaconViewController.swift in Sources */,
 				8BDEE4F926FC31A90014A054 /* FailableDecodable.swift in Sources */,
+				8B7E2CD927684C0F0048C5A7 /* PayloadCreator.swift in Sources */,
 				8B36EF47272DF64C00171C51 /* ArtWalkExtensions.swift in Sources */,
 				CE2FB1B626F252F60040095B /* LoginViewController.swift in Sources */,
 				8BDEE54D26FC351F0014A054 /* CircleView.swift in Sources */,
@@ -832,14 +848,17 @@
 				8BDEE53E26FC338F0014A054 /* Alerts.swift in Sources */,
 				8B79B53226FC228000057F79 /* SocketIOManager.swift in Sources */,
 				8BF417D9271A06D20074F57F /* ItemGroupCollectionViewCell.swift in Sources */,
+				8B7E2CDD276859900048C5A7 /* NetworkInfo.swift in Sources */,
 				8BF417D6271A067C0074F57F /* GroupViewController.swift in Sources */,
 				8B79B54F26FC25A300057F79 /* ChatViewController.swift in Sources */,
 				CE2FB15726EFA7AE0040095B /* AppDelegate.swift in Sources */,
+				8B7E2CDF27685BFD0048C5A7 /* UserAgentBuilder.swift in Sources */,
 				8B76892E2720634900C22345 /* Painting.swift in Sources */,
 				8BDEE48B26FC2D9A0014A054 /* APIManager.swift in Sources */,
 				CE2FB15926EFA7AE0040095B /* SceneDelegate.swift in Sources */,
 				8B2C1A762727A887007AF57E /* BeaconsConsoleViewController.swift in Sources */,
 				8B8E655A2715E2DE0052B7C6 /* GalleryCollectionViewCell.swift in Sources */,
+				8B7E2CE127685CC70048C5A7 /* IdCreator.swift in Sources */,
 				8BDEE48126FC2CD00014A054 /* SettingsBundleHelper.swift in Sources */,
 				8BDEE4CD26FC2EDC0014A054 /* Message.swift in Sources */,
 				8BDEE54826FC34670014A054 /* BroadcastManager.swift in Sources */,
@@ -848,6 +867,7 @@
 				8BDEE48626FC2D1A0014A054 /* SessionManager.swift in Sources */,
 				8B78983426F260ED003FE097 /* MapViewController.swift in Sources */,
 				8B768928271DDC7C00C22345 /* DirectionsViewController.swift in Sources */,
+				8B7E2CD72768474E0048C5A7 /* LocationStreaming.swift in Sources */,
 				8BDEE4D226FC2F120014A054 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1027,7 +1047,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = hfciPatientX/hfciPatientX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1051,7 +1071,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = hfciPatientX/hfciPatientX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;

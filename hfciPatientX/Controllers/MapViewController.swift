@@ -943,6 +943,8 @@ extension MapViewController: CLLocationManagerDelegate {
            // print("❌ \(location)")
             let coordinates = MPICoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, accuracy: 0.8, floorLevel: location.floor?.level)
             self.mapMpiView.blueDotManager.updatePosition(position: MPIPosition(timestamp: dateTime.timeIntervalSince1970, coords: coordinates, type: "", annotation: ""))
+            
+            LocationStreaming.sharedInstance.sendToStream(locations: locations)
         }
     }
     
