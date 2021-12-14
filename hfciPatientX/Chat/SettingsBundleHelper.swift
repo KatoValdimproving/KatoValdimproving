@@ -66,7 +66,7 @@ class SettingsBundleHelper: NSObject {
 //        print("⚠️code \(self.hospitalCode)")
 //        print("⚠️hospital \(self.selectedHospital)")
 
-        self.isProductionEnabled ? changeEnviromentAndTerminateSession(newEnvironment: .prod) : changeEnviromentAndTerminateSession(newEnvironment: .dev)
+        self.isProductionEnabled ? changeEnviromentAndTerminateSession(newEnvironment: .prod) : changeEnviromentAndTerminateSession(newEnvironment: .qa)
         //self.checkChangeInEnvoriment()
         
         

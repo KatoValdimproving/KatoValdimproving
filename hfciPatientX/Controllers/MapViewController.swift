@@ -416,10 +416,14 @@ class MapViewController: UIViewController {
                 self.view.addSubview(bottomBanner)
                 bottomBanner.show(true)
                 
-                _ = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { timer in
+                _ = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
                     bottomBanner.show(false)
                     self.galleryNavigationController?.popViewController(animated: false)
                     self.goBack(self)
+                    beaconRanged.isInDesiredDistance = false
+                    beaconRanged.isInDesiredDistanceAndTime = false
+                    beaconRanged.firstContact = nil
+                    self.stopScanning(painting: nil)
                 }
                 
            /*
@@ -940,7 +944,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             let dateTime = Date()
-           // print("❌ \(location)")
+            print("❌ \(location)")
             let coordinates = MPICoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, accuracy: 0.8, floorLevel: location.floor?.level)
             self.mapMpiView.blueDotManager.updatePosition(position: MPIPosition(timestamp: dateTime.timeIntervalSince1970, coords: coordinates, type: "", annotation: ""))
             
