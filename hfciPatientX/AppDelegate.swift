@@ -306,6 +306,41 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 //                if let _ = userInfo["origin"] as? String,
 //                 let name = userInfo["fullName"] as? String,
 //                 let id = userInfo["id"] as? String {
+                    
+                    
+                    
+                 //   let chatUser = ChatUser(id: id, channel: channel, fullName: name, firstName: "", lastName: "", initials: "", roleName: roleName, status: .offline, unreadMessages: Int(unreadMsgs) ?? 0)
+                      
+                     
+                       
+                       
+                       guard let navigationController = UIApplication.shared.windows.first?.rootViewController as? UINavigationController else { return }
+                       
+                       
+                       if let onboardViewController = navigationController.viewControllers.last as? HomeViewController {
+                          // onboardViewController.chatUser = chatUser
+                           onboardViewController.showChat = true
+                                
+                            }
+                        
+                        if let onboardViewController = navigationController.viewControllers.last as? MenuViewController {
+                            print("app is in onboardView")
+                            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
+                                onboardViewController.navigationController?.pushViewController(vc, animated: true)
+                              //  vc.chatUser = chatUser
+                                vc.showChat = true
+                               
+                                
+                                
+                            }
+                            
+                            
+                        }
+                       
+                       NotificationCenter.default.post(name: NSNotification.Name("NewChatMessage"), object: self, userInfo: ["Message": ""])
+                      
+                    
+             //   }
 //
 //               let chatUser = ChatUser(id: id, channel: "", fullName: name, firstName: "", lastName: "", initials: "", roleName: "", status: .online, unreadMessages: 0)
                 
