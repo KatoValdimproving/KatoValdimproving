@@ -296,7 +296,7 @@ class ChatManager {
              //  NotificationCenter.default.post(name: Notification.Name("NewChatMessage"), object: nil, userInfo: ["Message":newMessage])
                 NotificationCenter.default.post(name: NSNotification.Name(Notifications.newMessage), object: self, userInfo: ["message":newMessage])
               //  NetworkManager.shared.sendLocalNotificationWithUserInfo(title: "New Message", subtitle: "", body: newMessage.text, userInfo: ["Message":["id":newMessage.id, "": "channel": newMessage.channel, "fullName": newMessage.origin]])
-                NetworkManager.shared.sendLocalNotification(title: "New Message", subtitle: "", body: newMessage.text)
+              //  NetworkManager.shared.sendLocalNotification(title: "New Message", subtitle: "", body: newMessage.text)
                 if self?.didGetNewMessage?(newMessage) ?? true {
                     self?.sendNewMessageNotification(newMessage)
                 }
@@ -528,19 +528,20 @@ class ChatManager {
         }
         
         
-        if self.socket?.status == .connected {
+        if self.socket?.status != .disconnected {
             emitAndHandleMessages()
         }
         else {
             self.socket?.on(clientEvent: .connect, callback: { data, ack in
                 print(data)
-                if self.socket?.status == .connected {
+                if self.socket?.status != .disconnected {
                     emitAndHandleMessages()
                 }
                 else {
                     completion(nil)
                 }
             })
+            
         }
     }
     

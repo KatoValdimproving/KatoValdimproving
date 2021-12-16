@@ -95,7 +95,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Angel" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-VM-dzJ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-VM-dzJ">
                                                         <rect key="frame" x="0.0" y="101" width="260" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="uEc-uo-f86"/>
@@ -1018,7 +1018,7 @@
                                             <action selector="artWalkAction:" destination="B2H-NA-vlC" eventType="touchUpInside" id="ZaS-vg-Ean"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeu-7n-SZv">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeu-7n-SZv">
                                         <rect key="frame" x="920" y="19.5" width="48" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="pcn-25-dsa"/>

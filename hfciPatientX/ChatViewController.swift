@@ -36,7 +36,7 @@ class ChatViewController: UIViewController {
         self.contactsViewController = contactsViewController
        
         self.contactsViewController.didSelectContact = { [weak self] contact in
-          //  print(contact)
+            print(contact)
 //            self?.hideElements(hide: false)
 //
 //            self?.selectedContact = contact
@@ -46,15 +46,23 @@ class ChatViewController: UIViewController {
 
         }
       
+      
         
       //  self.view.layoutIfNeeded()
-       
+        self.contactsViewController.contactFromNotification = self.selectedContact
 
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
        // self.navigationController?.setStatusBar(backgroundColor: UIColor(red: 8/255, green: 76/255, blue: 132/255, alpha: 1))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        if let user = self.selectedContact {
+//            self.contactsViewController.didSelectContact?(user)
+//            
+//        }
     }
     
     override func viewDidLayoutSubviews() {

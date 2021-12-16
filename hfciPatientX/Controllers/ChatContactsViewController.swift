@@ -49,6 +49,8 @@ class ChatContactsViewController: UIViewController {
         }
     }
     var didSelectContact: ((_ contact: ChatUser) -> Void)?
+    var contactFromNotification: ChatUser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.blurView.frame = self.view.frame
@@ -70,7 +72,7 @@ class ChatContactsViewController: UIViewController {
         
         //Get users
      //   self.getInitialUsers()
-        ChatManager.shared.setup()
+     //   ChatManager.shared.setup()
 
 //        guard let userId = SessionManager.shared.user?.userId else { return }
 //        ChatManager.shared.socket?.on(clientEvent: .connect, callback: { _, _ in
@@ -204,6 +206,11 @@ class ChatContactsViewController: UIViewController {
                 self?.users = [broadcastUser , onlineUsers]
                 
                 self?.tableView.reloadData()
+                
+                
+                if let contact = self?.contactFromNotification {
+                    print("contact")
+                }
             }
 //            else
         }

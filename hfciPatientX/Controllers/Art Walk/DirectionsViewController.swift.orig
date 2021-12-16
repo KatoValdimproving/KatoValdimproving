@@ -19,10 +19,29 @@ class DirectionsViewController: UIViewController {
     var directionsString: [String] = []
     var mapViewcontroller: MapViewController?
     var painting: Painting?
+<<<<<<< HEAD
+    let menu : DropDown = {
+        let menu = DropDown()
+        menu.dataSource = [
+           
+        ]
+        return menu
+    }()
+    
+    
+    let menuTwo : DropDown = {
+        let menu = DropDown()
+        menu.dataSource = [
+           
+        ]
+        return menu
+    }()
+=======
     var menu : DropDown!
     
     
     var menuTwo : DropDown!
+>>>>>>> bc58b8993c670994f79498d8f6051a569a1849fa
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +88,6 @@ class DirectionsViewController: UIViewController {
         self.fromLabel.text = "Your Location"
         self.toLabel.text = self.painting?.location
         self.mapViewcontroller?.point2 = self.mapViewcontroller?.getLocationWithPainting(painting: self.painting!)
-        
-        menu.dataSource = []
-        menuTwo.dataSource = []
     }
     
     
@@ -88,11 +104,11 @@ class DirectionsViewController: UIViewController {
     }
     
     @objc func didTapFrom() {
-        //menu.show()
+        menu.show()
     }
     
     @objc func didTapTo() {
-        //menuTwo.show()
+        menuTwo.show()
     }
 
     @IBAction func backAction(_ sender: Any) {

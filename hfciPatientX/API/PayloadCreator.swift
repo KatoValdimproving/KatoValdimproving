@@ -123,7 +123,7 @@ class PayloadCreator {
     //device id
     
     func getDeviceId() -> String? {
-        return SettingsBundleHelper.shared.deviceID
+        return SettingsBundleHelper.shared.testerId
     }
     
     private func getDeviceIdForPayload() -> [String: Any]? {
