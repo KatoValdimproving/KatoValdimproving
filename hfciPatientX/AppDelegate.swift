@@ -303,14 +303,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 
             }
             } else if  type == "broadcast"   {
-                //
-                //                if let _ = userInfo["origin"] as? String,
-                //                 let name = userInfo["fullName"] as? String,
-                //                 let id = userInfo["id"] as? String {
+                
+                                if let _ = userInfo["origin"] as? String,
+                                 let name = userInfo["fullName"] as? String,
+                                 let id = userInfo["id"] as? String {
                                     
                                     
                                     
-                                 //   let chatUser = ChatUser(id: id, channel: channel, fullName: name, firstName: "", lastName: "", initials: "", roleName: roleName, status: .offline, unreadMessages: Int(unreadMsgs) ?? 0)
+                                   let chatUser = ChatUser(id: id, channel: "", fullName: name, firstName: "", lastName: "", initials: "", roleName: "", status: .offline, unreadMessages: 0)
                                       
                                      
                                        
@@ -319,7 +319,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                        
                                        
                                        if let onboardViewController = navigationController.viewControllers.last as? HomeViewController {
-                                          // onboardViewController.chatUser = chatUser
+                                           onboardViewController.chatUser = chatUser
                                            onboardViewController.showChat = true
                                                 
                                             }
@@ -328,7 +328,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                             print("app is in onboardView")
                                             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
                                                 onboardViewController.navigationController?.pushViewController(vc, animated: true)
-                                              //  vc.chatUser = chatUser
+                                                vc.chatUser = chatUser
                                                 vc.showChat = true
                                                
                                                 
@@ -338,7 +338,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                             
                                         }
                                        
-                                       NotificationCenter.default.post(name: NSNotification.Name("NewChatMessage"), object: self, userInfo: ["Message": ""])
+                                       NotificationCenter.default.post(name: NSNotification.Name("NewChatMessage"), object: self, userInfo: ["Message": chatUser])
                                       
                                     
                              //   }
@@ -354,7 +354,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 //                        showingView.pushViewController(messagesVC, animated: false)
                 //                    }
                 //
-                //                }
+                                }
                                 }
                 
         }
