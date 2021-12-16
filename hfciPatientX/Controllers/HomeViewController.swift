@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
    weak var beaconsConsoleViewController: BeaconsConsoleViewController?
     var showChat = false
     var showArtWalk = false
+    var chatUser: ChatUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,12 @@ class HomeViewController: UIViewController {
         self.mapViewController.artWalkContainerView.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NewChatMessage"), object: nil)
 
+        if let chatUser = self.chatUser {
+            self.containerView.bringSubviewToFront(self.chatViewController.view)
+            self.chatViewController.selectedContact = chatUser
+          
+            
+        }
         
     }
     

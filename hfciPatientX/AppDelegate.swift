@@ -141,12 +141,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("🌼 \(userInfo)")
         
       //  if let userInfo = notification.userInfo {
-        if let contact = self.contact {
-               // print(newMessage)
-              NotificationCenter.default.post(name: Notification.Name("NewChatMessage"), object: nil, userInfo: ["Message":contact])
-
-               // self.containerView.bringSubviewToFront(self.chatViewController.view)
-            }
+//        if let contact = self.contact {
+//               // print(newMessage)
+//              NotificationCenter.default.post(name: Notification.Name("NewChatMessage"), object: nil, userInfo: ["Message":contact])
+//
+//               // self.containerView.bringSubviewToFront(self.chatViewController.view)
+//            }
       //  }
       //  NotificationCenter.default.post(name: Notification.Name("NewChatMessage"), object: nil, userInfo: ["Message":newMessage])
 
@@ -244,6 +244,87 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         completionHandler()
         */
+        
+        
+        if let type = userInfo["type"] as? String {
+           
+            if type == "message" {
+                 
+            
+               if let role = userInfo["role"] as? String,
+                let status = userInfo["status"] as? String,
+                let name = userInfo["name"] as? String,
+                let unreadMsgs = userInfo["unreadMsgs"] as? String,
+                let id = userInfo["id"] as? String,
+                let channel = userInfo["channel"] as? String,
+                let campusId = userInfo["campusId"] as? String,
+                let roleName = userInfo["role_name"] as? String {
+//                var rootViewController = self.window?.rootViewController
+//                if let tabBarController = rootViewController as? UITabBarController {
+//                    if let showingView = tabBarController.selectedViewController as? UINavigationController {
+//
+//                        let messagesVC = MessagesViewController()
+//
+//                        showingView.pushViewController(messagesVC, animated: true)
+
+                let chatUser = ChatUser(id: id, channel: channel, fullName: name, firstName: "", lastName: "", initials: "", roleName: roleName, status: .offline, unreadMessages: Int(unreadMsgs) ?? 0)
+                  
+                 
+                   
+                   
+                   guard let navigationController = UIApplication.shared.windows.first?.rootViewController as? UINavigationController else { return }
+                   
+                   
+                   if let onboardViewController = navigationController.viewControllers.last as? HomeViewController {
+                       onboardViewController.chatUser = chatUser
+                       onboardViewController.showChat = true
+                            
+                        }
+                    
+                    if let onboardViewController = navigationController.viewControllers.last as? MenuViewController {
+                        print("app is in onboardView")
+                        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
+                            onboardViewController.navigationController?.pushViewController(vc, animated: true)
+                            vc.chatUser = chatUser
+                            vc.showChat = true
+                           
+                            
+                            
+                        }
+                        
+                        
+                    }
+                   
+                   NotificationCenter.default.post(name: NSNotification.Name("NewChatMessage"), object: self, userInfo: ["Message": chatUser])
+                  
+                  
+            
+               
+                
+            } else if  type == "broadcast"   {
+//
+//                if let _ = userInfo["origin"] as? String,
+//                 let name = userInfo["fullName"] as? String,
+//                 let id = userInfo["id"] as? String {
+//
+//               let chatUser = ChatUser(id: id, channel: "", fullName: name, firstName: "", lastName: "", initials: "", roleName: "", status: .online, unreadMessages: 0)
+                
+//                let rootViewController = self.window?.rootViewController
+//                if let tabBarController = rootViewController as? UITabBarController {
+//                    tabBarController.selectedIndex = 0
+//                    let messagesVC = MessagesViewController()
+//                    messagesVC.contactUser = chatUser
+//                    if let showingView = tabBarController.selectedViewController as? UINavigationController {
+//                        showingView.pushViewController(messagesVC, animated: false)
+//                    }
+//
+//                }
+                }
+            }
+                
+        }
+
+        
         completionHandler()
 
     }

@@ -93,6 +93,11 @@ class MessagesViewController: MSGMessengerViewController {
             
         })
         
+        ChatManager.shared.socket?.on(clientEvent: .connect, callback: { data, ack in
+            print(data)
+            self.loadExistingMessages()
+        })
+        
     
         NotificationCenter.default.addObserver(
             self,

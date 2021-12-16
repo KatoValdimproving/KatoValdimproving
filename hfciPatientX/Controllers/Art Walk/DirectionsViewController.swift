@@ -22,8 +22,7 @@ class DirectionsViewController: UIViewController {
     let menu : DropDown = {
         let menu = DropDown()
         menu.dataSource = [
-            "Visit",
-            "Consult", "3", "4", "5", "6"
+           
         ]
         return menu
     }()
@@ -32,8 +31,7 @@ class DirectionsViewController: UIViewController {
     let menuTwo : DropDown = {
         let menu = DropDown()
         menu.dataSource = [
-            "Visit",
-            "Consult", "3", "4", "5", "6"
+           
         ]
         return menu
     }()
