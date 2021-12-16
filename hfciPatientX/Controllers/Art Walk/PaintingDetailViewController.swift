@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class PaintingDetailViewController: UIViewController {
 
@@ -53,10 +54,12 @@ class PaintingDetailViewController: UIViewController {
        
     }
     
-    func pushDirectionsView(directionsString: [String]) {
+    func pushDirectionsView(directionsString: [String], fromMenu: DropDown, toMenu: DropDown) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let directionsViewController = storyboard.instantiateViewController(withIdentifier: "DirectionsViewController") as? DirectionsViewController {
             directionsViewController.directionsString = directionsString
+            directionsViewController.menu = fromMenu
+            directionsViewController.menuTwo = toMenu
             directionsViewController.mapViewcontroller = self.mapViewController
             directionsViewController.painting = self.painting
             self.navigationController?.pushViewController(directionsViewController, animated: true)
