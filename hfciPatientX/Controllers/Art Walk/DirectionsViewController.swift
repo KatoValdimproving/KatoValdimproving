@@ -85,11 +85,11 @@ class DirectionsViewController: UIViewController {
     }
     
     @objc func didTapFrom() {
-        menu.show()
+        //menu.show()
     }
     
     @objc func didTapTo() {
-        menuTwo.show()
+        //menuTwo.show()
     }
 
     @IBAction func backAction(_ sender: Any) {
