@@ -123,13 +123,11 @@ class MapViewController: UIViewController {
         guard let location = getLocationWithPainting(painting: paint) else { return }
 
         self.getDirectionsTo(location: location) { directionsInstructions in
-            print(directionsInstructions)
-            
            let directionsString = directionsInstructions.instructions.map { instruction in
                                 return instruction.instruction ?? "Unknown"
             }
             self.startScanningPainting(painting: paint)
-            self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
+            self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString, fromMenu: self.fromSelect, toMenu: self.toSelect)
 
         }
         
@@ -423,74 +421,6 @@ class MapViewController: UIViewController {
                     beaconRanged.firstContact = nil
                     self.stopScanning(painting: nil)
                 }
-                
-           /*
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let paintingBeaconViewcontroller = storyboard.instantiateViewController(withIdentifier: "PaintingBeaconViewController") as? PaintingBeaconViewController else { return }
-                let backGroundView = UIView()
-                backGroundView.frame = UIScreen.main.bounds
-                backGroundView.backgroundColor = .darkGray
-                backGroundView.alpha = 0.6
-                paintingBeaconViewcontroller.painting = beaconRanged.paintings[0]
-                paintingBeaconViewcontroller.didPressNo = { painting in
-                    guard let beacon = painting.beacon else { return }
-                    self.goBack(self)
-                    beacon.isInDesiredDistance = false
-                    beacon.isInDesiredDistanceAndTime = false
-                    beacon.firstContact = nil
-                    self.stopScanning(painting: nil)
-                    self.galleryNavigationController?.popToRootViewController(animated: true)
-                    paintingBeaconViewcontroller.dismiss(animated: true)
-                    backGroundView.removeFromSuperview()
-                }
-                paintingBeaconViewcontroller.didPressYes = { painting in
-                    guard let beacon = painting.beacon else { return }
-                    self.goBack(self)
-                    beacon.isInDesiredDistance = false
-                    beacon.isInDesiredDistanceAndTime = false
-                    beacon.firstContact = nil
-                    self.stopScanning(painting: nil)
-                    self.galleryNavigationController?.popToRootViewController(animated: true)
-                    paintingBeaconViewcontroller.dismiss(animated: true)
-                    backGroundView.removeFromSuperview()
-
-                   /*
-                    guard let beacon = painting.beacon else { return }
-                    guard let location = self.getLocationWithBeacon(beacon: beacon) else { return }
-                   
-                    
-                    self.getDirectionsTo(location: location) { directionsInstructions in
-                        print(directionsInstructions)
-                        
-                       let directionsString = directionsInstructions.instructions.map { instruction in
-                                            return instruction.instruction ?? "Unknown"
-                        }
-
-                     //   self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString)
-                        //self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
-                        
-                        guard let paintingDetailViewController = storyboard.instantiateViewController(withIdentifier: "PaintingDetailViewController") as? PaintingDetailViewController else { return }
-                        self.galleryNavigationController?.pushViewController(paintingDetailViewController, animated: true)
-                        paintingDetailViewController.pushDirectionsView(directionsString: directionsString)
-                        paintingDetailViewController.painting = beacon.paintings.first
-                        paintingDetailViewController.mapViewController = self
-                    }*/
-                    
-                }
-                
-                paintingBeaconViewcontroller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-              //  paintingBeaconViewcontroller.backgroundView.frame = self.view.bounds
-               // paintingBeaconViewcontroller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                self.view.addSubview(backGroundView)
-                self.present(paintingBeaconViewcontroller, animated: true, completion: nil)
-                self.galleryNavigationController?.pushViewController(paintingBeaconViewcontroller, animated: true)
-//                Alerts.displayAlertWithCompletion(title: "", and: "Beacons detected") {
-//                    self.goBack(self)
-//                    self.galleryNavigationController?.popToRootViewController(animated: true)
-//
-//                }
-
-                */
             } else if beaconRanged.paintings.count > 1 {
               //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
                 
@@ -500,15 +430,6 @@ class MapViewController: UIViewController {
                 groupViewController.mapViewController = self
                 self.galleryNavigationController?.pushViewController(groupViewController, animated: true)
             }
-            //...
-//            var rootViewController = UIApplication.shared.keyWindow?.rootViewController
-//            if let navigationController = rootViewController as? UINavigationController {
-//                rootViewController = navigationController.viewControllers.first
-//            }
-//            if let tabBarController = rootViewController as? UITabBarController {
-//                rootViewController = tabBarController.selectedViewController
-//            }
-//            //...
           
         }
       

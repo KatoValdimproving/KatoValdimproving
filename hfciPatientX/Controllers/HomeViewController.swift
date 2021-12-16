@@ -121,6 +121,7 @@ class HomeViewController: UIViewController {
         self.mapViewController.goBack(self)
         self.mapViewController.controlls.isHidden = false
         self.mapViewController.artWalkContainerView.isHidden = true
+        self.mapViewController.showGoToArtwalkButton(isHidden: true)
         self.showArtWalk = false
         self.mapViewController.goBack(self)
         self.wayfindingBtn.titleLabel?.font = .boldSystemFont(ofSize: 23)

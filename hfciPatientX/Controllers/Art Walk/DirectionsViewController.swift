@@ -19,24 +19,10 @@ class DirectionsViewController: UIViewController {
     var directionsString: [String] = []
     var mapViewcontroller: MapViewController?
     var painting: Painting?
-    let menu : DropDown = {
-        let menu = DropDown()
-        menu.dataSource = [
-            "Visit",
-            "Consult", "3", "4", "5", "6"
-        ]
-        return menu
-    }()
+    var menu : DropDown!
     
     
-    let menuTwo : DropDown = {
-        let menu = DropDown()
-        menu.dataSource = [
-            "Visit",
-            "Consult", "3", "4", "5", "6"
-        ]
-        return menu
-    }()
+    var menuTwo : DropDown!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,17 +37,28 @@ class DirectionsViewController: UIViewController {
         gesture.numberOfTouchesRequired = 1
         fromView.addGestureRecognizer(gesture)
         
-        let gestureTwo = UITapGestureRecognizer(target: self, action: #selector(didTapFrom))
+        menu.selectionAction = { index, title in
+            self.fromLabel.text = title
+            self.mapViewcontroller!.point1 = title == "Your Location" ? nil : self.mapViewcontroller?.nodeLocations.filter{$0.name == title}.first
+            if(self.mapViewcontroller!.point2 != nil){
+                self.mapViewcontroller!.getDirection()
+            }
+        }
+        
+        let gestureTwo = UITapGestureRecognizer(target: self, action: #selector(didTapTo))
         gestureTwo.numberOfTapsRequired = 1
         gestureTwo.numberOfTouchesRequired = 1
         toView.addGestureRecognizer(gestureTwo)
         
+        menuTwo.selectionAction = { index, title in
+            self.toLabel.text = title
+            self.mapViewcontroller!.point2 = self.mapViewcontroller!.nodeLocations.filter{$0.name == title}.first
+            self.mapViewcontroller!.getDirection()
+        }
+        
         menu.anchorView = fromView
         menuTwo.anchorView = toView
         
-        
-        
-        print(self.directionsString)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -71,6 +68,7 @@ class DirectionsViewController: UIViewController {
         
         self.fromLabel.text = "Your Location"
         self.toLabel.text = self.painting?.location
+        self.mapViewcontroller?.point2 = self.mapViewcontroller?.getLocationWithPainting(painting: self.painting!)
     }
     
     
@@ -91,7 +89,7 @@ class DirectionsViewController: UIViewController {
     }
     
     @objc func didTapTo() {
-        menu.show()
+        menuTwo.show()
     }
 
     @IBAction func backAction(_ sender: Any) {
