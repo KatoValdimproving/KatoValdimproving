@@ -123,6 +123,8 @@ class MapViewController: UIViewController {
         guard let location = getLocationWithPainting(painting: paint) else { return }
 
         self.getDirectionsTo(location: location) { directionsInstructions in
+            self.mapMpiView.blueDotManager.setState(state: .FOLLOW)
+            self.centerButton.isHidden = false
            let directionsString = directionsInstructions.instructions.map { instruction in
                                 return instruction.instruction ?? "Unknown"
             }
