@@ -15,6 +15,8 @@ import Alamofire
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let gcmMessageIDKey = "gcm.Message_ID"
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //SettingsBundleHelper.shared.setInitialInfo()
@@ -370,12 +372,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
       // TODO: Handle data of notification
 
       // With swizzling disabled you must let Messaging know about the message, for Analytics
-      // Messaging.messaging().appDidReceiveMessage(userInfo)
+       Messaging.messaging().appDidReceiveMessage(userInfo)
 
-      // Print message ID.
-//      if let messageID = userInfo[gcmMessageIDKey] {
-//        print("Message ID: \(messageID)")
-//      }
+   //    Print message ID.
+      if let messageID = userInfo[gcmMessageIDKey] {
+        print("Message ID: \(messageID)")
+      }
 
       // Print full message.
       print(userInfo)
