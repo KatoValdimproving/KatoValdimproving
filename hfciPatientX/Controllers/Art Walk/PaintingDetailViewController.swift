@@ -10,7 +10,7 @@ import DropDown
 
 class PaintingDetailViewController: UIViewController {
 
-    @IBOutlet weak var navigateButton: UIButton!
+//    @IBOutlet weak var navigateButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,11 +23,14 @@ class PaintingDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
      //   self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
        // self.mapViewController?.beacon = getBeaconByPaintiingTitle(title: self.painting.title)
+        self.backButton.layer.cornerRadius = 10
+        backButton.layer.borderColor = UIColor.black.cgColor
+        backButton.layer.borderWidth = 1
+        
         self.mapViewController?.painting = painting
-        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .light)
         imageView.layer.cornerRadius = 10
         self.textView.textContainer.lineFragmentPadding = 0
-        navigateButton.layer.cornerRadius = 10
+//        navigateButton.layer.cornerRadius = 10
       //  backButton.layer.borderColor = UIColor.black.cgColor
        // backButton.layer.borderWidth = 2
         //backButton.layer.cornerRadius = 10
@@ -70,7 +73,7 @@ class PaintingDetailViewController: UIViewController {
     override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews()
 //        self.flowLayout.invalidateLayout()
-        navigateButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
+//        navigateButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
       //  self.mapViewController?.showGoToArtwalkButton(isHidden: false)
         self.mapViewController?.showGoToArtwalkButton(isHidden: false)

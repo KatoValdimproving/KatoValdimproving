@@ -101,6 +101,8 @@
 		CE2FB1B626F252F60040095B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB1B526F252F60040095B /* LoginViewController.swift */; };
 		CE2FB1B826F2548D0040095B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB1B726F2548D0040095B /* MenuViewController.swift */; };
 		CE2FB1BA26F258620040095B /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FB1B926F258620040095B /* RoundedView.swift */; };
+		CEA3295F27726F160088A6BB /* MapVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3295D27726F160088A6BB /* MapVMViewController.swift */; };
+		CEA3296027726F160088A6BB /* MapVMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA3295E27726F160088A6BB /* MapVMViewController.xib */; };
 		CEE7500D2704E7EA00BD6CB7 /* PointCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7500B2704E7EA00BD6CB7 /* PointCellTableViewCell.swift */; };
 		CEE7500E2704E7EA00BD6CB7 /* PointCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE7500C2704E7EA00BD6CB7 /* PointCellTableViewCell.xib */; };
 		CEF69412272854F5001E84E7 /* marker.html in Resources */ = {isa = PBXBuildFile; fileRef = CEF69411272854F5001E84E7 /* marker.html */; };
@@ -230,6 +232,8 @@
 		CE2FB1B526F252F60040095B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE2FB1B726F2548D0040095B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		CE2FB1B926F258620040095B /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		CEA3295D27726F160088A6BB /* MapVMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVMViewController.swift; sourceTree = "<group>"; };
+		CEA3295E27726F160088A6BB /* MapVMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVMViewController.xib; sourceTree = "<group>"; };
 		CEE7500B2704E7EA00BD6CB7 /* PointCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCellTableViewCell.swift; sourceTree = "<group>"; };
 		CEE7500C2704E7EA00BD6CB7 /* PointCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointCellTableViewCell.xib; sourceTree = "<group>"; };
 		CEF1E601271609D300B03DBD /* HFCIWalk.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HFCIWalk.gpx; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 		CE2FB18926EFA8950040095B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CEA3295D27726F160088A6BB /* MapVMViewController.swift */,
+				CEA3295E27726F160088A6BB /* MapVMViewController.xib */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -680,6 +686,7 @@
 				CE2FB1AA26F24DA90040095B /* Poppins-Thin.ttf in Resources */,
 				CE2FB1A926F24DA90040095B /* Poppins-BoldItalic.ttf in Resources */,
 				CE2FB1B026F24DA90040095B /* Poppins-SemiBold.ttf in Resources */,
+				CEA3296027726F160088A6BB /* MapVMViewController.xib in Resources */,
 				CE2FB1A626F24DA90040095B /* Poppins-Italic.ttf in Resources */,
 				CE2FB15E26EFA7AE0040095B /* Main.storyboard in Resources */,
 				CE2FB1AE26F24DA90040095B /* Poppins-BlackItalic.ttf in Resources */,
@@ -842,6 +849,7 @@
 				CE2FB15B26EFA7AE0040095B /* ViewController.swift in Sources */,
 				CE29AB19270D413E00184984 /* DirectionsTableViewCell.swift in Sources */,
 				8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */,
+				CEA3295F27726F160088A6BB /* MapVMViewController.swift in Sources */,
 				8B7E2CD32766DCEF0048C5A7 /* BottomBannerView.swift in Sources */,
 				8BDEE4E126FC2FD00014A054 /* NetworkManager.swift in Sources */,
 				8B79B53A26FC22B600057F79 /* ChatManager.swift in Sources */,
@@ -1047,7 +1055,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = hfciPatientX/hfciPatientX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1071,7 +1079,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = hfciPatientX/hfciPatientX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 9WDAW374KU;
 				INFOPLIST_FILE = hfciPatientX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;

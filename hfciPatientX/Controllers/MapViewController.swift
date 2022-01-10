@@ -194,6 +194,7 @@ class MapViewController: UIViewController {
         self.fromWhereView.isHidden = true
            // Set up MPIMapView and add to view
         self.goToArtwalkButton.layer.cornerRadius = 10
+        
         floorSelector.layer.cornerRadius = 10
         floorSelector.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         mapMpiView = MPIMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.height, height: self.mapView.frame.width))
@@ -210,6 +211,7 @@ class MapViewController: UIViewController {
               )
             }
                 
+        searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
 
         self.mapMpiView.delegate = self
         self.mapMpiView.blueDotManager.enable(options: .init(allowImplicitFloorLevel: false, smoothing: false, showBearing: false, baseColor: "#ffffff"))
@@ -423,15 +425,16 @@ class MapViewController: UIViewController {
                     beaconRanged.firstContact = nil
                     self.stopScanning(painting: nil)
                 }
-            } else if beaconRanged.paintings.count > 1 {
-              //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let groupViewController = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
-                groupViewController.beacon = beaconRanged
-                groupViewController.mapViewController = self
-                self.galleryNavigationController?.pushViewController(groupViewController, animated: true)
             }
+//            else if beaconRanged.paintings.count > 1 {
+//              //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
+//
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                guard let groupViewController = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
+//                groupViewController.beacon = beaconRanged
+//                groupViewController.mapViewController = self
+//                self.galleryNavigationController?.pushViewController(groupViewController, animated: true)
+//            }
           
         }
       
@@ -569,7 +572,7 @@ class MapViewController: UIViewController {
     
     func filterLocations() {
         self.nodeLocations = self.allLocations.filter { location in
-            location.nodes!.count > 0
+            location.nodes!.count > 0 && location.type != "waypoints"
         }.sorted { ($0.nodes?.first?.map)! <= ($1.nodes?.first?.map)!}
         
         filteredPolygonLocations = nodeLocations
@@ -601,7 +604,7 @@ class MapViewController: UIViewController {
             })
             floorLBL.text = labelString(option: map?.name ?? "")
                         
-            self.mapMpiView?.getDirections(to: point2.nodes?.first as! MPINavigatable, from: point1.nodes?.first as! MPINavigatable, accessible: true) { directions in
+            self.mapMpiView?.getDirections(to: point2!, from: point1!, accessible: true) { directions in
                 if let directions = directions {
                     self.mapMpiView.setMap(mapId: self.point1.nodes?.first?.map ?? "", completionCallback: nil)
                     self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: nil, polygons: nil, duration: 1.0, changeZoom: true, minZoom: 0, tilt: 0.8, padding: .none, focusZoomFactor: 1))
@@ -625,7 +628,7 @@ class MapViewController: UIViewController {
             })
             floorLBL.text = labelString(option: map?.name ?? "")
                         
-            self.mapMpiView?.getDirections(to: point2.nodes?.first as! MPINavigatable, from: nearestNode as! MPINavigatable, accessible: true) { directions in
+            self.mapMpiView?.getDirections(to: point2 as! MPINavigatable, from: nearestNode as! MPINavigatable, accessible: true) { directions in
                 if let directions = directions {
                     self.mapMpiView.setMap(mapId: self.nearestNode.map ?? "", completionCallback: nil)
                     //self.mapMpiView.focusOn(focusOptions: MPIOptions.Focus(nodes: nil, polygons: nil, duration: 1.0, changeZoom: true, minZoom: 0, tilt: 0.2, padding: .none, focusZoomFactor: 1))

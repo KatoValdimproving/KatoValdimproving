@@ -492,7 +492,7 @@ PODS:
   - GTMSessionFetcher/Core (1.7.0)
   - IQKeyboardManagerSwift (6.5.9)
   - leveldb-library (1.22.1)
-  - MappedIn (3.0.5)
+  - MappedIn (3.0.7)
   - MarqueeLabel (4.0.5)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
@@ -571,7 +571,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Gloss
   - IQKeyboardManagerSwift
-  - MappedIn (= 3.0.5)
+  - MappedIn (= 3.0.7)
   - MaterialComponents/Buttons
   - MDFInternationalization (~> 2.0)
   - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
@@ -650,7 +650,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
-  MappedIn: 8139b640b6ba18eec6ff2e30abb22535e59b57dc
+  MappedIn: a6221eae7b8df93bf60594888cde9854b72f5898
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
@@ -666,6 +666,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftySound: 9eb28bb14edb601b40027e44319e0ef8383f88bf
 
-PODFILE CHECKSUM: 6e2870fcb65a22cfe6225dbfaaa832ac7873729f
+PODFILE CHECKSUM: 1dc9831caddba438f015f2509b2e0efb17c8f7a5
 
 COCOAPODS: 1.11.2

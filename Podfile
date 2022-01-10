@@ -7,7 +7,7 @@ target 'hfciPatientX' do
 
   # Pods for hfciPatientX
   pod 'DropDown'
-  pod 'MappedIn', '3.0.5'
+  pod 'MappedIn', '3.0.7'
   pod 'MessengerKit', :git => 'https://github.com/steve228uk/MessengerKit.git'
   pod 'IQKeyboardManagerSwift'
   pod 'Socket.IO-Client-Swift', '~> 15.2.0'

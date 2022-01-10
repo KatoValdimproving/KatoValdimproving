@@ -28,13 +28,8 @@ class HomeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard  let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
         self.chatViewController = chatViewController
-       // self.chatViewController.willMove(toParent: self)
         self.chatViewController.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
         artWalkButton.isEnabled = false
-//        guard  let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController else { return }
-//        self.menuViewController = menuViewController
-//       // self.chatViewController.willMove(toParent: self)
-//        self.menuViewController.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
         
         guard  let mapViewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         self.mapViewController = mapViewController
@@ -49,18 +44,11 @@ class HomeViewController: UIViewController {
                 self.artWalkAction(self)
             }
         }
-       // self.chatViewController.willMove(toParent: self)
         self.mapViewController.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
         
-        
-        
-       // containerView.addSubview(self.menuViewController.view)
         containerView.addSubview(self.chatViewController.view)
         containerView.addSubview(self.mapViewController.view)
 
-        
-      //  self.addChild(self.chatViewController)
-      //  self.chatViewController.didMove(toParent: self)
         if showChat {
             self.chatAction(self)
         }
@@ -76,8 +64,6 @@ class HomeViewController: UIViewController {
         if let chatUser = self.chatUser {
             self.containerView.bringSubviewToFront(self.chatViewController.view)
             self.chatViewController.selectedContact = chatUser
-          
-            
         }
         
     }
@@ -137,6 +123,8 @@ class HomeViewController: UIViewController {
     
      @IBAction func chatAction(_ sender: Any) {
          self.containerView.bringSubviewToFront(self.chatViewController.view)
+         self.wayfindingBtn.titleLabel?.font = .systemFont(ofSize: 23)
+         self.artWalkButton.titleLabel?.font = .systemFont(ofSize: 23)
      }
     
     @IBAction func consoleAction(_ sender: Any) {

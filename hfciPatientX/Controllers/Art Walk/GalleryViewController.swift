@@ -42,6 +42,8 @@ class GalleryViewController: UIViewController {
 
         self.collectionView.contentInsetAdjustmentBehavior = .automatic
         
+        searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        
 
     }
     
@@ -49,12 +51,10 @@ class GalleryViewController: UIViewController {
         flowLayout.itemSize = CGSize(width: (self.view.frame.width/1) - 2, height: (self.view.frame.width  / 1) - 2)
         collectionView.collectionViewLayout = flowLayout
          self.mapViewController?.showGoToArtwalkButton(isHidden: true)
-
-       
-       
     }
+    
     override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
+//        super.viewWillLayoutSubviews() 
 //        self.flowLayout.invalidateLayout()
    
 

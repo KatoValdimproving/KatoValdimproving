@@ -46,6 +46,51 @@ func getBeaconByPaintiingTitle(title: String) -> Beacon? {
     
 }
 let paintings: [Painting] = [
+    Painting(name: "8", title: "Josephine Ford and Brigitte Harris", author: "Desiree Kelly", text: """
+Desiree Kelly is an award-winning artist and a native to Detroit. She was introduced to oil painting while studying Graphic Design at Wayne State University. Raised on the Eastside, she is inspired by the environment and has developed a style of storytelling through portraits. Her portraits of public icons are historically immersive & reflect on the narrative of her subjects by including artifacts & phrases within each piece. She is known for her distinctive mixture of “street art” & traditional oil technique.
+
+Kelly’s work can be seen in the Coleman A. Young Municipal Building (Mayor's office), dPoP!, Kuzzo's Chicken & Waffles, Eastern Market & the historical Alger Theater in Detroit. Her work is also in the permanent collections of the Charles H Wright Museum of African American History and Flint Institute of Arts. Her work has been published in the Washington Post and she has been commissioned by a number of private collections and public corporations which include Pepsi, Pandora (jewelry), Detroit Pistons, The Ellen DeGeneres Show, Converse, Kroger & Foot Locker.
+""", origin: "Detroit, Michigan", technique: "Oil, spray paint, acrylic, on canvas", year: "2020", location: "Brigitte Harris and Josephine Ford by Desiree Kelly"),
+    
+    Painting(name: "9", title: "The DNA of Hope", author: "Erik and Israel Nordin, Detroit Design Center", text: """
+Brothers, Erik and Israel Nordin have been working together to create one-of-a-kind sculptures and objects for indoor and outdoor spaces for over 20 years. They are the founders of Detroit Design Center and make one-of-a-kind statement pieces using glass, metal, wood, and other mediums.
+
+Erik Nordin studied music at the University of Michigan and Israel Nordin studied ceramics and glass at the College for Creative Studies. Through their years of working together, their artistic differences and individual points of view have created balance in their approach and how they work with their clients.
+
+Their 12,000 square foot studio space on Michigan Avenue in Detroit provides the space required to create large scale metal sculptures that they maneuver with the two cranes residing in their workspace.
+
+Although they started with small scale pieces, their work has gotten bigger and bolder over the years and can now be seen all over the city of Detroit and throughout the state of Michigan. Each piece of sculpture is unique and tells a specific story.
+""", origin: "Detroit, Michigan", technique: "Stainless steel, hand-cast glass, etched walnut, with reclaimed church organ pipes and wooden beam", year: "2020", location: "The DNA of Hope – Donor Wall"),
+    
+    Painting(name: "10", title: "Sway", author: "Susan Goethel Campbell", text: """
+Susan Goethel Campbell creates multi-disciplinary work that considers landscape to be an emergent system where nature, culture and the engineered environment are indistinguishable from one another. Central to her practice is the collection, documentation and observation of seasonal change and ephemera in both natural and artificial environments. Her work is realized in several formats, including installation, video, prints and drawings, as well as projects that engage communities to look at local and global environments.
+
+Campbell earned an MFA in printmaking from Cranbrook Academy of Art. Her work has been exhibited internationally in Belgium, Germany, Switzerland and Slovenia and nationally throughout the US, including, National Museum of Women in the Arts, Queens Art Museum, Crystal Bridges Museum, Museum of Contemporary Art Detroit, Grand Rapids Art Museum, the Detroit Institute of Arts, The Drawing Center, and The International Print Center New York. In 2009 she was one of 18 artists selected for the inaugural Kresge Artist Fellowship.
+
+Campbell has been awarded residencies at the Banff Centre for the Arts, Flemish Center for Graphic Arts, the Jentel Foundation, Beisinghoff Print residency and the Print Research Institute of North Texas. She taught studio art for 15 years at the College for Creative Studies in Detroit and has been a visiting artist in numerous institutions in the United States and abroad. Her work is in the collection of the National Museum of Women in the Arts, New York Public Library, Detroit Institute of Arts, Toledo Museum of Art and the University of Michigan Special Collections Library.
+""", origin: "Ferndale, Michigan", technique: "5 woodblock prints on panels, 1 digital photo on dibond", year: "2020", location: "Sway by Susan Goethel Campbell"),
+    
+    Painting(name: "7", title: "The Russell", author: "Darcel Deneau", text: """
+Artist’s Statement:
+
+“After the devastating death of my father and the near death of my mother in a home invasion shooting in a quiet suburban community; life as I knew it had changed forever. This unimaginable event gave me a harsh realization that life was short, and incidentally became the catalyst that inspired me. I reflected on my own life and how I had lived it up to now. Who would I be remembered as? A wife? A mother?
+
+ Suddenly, I had clarity for my life's purpose, and I decided to make art a greater part of my life.
+
+ Although I considered myself an artist since a young age and creativity had been a daily part of my life; I had not yet concentrated on developing my creative abilities.
+
+With two school-age children, I enrolled as a full-time student at the College for Creative Studies, CCS.
+
+Detroit inspired me. Initially I became fascinated with painting images of the city as it took me back to spending time with my father in places like Eastern Market, Downtown, Mexicantown, the Riverfront and more. I soon found my affection for the city was not shared by many of my fellow metro-Detroiters; not even the press.
+
+A negative perception of Detroit was apparent and fueled my drive to validate the city's worth even more. Today I continue to paint positive images of this truly amazing city.” – Darcel Deneau
+
+The Russell Industrial Center is an industrial factory turned to commercial complex of studios and shops that is located at 1600 Clay Street in Detroit, Michigan. The Russell Industrial Center is a 2,200,000-square-foot (200,000 m2), seven building complex designed by Albert Kahn for John William Murray in 1915. It contains studios and lofts and serves as a professional center for commercial and creative arts.
+""", origin: "Detroit, Michigan", technique: "Glass mosaic", year: "", location: "The Russell by Darcel Deneau"),
+    
+    Painting(name: "6", title: "Untitled", author: "James Collins", text: """
+Employing process as content, Detroit-based artist James Collins produces graphic line paintings that resemble warped photocopies and moiré patterns. His multidimensional line-heavy works are created using a chance-based, custom process in which oil paint and water-based acrylic interact in a fluid state and repel each other. Relying on a precise chemical balance, Collins allows his materials to dictate their own outcomes. Though this technique, he can create entire paintings in one sitting. His goal, he has said, is not to create new imagery but to breathe new life into painting by giving art-making materials command over the resulting artwork. Collins’s earlier works involved layers of white and silver house paint wrapped in plastic wrap to add texture and allowed to flake and peel over time.
+""", origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Untitled by James Collins"),
     
     Painting(name: "1", title: "Calendar", author: "Friedel Dzubas", text: """
 Magna acrylics on canvas
@@ -89,58 +134,6 @@ A Chicago and Milwaukee native, Tyanna received her B.A from Western Illinois Un
     Painting(name: "5", title: "Rust and Roses", author: "Johanna Curwood", text: """
 Johanna Curwood is an Australian artist based in the United States who works in the spaces connecting color, light, texture, shadow, movement, and all that’s in-between.
 """, origin: "Detroit, Michigan", technique: "Hand-sculpted mixed media layerings, pigmented and reactive resin, gold foil, signature survivor cardboard leaves on metal", year: "2020", location: "Rust and Roses by Johanna Curwood"),
-    
-    Painting(name: "6", title: "Untitled", author: "James Collins", text: """
-Employing process as content, Detroit-based artist James Collins produces graphic line paintings that resemble warped photocopies and moiré patterns. His multidimensional line-heavy works are created using a chance-based, custom process in which oil paint and water-based acrylic interact in a fluid state and repel each other. Relying on a precise chemical balance, Collins allows his materials to dictate their own outcomes. Though this technique, he can create entire paintings in one sitting. His goal, he has said, is not to create new imagery but to breathe new life into painting by giving art-making materials command over the resulting artwork. Collins’s earlier works involved layers of white and silver house paint wrapped in plastic wrap to add texture and allowed to flake and peel over time.
-""", origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Untitled by James Collins"),
-    
-    
-    Painting(name: "7", title: "The Russell", author: "Darcel Deneau", text: """
-Artist’s Statement:
-
-“After the devastating death of my father and the near death of my mother in a home invasion shooting in a quiet suburban community; life as I knew it had changed forever. This unimaginable event gave me a harsh realization that life was short, and incidentally became the catalyst that inspired me. I reflected on my own life and how I had lived it up to now. Who would I be remembered as? A wife? A mother?
-
- Suddenly, I had clarity for my life's purpose, and I decided to make art a greater part of my life.
-
- Although I considered myself an artist since a young age and creativity had been a daily part of my life; I had not yet concentrated on developing my creative abilities.
-
-With two school-age children, I enrolled as a full-time student at the College for Creative Studies, CCS.
-
-Detroit inspired me. Initially I became fascinated with painting images of the city as it took me back to spending time with my father in places like Eastern Market, Downtown, Mexicantown, the Riverfront and more. I soon found my affection for the city was not shared by many of my fellow metro-Detroiters; not even the press.
-
-A negative perception of Detroit was apparent and fueled my drive to validate the city's worth even more. Today I continue to paint positive images of this truly amazing city.” – Darcel Deneau
-
-The Russell Industrial Center is an industrial factory turned to commercial complex of studios and shops that is located at 1600 Clay Street in Detroit, Michigan. The Russell Industrial Center is a 2,200,000-square-foot (200,000 m2), seven building complex designed by Albert Kahn for John William Murray in 1915. It contains studios and lofts and serves as a professional center for commercial and creative arts.
-""", origin: "Detroit, Michigan", technique: "Glass mosaic", year: "", location: "The Russell by Darcel Deneau"),
-    
-    
-    Painting(name: "8", title: "Josephine Ford and Brigitte Harris", author: "Desiree Kelly", text: """
-Desiree Kelly is an award-winning artist and a native to Detroit. She was introduced to oil painting while studying Graphic Design at Wayne State University. Raised on the Eastside, she is inspired by the environment and has developed a style of storytelling through portraits. Her portraits of public icons are historically immersive & reflect on the narrative of her subjects by including artifacts & phrases within each piece. She is known for her distinctive mixture of “street art” & traditional oil technique.
-
-Kelly’s work can be seen in the Coleman A. Young Municipal Building (Mayor's office), dPoP!, Kuzzo's Chicken & Waffles, Eastern Market & the historical Alger Theater in Detroit. Her work is also in the permanent collections of the Charles H Wright Museum of African American History and Flint Institute of Arts. Her work has been published in the Washington Post and she has been commissioned by a number of private collections and public corporations which include Pepsi, Pandora (jewelry), Detroit Pistons, The Ellen DeGeneres Show, Converse, Kroger & Foot Locker.
-""", origin: "Detroit, Michigan", technique: "Oil, spray paint, acrylic, on canvas", year: "2020", location: "Brigitte Harris and Josephine Ford by Desiree Kelly"),
-    
-    
-    Painting(name: "9", title: "The DNA of Hope", author: "Erik and Israel Nordin, Detroit Design Center", text: """
-Brothers, Erik and Israel Nordin have been working together to create one-of-a-kind sculptures and objects for indoor and outdoor spaces for over 20 years. They are the founders of Detroit Design Center and make one-of-a-kind statement pieces using glass, metal, wood, and other mediums.
-
-Erik Nordin studied music at the University of Michigan and Israel Nordin studied ceramics and glass at the College for Creative Studies. Through their years of working together, their artistic differences and individual points of view have created balance in their approach and how they work with their clients.
-
-Their 12,000 square foot studio space on Michigan Avenue in Detroit provides the space required to create large scale metal sculptures that they maneuver with the two cranes residing in their workspace.
-
-Although they started with small scale pieces, their work has gotten bigger and bolder over the years and can now be seen all over the city of Detroit and throughout the state of Michigan. Each piece of sculpture is unique and tells a specific story.
-""", origin: "Detroit, Michigan", technique: "Stainless steel, hand-cast glass, etched walnut, with reclaimed church organ pipes and wooden beam", year: "2020", location: "The DNA of Hope – Donor Wall"),
-    
-    
-    Painting(name: "10", title: "Sway", author: "Susan Goethel Campbell", text: """
-Susan Goethel Campbell creates multi-disciplinary work that considers landscape to be an emergent system where nature, culture and the engineered environment are indistinguishable from one another. Central to her practice is the collection, documentation and observation of seasonal change and ephemera in both natural and artificial environments. Her work is realized in several formats, including installation, video, prints and drawings, as well as projects that engage communities to look at local and global environments.
-
-Campbell earned an MFA in printmaking from Cranbrook Academy of Art. Her work has been exhibited internationally in Belgium, Germany, Switzerland and Slovenia and nationally throughout the US, including, National Museum of Women in the Arts, Queens Art Museum, Crystal Bridges Museum, Museum of Contemporary Art Detroit, Grand Rapids Art Museum, the Detroit Institute of Arts, The Drawing Center, and The International Print Center New York. In 2009 she was one of 18 artists selected for the inaugural Kresge Artist Fellowship.
-
-Campbell has been awarded residencies at the Banff Centre for the Arts, Flemish Center for Graphic Arts, the Jentel Foundation, Beisinghoff Print residency and the Print Research Institute of North Texas. She taught studio art for 15 years at the College for Creative Studies in Detroit and has been a visiting artist in numerous institutions in the United States and abroad. Her work is in the collection of the National Museum of Women in the Arts, New York Public Library, Detroit Institute of Arts, Toledo Museum of Art and the University of Michigan Special Collections Library.
-""", origin: "Ferndale, Michigan", technique: "5 woodblock prints on panels, 1 digital photo on dibond", year: "2020", location: "Sway by Susan Goethel Campbell"),
-    
-    
     
 //    Painting(name: "11", title: "Rags and Old Iron", author: "Carole Harris", text: """
 //Carole Harris is a fiber artist who extends the boundaries of traditional quilting by exploring other forms of stitchery, irregular shapes, textures, materials, and objects. Her mother introduced her to needle arts at an early age, teaching her embroidery and crochet. It wasn’t until she received her BFA in art from Wayne State University in 1966 that she began to explore fibers as an art form.
@@ -187,13 +180,13 @@ let beacons = [
     
    
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35557, minor: 9601, firstContact: nil, time: 5, distance: 5, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 5, distance: 5, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 5, distance: 7, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 454, minor: 21971, firstContact: nil, time: 5, distance: 5, identifier: "Shared Blessings with Shared Visions", paintings: [getPaintingByTitle(title: "Shared Blessings with Shared Visions")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23757, minor: 6314, firstContact: nil, time: 5, distance: 2, identifier: "A Series of Arrangements #2", paintings: [getPaintingByTitle(title: "A Series of Arrangements #2")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 27400, minor: 48675, firstContact: nil, time: 5, distance: 2, identifier: "Untitled", paintings: [getPaintingByTitle(title: "Untitled")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35995, minor: 11128, firstContact: nil, time: 5, distance: 2, identifier: "The Russell", paintings: [getPaintingByTitle(title: "The Russell")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23068, minor: 6689, firstContact: nil, time: 5, distance: 2, identifier: "Josephine Ford and Brigitte Harris", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23044, minor: 59833, firstContact: nil, time: 5, distance: 2, identifier: "The DNA of Hope", paintings: [getPaintingByTitle(title: "The DNA of Hope")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23044, minor: 59833, firstContact: nil, time: 5, distance: 5, identifier: "The DNA of Hope", paintings: [getPaintingByTitle(title: "The DNA of Hope")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 55859, minor: 64145, firstContact: nil, time: 5, distance: 3, identifier: "Sway", paintings: [getPaintingByTitle(title: "Sway")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 43055, minor: 36490, firstContact: nil, time: 5, distance: 5, identifier: "DIA Art Walk", paintings: [getPaintingByTitle(title: "DIA Art Walk")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 2297, minor: 50393, firstContact: nil, time: 5, distance: 5, identifier: "Healing Arts Gallery", paintings: [getPaintingByTitle(title: "Healing Arts Gallery")], proximity: 0, rrsi: 0, location: ""),

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>339167642889-3qpvau2hutecocbcrbum77j9op8oc795.apps.googleusercontent.com</string>
+	<string>711282896000-7l9ejj23fbqnakegfmtcd9d4ih8uqn69.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.339167642889-3qpvau2hutecocbcrbum77j9op8oc795</string>
+	<string>com.googleusercontent.apps.711282896000-7l9ejj23fbqnakegfmtcd9d4ih8uqn69</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB9i2uhVau50ID3DFCql6QFybDoQcCnEfQ</string>
+	<string>AIzaSyCKKqcJMRPubfsOhwRlEf5U89ti1kzyXR4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>339167642889</string>
+	<string>711282896000</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.navvsystems.hfci</string>
 	<key>PROJECT_ID</key>
-	<string>hfci-2ba11</string>
+	<string>spry-chassis-279614</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hfci-2ba11.appspot.com</string>
+	<string>spry-chassis-279614.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:339167642889:ios:9285ca5ff8129dd9433fd8</string>
+	<string>1:711282896000:ios:375f5ee9e54aa7f14e0a65</string>
+	<key>DATABASE_URL</key>
+	<string>https://spry-chassis-279614.firebaseio.com</string>
 </dict>
 </plist>

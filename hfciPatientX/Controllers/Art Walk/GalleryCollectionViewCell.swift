@@ -30,12 +30,11 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     func setInfo(painting: Painting) {
         let color = UIColor(red: 21/255, green: 57/255, blue: 109/255, alpha: 1)
-
-        titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: painting.title, sizeTop: painting.title.count < 27 ? 20 : 17 , secondLine: "by " + painting.author, sizeBottom: 15, color: color)
+        let secondLine = painting.author == "" ? "" : "by " + painting.author
+        titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: painting.title, sizeTop: painting.title.count < 27 ? 20 : 17 , secondLine: secondLine, sizeBottom: 15, color: color)
         if painting.title.count > 30 {
-            titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: painting.title, sizeTop: 15 , secondLine: "by " + painting.author, sizeBottom: 15, color: color)
+            titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: painting.title, sizeTop: 15 , secondLine: secondLine, sizeBottom: 15, color: color)
         }
-        
         imageView.image = UIImage(named: painting.title)
     }
 
