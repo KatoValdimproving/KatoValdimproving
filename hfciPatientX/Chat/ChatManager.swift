@@ -385,7 +385,7 @@ class ChatManager {
                 let failableMessage = try jsonDecoder.decode(FailableDecodable<Message>.self, from: data)
                 let messageL = failableMessage.value
                 
-                let currentBardgeNumber = UIApplication.shared.applicationIconBadgeNumber
+                //let currentBardgeNumber = UIApplication.shared.applicationIconBadgeNumber
                 //UIApplication.shared.applicationIconBadgeNumber = currentBardgeNumber + 1
                 
                 return messageL

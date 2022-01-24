@@ -32,6 +32,9 @@ class DirectionsViewController: UIViewController {
         backButton.layer.borderColor = UIColor.black.cgColor
         backButton.layer.borderWidth = 1
         
+        NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("endGuidedTour"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("endGuidedTour"), object: nil)
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapFrom))
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1

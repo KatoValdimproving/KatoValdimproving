@@ -107,9 +107,12 @@ class LoginViewController: UIViewController {
         SessionManager.shared.user = user
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController {
-                self.navigationController?.pushViewController(menuViewController, animated: true)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as? HomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+//            if let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController {
+//                self.navigationController?.pushViewController(menuViewController, animated: true)
+//        }
     }
     /*
     // MARK: - Navigation

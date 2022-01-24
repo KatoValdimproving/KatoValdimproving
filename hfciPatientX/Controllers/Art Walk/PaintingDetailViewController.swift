@@ -15,11 +15,14 @@ class PaintingDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nextButton: UIButton!
+    
     var mapViewController: MapViewController?
     var painting: Painting!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("endGuidedTour"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("reachedPainting"), object: nil)
         // Do any additional setup after loading the view.
      //   self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
        // self.mapViewController?.beacon = getBeaconByPaintiingTitle(title: self.painting.title)
@@ -30,13 +33,14 @@ class PaintingDetailViewController: UIViewController {
         self.mapViewController?.painting = painting
         imageView.layer.cornerRadius = 10
         self.textView.textContainer.lineFragmentPadding = 0
-//        navigateButton.layer.cornerRadius = 10
-      //  backButton.layer.borderColor = UIColor.black.cgColor
-       // backButton.layer.borderWidth = 2
-        //backButton.layer.cornerRadius = 10
         setInfoWithPainting(painting: self.painting)
-       // self.mapViewController?.showGoToArtwalkButton(isHidden: false)
         self.mapViewController?.paintingDetailViewController = self
+        
+        if(self.mapViewController?.gidedArtTour != nil && self.mapViewController!.gidedArtTour){
+            backButton.isHidden = true
+            nextButton.isHidden = false
+            self.mapViewController?.goToArtWalkPaintingAction(self)
+        }
     }
     
     func setInfoWithPainting(painting: Painting) {
@@ -46,15 +50,20 @@ class PaintingDetailViewController: UIViewController {
         
     }
     
-    
-    
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         self.mapViewController?.showGoToArtwalkButton(isHidden: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       
+    @IBAction func nextPaint(_ sender: Any) {
+        if(self.mapViewController?.gidedArtTour != nil && self.mapViewController!.gidedArtTour){
+            self.navigationController?.popViewController(animated: true)
+            self.mapViewController?.showGoToArtwalkButton(isHidden: true)
+            self.mapViewController?.nextStop()
+        }else{
+            self.navigationController?.popViewController(animated: true)
+            self.mapViewController?.showGoToArtwalkButton(isHidden: true)
+        }
     }
     
     func pushDirectionsView(directionsString: [String], fromMenu: DropDown, toMenu: DropDown) {

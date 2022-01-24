@@ -107,6 +107,8 @@ class ChatContactsViewController: UIViewController {
             self?.statusChat.tintColor = .red
 
         }
+        
+        self.getInitialUsers()
        
     }
     

@@ -94,12 +94,6 @@ class HomeViewController: UIViewController {
         self.wayfindingBtn.titleLabel?.font = .systemFont(ofSize: 23)
     }
     
-    @IBAction func menuAction(_ sender: Any) {
-       // self.containerView.bringSubviewToFront(self.menuViewController.view)
-       // logOut()
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     func logOut() {
         APIManager.sharedInstance.logOut(completionHandler: {  islogout,error in
             if islogout {

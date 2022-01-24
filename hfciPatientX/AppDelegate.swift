@@ -405,7 +405,7 @@ extension AppDelegate: MessagingDelegate {
       print("Firebase registration token: \(String(describing: fcmToken))")
         SessionManager.shared.firebaseToken = fcmToken
 
-      let dataDict: [String: String] = ["token": fcmToken ?? ""]
+      let dataDict: [String: String] = ["firebaseToken": fcmToken ?? ""]
         print(dataDict)
       NotificationCenter.default.post(
         name: Notification.Name("FCMToken"),

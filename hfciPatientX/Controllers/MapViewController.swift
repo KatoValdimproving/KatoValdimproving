@@ -31,9 +31,12 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var textDirectionsBTN: UIButton!
     
+    @IBOutlet weak var endTourBtn: UIButton!
+    
     var mapMpiView: MPIMapView!
     var mapFroors: [MPIMap] = []
     var allLocations : [MPILocation] = []
+    var visitedPaints : [String] = []
     var filteredPolygonLocations : [MPILocation] = []
     var nodeLocations : [MPILocation] = []
     var instructions : [String] = []
@@ -47,6 +50,7 @@ class MapViewController: UIViewController {
     var painting: Painting?
     var paintingDetailViewController: PaintingDetailViewController?
     let centerButton = UIButton(type: .custom)
+    var gidedArtTour : Bool = false
     
     @IBOutlet weak var fromWhereView: UIView!
     
@@ -176,8 +180,19 @@ class MapViewController: UIViewController {
     @IBAction func showTextDirections(_ sender: Any) {
         self.directionsData.isHidden = false
         self.textDirectionsBTN.titleLabel?.text = "Hide Text Directions"
+        if let galleryViewController = navigationController?.viewControllers.first as? GalleryViewController {
+            self.galleryViewController = galleryViewController
+            self.galleryViewController?.mapViewController = self
+        }
     }
     
+    
+    @IBAction func endTour(_ sender: Any) {
+        gidedArtTour = false
+        endTourBtn.isHidden = true
+        self.visitedPaints = []
+        NotificationCenter.default.post(name: Notification.Name("endGuidedTour"), object: nil)
+    }
     
     private var locationManager = CLLocationManager()
     
@@ -194,6 +209,8 @@ class MapViewController: UIViewController {
         self.fromWhereView.isHidden = true
            // Set up MPIMapView and add to view
         self.goToArtwalkButton.layer.cornerRadius = 10
+
+        self.endTourBtn.layer.cornerRadius = 10
         
         floorSelector.layer.cornerRadius = 10
         floorSelector.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
@@ -353,6 +370,11 @@ class MapViewController: UIViewController {
         }
     }
     
+    func guidedArtWalk() {
+        gidedArtTour = true
+        endTourBtn.isHidden = false
+    }
+    
     func getDirectionsTo(location: MPILocation, directionsInstructions: @escaping ((_ directionsInstructions: MPIDirections) -> Void)) {
         
         var locations: MPINode
@@ -400,17 +422,23 @@ class MapViewController: UIViewController {
         print(notification.object ?? "") //myObject
         print(notification.userInfo ?? "") //[AnyHashable("key"): "Value"]
         if let beaconRanged = notification.object as? Beacon {
-           // Alerts.displayAlert(with: "beacon", and: "\(beaconRanged.paintings[0].title)")
-           // Alerts.displayAlertPainting(painting: beaconRanged.paintings[0])
             
             if beaconRanged.paintings.count == 1 {
                 
                 guard let bottomBanner = BottomBannerView.instantiate() else { return }
                 bottomBanner.frame = CGRect(x: self.mapView.bounds.midX + 10 , y: UIScreen.main.bounds.maxY, width: 600, height: 50)
-             //   bottomBanner?.center.y = self.view.center.y
-                bottomBanner.layer.masksToBounds = true;
-
-                bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier) 
+                bottomBanner.layer.masksToBounds = true
+                if(self.gidedArtTour) {
+                    if(visitedPaints.isEmpty){
+                        bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: "You started your tour in \(beaconRanged.identifier)")
+                    }else{
+                        bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier)
+                    }
+                    self.visitedPaints.append(beaconRanged.identifier)
+                }else{
+                    bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier)
+                }
+                 
                 bottomBanner.layer.cornerRadius = 10
                 bottomBanner.titleLabel.layer.cornerRadius = 10
                 self.view.addSubview(bottomBanner)
@@ -418,26 +446,26 @@ class MapViewController: UIViewController {
                 
                 _ = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
                     bottomBanner.show(false)
-                    self.galleryNavigationController?.popViewController(animated: false)
-                    self.goBack(self)
+                    if(self.gidedArtTour){
+                        self.galleryNavigationController?.popViewController(animated: false)
+                    }else{
+                        self.galleryNavigationController?.popViewController(animated: false)
+                        self.goBack(self)
+                    }
                     beaconRanged.isInDesiredDistance = false
                     beaconRanged.isInDesiredDistanceAndTime = false
                     beaconRanged.firstContact = nil
                     self.stopScanning(painting: nil)
+                    
                 }
             }
-//            else if beaconRanged.paintings.count > 1 {
-//              //  Alerts.displayAlert(with: "More Paitning", and: "x x x")
-//
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                guard let groupViewController = storyboard.instantiateViewController(withIdentifier: "GroupViewController") as? GroupViewController else { return }
-//                groupViewController.beacon = beaconRanged
-//                groupViewController.mapViewController = self
-//                self.galleryNavigationController?.pushViewController(groupViewController, animated: true)
-//            }
           
         }
       
+    }
+    
+    func nextStop(){
+        self.galleryViewController?.nextPainting()
     }
   
     
@@ -681,6 +709,7 @@ class MapViewController: UIViewController {
     
     var galleryViewController : GalleryViewController?
     var galleryNavigationController: UINavigationController?
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "navForArtWalk" {
             if let navigationController = segue.destination as? UINavigationController {
@@ -928,12 +957,6 @@ extension MapViewController {
             locationManager.startMonitoring(for: beaconRegion)
             locationManager.startRangingBeacons(in: beaconRegion)
         }
-   
-        
-//        let uuid2 = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-//        let beaconRegion2 = CLBeaconRegion(uuid: uuid, major: 20545, minor: 5125, identifier: "Painting 2")
-//        locationManager.startMonitoring(for: beaconRegion2)
-//        locationManager.startRangingBeacons(in: beaconRegion2)
         
         
     }
@@ -953,20 +976,6 @@ extension MapViewController {
             locationManager.stopMonitoring(for: beaconRegion)
             locationManager.stopRangingBeacons(in: beaconRegion)
         }
-        
-//        guard let beacon = painting.beacon else { return }
-//
-//        let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-//        //        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
-//
-//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "MyBeacon")
-//        locationManager.stopMonitoring(for: beaconRegion)
-//        locationManager.stopRangingBeacons(in: beaconRegion)
-        
-//        let uuid2 = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-//        let beaconRegion2 = CLBeaconRegion(uuid: uuid, major: 20545, minor: 5125, identifier: "Painting 2")
-//        locationManager.startMonitoring(for: beaconRegion2)
-//        locationManager.startRangingBeacons(in: beaconRegion2)
         
         
     }

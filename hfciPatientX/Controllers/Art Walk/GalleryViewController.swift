@@ -66,7 +66,21 @@ class GalleryViewController: UIViewController {
 
     }
     @IBAction func guidedArtWalkAction(_ sender: Any) {
-        self.mapViewController?.guidedArtWalkFromCurrentLocation()
+        let alert = UIAlertController(title: "", message: "Move to a pice of art you find interesting to start your tour", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Start", style: .default) {
+            UIAlertAction in
+            self.mapViewController?.guidedArtWalk()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            UIAlertAction in
+            
+        }
+
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     func setAllLocations() {
@@ -91,26 +105,46 @@ class GalleryViewController: UIViewController {
         paintingDetailViewController?.painting = self.selectedPainting
     }
     
-//    func getLocation(name: String) -> MPILocation {
-//        let location = self.allLocations.filter { location in
-//            return location.name == name
-//        }
-//        
-//        return location.first!
-//    }
+    func nextPainting(){
+        if(self.mapViewController?.visitedPaints.count == paintings.count){
+            self.mapViewController?.endTour(self)
+        }else{
+            let index = paintings.firstIndex { element in
+                self.mapViewController?.visitedPaints.last == element.title
+            }
+            if (index != nil && (index! + 1) < paintings.count){
+                self.selectedPaint(index: index! + 1)
+            } else{
+                self.selectedPaint(index: 0)
+            }
+        }
+    }
     
-     
+    func presentPaintingInfo(title: String){
+        let index = paintings.firstIndex { element in
+            title == element.title
+        }
+        self.selectedPainting = paintings[index!]
+        self.performSegue(withIdentifier: "pictureDetail", sender: self)
+    }
     
+    func selectedPaint(index: Int){
+        if(mapViewController?.gidedArtTour != nil && mapViewController!.gidedArtTour){
+            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintings[index]
+            self.mapViewController?.visitedPaints.append(self.selectedPainting!.title)
+            self.performSegue(withIdentifier: "pictureDetail", sender: self)
+        }else{
+            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintings[index]
+            self.performSegue(withIdentifier: "pictureDetail", sender: self)
+        }
+    }
 
 }
 
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedPainting = isFiltering ? filteredPaintings[indexPath.row] :  paintings[indexPath.row]
-        
-//        self.selectedLocation = getLocation(name: getBeaconByPaintiingTitle(title: self.selectedPainting!.title)!.location)
-        self.performSegue(withIdentifier: "pictureDetail", sender: self)
+        self.selectedPaint(index: indexPath.row)
     }
     
 }

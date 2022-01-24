@@ -124,7 +124,7 @@ class BroadcastManager {
             
             if SessionManager.shared.isAppInBackground {
                 
-                let currentBardgeNumber = UIApplication.shared.applicationIconBadgeNumber
+                //let currentBardgeNumber = UIApplication.shared.applicationIconBadgeNumber
                 //UIApplication.shared.applicationIconBadgeNumber = currentBardgeNumber + 1
                 //self.messagesCountForAppIconBadge = currentBardgeNumber + 1
                 
