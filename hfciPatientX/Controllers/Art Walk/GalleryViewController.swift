@@ -182,7 +182,7 @@ extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell
-        let painting = isFiltering ? filteredPaintings[indexPath.row] :  paintings[indexPath.row]
+        let painting = isFiltering ? filteredPaintings[indexPath.row] :  paintingList[indexPath.row]
         cell?.setInfo(painting: painting)
         return cell!
     }
