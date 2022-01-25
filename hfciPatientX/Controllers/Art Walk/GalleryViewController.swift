@@ -22,6 +22,8 @@ class GalleryViewController: UIViewController {
     var mapViewController: MapViewController?
     var isFiltering = false
     var filteredPaintings: [Painting] = []
+    var paintingList : [Painting] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -31,6 +33,8 @@ class GalleryViewController: UIViewController {
         
         flowLayout.minimumInteritemSpacing = 2
         flowLayout.minimumLineSpacing = 2
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification), name: Notification.Name("didRangeBeacons"), object: nil)
         
         
        // collectionView.collectionViewLayout = self
@@ -44,7 +48,24 @@ class GalleryViewController: UIViewController {
         
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         
+        if(self.mapViewController?.gidedArtTour != nil && self.mapViewController!.gidedArtTour){
+            paintingList = paintings
+            paintingList.removeAll { element in
+                return element.title == "Rust and Roses"
+            }
+        }else{
+            paintingList = paintings
+        }
 
+    }
+    
+    @objc func methodOfReceivedNotification() {
+        
+        paintingList.sort {
+            ($0.beacon?.proximity ?? 100) < ($1.beacon?.proximity ?? 100)
+        }
+        
+        collectionView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -56,8 +77,6 @@ class GalleryViewController: UIViewController {
     override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews() 
 //        self.flowLayout.invalidateLayout()
-   
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +90,7 @@ class GalleryViewController: UIViewController {
             UIAlertAction in
             self.mapViewController?.startScanningPainting(painting: nil)
             self.mapViewController?.guidedArtWalk()
+            self.collectionView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
@@ -107,13 +127,13 @@ class GalleryViewController: UIViewController {
     }
     
     func nextPainting(){
-        if(self.mapViewController?.visitedPaints.count == paintings.count){
+        if(self.mapViewController?.visitedPaints.count == paintingList.count){
             self.mapViewController?.endTour(self)
         }else{
             let index = paintings.firstIndex { element in
                 self.mapViewController?.visitedPaints.last == element.title
             }
-            if (index != nil && (index! + 1) < paintings.count){
+            if (index != nil && (index! + 1) < paintingList.count){
                 self.selectedPaint(index: index! + 1)
             } else{
                 self.selectedPaint(index: 0)
@@ -122,20 +142,20 @@ class GalleryViewController: UIViewController {
     }
     
     func presentPaintingInfo(title: String){
-        let index = paintings.firstIndex { element in
+        let index = paintingList.firstIndex { element in
             title == element.title
         }
-        self.selectedPainting = paintings[index!]
+        self.selectedPainting = paintingList[index!]
         self.performSegue(withIdentifier: "pictureDetail", sender: self)
     }
     
     func selectedPaint(index: Int){
         if(mapViewController?.gidedArtTour != nil && mapViewController!.gidedArtTour){
-            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintings[index]
+            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintingList[index]
             self.mapViewController?.visitedPaints.append(self.selectedPainting!.title)
             self.performSegue(withIdentifier: "pictureDetail", sender: self)
         }else{
-            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintings[index]
+            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintingList[index]
             self.performSegue(withIdentifier: "pictureDetail", sender: self)
         }
     }
@@ -157,7 +177,7 @@ extension GalleryViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isFiltering ? filteredPaintings.count :  paintings.count
+        return isFiltering ? filteredPaintings.count :  paintingList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -181,7 +201,7 @@ extension GalleryViewController: UISearchBarDelegate {
             return
         }
             
-        for painting in paintings {
+        for painting in paintingList {
             if painting.title.lowercased().contains(searchText.lowercased()) {
                 filteredPaintings.append(painting)
             }
@@ -210,6 +230,15 @@ extension GalleryViewController: UISearchBarDelegate {
  //       self.isFiltering = false
 //        self.collectionView.reloadData()
 
+    }
+    
+    func orderPaints(){
+        
+    }
+    
+    func endTour() {
+        paintingList = paintings
+        collectionView.reloadData()
     }
     
 }

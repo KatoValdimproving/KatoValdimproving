@@ -46,12 +46,6 @@ func getBeaconByPaintiingTitle(title: String) -> Beacon? {
     
 }
 let paintings: [Painting] = [
-    Painting(name: "8", title: "Josephine Ford and Brigitte Harris", author: "Desiree Kelly", text: """
-Desiree Kelly is an award-winning artist and a native to Detroit. She was introduced to oil painting while studying Graphic Design at Wayne State University. Raised on the Eastside, she is inspired by the environment and has developed a style of storytelling through portraits. Her portraits of public icons are historically immersive & reflect on the narrative of her subjects by including artifacts & phrases within each piece. She is known for her distinctive mixture of “street art” & traditional oil technique.
-
-Kelly’s work can be seen in the Coleman A. Young Municipal Building (Mayor's office), dPoP!, Kuzzo's Chicken & Waffles, Eastern Market & the historical Alger Theater in Detroit. Her work is also in the permanent collections of the Charles H Wright Museum of African American History and Flint Institute of Arts. Her work has been published in the Washington Post and she has been commissioned by a number of private collections and public corporations which include Pepsi, Pandora (jewelry), Detroit Pistons, The Ellen DeGeneres Show, Converse, Kroger & Foot Locker.
-""", origin: "Detroit, Michigan", technique: "Oil, spray paint, acrylic, on canvas", year: "2020", location: "Brigitte Harris and Josephine Ford by Desiree Kelly"),
-    
     Painting(name: "9", title: "The DNA of Hope", author: "Erik and Israel Nordin, Detroit Design Center", text: """
 Brothers, Erik and Israel Nordin have been working together to create one-of-a-kind sculptures and objects for indoor and outdoor spaces for over 20 years. They are the founders of Detroit Design Center and make one-of-a-kind statement pieces using glass, metal, wood, and other mediums.
 
@@ -61,6 +55,12 @@ Their 12,000 square foot studio space on Michigan Avenue in Detroit provides the
 
 Although they started with small scale pieces, their work has gotten bigger and bolder over the years and can now be seen all over the city of Detroit and throughout the state of Michigan. Each piece of sculpture is unique and tells a specific story.
 """, origin: "Detroit, Michigan", technique: "Stainless steel, hand-cast glass, etched walnut, with reclaimed church organ pipes and wooden beam", year: "2020", location: "The DNA of Hope – Donor Wall"),
+    
+    Painting(name: "8", title: "Josephine Ford and Brigitte Harris", author: "Desiree Kelly", text: """
+Desiree Kelly is an award-winning artist and a native to Detroit. She was introduced to oil painting while studying Graphic Design at Wayne State University. Raised on the Eastside, she is inspired by the environment and has developed a style of storytelling through portraits. Her portraits of public icons are historically immersive & reflect on the narrative of her subjects by including artifacts & phrases within each piece. She is known for her distinctive mixture of “street art” & traditional oil technique.
+
+Kelly’s work can be seen in the Coleman A. Young Municipal Building (Mayor's office), dPoP!, Kuzzo's Chicken & Waffles, Eastern Market & the historical Alger Theater in Detroit. Her work is also in the permanent collections of the Charles H Wright Museum of African American History and Flint Institute of Arts. Her work has been published in the Washington Post and she has been commissioned by a number of private collections and public corporations which include Pepsi, Pandora (jewelry), Detroit Pistons, The Ellen DeGeneres Show, Converse, Kroger & Foot Locker.
+""", origin: "Detroit, Michigan", technique: "Oil, spray paint, acrylic, on canvas", year: "2020", location: "Brigitte Harris and Josephine Ford by Desiree Kelly"),
     
     Painting(name: "10", title: "Sway", author: "Susan Goethel Campbell", text: """
 Susan Goethel Campbell creates multi-disciplinary work that considers landscape to be an emergent system where nature, culture and the engineered environment are indistinguishable from one another. Central to her practice is the collection, documentation and observation of seasonal change and ephemera in both natural and artificial environments. Her work is realized in several formats, including installation, video, prints and drawings, as well as projects that engage communities to look at local and global environments.

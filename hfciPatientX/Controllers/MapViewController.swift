@@ -187,6 +187,7 @@ class MapViewController: UIViewController {
         gidedArtTour = false
         endTourBtn.isHidden = true
         self.visitedPaints = []
+        galleryViewController?.endTour()
         NotificationCenter.default.post(name: Notification.Name("endGuidedTour"), object: nil)
     }
     
@@ -411,17 +412,7 @@ class MapViewController: UIViewController {
                 guard let bottomBanner = BottomBannerView.instantiate() else { return }
                 bottomBanner.frame = CGRect(x: self.mapView.bounds.midX + 10 , y: UIScreen.main.bounds.maxY, width: 600, height: 50)
                 bottomBanner.layer.masksToBounds = true
-                if(self.gidedArtTour) {
-                    if(visitedPaints.isEmpty){
-                        bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: "You started your tour in \(beaconRanged.identifier)")
-                    }else{
-                        bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier)
-                    }
-                    self.visitedPaints.append(beaconRanged.identifier)
-                }else{
-                    bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier)
-                }
-                 
+                bottomBanner.titleLabel.attributedText = BottomBannerView.formatLabel(paintTitle: beaconRanged.identifier)
                 bottomBanner.layer.cornerRadius = 10
                 bottomBanner.titleLabel.layer.cornerRadius = 10
                 self.view.addSubview(bottomBanner)
