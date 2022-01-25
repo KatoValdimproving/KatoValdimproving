@@ -60,7 +60,6 @@ class GalleryViewController: UIViewController {
         
         collectionView.reloadData()
         
-        mapViewController?.stopScanning(painting: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -163,7 +162,6 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.mapViewController?.startScanningPainting(painting: self.selectedPainting)
         self.selectedPaint(index: indexPath.row)
     }
     
