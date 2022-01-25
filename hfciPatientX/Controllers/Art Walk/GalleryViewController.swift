@@ -88,7 +88,7 @@ class GalleryViewController: UIViewController {
             self.paintingList.removeAll { element in
                 return element.title == "Rust and Roses"
             }
-            self.paintingTour = paintingList
+            self.paintingTour = self.paintingList
             self.collectionView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
