@@ -23,6 +23,7 @@ class GalleryViewController: UIViewController {
     var isFiltering = false
     var filteredPaintings: [Painting] = []
     var paintingList : [Painting] = []
+    var paintingTour : [Painting] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,7 @@ class GalleryViewController: UIViewController {
             self.paintingList.removeAll { element in
                 return element.title == "Rust and Roses"
             }
+            self.paintingTour = paintingList
             self.collectionView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
@@ -124,13 +126,13 @@ class GalleryViewController: UIViewController {
     }
     
     func nextPainting(){
-        if(self.mapViewController?.visitedPaints.count == paintingList.count){
+        if(self.mapViewController?.visitedPaints.count == paintingTour.count){
             self.mapViewController?.endTour(self)
         }else{
-            let index = paintings.firstIndex { element in
+            let index = paintingTour.firstIndex { element in
                 self.mapViewController?.visitedPaints.last == element.title
             }
-            if (index != nil && (index! + 1) < paintingList.count){
+            if (index != nil && (index! + 1) < paintingTour.count){
                 self.selectedPaint(index: index! + 1)
             } else{
                 self.selectedPaint(index: 0)
@@ -148,7 +150,7 @@ class GalleryViewController: UIViewController {
     
     func selectedPaint(index: Int){
         if(mapViewController?.gidedArtTour != nil && mapViewController!.gidedArtTour){
-            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintingList[index]
+            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintingTour[index]
             self.mapViewController?.visitedPaints.append(self.selectedPainting!.title)
             self.performSegue(withIdentifier: "pictureDetail", sender: self)
         }else{

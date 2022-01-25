@@ -416,11 +416,7 @@ class MapViewController: UIViewController {
                 bottomBanner.layer.cornerRadius = 10
                 bottomBanner.titleLabel.layer.cornerRadius = 10
                 self.view.addSubview(bottomBanner)
-                if(self.gidedArtTour){
-
-                }else{
-                    bottomBanner.show(true)
-                }
+                bottomBanner.show(true)
                 
                 
                 _ = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
