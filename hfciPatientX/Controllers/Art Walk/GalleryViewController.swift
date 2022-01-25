@@ -48,14 +48,7 @@ class GalleryViewController: UIViewController {
         
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         
-        if(self.mapViewController?.gidedArtTour != nil && self.mapViewController!.gidedArtTour){
-            paintingList = paintings
-            paintingList.removeAll { element in
-                return element.title == "Rust and Roses"
-            }
-        }else{
-            paintingList = paintings
-        }
+        paintingList = paintings
 
     }
     
@@ -90,6 +83,9 @@ class GalleryViewController: UIViewController {
             UIAlertAction in
             self.mapViewController?.startScanningPainting(painting: nil)
             self.mapViewController?.guidedArtWalk()
+            self.paintingList.removeAll { element in
+                return element.title == "Rust and Roses"
+            }
             self.collectionView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
