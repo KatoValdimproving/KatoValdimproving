@@ -20,15 +20,11 @@ class MapViewController: UIViewController {
     @IBOutlet weak var controlsView: UIView!
     @IBOutlet weak var locationData: UITableView!
     @IBOutlet weak var directionsData: UITableView!
-    
-    @IBOutlet weak var exploreView: RoundedButtonView!
-    
+        
     @IBOutlet weak var titleLbl: UILabel!
     
     @IBOutlet weak var directionsView: RoundedView!
-    
-    @IBOutlet weak var directionsController: RoundedButtonView!
-    
+        
     @IBOutlet weak var textDirectionsBTN: UIButton!
     
     @IBOutlet weak var endTourBtn: UIButton!
@@ -248,20 +244,7 @@ class MapViewController: UIViewController {
         closeFrom.numberOfTouchesRequired = 1
         close.isUserInteractionEnabled = true
         close.addGestureRecognizer(closeFrom)
-        
-        
-        let exploreGesture = UITapGestureRecognizer(target: self, action: #selector(explore))
-        exploreGesture.numberOfTapsRequired = 1
-        exploreGesture.numberOfTouchesRequired = 1
-        exploreView.isUserInteractionEnabled = true
-        exploreView.addGestureRecognizer(exploreGesture)
-        
-        let directionsGesture = UITapGestureRecognizer(target: self, action: #selector(directions))
-        directionsGesture.numberOfTapsRequired = 1
-        directionsGesture.numberOfTouchesRequired = 1
-        directionsController.isUserInteractionEnabled = true
-        directionsController.addGestureRecognizer(directionsGesture)
-        
+                
         titleLbl.text = "Points of Interest"
         
         selectMenu.anchorView = selectDropdown
@@ -579,23 +562,6 @@ class MapViewController: UIViewController {
     
     @objc func action() {
         view.endEditing(true)
-    }
-    
-    @objc func explore() {
-        self.nodeLocations = self.allLocations.filter { location in
-            location.type == "amenities"
-        }
-        
-        filteredPolygonLocations = nodeLocations
-        
-        self.locationData.reloadData()
-        
-        titleLbl.text = "Amenities"
-    }
-    
-    @objc func directions() {
-        self.controlls.isHidden = true
-        self.directionsView.isHidden = false
     }
     
     func filterLocations() {

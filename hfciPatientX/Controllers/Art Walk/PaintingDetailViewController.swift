@@ -22,7 +22,6 @@ class PaintingDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("endGuidedTour"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("reachedPainting"), object: nil)
         // Do any additional setup after loading the view.
      //   self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
        // self.mapViewController?.beacon = getBeaconByPaintiingTitle(title: self.painting.title)

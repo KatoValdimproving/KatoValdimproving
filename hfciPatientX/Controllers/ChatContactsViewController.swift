@@ -20,17 +20,17 @@ class ChatContactsViewController: UIViewController {
         return .default
     }
     
-    private let searchController = UISearchController(searchResultsController: nil)
+    //private let searchController = UISearchController(searchResultsController: nil)
     private var users:[[String]]?
     private var filteredUsers:[[String]]?
     private var recentChats = UserDefaults.standard.getRecentChats() ?? [String]()
     private var filteredRecentChat:[String]?
     private let blurView = UIView()
     private var isSearchBarEmpty:Bool {
-        return self.searchController.searchBar.text?.isEmpty ?? true
+        return true
     }
     private var isFiltering:Bool {
-        return self.searchController.isActive && !self.isSearchBarEmpty
+        return !self.isSearchBarEmpty
     }
     
     private var isDisplayingContacts:Bool {
@@ -58,10 +58,10 @@ class ChatContactsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.NotificationAct(_:)), name: NSNotification.Name("MessagesRead"), object: nil)
         
         //Configure search controller
-        self.searchController.searchResultsUpdater = self
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        self.navigationItem.searchController = self.searchController
-        self.definesPresentationContext = true
+//        self.searchController.searchResultsUpdater = self
+//        self.searchController.obscuresBackgroundDuringPresentation = false
+//        self.navigationItem.searchController = self.searchController
+//        self.definesPresentationContext = true
         
         //Add activity indicator
         self.addLoadingActivityIndicator()

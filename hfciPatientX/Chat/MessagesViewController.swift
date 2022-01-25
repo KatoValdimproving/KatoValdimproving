@@ -24,13 +24,6 @@ class MessagesViewController: MSGMessengerViewController {
     var contactUser:ChatUser?
     override var style: MSGMessengerStyle {
         var style = MessengerKit.Styles.iMessage
-//        style.headerHeight = 0
-//        style.inputPlaceholder = "Message"
-//        style.alwaysDisplayTails = true
-//        style.outgoingBubbleColor = .magenta
-//        style.outgoingTextColor = .black
-//        style.incomingBubbleColor = .green
-//        style.incomingTextColor = .yellow
         style.backgroundColor = UIColor(red: 242/255, green: 243/255, blue: 247/255, alpha: 1.0)
         style.inputViewBackgroundColor = UIColor(red: 242/255, green: 243/255, blue: 247/255, alpha: 1.0)
         return style
@@ -209,31 +202,25 @@ class MessagesViewController: MSGMessengerViewController {
                     else if self?.contactUser?.id ==  BroadcastUser.id && messages.count > 0 && messages.first?.origin == BroadcastUser.id {
                         print("broadcast coming ")
                         self?.messages = messages
-//                        let recentMessgaes = messages.filter { message in
-//                            if let messageDate = message.creationDate {
-//
-//                                let dateFormatter = ISO8601DateFormatter()
-//                                dateFormatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
-//                                if let logInDate = dateFormatter.date(from: SessionManager.shared.logInDate) {//                            let dateFormatter = ISO8601DateFormatter()
-////                            dateFormatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
-////                            if  let date = dateFormatter.date(from: messageDate) {
-//
-//                                    if messageDate < logInDate {
-//                                        return false
-//                                    } else {
-//                                        return true
-//                                    }
-//                                }
-//                           }
-//
-//                            return false
-//
-//                        }
-//
-//                        self?.messages =  recentMessgaes
-                      //  self?.messages = recentMessgaes
+                        let recentMessgaes = messages.filter { message in
+                            if let messageDate = message.creationDate {
 
-                        
+                                let current = Date()
+                                if let logInDate = Calendar.current.date(byAdding: .hour, value: -24, to: current) {
+
+                                    if messageDate < logInDate {
+                                        return false
+                                    } else {
+                                        return true
+                                    }
+                                }
+                           }
+
+                            return false
+
+                        }
+
+                        self?.messages = recentMessgaes
                         self?.reloadMessages()
                     } else if self?.contactUser?.id !=  BroadcastUser.id && messages.count > 0 && messages.first?.origin != BroadcastUser.id {
                         self?.messages = messages

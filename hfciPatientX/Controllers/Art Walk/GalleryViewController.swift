@@ -69,6 +69,7 @@ class GalleryViewController: UIViewController {
         let alert = UIAlertController(title: "", message: "Move to a pice of art you find interesting to start your tour", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Start", style: .default) {
             UIAlertAction in
+            self.mapViewController?.startScanningPainting(painting: nil)
             self.mapViewController?.guidedArtWalk()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {

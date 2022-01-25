@@ -11,8 +11,10 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var artWalkButton: UIButton!
     @IBOutlet weak var wayfindingBtn: UIButton!
+    @IBOutlet weak var logoutBtn: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var logout: UIImageView!
+
     var chatViewController: ChatViewController!
     var mapViewController: MapViewController!
    weak var beaconsConsoleViewController: BeaconsConsoleViewController?
@@ -53,11 +55,6 @@ class HomeViewController: UIViewController {
             self.chatAction(self)
         }
         
-        let exitGesture = UITapGestureRecognizer(target: self, action: #selector(didExit))
-        exitGesture.numberOfTapsRequired = 1
-        exitGesture.numberOfTouchesRequired = 1
-        logout.isUserInteractionEnabled = true
-        logout.addGestureRecognizer(exitGesture)
         self.mapViewController.artWalkContainerView.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NewChatMessage"), object: nil)
 
@@ -92,6 +89,7 @@ class HomeViewController: UIViewController {
         self.mapViewController.goBack(self)
         self.artWalkButton.titleLabel?.font = .boldSystemFont(ofSize: 23)
         self.wayfindingBtn.titleLabel?.font = .systemFont(ofSize: 23)
+        self.chatButton.titleLabel?.font = .systemFont(ofSize: 23)
     }
     
     func logOut() {
@@ -113,12 +111,14 @@ class HomeViewController: UIViewController {
         self.mapViewController.goBack(self)
         self.wayfindingBtn.titleLabel?.font = .boldSystemFont(ofSize: 23)
         self.artWalkButton.titleLabel?.font = .systemFont(ofSize: 23)
+        self.chatButton.titleLabel?.font = .systemFont(ofSize: 23)
     }
     
      @IBAction func chatAction(_ sender: Any) {
          self.containerView.bringSubviewToFront(self.chatViewController.view)
          self.wayfindingBtn.titleLabel?.font = .systemFont(ofSize: 23)
          self.artWalkButton.titleLabel?.font = .systemFont(ofSize: 23)
+         self.chatButton.titleLabel?.font = .boldSystemFont(ofSize: 23)
      }
     
     @IBAction func consoleAction(_ sender: Any) {
@@ -156,7 +156,8 @@ class HomeViewController: UIViewController {
             
         }
     }
-    @objc func didExit() {
+    
+    @IBAction func logout(_ sender: Any) {
         APIManager.sharedInstance.logOut(completionHandler: { [weak self] islogout,error in
             if islogout {
                 self?.navigationController?.popToRootViewController(animated: true)
@@ -164,6 +165,9 @@ class HomeViewController: UIViewController {
                 
             }
         })
+    }
+    @objc func didExit() {
+        
     }
     /*
      // MARK: - Navigation
