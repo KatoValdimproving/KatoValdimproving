@@ -62,7 +62,7 @@ class GalleryViewController: UIViewController {
     @objc func methodOfReceivedNotification() {
         
         paintingList.sort {
-            ($0.beacon?.proximity ?? 100) < ($1.beacon?.proximity ?? 100)
+            ($0.beacon?.proximity ?? 100) > ($1.beacon?.proximity ?? 100)
         }
         
         collectionView.reloadData()
