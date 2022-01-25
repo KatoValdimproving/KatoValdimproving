@@ -59,6 +59,8 @@ class GalleryViewController: UIViewController {
         }
         
         collectionView.reloadData()
+        
+        mapViewController?.stopScanning(painting: nil)
     }
     
     override func viewDidLayoutSubviews() {
