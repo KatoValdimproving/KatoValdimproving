@@ -85,7 +85,7 @@ class GalleryViewController: UIViewController {
 
     }
     @IBAction func guidedArtWalkAction(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: "Move to a pice of art you find interesting to start your tour", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "Select a nearby piece of art from the menu to start your tour.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Start", style: .default) {
             UIAlertAction in
             self.mapViewController?.startScanningPainting(painting: nil)
