@@ -89,18 +89,18 @@ The Russell Industrial Center is an industrial factory turned to commercial comp
 """, origin: "Detroit, Michigan", technique: "Glass mosaic", year: "", location: "The Russell by Darcel Deneau"),
     
     Painting(name: "6", title: "Untitled", author: "James Collins", text: """
-Employing process as content, Detroit-based artist James Collins produces graphic line paintings that resemble warped photocopies and moiré patterns. His multidimensional line-heavy works are created using a chance-based, custom process in which oil paint and water-based acrylic interact in a fluid state and repel each other. Relying on a precise chemical balance, Collins allows his materials to dictate their own outcomes. Though this technique, he can create entire paintings in one sitting. His goal, he has said, is not to create new imagery but to breathe new life into painting by giving art-making materials command over the resulting artwork. Collins’s earlier works involved layers of white and silver house paint wrapped in plastic wrap to add texture and allowed to flake and peel over time.
+Employing process as content, Detroit-based artist James Collins produces graphic line paintings that resemble warped photocopies and moiré patterns. His multidimensional line-heavy works are created using a chance-based, custom process in which oil paint and water-based acrylic interact in a fluid state and repel each other. Relying on a precise chemical balance, Collins allows his materials to dictate their own outcomes. Through this technique, he can create entire paintings in one sitting. His goal, he has said, is not to create new imagery but to breathe new life into painting by giving art-making materials command over the resulting artwork. Collins’s earlier works involved layers of white and silver house paint wrapped in plastic wrap to add texture and allowed to flake and peel over time.
 """, origin: "Detroit, Michigan", technique: "Oil on canvas and acrylic on vinyl", year: "", location: "Untitled by James Collins"),
     
     Painting(name: "1", title: "Calendar", author: "Friedel Dzubas", text: """
-Magna acrylics on canvas
-
 Color Field painter Friedel Dzubas was a pioneer of the stain painting technique alongside 20th century painters, Helen Frankenthaler, Morris Louis, and Kenneth Noland. His earliest works evoked Paul Klee, but he soon moved towards working exclusively in colorful stain painting. He applied paint in a thin, texturally uniform manner creating fields of dense color and other areas where the color seemed almost translucent. For Dzubas, these paintings referenced natural phenomena, emotion, the painterly gesture, and the experience of color itself. Dzubas had a prolific art career that spanned nearly five decades.
 
 These paintings are part of a seventeen-canvas installation. The others are displayed at Henry Ford Health System’s Royal Oak Medical Center
 """, origin: "German/American", technique: "", year: "1915-1994", location: "Calendar by Friedel Dzubas"),
     
     Painting(name: "2", title: "Simbiosis", author: "Juan Carlos Martinez", text: """
+Look up to see this piece of art.
+
 Simbiosis is a custom hanging sculpture created especially for the Brigitte Harris Cancer Pavilion. The sculpture features several imagined flying forms and seed pods inspired by the artist’s trip to Colombia. The artist utilized several different metalworking techniques to create each unique form and used interference acrylic paint with Micah flakes to produce the iridescent effect.
 
 Juan creates sculptures that live and work among us, drawing from his experience as a science illustrator and fabricator working with metal, wood, and other materials. His work has been exhibited at Art Basel Miami, Museum of Contemporary Art Detroit (MOCAD), and in public and community spaces in Detroit, Los Angeles, and New York.  Juan’s artistic practice is informed by his commitment to community, with an emphasis on empowering and equipping Detroit youth for extraordinary futures.
@@ -108,10 +108,16 @@ Juan creates sculptures that live and work among us, drawing from his experience
     
     
     Painting(name: "3", title: "Shared Blessings with Shared Visions", author: "Kevin Cole", text: """
+Look up to see this piece of art.
+
 Shared Blessings with Shared Visions is a custom artwork that honors the life and love story of Brigitte and Mort Harris. As a caring and compassionate wife and mother, Brigitte made major contributions to numerous arts and service organizations. She was also an avid tennis player and rose gardener. Through this work, the artist conveys her energy, and the love she had for her husband, family, and her community.
+
 African symbols and patterns that symbolize faith, dreams, love, strength, perseverance, and hope are etched into the necktie and scarf shapes. The color forms symbolize the ups and downs we may experience yet through it all we keep finding the energy to press on, realizing with faith there are brighter days are ahead.
+
 This sculpture is an extension of Cole’s Fragments of Frozen Sound Series, which makes use of various shapes and forms taken from the process of mapping. Underneath the tie and scarf shapes are map shapes of places where Brigitte lived including, Aachen, Germany, London, New York, San Francisco, Chicago, Stockholm, and Detroit. These shapes come together to combine with where her husband Mort was born, and where the two of them met and spent their lives together.
+
 Kevin Cole is an Atlanta-based painter and mixed-media artist. Cole was born in Pine Bluff, Arkansas, and remains active in Atlanta, Georgia, and nationally. Cole was named Georgia State Artist of the Year in 1996 and has completed over 35 public art commissions, including the Coca-Cola Centennial Olympic Mural for the 1996 Olympic games and “Soul Ties That Matter,” a 55-foot-long installation created for Hartsfield-Jackson Atlanta International Airport in 2018. The artist’s work is included in more than 3,600 public, private, and corporate collections throughout the United States, including the National Museum of African American History and Culture at the Smithsonian Museum in Washington, D.C.
+
 Cole’s paintings, three-dimensional wooden and metal constructions, are recognizable due to his frequent use of the necktie as a motif, which alludes to both struggle and celebration in the African American experience.
 """, origin: "Atlanta, GA", technique: "Shaped and etched aluminum, acrylic paint on tar paper", year: "2020", location: "Shared Visions with Shared Blessings by Kevin Cole"),
     
@@ -173,10 +179,10 @@ The Wright & Cathy Lassiter Healing Arts Gallery hosts curated art exhibitions f
 ]
 
 let beacons = [
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35557, minor: 9601, firstContact: nil, time: 5, distance: 5, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35557, minor: 9601, firstContact: nil, time: 5, distance: 7, identifier: "Calendar", paintings: [getPaintingByTitle(title: "Calendar")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 6814, minor: 5832, firstContact: nil, time: 5, distance: 7, identifier: "Simbiosis", paintings: [getPaintingByTitle(title: "Simbiosis")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 454, minor: 21971, firstContact: nil, time: 5, distance: 7, identifier: "Shared Blessings with Shared Visions", paintings: [getPaintingByTitle(title: "Shared Blessings with Shared Visions")], proximity: 0, rrsi: 0, location: ""),
-    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23757, minor: 6314, firstContact: nil, time: 5, distance: 2, identifier: "A Series of Arrangements #2", paintings: [getPaintingByTitle(title: "A Series of Arrangements #2")], proximity: 0, rrsi: 0, location: ""),
+    Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23757, minor: 6314, firstContact: nil, time: 5, distance: 4, identifier: "A Series of Arrangements #2", paintings: [getPaintingByTitle(title: "A Series of Arrangements #2")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 27400, minor: 48675, firstContact: nil, time: 5, distance: 4, identifier: "Untitled", paintings: [getPaintingByTitle(title: "Untitled")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 35995, minor: 11128, firstContact: nil, time: 5, distance: 2, identifier: "The Russell", paintings: [getPaintingByTitle(title: "The Russell")], proximity: 0, rrsi: 0, location: ""),
     Beacon(uuid: UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!, mayor: 23068, minor: 6689, firstContact: nil, time: 5, distance: 2, identifier: "Josephine Ford and Brigitte Harris", paintings: [getPaintingByTitle(title: "Josephine Ford and Brigitte Harris")], proximity: 0, rrsi: 0, location: ""),
