@@ -133,9 +133,9 @@ class GalleryViewController: UIViewController {
                 self.mapViewController?.visitedPaints.last == element.title
             }
             if (index != nil && (index! + 1) < paintingTour.count){
-                self.selectedPaint(index: index! + 1)
+                self.selectedPaint(paint: paintingTour[index! + 1])
             } else{
-                self.selectedPaint(index: 0)
+                self.selectedPaint(paint: paintingTour[0])
             }
         }
     }
@@ -148,13 +148,12 @@ class GalleryViewController: UIViewController {
         self.performSegue(withIdentifier: "pictureDetail", sender: self)
     }
     
-    func selectedPaint(index: Int){
+    func selectedPaint(paint: Painting){
+        self.selectedPainting = paint
         if(mapViewController?.gidedArtTour != nil && mapViewController!.gidedArtTour){
-            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintingTour[index]
             self.mapViewController?.visitedPaints.append(self.selectedPainting!.title)
             self.performSegue(withIdentifier: "pictureDetail", sender: self)
         }else{
-            self.selectedPainting = isFiltering ? filteredPaintings[index] :  paintingList[index]
             self.performSegue(withIdentifier: "pictureDetail", sender: self)
         }
     }
@@ -164,7 +163,8 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedPaint(index: indexPath.row)
+        let selection = isFiltering ? filteredPaintings[indexPath.row] : paintingList[indexPath.row]
+        self.selectedPaint(paint: selection)
     }
     
 }
