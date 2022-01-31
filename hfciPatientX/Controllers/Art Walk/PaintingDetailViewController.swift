@@ -21,7 +21,7 @@ class PaintingDetailViewController: UIViewController {
     var painting: Painting!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(backAction), name: Notification.Name("endGuidedTour"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(endRoute), name: Notification.Name("endGuidedTour"), object: nil)
         // Do any additional setup after loading the view.
      //   self.titleLabel.attributedText = createDoubleLineTextForLabel(firstLine: "Simbiosis", sizeTop: 27, secondLine: "Hanna Frost", sizeBottom: 17, color: .black)
        // self.mapViewController?.beacon = getBeaconByPaintiingTitle(title: self.painting.title)
@@ -34,6 +34,12 @@ class PaintingDetailViewController: UIViewController {
         self.textView.textContainer.lineFragmentPadding = 0
         setInfoWithPainting(painting: self.painting)
         self.mapViewController?.paintingDetailViewController = self
+        
+        textView.linkTextAttributes = [.foregroundColor: UIColor.systemBlue]
+        textView.isSelectable = true
+        textView.isEditable = false
+        textView.isUserInteractionEnabled = true
+        textView.dataDetectorTypes = .link
         
         if(self.mapViewController?.gidedArtTour != nil && self.mapViewController!.gidedArtTour){
             backButton.isHidden = true
@@ -63,6 +69,11 @@ class PaintingDetailViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
             self.mapViewController?.showGoToArtwalkButton(isHidden: true)
         }
+    }
+    
+    @IBAction func endRoute(){
+        backButton.isHidden = false
+        nextButton.isHidden = true
     }
     
     func pushDirectionsView(directionsString: [String], fromMenu: DropDown, toMenu: DropDown) {

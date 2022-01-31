@@ -30,8 +30,8 @@ class BroadcastManager {
     
     var messagesCountForAppIconBadge: Int {
         get {
-             let broadcastMessagesCount = UserDefaults.standard.integer(forKey: "broadcastMessagesCount")
-            return broadcastMessagesCount
+             //let broadcastMessagesCount = UserDefaults.standard.integer(forKey: "broadcastMessagesCount")
+            return 0
         }
         
         set {
@@ -133,29 +133,25 @@ class BroadcastManager {
             } else {
                 
                 UIDevice.notifyWarningWithSound()
-                Alerts.displayAlertWithCompletion(title: "BROADCAST", and: messageToDisplay) {
-                    print("Ya se fue")
-                    
-                    let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-                    
-                 //   if let drawerController = rootViewController as? KYDrawerController {
-                        if let navigationController = rootViewController as? UINavigationController {
-                            if let tabViewcontroller = navigationController.viewControllers.first as? UITabBarController {
-                                print("yes")
-                                tabViewcontroller.selectedIndex = 0
+                let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+                
+             //   if let drawerController = rootViewController as? KYDrawerController {
+                    if let navigationController = rootViewController as? UINavigationController {
+                        if let tabViewcontroller = navigationController.viewControllers.first as? UITabBarController {
+                            print("yes")
+                            tabViewcontroller.selectedIndex = 0
+                            
+                            if let navigation = tabViewcontroller.viewControllers?.first as? UINavigationController {
                                 
-                                if let navigation = tabViewcontroller.viewControllers?.first as? UINavigationController {
+                                if let chatContactsViewController = navigation.viewControllers.first as? ChatContactsViewController {
+                                    print("yes")
                                     
-                                    if let chatContactsViewController = navigation.viewControllers.first as? ChatContactsViewController {
-                                        print("yes")
-                                        
-                                        chatContactsViewController.goToBroadCastMessages(animated: false)
-                                    }
-                                    
+                                    chatContactsViewController.goToBroadCastMessages(animated: false)
                                 }
+                                
                             }
                         }
-                }
+                    }
             }
             
         }

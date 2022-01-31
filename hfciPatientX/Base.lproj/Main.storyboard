@@ -832,7 +832,7 @@
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chat_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9jh-57-9vl">
-                                        <rect key="frame" x="200" y="236" width="335" height="348"/>
+                                        <rect key="frame" x="100" y="114" width="535" height="548"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQX-fH-AMe">
                                         <rect key="frame" x="73" y="29" width="45.5" height="21"/>
@@ -843,7 +843,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94922810790000001" green="0.95261090989999997" blue="0.96863025430000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="9jh-57-9vl" firstAttribute="centerY" secondItem="MG4-K8-Wwd" secondAttribute="centerY" constant="30" id="0wp-4Q-vfc"/>
+                                    <constraint firstItem="9jh-57-9vl" firstAttribute="centerY" secondItem="MG4-K8-Wwd" secondAttribute="centerY" id="0wp-4Q-vfc"/>
                                     <constraint firstItem="BQX-fH-AMe" firstAttribute="baseline" secondItem="Inj-lO-kpo" secondAttribute="baseline" id="2Jm-OF-vEu"/>
                                     <constraint firstItem="BQX-fH-AMe" firstAttribute="top" secondItem="MG4-K8-Wwd" secondAttribute="top" constant="29" id="ATm-3M-b4i"/>
                                     <constraint firstAttribute="trailing" secondItem="pdB-7H-lgO" secondAttribute="trailing" constant="15" id="EP5-eX-BR2"/>
@@ -855,10 +855,10 @@
                                     <constraint firstItem="BW7-zh-Rb2" firstAttribute="leading" secondItem="MG4-K8-Wwd" secondAttribute="leading" constant="15" id="RXI-Z7-ieN"/>
                                     <constraint firstItem="BW7-zh-Rb2" firstAttribute="top" secondItem="pdB-7H-lgO" secondAttribute="bottom" constant="10" id="Yjd-R4-iyi"/>
                                     <constraint firstItem="pdB-7H-lgO" firstAttribute="top" secondItem="Inj-lO-kpo" secondAttribute="bottom" constant="10" id="cRA-FU-DSj"/>
-                                    <constraint firstAttribute="trailing" secondItem="9jh-57-9vl" secondAttribute="trailing" constant="200" id="cii-B2-6RH"/>
+                                    <constraint firstAttribute="trailing" secondItem="9jh-57-9vl" secondAttribute="trailing" constant="100" id="cii-B2-6RH"/>
                                     <constraint firstItem="pdB-7H-lgO" firstAttribute="top" secondItem="BQX-fH-AMe" secondAttribute="bottom" constant="20" id="gxn-x8-LVi"/>
                                     <constraint firstItem="BQX-fH-AMe" firstAttribute="leading" secondItem="Inj-lO-kpo" secondAttribute="trailing" constant="13" id="oND-zs-Pxg"/>
-                                    <constraint firstItem="9jh-57-9vl" firstAttribute="leading" secondItem="MG4-K8-Wwd" secondAttribute="leading" constant="200" id="pkD-Jg-vIs"/>
+                                    <constraint firstItem="9jh-57-9vl" firstAttribute="leading" secondItem="MG4-K8-Wwd" secondAttribute="leading" constant="100" id="pkD-Jg-vIs"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BQX-fH-AMe" secondAttribute="trailing" constant="20" symbolic="YES" id="rfl-l6-za1"/>
                                     <constraint firstItem="9jh-57-9vl" firstAttribute="centerX" secondItem="MG4-K8-Wwd" secondAttribute="centerX" id="ry3-aZ-6ra"/>
                                 </constraints>
@@ -1816,7 +1816,7 @@
     </scenes>
     <resources>
         <image name="arrow" width="25" height="16"/>
-        <image name="chat_placeholder" width="1009" height="810"/>
+        <image name="chat_placeholder" width="3100" height="2668"/>
         <image name="clear.fill" catalog="system" width="128" height="114"/>
         <image name="easel" width="33" height="33"/>
         <image name="flechaBack" width="16" height="16"/>

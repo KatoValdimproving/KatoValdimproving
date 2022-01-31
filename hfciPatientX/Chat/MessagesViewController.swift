@@ -382,7 +382,7 @@ extension MessagesViewController: MSGDelegate {
     }
     
     func shouldDisplaySafari(for url: URL) -> Bool {
-        return true
+        return false
     }
     
     func shouldOpen(url: URL) -> Bool {
