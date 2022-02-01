@@ -427,7 +427,7 @@ class PayloadCreator {
     
     private func getSessionIdToPayload() -> [String: Any] {
       //  return [PayloadKeys.session: CoreDataManager.sharedInstance.currentSessionId ?? "n/a"]
-        return [PayloadKeys.session: "" ?? "n/a"]
+        return [PayloadKeys.session: ""]
 
     }
     
@@ -445,6 +445,8 @@ class PayloadCreator {
             locationAuthorizationStatus = "authorizedAlways"
         case .authorizedWhenInUse:
             locationAuthorizationStatus = "authorizedWhenInUse"
+        default:
+            locationAuthorizationStatus = "unknown"
         }
         return locationAuthorizationStatus
     }

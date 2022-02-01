@@ -1,21 +1,19 @@
 //
-//  PaintingDetailViewController.swift
+//  PreviousPaintingDetailViewController.swift
 //  hfciPatientX
 //
-//  Created by developer on 14/10/21.
+//  Created by user on 31/01/22.
 //
 
 import UIKit
-import DropDown
 
-class PaintingDetailViewController: UIViewController {
-
+class PreviousPaintingDetailViewController: UIViewController {
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    
-    var mapViewController: MapViewController?
+
     var painting: Painting!
     
     override func viewDidLoad() {
@@ -25,11 +23,9 @@ class PaintingDetailViewController: UIViewController {
         backButton.layer.borderColor = UIColor.black.cgColor
         backButton.layer.borderWidth = 1
         
-        self.mapViewController?.painting = painting
         imageView.layer.cornerRadius = 10
         self.textView.textContainer.lineFragmentPadding = 0
         setInfoWithPainting(painting: self.painting)
-        self.mapViewController?.paintingDetailViewController = self
         
         textView.linkTextAttributes = [.foregroundColor: UIColor.systemBlue]
         textView.isSelectable = true
@@ -47,26 +43,8 @@ class PaintingDetailViewController: UIViewController {
     
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        self.mapViewController?.showGoToArtwalkButton(isHidden: true)
     }
-    
-    func pushDirectionsView(directionsString: [String], fromMenu: DropDown, toMenu: DropDown) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let directionsViewController = storyboard.instantiateViewController(withIdentifier: "DirectionsViewController") as? DirectionsViewController {
-            directionsViewController.directionsString = directionsString
-            directionsViewController.menu = fromMenu
-            directionsViewController.menuTwo = toMenu
-            directionsViewController.mapViewcontroller = self.mapViewController
-            directionsViewController.painting = self.painting
-            self.navigationController?.pushViewController(directionsViewController, animated: true)
-        }
-    }
-    
-    
-    override func viewWillLayoutSubviews() {
-        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        self.mapViewController?.showGoToArtwalkButton(isHidden: false)
-    }
+
     /*
     // MARK: - Navigation
 

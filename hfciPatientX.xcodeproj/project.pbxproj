@@ -58,6 +58,8 @@
 		8BF417D6271A067C0074F57F /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417D5271A067C0074F57F /* GroupViewController.swift */; };
 		8BF417D9271A06D20074F57F /* ItemGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417D7271A06D20074F57F /* ItemGroupCollectionViewCell.swift */; };
 		8BF417DA271A06D20074F57F /* ItemGroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417D8271A06D20074F57F /* ItemGroupCollectionViewCell.xib */; };
+		CE1F868A27A8C3590099839B /* TourPaintingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F868927A8C3590099839B /* TourPaintingDetailViewController.swift */; };
+		CE1F868C27A8C5CC0099839B /* PreviousPaintingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F868B27A8C5CC0099839B /* PreviousPaintingDetailViewController.swift */; };
 		CE29AB02270CA19A00184984 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE29AAF6270CA19900184984 /* Roboto-Thin.ttf */; };
 		CE29AB03270CA19A00184984 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE29AAF7270CA19900184984 /* Roboto-ThinItalic.ttf */; };
 		CE29AB04270CA19A00184984 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE29AAF8270CA19900184984 /* Roboto-Light.ttf */; };
@@ -183,6 +185,8 @@
 		8BF417D7271A06D20074F57F /* ItemGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BF417D8271A06D20074F57F /* ItemGroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemGroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA187D40183931DE99B266FC /* Pods-hfciPatientX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hfciPatientX.debug.xcconfig"; path = "Target Support Files/Pods-hfciPatientX/Pods-hfciPatientX.debug.xcconfig"; sourceTree = "<group>"; };
+		CE1F868927A8C3590099839B /* TourPaintingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourPaintingDetailViewController.swift; sourceTree = "<group>"; };
+		CE1F868B27A8C5CC0099839B /* PreviousPaintingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousPaintingDetailViewController.swift; sourceTree = "<group>"; };
 		CE29AAF6270CA19900184984 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		CE29AAF7270CA19900184984 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		CE29AAF8270CA19900184984 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 				8B768927271DDC7C00C22345 /* DirectionsViewController.swift */,
 				8B2C1A752727A887007AF57E /* BeaconsConsoleViewController.swift */,
 				8B75FD22272F0224008F52E7 /* PaintingBeaconViewController.swift */,
+				CE1F868927A8C3590099839B /* TourPaintingDetailViewController.swift */,
+				CE1F868B27A8C5CC0099839B /* PreviousPaintingDetailViewController.swift */,
 			);
 			path = "Art Walk";
 			sourceTree = "<group>";
@@ -825,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1F868A27A8C3590099839B /* TourPaintingDetailViewController.swift in Sources */,
 				CEE7500D2704E7EA00BD6CB7 /* PointCellTableViewCell.swift in Sources */,
 				8B8E65572715E1EE0052B7C6 /* GalleryViewController.swift in Sources */,
 				8B79B53B26FC22B600057F79 /* ChatUser.swift in Sources */,
@@ -850,6 +857,7 @@
 				CE29AB19270D413E00184984 /* DirectionsTableViewCell.swift in Sources */,
 				8B79B54026FC22E800057F79 /* MessagesViewController.swift in Sources */,
 				CEA3295F27726F160088A6BB /* MapVMViewController.swift in Sources */,
+				CE1F868C27A8C5CC0099839B /* PreviousPaintingDetailViewController.swift in Sources */,
 				8B7E2CD32766DCEF0048C5A7 /* BottomBannerView.swift in Sources */,
 				8BDEE4E126FC2FD00014A054 /* NetworkManager.swift in Sources */,
 				8B79B53A26FC22B600057F79 /* ChatManager.swift in Sources */,

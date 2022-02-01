@@ -45,6 +45,8 @@ class MapViewController: UIViewController {
     var didRangedBeacons: (()->Void)?
     var painting: Painting?
     var paintingDetailViewController: PaintingDetailViewController?
+    var tourPaintingDetailViewController : TourPaintingDetailViewController?
+    var previousPaintingDetailViewController : PreviousPaintingDetailViewController?
     let centerButton = UIButton(type: .custom)
     var gidedArtTour : Bool = false
     
@@ -129,8 +131,11 @@ class MapViewController: UIViewController {
                                 return instruction.instruction ?? "Unknown"
             }
             self.startScanningPainting(painting: paint)
-            self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString, fromMenu: self.fromSelect, toMenu: self.toSelect)
-
+            if(self.gidedArtTour){
+                self.tourPaintingDetailViewController?.pushDirectionsView(directionsString: directionsString, fromMenu: self.fromSelect, toMenu: self.toSelect)
+            }else{
+                self.paintingDetailViewController?.pushDirectionsView(directionsString: directionsString, fromMenu: self.fromSelect, toMenu: self.toSelect)
+            }
         }
         
         
@@ -188,6 +193,7 @@ class MapViewController: UIViewController {
         endTourBtn.isHidden = true
         self.visitedPaints = []
         galleryViewController?.endTour()
+        self.goToArtwalkButton.isHidden = true
         NotificationCenter.default.post(name: Notification.Name("endGuidedTour"), object: nil)
     }
     
@@ -310,48 +316,6 @@ class MapViewController: UIViewController {
     
     @objc func thumbsUpButtonPressed() {
         self.mapMpiView.blueDotManager.setState(state: .FOLLOW)
-    }
-    
-    func guidedArtWalkFromCurrentLocation() {
-        
-        var locations: MPINode
-        if let nearest = self.nearestNode {
-            locations = nearest
-        } else {
-            
-            if let entrance = getEntrance(allLocation: self.allLocations) {
-                guard let loc = entrance.nodes?.first else { return }
-                locations = loc
-            } else {
-                return
-            }
-            
-        }
-        
-        
-        
-        var locationsArtWalk: [MPILocation] = []
-                
-        let allPaitingLocations = paintings.map { painting in
-            return painting.location
-        }
-    
-        for locationString in allPaitingLocations {
-            for location in self.allLocations {
-                if location.name == locationString {
-                    locationsArtWalk.append(location)
-                }
-            }
-        }
-        
-        
-        
-        self.mapMpiView.getDirections(to: MPIDestinationSet(destinations: locationsArtWalk), from: locations, accessible: true) { directions in
-            if let directionsInstructions = directions {
-                self.mapMpiView.journeyManager.draw(directions: directionsInstructions, options: MPIOptions.Journey(
-                    pathOptions: MPIOptions.Path(color: "#F44F36", pulseColor: "#000000", displayArrowsOnPath: true)))
-            }
-        }
     }
     
     func guidedArtWalk() {
@@ -906,12 +870,12 @@ extension MapViewController {
             
             guard let beacon = paint.beacon else { return }
             let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "painting")
+            let beaconRegion = CLBeaconRegion(uuid: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "painting")
             locationManager.startMonitoring(for: beaconRegion)
             locationManager.startRangingBeacons(in: beaconRegion)
         } else {
             let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+            let beaconRegion = CLBeaconRegion(uuid: uuid, identifier: "painting")
             locationManager.startMonitoring(for: beaconRegion)
             locationManager.startRangingBeacons(in: beaconRegion)
         }
@@ -925,12 +889,12 @@ extension MapViewController {
             
             guard let beacon = paint.beacon else { return }
             let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "painting")
+            let beaconRegion = CLBeaconRegion(uuid: uuid, major: CLBeaconMajorValue(beacon.mayor), minor: CLBeaconMinorValue(beacon.minor), identifier: "painting")
             locationManager.stopMonitoring(for: beaconRegion)
             locationManager.stopRangingBeacons(in: beaconRegion)
         } else {
             let uuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")!
-            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "painting")
+            let beaconRegion = CLBeaconRegion(uuid: uuid, identifier: "painting")
             locationManager.stopMonitoring(for: beaconRegion)
             locationManager.stopRangingBeacons(in: beaconRegion)
         }

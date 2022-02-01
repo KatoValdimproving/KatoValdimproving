@@ -17,6 +17,7 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     let flowLayout = UICollectionViewFlowLayout()
     var selectedPainting: Painting?
+    var previousPainting: Painting?
     var allLocations : [MPILocation] = []
     var selectedLocation: MPILocation?
     var mapViewController: MapViewController?
@@ -69,16 +70,6 @@ class GalleryViewController: UIViewController {
          self.mapViewController?.showGoToArtwalkButton(isHidden: true)
     }
     
-    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews() 
-//        self.flowLayout.invalidateLayout()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-      //  guidedTourButton.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .bold)
-      //  self.mapViewController?.showGoToArtwalkButton(isHidden: true)
-
-    }
     @IBAction func guidedArtWalkAction(_ sender: Any) {
         let alert = UIAlertController(title: "", message: "Select a nearby piece of art from the menu to start your tour.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Start", style: .default) {
@@ -120,12 +111,28 @@ class GalleryViewController: UIViewController {
 
    //  In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let paintingDetailViewController = segue.destination as? PaintingDetailViewController
-        paintingDetailViewController?.mapViewController = self.mapViewController
-        paintingDetailViewController?.painting = self.selectedPainting
+        switch segue.identifier {
+        case "pictureDetail":
+            let paintingDetailViewController = segue.destination as? PaintingDetailViewController
+            paintingDetailViewController?.mapViewController = self.mapViewController
+            paintingDetailViewController?.painting = self.selectedPainting
+            break
+        case "tourDetails":
+            let paintingDetailViewController = segue.destination as? TourPaintingDetailViewController
+            paintingDetailViewController?.mapViewController = self.mapViewController
+            paintingDetailViewController?.painting = self.selectedPainting
+            paintingDetailViewController?.previous = self.previousPainting
+            break
+        case .none:
+            break
+        case .some(_):
+            break
+        }
+        
     }
     
     func nextPainting(){
+        self.previousPainting = self.selectedPainting
         if(self.mapViewController?.visitedPaints.count == paintingTour.count){
             self.mapViewController?.endTour(self)
         }else{
@@ -152,7 +159,7 @@ class GalleryViewController: UIViewController {
         self.selectedPainting = paint
         if(mapViewController?.gidedArtTour != nil && mapViewController!.gidedArtTour){
             self.mapViewController?.visitedPaints.append(self.selectedPainting!.title)
-            self.performSegue(withIdentifier: "pictureDetail", sender: self)
+            self.performSegue(withIdentifier: "tourDetails", sender: self)
         }else{
             self.performSegue(withIdentifier: "pictureDetail", sender: self)
         }

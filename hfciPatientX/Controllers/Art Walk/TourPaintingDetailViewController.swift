@@ -1,26 +1,30 @@
 //
-//  PaintingDetailViewController.swift
+//  TourPaintingDetailViewController.swift
 //  hfciPatientX
 //
-//  Created by developer on 14/10/21.
+//  Created by user on 31/01/22.
 //
 
 import UIKit
 import DropDown
 
-class PaintingDetailViewController: UIViewController {
-
+class TourPaintingDetailViewController: UIViewController {
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nextButton: UIButton!
     
     var mapViewController: MapViewController?
+    var previous: Painting?
     var painting: Painting!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        NotificationCenter.default.addObserver(self, selector: #selector(endTour), name: Notification.Name("endGuidedTour"), object: nil)
+        
         self.backButton.layer.cornerRadius = 10
         backButton.layer.borderColor = UIColor.black.cgColor
         backButton.layer.borderWidth = 1
@@ -29,13 +33,20 @@ class PaintingDetailViewController: UIViewController {
         imageView.layer.cornerRadius = 10
         self.textView.textContainer.lineFragmentPadding = 0
         setInfoWithPainting(painting: self.painting)
-        self.mapViewController?.paintingDetailViewController = self
+        self.mapViewController?.tourPaintingDetailViewController = self
         
         textView.linkTextAttributes = [.foregroundColor: UIColor.systemBlue]
         textView.isSelectable = true
         textView.isEditable = false
         textView.isUserInteractionEnabled = true
         textView.dataDetectorTypes = .link
+        
+        self.mapViewController?.goToArtWalkPaintingAction(self)
+        
+        if(previous == nil){
+            self.backButton.isEnabled = false
+        }
+        
     }
     
     func setInfoWithPainting(painting: Painting) {
@@ -45,9 +56,24 @@ class PaintingDetailViewController: UIViewController {
         
     }
     
-    @IBAction func backAction(_ sender: Any) {
+    @IBAction func nextPaint(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        self.mapViewController?.showGoToArtwalkButton(isHidden: true)
+        if ((self.mapViewController?.gidedArtTour) != nil && self.mapViewController!.gidedArtTour){
+            self.mapViewController?.nextStop()
+        }else{
+            self.mapViewController?.galleryViewController?.endTour()
+        }
+    }
+    
+    @objc func endTour(){
+        backButton.isEnabled = false
+        nextButton.setTitle("Finish", for: .normal)
+    }
+    
+    @IBAction func previousPaintingInfo(_ sender: Any) {
+        if(previous != nil){
+            self.performSegue(withIdentifier: "previousPicture", sender: self)
+        }
     }
     
     func pushDirectionsView(directionsString: [String], fromMenu: DropDown, toMenu: DropDown) {
@@ -61,20 +87,15 @@ class PaintingDetailViewController: UIViewController {
             self.navigationController?.pushViewController(directionsViewController, animated: true)
         }
     }
+
     
-    
-    override func viewWillLayoutSubviews() {
-        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        self.mapViewController?.showGoToArtwalkButton(isHidden: false)
-    }
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let paintingDetailViewController = segue.destination as? PreviousPaintingDetailViewController
+        paintingDetailViewController?.painting = previous
     }
-    */
+    
 
 }

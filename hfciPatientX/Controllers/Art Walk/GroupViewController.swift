@@ -79,14 +79,9 @@ class GroupViewController: UIViewController {
 extension GroupViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        
-     
         guard let beacon = self.beacon else { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let paintingDetailViewController = storyboard.instantiateViewController(withIdentifier: "PaintingDetailViewController") as? PaintingDetailViewController else { return }
-        //    self.galleryNavigationController?.pushViewController(paintingDetailViewController, animated: true)
-          //  paintingDetailViewController.pushDirectionsView(directionsString: directionsString)
         paintingDetailViewController.painting = beacon.paintings[indexPath.row]
         paintingDetailViewController.mapViewController = self.mapViewController
         self.navigationController?.pushViewController(paintingDetailViewController, animated: true)
