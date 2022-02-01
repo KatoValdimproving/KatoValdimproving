@@ -1855,7 +1855,7 @@
                                     <constraint firstAttribute="height" constant="44" id="uWy-xv-Wxw"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <buttonConfiguration key="configuration" style="plain" image="flechaBack" title="  Continue" imagePadding="2">
+                                <buttonConfiguration key="configuration" style="plain" image="continueArrow" imagePlacement="trailing" title="  Continue" imagePadding="2">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 </buttonConfiguration>
@@ -2015,6 +2015,7 @@
         <image name="arrow" width="25" height="16"/>
         <image name="chat_placeholder" width="3100" height="2668"/>
         <image name="clear.fill" catalog="system" width="128" height="114"/>
+        <image name="continueArrow" width="24" height="24"/>
         <image name="easel" width="33" height="33"/>
         <image name="flechaBack" width="16" height="16"/>
         <image name="helpIcon" width="117" height="117"/>
